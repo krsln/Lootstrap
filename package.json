@@ -1,0 +1,18 @@
+{
+  "name": "lootstrap",
+  "version": "1.0.0",
+  "scripts": {
+    "watch:sass": "node-sass --no-cache --update --watch scss -o css",
+    "css-compile-btn": "node-sass --no-cache --update --output dist/css scss/_buttons.scss",
+    "css-compile-card": "node-sass --no-cache --update --output dist/css scss/_card.scss",
+    "css-compile-grid": "node-sass --no-cache --update --output dist/css scss/_grid.scss",
+    "watch-css": "nodemon -e scss -x \"npm run css-compile-btn css-compile-card\"",
+    "compress:css": "node-sass --no-cache --update scss/_buttons.scss css --style compressed",
+    "css-compile-main": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/ -o dist/css/"
+  },
+  "dependencies": {
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
+    "sass-yiq": "^1.0.0"
+  }
+}

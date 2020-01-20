@@ -1,0 +1,113 @@
+@function col-width($i,$column ) {
+  @return (100% / $column * $i);
+}
+
+@mixin col-props($i,$column,$gutter) {
+  $width: col-width($i, $column);
+  $padding: 6;
+  $padding-size: ($width / 100 * $padding * 0.5);
+
+  $width: ($width - $padding-size * 2);
+  $w: calc(#{$width} - #{$gutter});
+
+  width: $w;
+
+  margin-right: $gutter;
+  padding-left: $padding-size;
+  padding-right: $padding-size;
+}
+
+@mixin column-loop($column,$gutter) {
+  @for $i from 1 through $column {
+    &-#{$i} {
+      @include col-props($i, $column, $gutter)
+    }
+  }
+}
+
+$gutter: 5px;
+$column: 12;
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col {
+  @include column-loop($column, $gutter);
+}
+
+[class*="col-"] {
+  width: 100%;
+  float: left;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@for $i from 4 through 20 {
+  @media only screen and (min-width: #{$i*100}px) {
+    // 1024 x 768 // 1280 x 720 // 1366 x 768
+    .container {
+      max-width: calc(#{$i*100}px - #{$i*10}px);
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* For half k: */
+  .col-h {
+    @include column-loop($column, $gutter);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  // 1024 x 768 // 1280 x 720 // 1366 x 768
+  .col-k {
+    @include column-loop($column, $gutter);
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  // 1920 x 1080 // 2560 x 1440 // 2560 x 1600 // 2048 x (any)
+  .col-2k {
+    @include column-loop($column, $gutter);
+  }
+}
+
+@media only screen and (min-width: 3840px) {
+  // 3840 x 2160 4K // 4096 x 2160 4K
+  .col-4k {
+    @include column-loop($column, $gutter);
+  }
+}
+
+@media only screen and (min-width: 3840px) {
+  // 7680 x 4320 8K // 10240 × 4320 10K
+  .col-10k {
+    @include column-loop($column, $gutter);
+  }
+}
+
+@media only screen and (min-width: 15360px) {
+  // 15360 x 8640 16K
+  .col-16k {
+    @include column-loop($column, $gutter);
+  }
+}
+
+
+
+

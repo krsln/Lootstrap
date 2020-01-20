@@ -1,0 +1,79 @@
+// 2. Shadows
+// ===========================================================================
+
+// Shadows
+$shadow-none                                :none !important;
+$shadow-1                                   : 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !default;
+$shadow-2                                   : 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15) !default;
+$shadow-3                                   : 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !default;
+$shadow-4                                   : 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19) !default;
+$shadow-5                                   : 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21) !default;
+$shadow-6                                   : 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22) !default;
+
+// 3. Transitions
+// ===========================================================================
+
+// Transitions
+$transition-base                             : all .2s ease-in-out !default;
+//$transition-hover                            : all .55s ease-in-out !default;
+
+// 4. Borders
+// ===========================================================================
+
+// Border radius
+$border-radius-base                          : .125rem !default;
+//$border-radius-circle                        : 50% !default;
+
+// 8. Buttons
+// ===========================================================================
+
+// Buttons
+$btn-color-basic                             : #fff !default;
+$btn-margin-basic                            : .375rem !default;
+$btn-padding-y-basic                         : .84rem !default;
+$btn-padding-x-basic                         : 2.14rem !default;
+$btn-font-size-basic                         : .81rem !default;
+
+$btn-padding-y-large                         : 1rem !default;
+$btn-padding-x-large                         : 2.4rem !default;
+$btn-font-size-large                         : .94rem !default;
+
+$btn-padding-y-medium                        : .7rem !default;
+$btn-padding-x-medium                        : 1.6rem !default;
+$btn-font-size-medium                        : .7rem !default;
+
+$btn-padding-y-small                         : .5rem !default;
+$btn-padding-x-small                         : 1.6rem !default;
+$btn-font-size-small                         : .64rem !default;
+
+$btn-outline-padding-y-basic                 : .7rem !default;
+$btn-outline-padding-y-large                 : .88rem !default;
+$btn-outline-padding-y-medium                : .58rem !default;
+$btn-outline-padding-y-small                 : .38rem !default;
+
+$btn-tb-padding-y                            : 0.3rem !default;
+$btn-tb-padding-x                            : 1rem !default;
+
+$btn-transition                              : $transition-base !default;
+
+$btn-icon-basic                              : .9rem !default;
+$btn-icon-large                              : 1rem !default;
+$btn-icon-medium                             : .8rem !default;
+$btn-icon-small                              : .7rem !default;
+$btn-icon-margin                             : .3rem !default;
+$btn-group-margin                            : .375rem !default;
+
+
+// 9. Cards
+// ===========================================================================
+
+// Cards
+$md-card-border-radius                       : .25rem !default;
+$md-card-link-transition                     : .2s ease-in-out !default;
+$md-card-font-size                           : .9rem !default;
+$md-card-text-color                          : #747373 !default;
+
+// ===========================================================================
+// ===========================================================================
+// ===========================================================================
+

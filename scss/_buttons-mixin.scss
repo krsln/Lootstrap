@@ -1,0 +1,128 @@
+@import "vars";
+$white: #fff !default;
+$black: #000 !default;
+
+// Set the color of the button and badge
+@function resolveColor($color) {
+  @if (lightness($color) > 80) {
+    @return $black; // Lighter background, return dark color
+  } @else {
+    @return $white; // Darker background, return light color
+  }
+}
+
+// Make button
+@mixin button-variant($name, $color) {
+  .btn-#{$name} {
+    background-color: $color !important;
+    color: resolveColor($color);
+
+    &:hover {
+      background-color: lighten($color, 5%);
+      color: resolveColor($color);
+    }
+
+    &:focus,
+    &.focus {
+      box-shadow: $shadow-2;
+    }
+
+    &:focus,
+    &:active,
+    &.active {
+      background-color: darken($color, 20%);
+    }
+
+    //&.dropdown-toggle {
+    //  background-color: $color !important;
+    //
+    //  &:hover,
+    //  &:focus {
+    //    background-color: lighten($color, 5%) !important;
+    //  }
+    //}
+
+    &:not([disabled]):not(.disabled):active,
+    &:not([disabled]):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      box-shadow: $shadow-2;
+      background-color: darken($color, 20%) !important;
+    }
+
+    &:not([disabled]):not(.disabled):active:focus,
+    &:not([disabled]):not(.disabled).active:focus,
+    .show > &.dropdown-toggle:focus
+    {
+      box-shadow: $shadow-2;
+    }
+  }
+
+  //.#{$name}-ic {
+  //  color: $color !important;
+  //
+  //  &:hover,
+  //  &:focus {
+  //    color: $color;
+  //  }
+  //}
+
+  a.btn:not([href]):not([tabindex]),
+  a.btn:not([href]):not([tabindex]):focus,
+  a.btn:not([href]):not([tabindex]):hover {
+    color: resolveColor($color);
+  }
+  //table {
+  //  &.table {
+  //    a {
+  //      &.btn {
+  //        &.btn-#{$name} {
+  //          color: resolveColor($color);
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+}
+
+// Make outline button
+@mixin button-outline-variant($name, $color) {
+  .btn-outline-#{$name} {
+    border: 2px solid $color !important;
+    background-color: transparent !important;
+    color: $color !important;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus,
+    &.active {
+      //border-color: $color !important;
+      //background-color: transparent !important;
+      //color: $color !important;
+      color: resolveColor($color) !important;
+      background-color: $color !important;
+      border-color: $color !important;
+    }
+
+    &:not([disabled]):not(.disabled):active,
+    &:not([disabled]):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      box-shadow: $shadow-2;
+      background-color: lighten($color, 50%) !important;
+      border-color: $color !important;
+      color: $color !important;
+    }
+
+    &:not([disabled]):not(.disabled):active:focus,
+    &:not([disabled]):not(.disabled).active:focus,
+    .show > &.dropdown-toggle:focus {
+      box-shadow: $shadow-2;
+    }
+  }
+}
+
+// Button sizes
+@mixin button-size($padding-y, $padding-x, $font-size) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+}

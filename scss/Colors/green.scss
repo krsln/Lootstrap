@@ -1,0 +1,25 @@
+$green-000: #f0fff4;
+$green-100: #dcffe4;
+$green-200: #bef5cb;
+$green-300: #85e89d;
+$green-400: #34d058;
+$green-500: #28a745;
+$green-600: #22863a;
+$green-700: #176f2c;
+$green-800: #165c26;
+$green-900: #144620;
+
+$green: $green-500 !default;
+
+$greens: (
+        "000": $green-000,
+        "100": $green-100,
+        "200": $green-200,
+        "300": $green-300,
+        "400": $green-400,
+        "500": $green-500,
+        "600": $green-600,
+        "700": $green-700,
+        "800": $green-800,
+        "900": $green-900
+) !default;

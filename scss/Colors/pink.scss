@@ -1,0 +1,25 @@
+$pink-000: #ffeef8;
+$pink-100: #fedbf0;
+$pink-200: #f9b3dd;
+$pink-300: #f692ce;
+$pink-400: #ec6cb9;
+$pink-500: #ea4aaa;
+$pink-600: #d03592;
+$pink-700: #b93a86;
+$pink-800: #99306f;
+$pink-900: #6d224f;
+
+$pink: $pink-500 !default;
+
+$pinks: (
+        "000": $pink-000,
+        "100": $pink-100,
+        "200": $pink-200,
+        "300": $pink-300,
+        "400": $pink-400,
+        "500": $pink-500,
+        "600": $pink-600,
+        "700": $pink-700,
+        "800": $pink-800,
+        "900": $pink-900
+) !default;
