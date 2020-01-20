@@ -1,8 +1,8 @@
-@function col-width($i,$column ) {
+@function col-width($i, $column ) {
   @return (100% / $column * $i);
 }
 
-@mixin col-props($i,$column,$gutter) {
+@mixin col-props($i, $column, $gutter) {
   $width: col-width($i, $column);
   $padding: 6;
   $padding-size: ($width / 100 * $padding * 0.5);
@@ -17,7 +17,7 @@
   padding-right: $padding-size;
 }
 
-@mixin column-loop($column,$gutter) {
+@mixin column-loop($column, $gutter) {
   @for $i from 1 through $column {
     &-#{$i} {
       @include col-props($i, $column, $gutter)
@@ -52,14 +52,14 @@ $column: 12;
   width: 100%;
   float: left;
 
-  &:last-child {
-    margin-right: 0;
-  }
+  //&:last-child {
+  //  margin-right: 0;
+  //}
 }
 
 @for $i from 4 through 20 {
   @media only screen and (min-width: #{$i*100}px) {
-    // 1024 x 768 // 1280 x 720 // 1366 x 768
+    // 400 - 2000
     .container {
       max-width: calc(#{$i*100}px - #{$i*10}px);
     }
@@ -94,7 +94,7 @@ $column: 12;
   }
 }
 
-@media only screen and (min-width: 3840px) {
+@media only screen and (min-width: 7680px) {
   // 7680 x 4320 8K // 10240 × 4320 10K
   .col-10k {
     @include column-loop($column, $gutter);

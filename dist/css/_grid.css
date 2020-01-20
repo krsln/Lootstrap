@@ -87,8 +87,6 @@
 [class*="col-"] {
   width: 100%;
   float: left; }
-  [class*="col-"]:last-child {
-    margin-right: 0; }
 
 @media only screen and (min-width: 400px) {
   .container {
@@ -407,7 +405,7 @@
     padding-left: 3%;
     padding-right: 3%; } }
 
-@media only screen and (min-width: 3840px) {
+@media only screen and (min-width: 7680px) {
   .col-10k-1 {
     width: calc(7.83333% - 5px);
     margin-right: 5px;
