@@ -11,7 +11,7 @@
     "css-compile-main": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/ -o dist/css/"
   },
   "dependencies": {
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "sass-yiq": "^1.0.0"
   }
