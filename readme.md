@@ -1,13 +1,10 @@
-Install Node.js
+# @qrsln/lootstrap
 
-Install NPM
+![Progress](https://img.shields.io/badge/Progress-✔☐☐☐☐‌‌‌‌‌‌‌-blue)
+[![downloads](https://img.shields.io/npm/dm/@qrsln/lootstrap.svg)](https://npmcharts.com/compare/@qrsln/lootstrap?minimal=true)
+[![npm version](https://badge.fury.io/js/%40qrsln%2Flootstrap.svg)](https://badge.fury.io/js/%40qrsln%2Flootstrap)
 
-Create package.json file.
+## Lootstrap
+Beta Test
 
-Write {} in the package.json file.
-
-Run command: npm install
-
-Run command to install Node-Sass: npm install node-sass
-
-Write this code into the package.json file
+[![Progress](https://img.shields.io/badge/Demo‌‌‌‌‌‌‌-blue)](https://krsln.github.io/NgLootBox/Home)
