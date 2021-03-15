@@ -1,0 +1,27 @@
+// ===========================================================================
+// Utils - Colors
+// ===========================================================================
+
+// .bg-*-l1-l5
+@mixin Background-Tint($colors,$rate-values) {
+  @each $colorKey, $colorValue in $colors {
+
+    @each $name, $value in $rate-values {
+      .Bg-#{to-lower-case($colorKey)}-l#{$name} {
+        background-color: Tint($colorValue, $value) !important;
+      }
+    }
+  }
+}
+
+//.bg-*-d1-d5
+@mixin Background-Shade($colors,$rate-values) {
+  @each $colorKey, $colorValue in $colors {
+
+    @each $name, $value in $rate-values {
+      .Bg-#{to-lower-case($colorKey)}-d#{$name} {
+        background-color: Shade($colorValue, $value) !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@qrsln/lootstrap",
+  "version": "21.03.15beta.0",
+  "description": "Lootstrap scss library",
+  "style": "dist/css/lootstrap.css",
+  "sass": "scss/lootstrap.scss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krsln/Lootstrap.git"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "responsive",
+    "front-end",
+    "framework",
+    "web"
+  ],
+  "author": "Qrsln",
+  "license": "MIT",
+  "files": [
+    "dist/css",
+    "scss/**/*.scss"
+  ],
+  "bugs": {
+    "url": "https://github.com/krsln/Lootstrap/issues"
+  },
+  "homepage": "https://github.com/krsln/Lootstrap#readme",
+  "scripts": {
+    "css": "npm-run-all cleaning css-compile css-clean-main:SassDoesnt css-prefix-main css-minify-main",
+    "cleaning": "rimraf dist/css",
+    "css-compile": "sass --style expanded --source-map --embed-sources --no-error-css scss/:dist/css/",
+    "css-clean-main:SassDoesnt": "cleancss -O1 --format beautify --output dist/css/lootstrap.css dist/css/lootstrap.css",
+    "css-prefix-main": "postcss --config build/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
+    "css-minify-main": "cleancss -O1 --format breakWith=lf --output dist/css/lootstrap.min.css dist/css/lootstrap.css",
+    "sass:Watch": "sass  --watch scss/:dist/css/"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "clean-css-cli": "^5.2.1",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.5",
+    "postcss-cli": "^8.3.1",
+    "sass": "^1.32.8",
+    "rimraf": "^3.0.2"
+  }
+}

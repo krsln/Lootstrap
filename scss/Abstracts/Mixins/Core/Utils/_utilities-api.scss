@@ -1,0 +1,45 @@
+// ===========================================================================
+// Utils - Utility Generic
+// ===========================================================================
+
+// Utility generator
+@mixin Utility($utility ) {
+  $values: map-get($utility, Values);
+
+  // If the values are a list or string, convert it into a map
+  @if type-of($values) == "string" or type-of(nth($values, 1)) != "list" {
+    $values: zip($values, $values);
+  }
+
+  @each $key, $value in $values {
+    $properties: map-get($utility, Property);
+    $isImportant: map-get($utility, Important);
+
+    // Not gonna use multiple but whatever!
+    // Multiple properties are possible, for example with vertical or horizontal margins or paddings
+    @if type-of($properties) == "string" {
+      $properties: append((), $properties);
+    }
+
+    // Use custom class if present
+    $class-prefix: if(map-has-key($utility, Prefix), map-get($utility, Prefix), nth($properties, 1));
+    $class-prefix: if($class-prefix == null, "", $class-prefix);
+
+    // Don't prefix if value key is null (eg. with shadow class)
+    $class-infix: if($key, if($class-prefix == ""  , "", "-") + $key, "");
+
+    @if $value != null {
+      .#{$class-prefix + $class-infix} {
+        @each $property in $properties {
+          #{$property}: $value if($isImportant, !important, null);
+        }
+      }
+    }
+  }
+}
+
+@mixin Utilities($utilities) {
+  @each $keyUtil, $valueUtil in $utilities {
+    @include Utility($valueUtil);
+  }
+}

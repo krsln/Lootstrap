@@ -1,0 +1,104 @@
+// ===========================================================================
+// Utils - Border Radius
+// ===========================================================================
+
+// Whole sides
+@mixin border-radius-Top($radius: $border-radius) {
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin border-radius-Bottom($radius: $border-radius) {
+  border-bottom-left-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin border-radius-Left($radius: $border-radius) {
+  border-top-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius-Right($radius: $border-radius) {
+  border-top-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+// 1 Side
+@mixin border-radius-Top-Left($radius: $border-radius) {
+  border-top-left-radius: $radius;
+}
+
+@mixin border-radius-Top-Right($radius: $border-radius) {
+  border-top-right-radius: $radius;
+}
+
+@mixin border-radius-Bottom-Right($radius: $border-radius) {
+  border-bottom-right-radius: $radius;
+}
+
+@mixin border-radius-Bottom-Left($radius: $border-radius) {
+  border-bottom-left-radius: $radius;
+}
+
+@mixin border-radius($radius: $border-radius) {
+  border-radius: $radius;
+}
+
+@mixin Rounded-builder($directions) {
+  $value: #{var(--border-radius, $border-radius)};
+
+  @each $directionKey, $directionValue in $directions {
+    $direction: if($directionValue == 0, null, "-#{to-lower-case($directionKey)}");
+
+    // Additive Rounded ...
+    @if ($directionValue==0) {
+      .Rounded#{$direction} {
+        @include border-radius($value);
+      }
+      .Rounded#{$direction}-0 {
+        @include border-radius(0 !important);
+      }
+    } @else if ($directionValue=='top') {
+      .Rounded#{$direction} {
+        @include border-radius-Top($value);
+      }
+      .Rounded#{$direction}-0 {
+        @include border-radius-Top(0 !important);
+      }
+    } @else if ($directionValue=='right') {
+      .Rounded#{$direction} {
+        @include border-radius-Right($value);
+      }
+      .Rounded#{$direction}-0 {
+        @include border-radius-Right(0 !important);
+      }
+    } @else if ($directionValue=='bottom') {
+      .Rounded#{$direction} {
+        @include border-radius-Bottom($value);
+      }
+      .Rounded#{$direction}-0 {
+        @include border-radius-Bottom(0 !important);
+      }
+    } @else if ($directionValue=='left') {
+      .Rounded#{$direction} {
+        @include border-radius-Left($value);
+      }
+      .Rounded#{$direction}-0 {
+        @include border-radius-Left(0 !important);
+      }
+    }
+  }
+  // Subtractive 1 Side
+  .Rounded-tl-0 {
+    @include border-radius-Top-Left(0 !important);
+  }
+  .Rounded-tr-0 {
+    @include border-radius-Top-Right(0 !important);
+  }
+  .Rounded-br-0 {
+    @include border-radius-Bottom-Right(0 !important);
+  }
+  .Rounded-bl-0 {
+    @include border-radius-Bottom-Left(0 !important);
+  }
+}

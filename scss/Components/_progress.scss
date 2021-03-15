@@ -1,0 +1,46 @@
+// ===========================================================================
+// Components - Progress
+// ===========================================================================
+$Progress-height:                   1rem !default;
+$Progress-font-size:                $font-size-base * .75 !default;
+$Progress-border-radius:            $border-radius !default;
+$Progress-box-shadow:               $Shadow-inset !default;
+
+$Progress-bg:                       $Gray-050 !default; // #f2f2f2
+$Progress-bar-color:                $White !default;
+$Progress-bar-bg:                   $Primary !default;
+$Progress-bar-animation-timing:     1s linear infinite !default;
+$Progress-bar-transition:           width .6s ease !default;
+
+.Progress {
+  display: flex;
+  height: $Progress-height;
+  overflow: hidden; // force rounded corners by cropping it
+  font-size: $Progress-font-size;
+  background-color: $Progress-bg;
+  @include border-radius($Progress-border-radius);
+  @include box-shadow($Progress-box-shadow);
+
+  .Progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    color: $Progress-bar-color;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $Progress-bar-bg;
+    transition: $Progress-bar-transition;
+  }
+}
+
+@include Progress-Sizing($Progress-size-map);
+
+.Progress-thin-3, .Progress-thin-2, .Progress-thin-1,
+.Progress-thick-1, .Progress-thick-2, .Progress-thick-3 {
+}
+
+.Progress-bar-striped {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}

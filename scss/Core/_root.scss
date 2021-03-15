@@ -1,0 +1,15 @@
+// ===========================================================================
+// :root
+// ===========================================================================
+
+:root {
+  // Custom variable values only support SassScript inside `#{}`.
+  /* Color palette */
+  @each $colorKey, $colorValue in $colors {
+    --#{$variable-prefix}#{to-lower-case($colorKey)}: #{$colorValue};
+  }
+  /* Color theme */
+  @each $colorKey, $colorValue in $colors-theme {
+    --#{$variable-prefix}#{to-lower-case($colorKey)}: #{$colorValue};
+  }
+}

@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+/*!
+ * Lootstrap v2021.03.** (https://github.com/krsln/Lootstrap/)
+ * Copyright 2021 Qrsln/Krlsn.
+ * Licensed under MIT (https://github.com/krsln/Lootstrap/blob/master/LICENSE)
+ */
+
+.prefix-test {
+  transition: 3s;
+}
+
+// Vendor
+//@import "Vendor/__vendor-dir";
+
+// Abstracts
+@import "Abstracts/__abstracts-dir";
+
+// Core
+@import "Core/__core-dir";
+
+
+
+// Components
+@import "Components/__components-dir";
+
+// Layouts
+@import "Layouts/__layouts-dir";
+
+// Themes
+@import "Themes/__themes-dir";
+
+
+

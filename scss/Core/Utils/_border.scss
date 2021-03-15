@@ -1,0 +1,14 @@
+// ===========================================================================
+// Border
+// ===========================================================================
+
+@include Border($directions-map);
+
+.Border, .Border-0, .Border-t, .Border-t-0, .Border-r,
+.Border-r-0, .Border-b, .Border-b-0, .Border-l, .Border-l-0 {
+}
+
+@include Border-Width(5);
+
+.Border-1, .Border-2, .Border-3, .Border-4, .Border-5 {
+}

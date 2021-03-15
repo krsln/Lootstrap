@@ -1,0 +1,62 @@
+// ===========================================================================
+// Components - Alert
+// ===========================================================================
+
+.Alert {
+  display: flex;
+  position: relative;
+  color: $Alert-color;
+  background-color: $Alert-bg;
+  border: 1px solid $Alert-border-color;
+
+  font-family: $Alert-font-family;
+  padding: .5rem;
+  align-items: center;
+
+  min-width: 300px;
+  box-shadow: $Alert-shadow;
+  margin-bottom: .5rem;
+
+  .Alert-icon {
+    display: flex;
+    font-size: medium;
+  }
+
+  .Alert-right {
+    margin-left: auto;
+    order: 2;
+
+    span:first-child, small:first-child {
+      position: absolute;
+      font-size: 12px;
+      top: .7rem;
+      right: 2rem;
+    }
+
+    .Btn-close {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+    }
+  }
+
+  .Alert-body {
+    padding: .4rem;
+
+    .Alert-heading {
+      display: block;
+    }
+  }
+
+  .Progress {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+@include Alert-Colors($colors-theme);
+
+.Alert-primary, .Alert-secondary, .Alert-success, .Alert-info, .Alert-warning, .Alert-danger, .Alert-light, .Alert-dark {
+}

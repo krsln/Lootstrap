@@ -1,0 +1,20 @@
+# Browsers that we support
+# https://github.com/browserslist/browserslist#readme
+# https://github.com/twbs/bootstrap/blob/v5.0.0-beta2/.browserslistrc
+
+>= 0.5%
+last 2 major versions
+not dead
+Chrome >= 60
+Firefox >= 60
+not Edge < 79
+Firefox ESR
+iOS >= 10
+Safari >= 10
+Android >= 6
+not Explorer <= 11
+
+# >1%
+# last 4 versions
+# Firefox ESR
+# not ie < 9

@@ -1,0 +1,32 @@
+// ===========================================================================
+// Components - Toast
+// ===========================================================================
+
+@mixin Toast-Colors($colors) {
+  @each $colorKey, $colorValue in $colors {
+    $opposite: ResolveColor($colorValue);
+
+    .Toast-#{to-lower-case($colorKey)} {
+
+      .Toast-header {
+        background-color: darken($opposite, 02%);
+        color: $colorValue;
+        border-color: lighten($colorValue, 40%);
+
+        .Toast-right {
+          .Btn-close {
+            @if (lightness($colorValue) > 80) {
+              filter: invert(1) grayscale(100%) brightness(200%);
+            }
+          }
+        }
+      }
+
+      .Toast-progress {
+        span {
+          background-color: $colorValue;
+        }
+      }
+    }
+  }
+}

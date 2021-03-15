@@ -1,0 +1,44 @@
+@mixin make-Columns(  $index, $numberOfColumns) {
+  //$per: ($size / $columns * 100);
+  $per: percentage($index / $numberOfColumns);
+
+  flex: 0 0 auto;
+  width: $per;
+}
+
+@mixin make-Columns-offset($size, $numberOfColumns) {
+  $num: $size / $numberOfColumns;
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+@mixin GridColumns($numberOfColumns,$breakpoints) {
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-Infix($breakpoint, $breakpoints);
+    $width: breakpoint-Min($breakpoint, $breakpoints);
+    $padding-Width: if($width == null, 6px, round($width / 100 * 2));
+
+    @include media-min-With($breakpoint, $breakpoints) {
+
+      @if $numberOfColumns > 0 {
+        @for $index from 1 through $numberOfColumns {
+          .Col#{$infix}-#{$index} {
+            @include make-Columns($index, $numberOfColumns);
+
+            padding-left: $padding-Width;
+            padding-right: $padding-Width;
+          }
+        }
+        // `$columns - 1` because offsetting by the width of an entire row isn't possible
+        @for $index from 0 through ($numberOfColumns - 1) {
+          @if not ($infix == "" and $index == 0) { // Avoid emitting useless .offset-0
+            .Offset#{$infix}-#{$index} {
+              @include make-Columns-offset($index, $numberOfColumns);
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+

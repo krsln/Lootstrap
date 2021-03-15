@@ -1,0 +1,75 @@
+// ===========================================================================
+// The Box Model: Margin box > Border box > Padding box > Element box
+// ===========================================================================
+
+@mixin Spacing($breakpoints, $spacers, $directions) {
+  // Loop through the breakpoint values
+  @each $breakpoint in map-keys($breakpoints) {
+    $variant: if($breakpoint == none, "", "-#{$breakpoint}");
+
+    @include media-min-With($breakpoint, $breakpoints) {
+
+      // Loop through the spacer values
+      @each $scale, $size in $spacers {
+        // m mx my mt mr mb ml p px py pt pr pb pl
+        @each $name, $direction in $directions {
+          $infix: if($name == null, "", "#{$name}");
+          $direction: if($direction != 0, "-#{$direction}", null);
+
+          .M#{$infix}#{$variant}-#{$scale} {
+            margin#{$direction}: #{$size} !important;
+          }
+          @if ($scale>0) {
+            .M#{$infix}#{$variant}-N#{$scale} {
+              margin#{$direction}: #{-$size} !important;
+            }
+          }
+          .P#{$infix}#{$variant}-#{$scale} {
+            padding#{$direction}: #{$size} !important;
+          }
+        }
+
+        .MX#{$variant}-#{$scale} {
+          margin-right: #{$size} !important;
+          margin-left: #{$size} !important;
+        }
+        .MY#{$variant}-#{$scale} {
+          margin-top: #{$size} !important;
+          margin-bottom: #{$size} !important;
+        }
+
+        @if ($scale>0) {
+          .MX#{$variant}-N#{$scale} {
+            margin-right: #{-$size} !important;
+            margin-left: #{-$size} !important;
+          }
+          .MY#{$variant}-N#{$scale} {
+            margin-top: #{-$size} !important;
+            margin-bottom: #{-$size} !important;
+          }
+        }
+
+        .PX#{$variant}-#{$scale} {
+          padding-right: #{$size} !important;
+          padding-left: #{$size} !important;
+        }
+        .PY#{$variant}-#{$scale} {
+          padding-top: #{$size} !important;
+          padding-bottom: #{$size} !important;
+        }
+      }
+
+      .MX#{$variant}-auto {
+        margin-right: auto !important;
+        margin-left: auto !important;
+      }
+
+      .MY#{$variant}-auto {
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+      }
+
+    }
+
+  }
+}

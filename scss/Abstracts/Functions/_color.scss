@@ -1,0 +1,26 @@
+/// Slightly lighten a color
+/// @access public
+/// @param {Color} $color - color to tint
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function Tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// Slightly darken a color
+/// @access public
+/// @param {Color} $color - color to shade
+/// @param {Number} $percentage - percentage of `$color` in returned color
+/// @return {Color}
+@function Shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Set the color of the button and badge
+@function ResolveColor($color) {
+  @if (lightness($color) > 80) {
+    @return black; // Lighter background, return dark color
+  } @else {
+    @return white; // Darker background, return light color
+  }
+}

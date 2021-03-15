@@ -1,0 +1,11 @@
+// ===========================================================================
+// Components - Progress
+// ===========================================================================
+
+@mixin Progress-Sizing($size-map) {
+  @each $keyName, $keyValue in $size-map {
+    .Progress-#{$keyName} {
+      height: $keyValue;
+    }
+  }
+}

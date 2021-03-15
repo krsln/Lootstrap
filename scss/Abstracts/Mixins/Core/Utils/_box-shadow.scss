@@ -1,0 +1,99 @@
+// ===========================================================================
+// Utils - Box Shadow
+//
+// box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+// ===========================================================================
+
+@mixin box-shadow($shadow...) {
+  $result: ();
+
+  @each $value in $shadow {
+    @if $value != null {
+      $result: append($result, $value, "comma");
+    }
+    @if $value == none and length($shadow) > 1 {
+      @warn "The keyword 'none' must be used as a single argument.";
+    }
+  }
+
+  @if (length($result) > 0) {
+    box-shadow: $result;
+  }
+}
+
+@mixin box-shadow-Builder($suffix, $layers, $horizontal-map, $vertical-map, $blur-map, $spread-map, $color-map) {
+  $result: (); // left + right + main bottom
+  $result-inner: (); // inset
+  $result-both: (); // inner + outer
+  $result-br: (); // bottom + right
+
+  $result-t: (); // top
+  $result-r: (); // right
+  $result-l: (); // left
+  $result-b: (); // bottom
+
+  $result-x: (); // left + right
+  $result-y: (); // top + bottom
+
+  @for $index from 1 through $layers {
+    $left: if($horizontal-map==null, 0, map-get($horizontal-map, $index));
+    $spread: if($spread-map==null, 0, map-get($spread-map, $index));
+
+    $top: map-get($vertical-map, $index);
+    $blur: map-get($blur-map, $index);
+    $color: map-get($color-map, $index);
+
+    $result: append($result, #{$left} #{$top} #{$blur} #{$spread} #{$color}, "comma");
+    $result-both: append($result-both, #{$left} #{$top} #{$blur} #{$spread} #{$color}, "comma");
+
+    $result-inner: append($result-inner, #{0} #{0} #{$blur} #{0} #{$color} inset, "comma");
+    $result-both: append($result-both, #{0} #{0} #{$blur} #{0} #{$color} inset, "comma");
+    $result-br: append($result-br, #{$top} #{$top} #{$blur} #{$spread} #{$color}, "comma");
+
+    $result-t: append($result-t, #{0} #{-$top} #{$blur} #{-$top} #{$color}, "comma");
+    $result-r: append($result-r, #{$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+    $result-l: append($result-l, #{-$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+    $result-b: append($result-b, #{0} #{$top} #{$blur} #{-$top} #{$color}, "comma");
+
+    $result-x: append($result-x, #{$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+    $result-x: append($result-x, #{-$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+
+    $result-y: append($result-y, #{0} #{-$top} #{$blur} #{-$top} #{$color}, "comma");
+    $result-y: append($result-y, #{0} #{$top} #{$blur} #{-$top} #{$color}, "comma");
+  }
+
+  $infix: if($suffix==null, "", "-#{$suffix}");
+
+  @if (length($result) > 0) {
+    .Shadow#{$infix} {
+      box-shadow: $result;
+    }
+    .Shadow-inset#{$infix} {
+      box-shadow: $result-inner;
+    }
+    .Shadow-both#{$infix} {
+      box-shadow: $result-both;
+    }
+    .Shadow-br#{$infix} {
+      box-shadow: $result-br;
+    }
+    .Shadow-t#{$infix} {
+      box-shadow: $result-t;
+    }
+    .Shadow-r#{$infix} {
+      box-shadow: $result-r;
+    }
+    .Shadow-l#{$infix} {
+      box-shadow: $result-l;
+    }
+    .Shadow-b#{$infix} {
+      box-shadow: $result-b;
+    }
+    .Shadow-x#{$infix} {
+      box-shadow: $result-x;
+    }
+    .Shadow-y#{$infix} {
+      box-shadow: $result-y;
+    }
+  }
+}
