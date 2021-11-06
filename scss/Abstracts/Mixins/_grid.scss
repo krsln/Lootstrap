@@ -1,26 +1,44 @@
-@mixin make-Columns(  $index, $numberOfColumns) {
-  //$per: ($size / $columns * 100);
-  $per: percentage($index / $numberOfColumns);
+// ===========================================================================
+// Mixins - Grid
+// ===========================================================================
+@use 'sass:math';
+
+@mixin make-Columns($index, $numberOfColumns) {
+  //$per: percentage($index / $numberOfColumns);
+  $per: percentage(math.div($index, $numberOfColumns));
 
   flex: 0 0 auto;
   width: $per;
 }
 
 @mixin make-Columns-offset($size, $numberOfColumns) {
-  $num: $size / $numberOfColumns;
+  //$num: $size / $numberOfColumns;
+  $num: math.div($size, $numberOfColumns);
   margin-left: if($num == 0, 0, percentage($num));
 }
 
-@mixin GridColumns($numberOfColumns,$breakpoints) {
-  @each $breakpoint in map-keys($breakpoints) {
-    $infix: breakpoint-Infix($breakpoint, $breakpoints);
-    $width: breakpoint-Min($breakpoint, $breakpoints);
-    $padding-Width: if($width == null, 6px, round($width / 100 * 2));
+@mixin default-Column-props {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  //padding-right: 15px;
+  //padding-left: 15px;
+}
 
-    @include media-min-With($breakpoint, $breakpoints) {
+@mixin GridColumns($numberOfColumns, $breakpoints) {
+  @each $breakpointKey, $breakpointValue in $breakpoints {
+    $infix: if($breakpointKey == none, "", "-#{$breakpointKey}");
+
+    //$padding-Width: if($width == null, 6px, round(($width / 100) * 2));
+    $padding-Width: if($breakpointValue == null, 6px, round(math.div($breakpointValue, 100) * 2));
+
+    @include media-min-W($breakpointValue) {
 
       @if $numberOfColumns > 0 {
         @for $index from 1 through $numberOfColumns {
+          .Col#{$infix}-#{$index} {
+            @include default-Column-props;
+          }
           .Col#{$infix}-#{$index} {
             @include make-Columns($index, $numberOfColumns);
 
@@ -41,4 +59,3 @@
     }
   }
 }
-

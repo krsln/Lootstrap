@@ -1,0 +1,131 @@
+// ===========================================================================
+// Functions - Shadow
+// ===========================================================================
+
+/*
+  https://brumm.af/shadows
+  https://tobiasahlin.com/blog/layered-smooth-box-shadows/
+  https://css-tricks.com/getting-deep-into-shadows/
+*/
+
+@function Shadow-Builder($suffix, $layers, $horizontal-map, $vertical-map, $blur-map, $spread-map, $color-map) {
+  $result: (); // left + right + main bottom
+  $result-inner: (); // inset
+  $result-both: (); // inner + outer
+  $result-br: (); // bottom + right
+
+  $result-t: (); // top
+  $result-r: (); // right
+  $result-l: (); // left
+  $result-b: (); // bottom
+
+  $result-x: (); // left + right
+  $result-y: (); // top + bottom
+
+  @for $index from 1 through $layers {
+    $left: if(length($horizontal-map)==0, 0, nth($horizontal-map, $index));
+    $spread: if(length($spread-map)==0, 0, nth($spread-map, $index));
+
+    $top: nth($vertical-map, $index);
+    $blur: nth($blur-map, $index);
+    $color: nth($color-map, $index);
+
+    $result: append($result, #{$left} #{$top} #{$blur} #{$spread} #{$color}, "comma");
+    $result-both: append($result-both, #{$left} #{$top} #{$blur} #{$spread} #{$color}, "comma");
+
+    $result-inner: append($result-inner, #{0} #{0} #{$blur} #{0} #{$color} inset, "comma");
+    $result-both: append($result-both, #{0} #{0} #{$blur} #{0} #{$color} inset, "comma");
+    $result-br: append($result-br, #{$top} #{$top} #{$blur} #{$spread} #{$color}, "comma");
+
+    $result-t: append($result-t, #{0} #{-$top} #{$blur} #{-$top} #{$color}, "comma");
+    $result-r: append($result-r, #{$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+    $result-l: append($result-l, #{-$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+    $result-b: append($result-b, #{0} #{$top} #{$blur} #{-$top} #{$color}, "comma");
+
+    $result-x: append($result-x, #{$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+    $result-x: append($result-x, #{-$top} #{0} #{$blur} #{-$top} #{$color}, "comma");
+
+    $result-y: append($result-y, #{0} #{-$top} #{$blur} #{-$top} #{$color}, "comma");
+    $result-y: append($result-y, #{0} #{$top} #{$blur} #{-$top} #{$color}, "comma");
+  }
+  $suffix: if($suffix==null, "", "-#{$suffix}");
+
+  $return-map: ();
+  @if (length($result) > 0) {
+    $return-map: (
+            inset#{$suffix} : $result-inner,
+            both#{$suffix} : $result-both,
+            br#{$suffix} : $result-br,
+            t#{$suffix} : $result-t,
+            r#{$suffix} : $result-r,
+            l#{$suffix} : $result-l,
+            b#{$suffix} : $result-b,
+            x#{$suffix} : $result-x,
+            y#{$suffix} : $result-y,
+    );
+  }
+  @return $return-map;
+}
+
+// box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+// $Shadow: 0px 1px 1px -1px rgba(0, 0, 0, 0.18),
+//          0px 2px 2px 0px rgba(0, 0, 0, 0.12),
+//          0px 4px 6px 0px rgba(0, 0, 0, 0.06);
+@function Shadow-Separator($suffix, $Shadow) {
+  // lists
+  $horizontal-map: ();
+  $vertical-map: ();
+  $blur-map: ();
+  $spread-map: ();
+  $color-map: ();
+
+  @each $value in $Shadow {
+    @for $index from 1 through length($value) {
+      $layer: nth($value, $index);
+      @if ($index==1) {
+        $horizontal-map: append($horizontal-map, $layer, "comma");
+      } @else if ($index==2) {
+        $vertical-map: append($vertical-map, $layer, "comma");
+      } @else if ($index==3) {
+        $blur-map: append($blur-map, $layer, "comma");
+      } @else if ($index==4) {
+        $spread-map: append($spread-map, $layer, "comma");
+      } @else if ($index==5) {
+        $color-map: append($color-map, $layer, "comma");
+      }
+    }
+  }
+
+  @return Shadow-Builder($suffix, length($Shadow), $horizontal-map, $vertical-map, $blur-map, $spread-map, $color-map);
+}
+
+/// Based on $Shadow: 0px 1px 1px -1px rgba($Black, 0.18), 0px 2px 2px 0px rgba($Black, 0.12), 0px 4px 6px 0px rgba($Black, 0.06);
+@function Colored-shadow($color: black) {
+  // using best result of shadow set
+  @return 0 1px 1px -1px rgba($color, 0.18), 0px 2px 2px 0px rgba($color, 0.12), 0px 4px 6px 0px rgba($color, 0.06);
+}
+
+@function Colored-shadow-inner($color: black) {
+  // using best result of shadow set
+  @return 0 0 1px 0 rgba($color, 0.18) inset, 0 0 2px 0 rgba($color, 0.12) inset, 0 0 6px 0 rgba($color, 0.06) inset;
+}
+
+// box-shadow: Shadow-mixer($Shadow, $Shadow-inner);
+@function Shadow-mixer($shadow...) {
+  $result: ();
+
+  @each $value in $shadow {
+    @if $value != null {
+      $result: append($result, $value, "comma");
+    }
+    @if $value == none and length($shadow) > 1 {
+      @warn "The keyword 'none' must be used as a single argument.";
+    }
+  }
+
+  @if (length($result) > 0) {
+    @return $result;
+  }
+
+  @return none;
+}

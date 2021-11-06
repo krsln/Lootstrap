@@ -1,0 +1,144 @@
+// ===========================================================================
+// Utils - Border - Border-radius
+// ===========================================================================
+$Border-color: var(--component-border-color);
+
+/*
+// Border, Rounded
+*/
+$utilities-Border: () !default;
+$utilities-Border: (
+  // Border
+        "Border": (
+                Prefix: Border, Properties: border, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+  // Border Directions
+        "Border-top": (
+                Prefix: Border-t, Properties: border-top, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+        "Border-right": (
+                Prefix: Border-r, Properties: border-right, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+        "Border-bottom": (
+                Prefix: Border-b, Properties: border-bottom, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+        "Border-left": (
+                Prefix: Border-l, Properties: border-left, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+  // Border-width
+        "Border-width": (
+                Prefix: Border, Properties: border-width, Important: true,
+                Values: $Border-widths,
+        ),
+  // Rounded
+        "Rounded": (
+                Prefix: Rounded, Properties: border-radius, Important: true,
+                Values: (
+                        null: #{var(--border-radius, $Rounded)},
+                        0: 0, circle: 50%, pill: $Rounded-pill
+                ),
+        ),
+  // Rounded Directions
+        "Rounded-top": (
+                Prefix: Rounded-t, Properties: border-top-left-radius border-top-right-radius, Important: false,
+                Values: (null: #{var(--border-radius, $Rounded)}),
+        ),
+        "Rounded-top-0": (
+                Prefix: Rounded-t, Properties: border-top-left-radius border-top-right-radius, Important: true,
+                Values: (0: 0),
+        ),
+        "Rounded-right": (
+                Prefix: Rounded-r, Properties: border-top-right-radius border-bottom-right-radius, Important: false,
+                Values: (null: #{var(--border-radius, $Rounded)}),
+        ),
+        "Rounded-right-0": (
+                Prefix: Rounded-r, Properties: border-top-right-radius border-bottom-right-radius, Important: true,
+                Values: (0: 0),
+        ),
+        "Rounded-bottom": (
+                Prefix: Rounded-b, Properties: border-bottom-right-radius border-bottom-left-radius, Important: false,
+                Values: (null: #{var(--border-radius, $Rounded)}),
+        ),
+        "Rounded-bottom-0": (
+                Prefix: Rounded-b, Properties: border-bottom-right-radius border-bottom-left-radius, Important: true,
+                Values: (0: 0),
+        ),
+        "Rounded-left": (
+                Prefix: Rounded-l, Properties: border-bottom-left-radius border-top-left-radius, Important: false,
+                Values: (null: #{var(--border-radius, $Rounded)}),
+        ),
+        "Rounded-left-0": (
+                Prefix: Rounded-l, Properties: border-bottom-left-radius border-top-left-radius, Important: true,
+                Values: (0: 0),
+        ),
+  // Subtractive 1 Side
+        "Rounded-top-left-0": (Prefix: Rounded-tl, Properties: border-top-left-radius, Important: true, Values: (0: 0)),
+        "Rounded-top-right-0": (Prefix: Rounded-tr, Properties: border-top-right-radius, Important: true, Values: (0: 0)),
+        "Rounded-bottom-right-0": (Prefix: Rounded-br, Properties: border-bottom-right-radius, Important: true, Values: (0: 0)),
+        "Rounded-bottom-left-0": (Prefix: Rounded-bl, Properties: border-bottom-left-radius, Important: true, Values: (0: 0)),
+  // Scale
+        "Rounded-scale": (
+                Prefix: Rounded, Properties: --border-radius, Important: false,
+                Values: (2: $Rounded-2x, 3: $Rounded-3x),
+        ),
+);
+
+@include Utilities($utilities-Border);
+
+// ===========================================================================
+// Border
+// ===========================================================================
+
+/*
+// Border
+*/
+.Border, .Border-0 {
+}
+
+/*
+// Border Directions
+*/
+.Border-t, .Border-t-0, .Border-r, .Border-r-0,
+.Border-b, .Border-b-0, .Border-l, .Border-l-0 {
+}
+
+/*
+// Border-width
+*/
+.Border-0, .Border-1, .Border-2, .Border-3, .Border-4, .Border-5 {
+}
+
+// ===========================================================================
+// Rounded
+// ===========================================================================
+
+/* Prevent background color leak outs // Doesnt work */
+//.Rounded-clarify { background-clip: border-box; }
+
+/*
+// Border-radius => Rounded circle, pill
+*/
+.Rounded, .Rounded-0,
+.Rounded-circle, .Rounded-pill {
+}
+
+/*
+// Border-radius => Rounded Directions
+*/
+.Rounded-t, .Rounded-t-0, .Rounded-r, .Rounded-r-0,
+.Rounded-b, .Rounded-b-0, .Rounded-l, .Rounded-l-0 {
+}
+
+.Rounded-tl-0, .Rounded-tr-0, .Rounded-br-0, .Rounded-bl-0 {
+}
+
+/*
+// Border-radius => Rounded scales
+*/
+.Rounded-2, .Rounded-3 {
+}

@@ -1,0 +1,153 @@
+// ===========================================================================
+// Components - Breadcrumb
+// TS: Theme Support
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--component-bg-body);
+$fg-Muted: var(--component-fg-muted);
+
+$fg-Darkest: var(--component-fg-darkest);
+$bg-Darkest: var(--component-bg-darkest);
+$fg-Dark: var(--component-fg-dark);
+$bg-Dark: var(--component-bg-dark);
+$fg-Light: var(--component-fg-light);
+$bg-Light: var(--component-bg-light);
+$fg-Lightest: var(--component-fg-lightest);
+$bg-Lightest: var(--component-bg-lightest);
+
+$fg-Active: var(--component-fg-active);
+$bg-Active: var(--component-bg-active);
+
+/* Shadows */
+$Shadow-color: var(--component-shadow-color);
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--component-border-color);
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+/*
+// SVSs
+*/
+
+// > :: <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z" fill="currentColor"/></svg>
+$Breadcrumb-divider-default: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPjxwYXRoIGQ9J00yLjUgMEwxIDEuNSAzLjUgNCAxIDYuNSAyLjUgOGw0LTQtNC00eicgZmlsbD0nY3VycmVudENvbG9yJy8+PC9zdmc+');
+// <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5.7 9.7'><path fill='none' stroke='rgba(0, 0, 0, 0.6)' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' d='M.8 8.8l4-4-4-4'/></svg>
+$Breadcrumb-divider-larger: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1LjcgOS43Jz48cGF0aCBmaWxsPSdub25lJyBzdHJva2U9J3JnYmEoMCwgMCwgMCwgMC42KScgc3Ryb2tlLXdpZHRoPScxLjMnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcgc3Ryb2tlLW1pdGVybGltaXQ9JzEwJyBkPSdNLjggOC44bDQtNC00LTQnLz48L3N2Zz4=');
+// <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 5'><path fill='none' stroke='rgba(0, 0, 0, 0.6)' stroke-width='1' stroke-miterlimit='10' d='M0,0 v10'/></svg>
+$Breadcrumb-divider-verticalLine: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxIDUnPjxwYXRoIGZpbGw9J25vbmUnIHN0cm9rZT0ncmdiYSgwLCAwLCAwLCAwLjYpJyBzdHJva2Utd2lkdGg9JzAuOCcgc3Ryb2tlLW1pdGVybGltaXQ9JzEwJyBkPSdNIDAgMCBWIDIwMCcvPjwvc3ZnPg==');
+
+.Breadcrumb {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Light;
+  background-color: $bg-Light;
+
+  border: $Border;
+
+  flex-wrap: wrap;
+
+  padding: .75rem 1rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  list-style: none;
+  border-radius: .25rem;
+
+  &:hover {
+    box-shadow: $Shadow;
+  }
+
+  .Breadcrumb-item {
+    display: inline-block;
+    text-align: center;
+
+    .Breadcrumb-Link {
+      padding: 0 .3rem;
+
+      vertical-align: top;
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        background: $bg-Darkest;
+        color: $fg-Darkest;
+
+        border-bottom: $Border;
+      }
+
+      svg {
+        margin-right: 0.6rem;
+      }
+    }
+
+    &.active {
+      font-weight: bold;
+    }
+
+    &:not(&:first-child):before {
+      display: inline-block;
+      content: "";
+
+      width: 0.6em;
+      height: 100%;
+
+      margin-left: 0.4em;
+      margin-right: 0.3em;
+    }
+
+    &:not(
+      .Breadcrumb-divider .Breadcrumb-item,
+      .Breadcrumb-divider-bar .Breadcrumb-item,
+      &:first-child
+    ):before {
+      color: inherit;
+
+      mask-image: var(--breadcrumb-divider, $Breadcrumb-divider-default);
+      mask-repeat: no-repeat;
+      mask-position: center;
+      background-color: currentColor;
+    }
+  }
+}
+
+.Breadcrumb-chevron-larger {
+  --breadcrumb-divider: #{$Breadcrumb-divider-larger};
+}
+
+.Breadcrumb-chevron-vertical {
+  --breadcrumb-divider: #{$Breadcrumb-divider-verticalLine};
+}
+
+.Breadcrumb-divider {
+  --breadcrumb-divider: '/';
+
+  .Breadcrumb-item {
+    &:not(&:first-child):before {
+      color: $fg-Active; //#6c757d;
+      margin-top: -4px;
+      content: var(--breadcrumb-divider, "/");
+    }
+  }
+}
+
+.Breadcrumb-divider-bar {
+  .Breadcrumb-item {
+    &:not(&:first-child):before {
+      border-left: 2px solid currentColor;
+      opacity: .15;
+    }
+  }
+}

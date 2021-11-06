@@ -1,0 +1,160 @@
+// ===========================================================================
+// Components - Timeline
+// TS: Theme Support
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--component-bg-body);
+$fg-Muted: var(--component-fg-muted);
+
+$fg-Darkest: var(--component-fg-darkest);
+$bg-Darkest: var(--component-bg-darkest);
+$fg-Dark: var(--component-fg-dark);
+$bg-Dark: var(--component-bg-dark);
+$fg-Light: var(--component-fg-light);
+$bg-Light: var(--component-bg-light);
+$fg-Lightest: var(--component-fg-lightest);
+$bg-Lightest: var(--component-bg-lightest);
+
+$fg-Active: var(--component-fg-active);
+$bg-Active: var(--component-bg-active);
+
+/* Shadows */
+$Shadow-color: var(--component-shadow-color);
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--component-border-color);
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Timeline {
+  display: block;
+  position: relative;
+  overflow: visible;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Light;
+  background-color: $bg-Light;
+
+  border: $Border;
+  box-shadow: $Shadow-inner;
+
+  background-clip: border-box;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  min-width: 0;
+
+  $badge-size: 32px;
+
+  .Timeline-header {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .Timeline-item {
+    position: relative;
+    display: flex;
+    overflow: visible;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    &:not(:last-child):after {
+      position: absolute;
+      content: " ";
+      background-color: $Border-color;
+
+      width: 3px;
+      height: 100%;
+
+      left: 1.9rem;
+      right: auto;
+      top: 50%;
+    }
+
+    .Timeline-badge {
+      position: relative;
+      display: flex;
+      z-index: 1;
+
+      align-items: center;
+
+      .Timeline-badge-inner {
+        position: relative;
+        display: flex;
+        width: $badge-size;
+        height: $badge-size;
+
+        color: $fg-Darkest;
+        background-color: $bg-Darkest;
+
+        border-radius: 50%;
+        box-shadow: $Shadow-inner;
+
+        * {
+          display: block;
+          margin: auto;
+        }
+      }
+    }
+
+    .Timeline-body {
+      position: relative;
+      min-width: 0;
+      max-width: 100%;
+
+      padding: 0;
+      margin: 0 0 0 1rem;
+
+      .Card {
+        border-top: 1px solid $Border-color;
+
+        .Card-img {
+          overflow: hidden;
+          margin: .5rem;
+        }
+
+        &.Card-horizontal {
+
+          .Card-img {
+            padding: .25rem;
+
+            @media (min-width: 1014px) {
+              margin-right: 0 !important;
+            }
+          }
+
+        }
+
+      }
+    }
+
+    &.Timeline-item-inverted {
+      flex-direction: row-reverse;
+
+      .Timeline-body {
+        margin: 0 1rem 0 0;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .Timeline-item, .Timeline-item-inverted {
+      width: 100%;
+      padding-right: .25rem;
+      padding-left: .25rem;
+
+      &:not(:last-child):after {
+        left: 1.2rem;
+      }
+    }
+  }
+}

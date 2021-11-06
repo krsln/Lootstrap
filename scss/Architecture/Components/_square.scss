@@ -1,0 +1,31 @@
+// ===========================================================================
+// Components - Spinners
+// CC: Core Components (NO COLOR or Theme)
+// Square is a root/base component. Don't set any color!!
+// ===========================================================================
+
+.Square {
+  position: relative;
+  flex: 1 0 auto;
+  margin: 2px;
+  font-weight: bold;
+  user-select: none;
+
+  &:after {
+    padding-top: 100%;
+    float: left;
+    content: "";
+    display: block;
+  }
+
+  .Square-inner {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+}

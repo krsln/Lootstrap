@@ -5,6 +5,7 @@
 [![npm version](https://badge.fury.io/js/%40qrsln%2Flootstrap.svg)](https://badge.fury.io/js/%40qrsln%2Flootstrap)
 
 ## Lootstrap
-Still beta [GitHub](https://github.com/krsln/Lootstrap)
+LootStrap is a scss library and is still in beta! There is much to improve! Please keep your expectations low.
 
-[![Progress](https://img.shields.io/badge/Demo‌‌‌‌‌‌‌-blue)](https://krsln.github.io/NgLootBox/Home)
+[GitHub](https://github.com/krsln/Lootstrap)  
+[![Progress](https://img.shields.io/badge/Demo‌‌‌‌‌‌‌-blue)](https://krsln.github.io/NgLootBox/LootStrap)

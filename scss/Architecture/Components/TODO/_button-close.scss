@@ -1,0 +1,67 @@
+// ===========================================================================
+// Components - Button Close
+// ===========================================================================
+
+.Btn-close {
+  display: inline-block;
+  box-sizing: content-box;
+
+  width: 1rem !important;
+  height: 1rem !important;
+  padding: 0.25rem;
+
+  border: 0;
+  border-radius: 0.25rem;
+  opacity: 0.5;
+
+  color: transparent;
+
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+}
+
+.Btn-close-pure {
+  position: relative;
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.25em 0.25em;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0.25rem;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:before, &:after {
+    position: absolute;
+    content: ' ';
+    height: 100%;
+    width: 3px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: $Black;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.Btn-close-pure-white {
+  &:before, &:after {
+    background: $White;
+  }
+}

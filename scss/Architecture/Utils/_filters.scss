@@ -1,0 +1,123 @@
+// ===========================================================================
+// Utils - Filters - Colorizing SVG Backgrounds
+// Svg colors, blur, drop-shadow
+//
+// https://css-tricks.com/solved-with-css-colorizing-svg-backgrounds/
+// The filter CSS property applies graphical effects like blur or color shift to an element. Filters are commonly used to adjust the rendering of images, backgrounds, and borders.
+// Black images could be turned into white images with filter: invert(100%), than the colorize feature will work here too:
+// https://codepen.io/sosuke/pen/Pjoqqp
+// https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
+// ===========================================================================
+
+$F-Blur: blur(var(--filter-blur, 0));
+$F-Shadow: #{var(--drop-shadow, drop-shadow(0 0 #0000))};
+
+/*#region Filter Colors */
+
+/*@formatter:off*/
+$filter-White    : $F-Blur $F-Shadow invert(1) grayscale(100%) brightness(200%) !default;
+$filter-Silver   : $F-Blur $F-Shadow invert(89%) sepia(0%) saturate(7%) hue-rotate(172deg) brightness(91%) contrast(82%) !default; // BFBFBF
+$filter-Gray	 : $F-Blur $F-Shadow invert(46%) sepia(2%) saturate(2321%) hue-rotate(174deg) brightness(94%) contrast(86%) !default; // 6A727C
+
+$filter-Red      : $F-Blur $F-Shadow invert(31%) sepia(83%) saturate(1382%) hue-rotate(325deg) brightness(87%) contrast(93%) !default; // D73C4C
+$filter-Lime     : $F-Blur $F-Shadow invert(70%) sepia(52%) saturate(6787%) hue-rotate(83deg) brightness(127%) contrast(120%) !default; // 00FF00
+$filter-Blue     : $F-Blur $F-Shadow invert(23%) sepia(98%) saturate(1650%) hue-rotate(198deg) brightness(104%) contrast(105%) !default; // 0367D8;
+$filter-Yellow   : $F-Blur $F-Shadow invert(68%) sepia(88%) saturate(529%) hue-rotate(354deg) brightness(101%) contrast(103%) !default; // FFC105
+$filter-Cyan     : $F-Blur $F-Shadow invert(74%) sepia(89%) saturate(1247%) hue-rotate(131deg) brightness(106%) contrast(109%) !default; // 00FFFF
+$filter-Magenta  : $F-Blur $F-Shadow invert(17%) sepia(100%) saturate(3641%) hue-rotate(296deg) brightness(117%) contrast(124%) !default; // FF00FF
+
+$filter-Purple   : $F-Blur $F-Shadow invert(28%) sepia(68%) saturate(1773%) hue-rotate(242deg) brightness(88%) contrast(88%) !default; // 6F42C2
+$filter-Green    : $F-Blur $F-Shadow invert(52%) sepia(15%) saturate(2202%) hue-rotate(82deg) brightness(99%) contrast(86%) !default; // 29A847
+$filter-Maroon   : $F-Blur $F-Shadow invert(10%) sepia(85%) saturate(3597%) hue-rotate(317deg) brightness(96%) contrast(92%) !default; // 85144B
+$filter-Navy     : $F-Blur $F-Shadow invert(10%) sepia(15%) saturate(7084%) hue-rotate(187deg) brightness(100%) contrast(104%) !default; // 001F3D
+$filter-Teal     : $F-Blur $F-Shadow invert(72%) sepia(9%) saturate(3292%) hue-rotate(110deg) brightness(91%) contrast(85%) !default; // 20CB98
+$filter-Olive    : $F-Blur $F-Shadow invert(37%) sepia(91%) saturate(1164%) hue-rotate(40deg) brightness(94%) contrast(100%) !default; // 808000
+$filter-Orange   : $F-Blur $F-Shadow invert(42%) sepia(21%) saturate(5566%) hue-rotate(2deg) brightness(104%) contrast(93%) !default; // F66809
+$filter-Pink     : $F-Blur $F-Shadow invert(40%) sepia(65%) saturate(3659%) hue-rotate(302deg) brightness(103%) contrast(83%) !default; // EA48A9
+$filter-Brown    : $F-Blur $F-Shadow invert(20%) sepia(12%) saturate(6107%) hue-rotate(327deg) brightness(103%) contrast(71%) !default; // 814141
+$filter-Indigo   : $F-Blur $F-Shadow invert(4%) sepia(86%) saturate(7495%) hue-rotate(259deg) brightness(101%) contrast(101%) !default; // 400080
+
+$filter-Success  : $filter-Green !default;
+$filter-Info     : $filter-Blue !default;
+$filter-Warning  : $filter-Yellow !default;
+$filter-Danger   : $filter-Red !default;
+
+$filter-Primary  : $F-Blur $F-Shadow invert(24%) sepia(68%) saturate(6878%) hue-rotate(257deg) brightness(66%) contrast(115%) !default; // 4712AF
+$filter-Secondary: $F-Blur $F-Shadow invert(49%) sepia(8%) saturate(443%) hue-rotate(166deg) brightness(91%) contrast(91%) !default; // 6D767E
+$filter-Light    : $F-Blur $F-Shadow invert(100%) sepia(14%) saturate(445%) hue-rotate(176deg) brightness(100%) contrast(97%) !default; // F9FAFB
+$filter-Dark     : $F-Blur $F-Shadow invert(21%) sepia(10%) saturate(581%) hue-rotate(169deg) brightness(96%) contrast(92%) !default; // 353B41
+/*@formatter:on*/
+
+/*#endregion */
+
+$filter-Colors: (
+        "red" : $filter-Red,
+        "lime" : $filter-Lime,
+        "blue" : $filter-Blue,
+        "yellow" : $filter-Yellow,
+        "cyan" : $filter-Cyan,
+        "magenta" : $filter-Magenta,
+        "purple" : $filter-Purple,
+        "green" : $filter-Green,
+        "maroon" : $filter-Maroon,
+        "navy" : $filter-Navy,
+        "teal" : $filter-Teal,
+        "olive" : $filter-Olive,
+        "orange" : $filter-Orange,
+        "pink" : $filter-Pink,
+        "brown" : $filter-Brown,
+        "indigo" : $filter-Indigo,
+        "white" : $filter-White,
+        "silver" : $filter-Silver,
+        "gray" : $filter-Gray,
+  // Colors - Theme
+        "primary" : $filter-Primary,
+        "secondary" : $filter-Secondary,
+        "success" : $filter-Success,
+        "info" : $filter-Info,
+        "warning" : $filter-Warning,
+        "danger" : $filter-Danger,
+        "light" : $filter-Light,
+        "dark" : $filter-Dark
+);
+
+/*
+// Filter colors
+*/
+
+@include Utility-applier(true, F, filter, $filter-Colors);
+
+.F-red, .F-lime, .F-blue, .F-yellow, .F-cyan, .F-magenta, .F-purple, .F-green,
+.F-maroon, .F-navy, .F-teal, .F-olive, .F-orange, .F-pink, .F-brown, .F-indigo,
+.F-white, .F-silver, .F-gray,
+.F-primary, .F-secondary, .F-success, .F-info, .F-warning, .F-danger, .F-light, .F-dark {
+}
+
+/*
+// Filter Blur
+*/
+
+.F-blur {
+  filter: $F-Blur;
+}
+
+@include Utility-applier(false, F-blur, --filter-blur, (0:0, 1:2px, 2:4px, 3: 6px, 4: 8px));
+
+.F-blur,
+.F-blur-0, .F-blur-1, .F-blur-2, .F-blur-3, .F-blur-4 {
+}
+
+/*
+// Filter drop-shadow
+// drop-shadow(<offset-x> <offset-y> <blur-radius> <color>)
+*/
+
+.F-shadow {
+  filter: $F-Shadow;
+}
+
+@include Utility-applier(false, F-shadow, --drop-shadow, $Drop-shadow-map);
+
+.F-shadow,
+.F-shadow-0, .F-shadow, .F-shadow-2x, .F-shadow-3x {
+}

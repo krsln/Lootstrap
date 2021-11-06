@@ -1,0 +1,174 @@
+// ===========================================================================
+// Components - Calendar
+// ST: With Specific Theme
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--calendar-bg-body, var(--component-bg-body));
+$fg-Muted: var(--calendar-fg-muted, var(--component-fg-muted));
+
+$fg-Darkest: var(--calendar-fg-darkest, var(--component-fg-darkest));
+$bg-Darkest: var(--calendar-bg-darkest, var(--component-bg-darkest));
+$fg-Dark: var(--calendar-fg-dark, var(--component-fg-dark));
+$bg-Dark: var(--calendar-bg-dark, var(--component-bg-dark));
+$fg-Light: var(--calendar-fg-light, var(--component-fg-light));
+$bg-Light: var(--calendar-bg-light, var(--component-bg-light));
+$fg-Lightest: var(--calendar-fg-lightest, var(--component-fg-lightest));
+$bg-Lightest: var(--calendar-bg-lightest, var(--component-bg-lightest));
+
+$fg-Active: var(--calendar-fg-active, var(--component-fg-active));
+$bg-Active: var(--calendar-bg-active, var(--component-bg-active));
+
+/* Shadows */
+$Shadow-color: var(--calendar-shadow-color, var(--component-shadow-color));
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--calendar-border-color, var(--component-border-color));
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Calendar {
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Light;
+  background-color: $bg-Light;
+
+  border: $Border;
+  box-shadow: $Shadow;
+
+  margin-bottom: 1rem;
+
+  .Calendar-header {
+    display: flex;
+    padding: 10px 10px 0;
+
+    align-items: center; /* Vertical */
+    justify-content: center; /* Horizontal */
+
+    color: $fg-Darkest;
+    background-color: $bg-Darkest;
+
+    .Calendar-header-right {
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .Calendar-title {
+      flex: 1;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  }
+
+  .Calendar-body {
+    padding: 0 10px 10px;
+
+    .Calendar-row {
+      display: flex;
+
+      &:first-child {
+        color: $fg-Dark;
+        background-color: $bg-Dark;
+
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+
+      .Calendar-dayNames {
+        font-size: .8rem;
+        border-bottom: $Border;
+      }
+
+      .Calendar-cell {
+        border: 1px solid transparent;
+        border-radius: 50%;
+
+        &.Square {
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+        &.Cell-Disabled {
+          color: $fg-Muted;
+        }
+
+        &.Cell-Available {
+          cursor: pointer;
+          font-weight: normal;
+
+          &:hover {
+            border-color: $Border-color;
+
+            color: $fg-Dark;
+            background-color: $bg-Dark;
+          }
+        }
+
+        &.Cell-Weekend {
+          font-weight: bold;
+
+          color: $fg-Muted;
+        }
+
+        &.Cell-Today {
+          border-color: $Border-color;
+          color: $fg-Active;
+          background-color: $bg-Active;
+        }
+
+        //&.Cell-SpecialDay { }
+
+        &.Cell-Available, &.Cell-Ranged {
+          // Cell-selected = Cell-Range-start
+          &.Cell-Range-start, &.Cell-Range-end {
+            color: $fg-Darkest;
+            background-color: $bg-Darkest;
+          }
+        }
+
+        // Cell-selected = Cell-Range-start
+        &.Cell-Ranged {
+          border-radius: 0;
+
+          &:not(.Cell-Range-start):not(.Cell-Range-end) {
+            color: $fg-Lightest;
+            background-color: $bg-Lightest;
+
+            border-top-color: $Border-color;
+            border-bottom-color: $Border-color;
+
+            &.Cell-Available:hover {
+              color: $fg-Dark;
+              background-color: $bg-Dark;
+            }
+          }
+
+          &.Cell-Range-start {
+            border-radius: 50% 0 0 50%;
+          }
+
+          &.Cell-Range-end {
+            border-radius: 0 50% 50% 0;
+          }
+
+          &.Cell-Range-start.Cell-Range-end {
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}

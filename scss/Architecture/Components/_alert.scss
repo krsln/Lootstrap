@@ -1,0 +1,101 @@
+// ===========================================================================
+// Components - Alert
+// ST: With Specific Theme
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--alert-bg-body, var(--component-bg-body));
+$fg-Muted: var(--alert-fg-muted, var(--component-fg-muted));
+
+$fg-Darkest: var(--alert-fg-darkest, var(--component-fg-darkest));
+$bg-Darkest: var(--alert-bg-darkest, var(--component-bg-darkest));
+$fg-Dark: var(--alert-fg-dark, var(--component-fg-dark));
+$bg-Dark: var(--alert-bg-dark, var(--component-bg-dark));
+$fg-Light: var(--alert-fg-light, var(--component-fg-light));
+$bg-Light: var(--alert-bg-light, var(--component-bg-light));
+$fg-Lightest: var(--alert-fg-lightest, var(--component-fg-lightest));
+$bg-Lightest: var(--alert-bg-lightest, var(--component-bg-lightest));
+
+$fg-Active: var(--alert-fg-active, var(--component-fg-active));
+$bg-Active: var(--alert-bg-active, var(--component-bg-active));
+
+/* Shadows */
+$Shadow-color: var(--alert-shadow-color, var(--component-shadow-color));
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--alert-border-color, var(--component-border-color));
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Alert {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Darkest;
+  background-color: $bg-Darkest;
+
+  border: $Border;
+  box-shadow: $Shadow;
+
+  min-width: 250px;
+  margin-bottom: .5rem;
+  padding: .5rem;
+  align-items: center;
+
+  .Alert-icon {
+    display: flex;
+    font-size: medium;
+  }
+
+  .Alert-right {
+    margin-left: auto;
+    order: 2;
+
+    span:first-child, small:first-child {
+      position: absolute;
+      font-size: 12px;
+      top: .7rem;
+      right: 2rem;
+    }
+
+    .Btn-close {
+      position: absolute;
+      top: .5rem;
+      right: .5rem;
+    }
+  }
+
+  .Alert-body {
+    padding: .4rem;
+
+    .Alert-heading {
+      display: block;
+    }
+  }
+
+  .Progress {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border: none;
+
+    background-color: $bg-Lightest;
+
+    .Progress-bar {
+      background-color: $bg-Active;
+    }
+  }
+}
+

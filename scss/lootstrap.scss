@@ -1,34 +1,51 @@
-@charset "utf-8";
+@import '_header.scss';
 
-/*!
- * Lootstrap v2021.03.** (https://github.com/krsln/Lootstrap/)
- * Copyright 2021 Qrsln/Krlsn.
- * Licensed under MIT (https://github.com/krsln/Lootstrap/blob/master/LICENSE)
- */
+/*
+// Configuration
+*/
 
-.prefix-test {
-  transition: 3s;
-}
+@import "Abstracts/_dir-functions";
+@import "Abstracts/_dir-mixins";
+@import "Abstracts/variables";
+
+/*
+// :root
+*/
+
+@import "Architecture/root";
+
+/*
+// Utils
+*/
+
+@import "Architecture/_dir-utils";
+
+/*
+// Layout & components
+*/
+
+@import "Architecture/_dir-components";
+@import "Architecture/_dir-layout";
+@import "Architecture/_dir-svg";
+
+@import "Architecture/theme";
+@import "Architecture/anim";
+
 
 // Vendor
 //@import "Vendor/__vendor-dir";
 
 // Abstracts
-@import "Abstracts/__abstracts-dir";
+//@import "OLD/Abstracts/__abstracts-dir";
 
 // Core
-@import "Core/__core-dir";
-
-
+//@import "OLD/Core/__core-dir";
 
 // Components
-@import "Components/__components-dir";
+//@import "OLD/Components/__components-dir";
 
 // Layouts
-@import "Layouts/__layouts-dir";
+//@import "OLD/Layouts/__layouts-dir";
 
 // Themes
-@import "Themes/__themes-dir";
-
-
-
+//@import "Themes/__themes-dir";

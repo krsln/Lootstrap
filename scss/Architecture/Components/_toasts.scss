@@ -1,0 +1,96 @@
+// ===========================================================================
+// Components - Toast
+// ST: With Specific Theme
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--toast-bg-body, var(--component-bg-body));
+$fg-Muted: var(--toast-fg-muted, var(--component-fg-muted));
+
+$fg-Darkest: var(--toast-fg-darkest, var(--component-fg-darkest));
+$bg-Darkest: var(--toast-bg-darkest, var(--component-bg-darkest));
+$fg-Dark: var(--toast-fg-dark, var(--component-fg-dark));
+$bg-Dark: var(--toast-bg-dark, var(--component-bg-dark));
+$fg-Light: var(--toast-fg-light, var(--component-fg-light));
+$bg-Light: var(--toast-bg-light, var(--component-bg-light));
+$fg-Lightest: var(--toast-fg-lightest, var(--component-fg-lightest));
+$bg-Lightest: var(--toast-bg-lightest, var(--component-bg-lightest));
+
+$fg-Active: var(--toast-fg-active, var(--component-fg-active));
+$bg-Active: var(--toast-bg-active, var(--component-bg-active));
+
+/* Shadows */
+$Shadow-color: var(--toast-shadow-color, var(--component-shadow-color));
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--toast-border-color, var(--component-border-color));
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Toast {
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  border-top-left-radius: $Border-radius;
+  border-top-right-radius: $Border-radius;
+
+  border: $Border;
+  box-shadow: $Shadow;
+
+  min-width: 250px;
+  margin-bottom: .5rem;
+
+  .Toast-header {
+    display: flex;
+    border-bottom: $Border;
+    padding: .4rem;
+    align-items: center;
+
+    color: $fg-Darkest;
+    background-color: $bg-Darkest;
+
+    //@include border-radius-Top($Component-border-radius);
+
+    .Toast-icon {
+      display: flex;
+      font-size: medium;
+      padding-right: .4rem;
+    }
+
+    .Toast-right {
+      margin-left: auto;
+      order: 2;
+
+      span:first-child, small:first-child {
+        vertical-align: top;
+        padding-right: .2rem;
+      }
+    }
+  }
+
+  .Toast-body {
+    color: $fg-Light;
+    background-color: $bg-Light;
+
+    padding: 1rem;
+  }
+
+  .Progress {
+    background-color: $bg-Lightest;
+
+    .Progress-bar {
+      background-color: $bg-Active;
+    }
+  }
+}

@@ -1,0 +1,152 @@
+// ===========================================================================
+// Utils - Utilities (Rest of all)
+// ===========================================================================
+
+// Values: Prefix: *, Properties: *, Important: *, Responsive: *, Values: *, Values: *, Pseudo:*
+$utilities: () !default;
+$utilities: (
+  /*
+  // Cursor
+  */
+        "Cursor": (
+                Prefix: Cursor, Properties: cursor, Important: true,
+                Values: (
+                        pointer: pointer,
+                        help: help,
+                        wait: wait,
+                        not-allowed: not-allowed,
+                        zoom-in: zoom-in,
+                        zoom-out: zoom-out,
+                ),
+        ),
+  /*
+  // Align
+  */
+  //"Align": (
+  //        Prefix: Align, Properties: vertical-align, Important: true, Responsive: true,
+  //        Values: (baseline top middle bottom text-bottom text-top)
+  //),
+  /*
+  // Float
+  */
+  //"Float": (
+  //        Prefix: Float, Properties: float, Important: true, Responsive: true,
+  //        Values: (start: left, end: right, left: left, right: right, none: none,)
+  //),
+  /*
+  // Overflow
+  */
+        "Overflow": (
+                Prefix: Overflow, Properties: overflow, Important: true,
+                Values: (auto hidden visible scroll)
+        ),
+  /*
+  // Display
+  */
+        "Display": (
+                Prefix: D, Properties: display, Important: true, Responsive: true,
+                Values: inline inline-block block grid table table-row table-cell flex inline-flex none
+        ),
+  /*
+  // Shadow
+  */
+        "Box Shadow": (
+                Prefix: Shadow, Properties: box-shadow, Important: true, Values: $Shadow-map
+        ),
+  /*
+  // Position
+  */
+  //"Position": (
+  //        Prefix: Position, Properties: position, Important: true,
+  //        Values: (static relative absolute fixed sticky)
+  //),
+  /*
+  // Sizing Width, Height
+  */
+        "Width": (Prefix: W, Properties: width, Important: true, Values: $sizes-percents,),
+        "Max-Width": (Prefix: MW, Properties: max-width, Important: true, Values: (100: 100%)),
+        "viewport-Width": (Prefix: VW, Properties: width, Important: true, Values: (100: 100vw)),
+        "Height": (Prefix: H, Properties: height, Important: true, Values: $sizes-percents,),
+        "Max-Height": (Prefix: MH, Properties: max-height, Important: true, Values: (100: 100%)),
+        "viewport-Height": (Prefix: VH, Properties: height, Important: true, Values: (100: 100vw)),
+  /*
+  // Flex
+  */
+  /*
+  // justify-content align-items align-content align-self
+  */
+  /*
+  // order
+  */
+        "Order": (
+                Prefix: Order, Properties: order, Important: true, Responsive: true,
+                Values: (first: -1, 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, last: 6)
+        ),
+  /*
+  // Visibility
+  */
+        "Visibility": (
+                Prefix: null, Properties: visibility, Important: true,
+                Values: (Visible: visible, Invisible: hidden, Hidden: hidden,)
+        ),
+);
+
+@include Utilities($utilities);
+
+/*
+// Cursor
+*/
+
+.Cursor-pointer, .Cursor-help, .Cursor-wait, .Cursor-not-allowed, .Cursor-zoom-in, .Cursor-zoom-out {
+}
+
+
+/*
+// Display
+*/
+.Overflow-auto, .Overflow-hidden, .Overflow-visible, .Overflow-scroll {
+}
+
+/*
+// Display + Responsive variants
+*/
+
+.D-inline, .D-inline-block, .D-block, .D-grid, .D-table, .D-table-row, .D-table-cell, .D-flex, .D-inline-flex, .D-none {
+}
+
+/*
+// Box Shadow
+*/
+.Shadow, .Shadow-2x, .Shadow-3x,
+.Shadow-inner, .Shadow-both, .Shadow-br, .Shadow-t, .Shadow-r, .Shadow-l, .Shadow-b, .Shadow-x, .Shadow-y,
+.Shadow-inner-2x, .Shadow-both-2x, .Shadow-br-2x, .Shadow-t-2x, .Shadow-r-2x, .Shadow-l-2x, .Shadow-b-2x, .Shadow-x-2x, .Shadow-y-2x,
+.Shadow-inner-3x, .Shadow-both-3x, .Shadow-br-3x, .Shadow-t-3x, .Shadow-r-3x, .Shadow-l-3x, .Shadow-b-3x, .Shadow-x-3x, .Shadow-y-3x {
+  //--component-shadow-color: 0, 0, 0;
+}
+
+
+/*
+// Sizing Width & Height
+*/
+
+.W-10, .W-20, .W-30, .W-40, .W-50, .W-60, .W-70, .W-80, .W-90, .W-100, .W-25, .W-75, .W-33, .W-66, .W-auto {
+}
+
+.H-10, .H-20, .H-30, .H-40, .H-50, .H-60, .H-70, .H-80, .H-90, .H-100, .H-25, .H-75, .H-33, .H-66, .H-auto {
+}
+
+.MW-100, .VW-100,
+.MH-100, .VH-100 {
+}
+
+/*
+// Order
+*/
+.Order-first, .Order-0, .Order-1, .Order-2, .Order-3, .Order-4, .Order-5, .Order-last {
+}
+
+/*
+// Visibility
+*/
+.Visible, .Invisible, .Hidden {
+}

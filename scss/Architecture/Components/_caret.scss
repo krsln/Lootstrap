@@ -1,0 +1,203 @@
+// ===========================================================================
+// Components - Caret
+// ST: With Specific Theme
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--caret-bg-body, var(--component-bg-body));
+$fg-Muted: var(--caret-fg-muted, var(--component-fg-muted));
+
+$fg-Darkest: var(--caret-fg-darkest, var(--component-fg-darkest));
+$bg-Darkest: var(--caret-bg-darkest, var(--component-bg-darkest));
+$fg-Dark: var(--caret-fg-dark, var(--component-fg-dark));
+$bg-Dark: var(--caret-bg-dark, var(--component-bg-dark));
+$fg-Light: var(--caret-fg-light, var(--component-fg-light));
+$bg-Light: var(--caret-bg-light, var(--component-bg-light));
+$fg-Lightest: var(--caret-fg-lightest, var(--component-fg-lightest));
+$bg-Lightest: var(--caret-bg-lightest, var(--component-bg-lightest));
+
+$fg-Active: var(--caret-fg-active, var(--component-fg-active));
+$bg-Active: var(--caret-bg-active, var(--component-bg-active));
+
+/* Shadows */
+$Shadow-color: var(--caret-shadow-color, var(--component-shadow-color));
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--caret-border-color, var(--component-border-color));
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Caret {
+  position: relative;
+  overflow: visible;
+  border: $Border;
+
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-style: solid;
+
+    width: 0;
+    height: 0;
+
+    z-index: 1;
+    clear: both;
+
+    border-width: #{var(--caret-size, 10px)};
+  }
+}
+
+.Caret-t, .Caret-b, .Caret-darker-t, .Caret-darker-b {
+  $caret-size: var(--caret-size, 10px);
+
+  &:after {
+    left: calc(50% - #{$caret-size});
+  }
+
+  &:before {
+    left: calc(50% - #{$caret-size});
+  }
+}
+
+.Caret-r, .Caret-l, .Caret-darker-r, .Caret-darker-l {
+  $caret-size: var(--caret-size, 10px);
+
+  &:after {
+    top: calc(50% - #{$caret-size});
+  }
+
+  &:before {
+    top: calc(50% - #{$caret-size});
+  }
+}
+
+/*
+// Caret default
+*/
+
+// &:after is bg, &:before is border
+$caret-before-color: $Border-color;
+$caret-after-color: $bg-Light;
+
+.Caret-t {
+  &:after {
+    bottom: 100%;
+    border-color: transparent transparent $caret-after-color transparent; /* top | right | bottom | left */
+  }
+
+  &:before {
+    bottom: calc(100% + 1px);
+    border-color: transparent transparent $caret-before-color transparent; /* top | right | bottom | left */
+    //filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, .18)) drop-shadow(0px 2px 2px rgba(0, 0, 0, .12)) drop-shadow(0px 4px 6px rgba(0, 0, 0, .06));
+  }
+}
+
+.Caret-r {
+  &:after {
+    left: 100%;
+    border-color: transparent transparent transparent $caret-after-color;
+  }
+
+  &:before {
+    left: calc(100% + 1px);
+    border-color: transparent transparent transparent $caret-before-color;
+  }
+}
+
+.Caret-b {
+  &:after {
+    top: 100%;
+    border-color: $caret-after-color transparent transparent transparent;
+  }
+
+  &:before {
+    top: calc(100% + 1px);
+    border-color: $caret-before-color transparent transparent transparent;
+  }
+}
+
+.Caret-l {
+  &:after {
+    right: 100%;
+    border-color: transparent $caret-after-color transparent transparent;
+  }
+
+  &:before {
+    right: calc(100% + 1px);
+    border-color: transparent $caret-before-color transparent transparent;
+  }
+}
+
+/*
+// Caret-darker
+*/
+
+// &:after is bg, &:before is border
+$caret-darker-before-color: $Border-color;
+$caret-darker-after-color: $bg-Active;
+
+.Caret-darker-t {
+  &:after {
+    bottom: 100%;
+    border-color: transparent transparent $caret-darker-after-color transparent;
+  }
+
+  &:before {
+    bottom: calc(100% + 1px);
+    border-color: transparent transparent $caret-darker-before-color transparent;
+  }
+}
+
+.Caret-darker-r {
+  &:after {
+    left: 100%;
+    border-color: transparent transparent transparent $caret-darker-after-color;
+  }
+
+  &:before {
+    left: calc(100% + 1px);
+    border-color: transparent transparent transparent $caret-darker-before-color;
+  }
+}
+
+.Caret-darker-b {
+  &:after {
+    top: 100%;
+    border-color: $caret-darker-after-color transparent transparent transparent;
+  }
+
+  &:before {
+    top: calc(100% + 1px);
+    border-color: $caret-darker-before-color transparent transparent transparent;
+  }
+}
+
+.Caret-darker-l {
+  &:after {
+    right: 100%;
+    border-color: transparent $caret-darker-after-color transparent transparent;
+  }
+
+  &:before {
+    right: calc(100% + 1px);
+    border-color: transparent $caret-darker-before-color transparent transparent;
+  }
+}
+
+/*
+// Caret - Size
+// (0: 0, 1: .40rem, 2: .50rem, 3: .60rem, 4: .80rem, 5: 1.00rem)
+// (0: 0, 1: 6px, 2: 8px, 3: 10px, 4: 12px, 5: 16px)
+*/
+
+@include Utility-applier(true, Caret, --caret-size, (0: 0, 1: 6px, 2: 8px, 3: 10px, 4: 12px, 5: 16px));
+
+.Caret-0, .Caret-1, .Caret-2, .Caret-3, .Caret-4, .Caret-5 {
+}

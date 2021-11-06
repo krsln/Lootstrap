@@ -1,0 +1,65 @@
+// ===========================================================================
+// Components - Themes
+// ===========================================================================
+
+@include Theme-components($colors-Theme, $theme-Components);
+
+/*
+> Anatomy of the theme colors <
+*) Html's body colors - Darkest color
+
+Body => (Darkest or Lightest)
+
+1) Darkest (bg) - Furthest element
+2) Dark
+3) Light - Surface
+4) Lightest - Closest element
+*/
+
+/*
+// Theme-color
+// from Abstracts\_variables.scss
+*/
+.Theme-primary, .Theme-secondary, .Theme-success, .Theme-info, .Theme-warning, .Theme-danger,
+.Theme-light, .Theme-dark, .Theme-night {
+}
+
+/*
+// Alert-color
+// from Abstracts\_variables.scss
+*/
+.Alert-primary, .Alert-secondary, .Alert-success, .Alert-info, .Alert-warning, .Alert-danger,
+.Alert-light, .Alert-dark, .Alert-night {
+}
+
+/*
+// Calendar-color
+// from Abstracts\_variables.scss
+*/
+.Calendar-primary, .Calendar-secondary, .Calendar-success, .Calendar-info, .Calendar-warning, .Calendar-danger,
+.Calendar-light, .Calendar-dark, .Calendar-night {
+}
+
+/*
+// Card-color
+// from Abstracts\_variables.scss
+*/
+.Card-primary, .Card-secondary, .Card-success, .Card-info, .Card-warning, .Card-danger,
+.Card-light, .Card-dark, .Card-night {
+}
+
+/*
+// Caret-color
+// from Abstracts\_variables.scss
+*/
+.Caret-primary, .Caret-secondary, .Caret-success, .Caret-info, .Caret-warning, .Caret-danger,
+.Caret-light, .Caret-dark, .Caret-night {
+}
+
+/*
+// Toast-color
+// from Abstracts\_variables.scss
+*/
+.Toast-primary, .Toast-secondary, .Toast-success, .Toast-info, .Toast-warning, .Toast-danger,
+.Toast-light, .Toast-dark, .Toast-night {
+}

@@ -1,0 +1,83 @@
+// ===========================================================================
+// Utils - Text
+// ===========================================================================
+
+//TODO...
+
+// Values: Prefix: *, Properties: *, Important: *, Responsive: *, Values: *, Values: *, Pseudo:*
+$utilities-Text: () !default;
+$utilities-Text: (
+  // font-family
+  //      "font-family": (
+  //              Prefix: Font, Properties: font-family, Important: true,
+  //              Values: (monospace: var(--#{$variable-prefix}font-monospace))
+  //      ),
+  //      "font-size": (
+  //              Prefix: FS, Properties: font-size, Important: true,
+  //              Values: $font-sizes
+  //      ),
+        "font-style": (
+                Prefix: FST, Properties: font-style, Important: true,
+                Values: italic normal
+        ),
+  //"font-weight": (
+  //        Prefix: FW, Properties: font-weight, Important: true,
+  //        Values: (
+  //                light: $font-weight-light,
+  //                lighter: $font-weight-lighter,
+  //                normal: $font-weight-normal,
+  //                bold: $font-weight-bold,
+  //                bolder: $font-weight-bolder
+  //        )
+  //),
+  //"line-height": (
+  //        Prefix: LH, Properties: line-height, Important: true,
+  //        Values: (
+  //                1: 1,
+  //                sm: $line-height-sm,
+  //                base: $line-height-base,
+  //                lg: $line-height-lg,
+  //        )
+  //),
+        "Text-align": (
+                Prefix: Txt, Properties: text-align, Important: true, Responsive: true,
+                Values: (left: left, right: right, start: left, end: right, center: center)
+        ),
+        "Text-decoration": (
+                Prefix: Txt-decoration, Properties: text-decoration, Important: true,
+                Values: (
+                        none:none,
+                        underline:underline,
+                        overline:overline,
+                        strikethrough:line-through,
+                        multiple:underline overline line-through,
+                        blink:blink,
+                        wavy:underline overline wavy,
+                )
+        ),
+        "Text-transform": (
+                Prefix: Txt, Properties: text-transform, Important: true,
+                Values: lowercase uppercase capitalize
+        ),
+        "white-space": (
+                Prefix: WS, Properties: white-space, Important: true,
+                Values: normal nowrap
+        ),
+);
+
+@include Utilities($utilities-Text);
+
+
+/*
+// Text-align + Responsive variants
+*/
+
+.Txt-left, .Txt-right, .Txt-center {
+}
+
+/*
+// Text-transform
+*/
+
+.Txt-lowercase, .Txt-uppercase, .Txt-capitalize {
+}

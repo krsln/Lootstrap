@@ -1,0 +1,116 @@
+// ===========================================================================
+// Components - Timeline
+// TS: Theme Support
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--component-bg-body);
+$fg-Muted: var(--component-fg-muted);
+
+$fg-Darkest: var(--component-fg-darkest);
+$bg-Darkest: var(--component-bg-darkest);
+$fg-Dark: var(--component-fg-dark);
+$bg-Dark: var(--component-bg-dark);
+$fg-Light: var(--component-fg-light);
+$bg-Light: var(--component-bg-light);
+$fg-Lightest: var(--component-fg-lightest);
+$bg-Lightest: var(--component-bg-lightest);
+
+$fg-Active: var(--component-fg-active);
+$bg-Active: var(--component-bg-active);
+
+/* Shadows */
+$Shadow-color: var(--component-shadow-color);
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--component-border-color);
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Timer {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Light;
+  background-color: $bg-Light;
+
+  border: $Border;
+  box-shadow: $Shadow;
+
+  min-height: 110px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+
+  .Timer-header {
+    flex-basis: 100%;
+    margin: 0 0 5px;
+    font-weight: bold;
+
+    border-bottom: $Border;
+  }
+
+  .Timer-expired {
+    display: flex;
+    flex-basis: 100%;
+    font-weight: bold;
+    color: $fg-Light;
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Square {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+
+    border: $Border;
+  }
+
+  .Timer-divider:not(.Timer-canvas .Timer-divider) {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .Timer-divider {
+    position: relative;
+    width: 8%;
+    margin: 2px -2px;
+
+    span, div {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+  }
+}
+
+.Timer-svg {
+  @extend .Loader;
+
+  svg {
+    .circle {
+      &:first-of-type {
+        stroke-dasharray: none !important;
+      }
+    }
+  }
+
+}

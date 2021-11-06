@@ -1,0 +1,35 @@
+// ===========================================================================
+// Base - Root
+// ===========================================================================
+
+:root {
+  // Custom variable values only support SassScript inside `#{}`.
+  /* Color palette */
+  @each $colorKey, $colorValue in $colors-all {
+    --#{$variable-Prefix}#{to-lower-case($colorKey)}: #{$colorValue};
+  }
+
+  // Theme-light
+  --component-bg-body: #d1d9e0;
+  --component-bg-darkest: #e0e6eb;
+  --component-fg-darkest: black;
+  --component-bg-dark: #f0f2f5;
+  --component-fg-dark: black;
+  --component-bg-light: #f9fafb;
+  --component-fg-light: black;
+  --component-bg-lightest: white;
+  --component-fg-lightest: black;
+  --component-bg-active: #3692fc;
+  --component-fg-active: white;
+  --component-fg-muted: #a7afb9;
+  --component-shadow-color: 0, 0, 0;
+  --component-border-color: hsla(210deg, 20%, 90%, var(--border-alpha, 1));
+
+  // Others
+  --component-border-radius: #{$Rounded};
+
+  /* Font */
+  --component-font: #{$font-family};
+  --component-font-size: #{$font-size-base};
+  --component-font-weight: normal;
+}

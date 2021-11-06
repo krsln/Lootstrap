@@ -1,0 +1,90 @@
+// ===========================================================================
+// Components - Pagination
+// TS: Theme Support
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--component-bg-body);
+$fg-Muted: var(--component-fg-muted);
+
+$fg-Darkest: var(--component-fg-darkest);
+$bg-Darkest: var(--component-bg-darkest);
+$fg-Dark: var(--component-fg-dark);
+$bg-Dark: var(--component-bg-dark);
+$fg-Light: var(--component-fg-light);
+$bg-Light: var(--component-bg-light);
+$fg-Lightest: var(--component-fg-lightest);
+$bg-Lightest: var(--component-bg-lightest);
+
+$fg-Active: var(--component-fg-active);
+$bg-Active: var(--component-bg-active);
+
+/* Shadows */
+$Shadow-color: var(--component-shadow-color);
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--component-border-color);
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Pagination {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Light;
+  background-color: $bg-Light;
+
+  .Square {
+    user-select: none; /* Standard */
+
+    //color: $Component-fg-secondary;
+    //background-color: $Component-bg-secondary;
+
+    border: 1px solid transparent;
+    border-radius: $Border-radius;
+
+    transition: border-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+
+    &:nth-child(-n+2), &:nth-last-of-type(-n+2) {
+      font-size: 1.3em;
+    }
+
+    &:not(.disabled):not(.active) {
+      cursor: pointer;
+    }
+
+    &:hover:not(.active):not(.disabled) {
+      text-decoration: none;
+      border-color: $Border-color;
+
+      color: $fg-Dark;
+      background-color: $bg-Dark;
+    }
+
+    &.disabled {
+      color: $fg-Muted;
+    }
+
+    &.active {
+      color: $fg-Active;
+      background-color: $bg-Active;
+
+      border-color: transparent;
+
+      box-shadow: $Shadow;
+      transition: all 0.2s linear;
+    }
+  }
+}
+

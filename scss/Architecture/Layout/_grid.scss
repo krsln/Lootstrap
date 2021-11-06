@@ -1,0 +1,71 @@
+// ===========================================================================
+// Components - Grid
+// https://github.com/twbs/bootstrap/blob/main/scss/mixins/_breakpoints.scss
+// ===========================================================================
+
+$grid-Columns: 12;
+
+@include GridColumns($grid-Columns, $responsive-Breakpoints);
+
+// Todo: grid col
+.Col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+
+.Col-1, .Col-2, .Col-3, .Col-4, .Col-5, .Col-6, .Col-7, .Col-8, .Col-9, .Col-10, .Col-11, .Col-12 {
+}
+
+.Offset-1, .Offset-2, .Offset-3, .Offset-4, .Offset-5, .Offset-6, .Offset-7, .Offset-8, .Offset-9, .Offset-10, .Offset-11 {
+}
+
+@media (min-width: 35rem) { // 576 x 324
+  .Col-sm-1, .Col-sm-2, .Col-sm-3, .Col-sm-4, .Col-sm-5, .Col-sm-6, .Col-sm-7, .Col-sm-8, .Col-sm-9, .Col-sm-10, .Col-sm-11, .Col-sm-12 {
+  }
+  .Offset-sm-0, .Offset-sm-1, .Offset-sm-2, .Offset-sm-3, .Offset-sm-4, .Offset-sm-5, .Offset-sm-6, .Offset-sm-7, .Offset-sm-8, .Offset-sm-9, .Offset-sm-10, .Offset-sm-11 {
+  }
+}
+
+@media (min-width: 47rem) { // 768 x 432
+  .Col-md-1, .Col-md-2, .Col-md-3, .Col-md-4, .Col-md-5, .Col-md-6, .Col-md-7, .Col-md-8, .Col-md-9, .Col-md-10, .Col-md-11, .Col-md-12 {
+  }
+  .Offset-md-0, .Offset-md-1, .Offset-md-2, .Offset-md-3, .Offset-md-4, .Offset-md-5, .Offset-md-6, .Offset-md-7, .Offset-md-8, .Offset-md-9, .Offset-md-10, .Offset-md-11 {
+  }
+}
+
+@media (min-width: 63rem) { // 1024 x 576 (aka k)
+  .Col-lg-1, .Col-lg-2, .Col-lg-3, .Col-lg-4, .Col-lg-5, .Col-lg-6, .Col-lg-7, .Col-lg-8, .Col-lg-9, .Col-lg-10, .Col-lg-11, .Col-lg-12 {
+  }
+  .Offset-lg-0, .Offset-lg-1, .Offset-lg-2, .Offset-lg-3, .Offset-lg-4, .Offset-lg-5, .Offset-lg-6, .Offset-lg-7, .Offset-lg-8, .Offset-lg-9, .Offset-lg-10, .Offset-lg-11 {
+  }
+}
+
+@media (min-width: 78rem) { // 1280 x 720 (aka k)
+  .Col-xl-1, .Col-xl-2, .Col-xl-3, .Col-xl-4, .Col-xl-5, .Col-xl-6, .Col-xl-7, .Col-xl-8, .Col-xl-9, .Col-xl-10, .Col-xl-11, .Col-xl-12 {
+  }
+  .Offset-xl-0, .Offset-xl-1, .Offset-xl-2, .Offset-xl-3, .Offset-xl-4, .Offset-xl-5, .Offset-xl-6, .Offset-xl-7, .Offset-xl-8, .Offset-xl-9, .Offset-xl-10, .Offset-xl-11 {
+  }
+}
+
+@media (min-width: 118rem) { // 1920 x 1080
+  .Col-2k-1, .Col-2k-2, .Col-2k-3, .Col-2k-4, .Col-2k-5, .Col-2k-6, .Col-2k-7, .Col-2k-8, .Col-2k-9, .Col-2k-10, .Col-2k-11, .Col-2k-12 {
+  }
+  .Offset-2k-0, .Offset-2k-1, .Offset-2k-2, .Offset-2k-3, .Offset-2k-4, .Offset-2k-5, .Offset-2k-6, .Offset-2k-7, .Offset-2k-8, .Offset-2k-9, .Offset-2k-10, .Offset-2k-11 {
+  }
+}
+
+//@media(min-width: 3840px) {
+//  .Col-4k-1, .Col-4k-2, .Col-4k-3, .Col-4k-4, .Col-4k-5, .Col-4k-6, .Col-4k-7, .Col-4k-8, .Col-4k-9, .Col-4k-10, .Col-4k-11, .Col-4k-12 {
+//  }
+//  .Offset-4k-0, .Offset-4k-1, .Offset-4k-2, .Offset-4k-3, .Offset-4k-4, .Offset-4k-5, .Offset-4k-6, .Offset-4k-7, .Offset-4k-8, .Offset-4k-9, .Offset-4k-10, .Offset-4k-11 {
+//  }
+//}
+
+//@media(min-width: 7680px) {
+//  .Col-8k-1, .Col-8k-2, .Col-8k-3, .Col-8k-4, .Col-8k-5, .Col-8k-6, .Col-8k-7, .Col-8k-8, .Col-8k-9, .Col-8k-10, .Col-8k-11, .Col-8k-12 {
+//  }
+//  .Offset-8k-0, .Offset-8k-1, .Offset-8k-2, .Offset-8k-3, .Offset-8k-4, .Offset-8k-5, .Offset-8k-6, .Offset-8k-7, .Offset-8k-8, .Offset-8k-9, .Offset-8k-10, .Offset-8k-11 {
+//  }
+//}

@@ -1,0 +1,85 @@
+// ===========================================================================
+// Components - Progress
+// TS: Theme Support
+// ===========================================================================
+
+/*#region Theme Variables */
+
+/* Colors */
+$bg-Body: var(--component-bg-body);
+$fg-Muted: var(--component-fg-muted);
+
+$fg-Darkest: var(--component-fg-darkest);
+$bg-Darkest: var(--component-bg-darkest);
+$fg-Dark: var(--component-fg-dark);
+$bg-Dark: var(--component-bg-dark);
+$fg-Light: var(--component-fg-light);
+$bg-Light: var(--component-bg-light);
+$fg-Lightest: var(--component-fg-lightest);
+$bg-Lightest: var(--component-bg-lightest);
+
+$fg-Active: var(--component-fg-active);
+$bg-Active: var(--component-bg-active);
+
+/* Shadows */
+$Shadow-color: var(--component-shadow-color);
+$Shadow: Colored-shadow($Shadow-color);
+$Shadow-inner: Colored-shadow-inner($Shadow-color);
+
+/* Border */
+$Border-color: var(--component-border-color);
+$Border: 1px solid #{$Border-color};
+$Border-radius: var(--component-border-radius);
+
+/*#endregion */
+
+.Progress {
+  display: flex;
+  position: relative;
+  height: 1rem;
+
+  font-family: var(--component-font);
+  font-size: var(--component-font-size);
+  font-weight: var(--component-font-weight);
+
+  color: $fg-Lightest;
+  background-color: $bg-Lightest;
+
+  border: $Border;
+  box-shadow: $Shadow-inner;
+
+  border-radius: $Border-radius;
+
+  .Progress-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+
+    color: $fg-Active;
+    background-color: $bg-Active;
+
+    transition: width .6s ease;
+  }
+}
+
+/*
+// Progress Striped
+*/
+
+.Progress-bar-striped {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+
+/*
+// Progress Sizing
+*/
+
+@include Utility-applier(false, Progress, height, ('thin-3':.25rem, 'thin-2':.50rem, 'thin-1':.75rem, 'thick-1':1.25rem, 'thick-2':1.50rem, 'thick-3':1.75rem));
+
+.Progress-thin-3, .Progress-thin-2, .Progress-thin-1,
+.Progress-thick-1, .Progress-thick-2, .Progress-thick-3 {
+}

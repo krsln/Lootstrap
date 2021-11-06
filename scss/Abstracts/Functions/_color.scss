@@ -1,3 +1,7 @@
+// ===========================================================================
+// Functions - Color
+// ===========================================================================
+
 /// Slightly lighten a color
 /// @access public
 /// @param {Color} $color - color to tint
@@ -16,11 +20,62 @@
   @return mix(black, $color, $percentage);
 }
 
-// Set the color of the button and badge
-@function ResolveColor($color) {
+// Set Text Color Entirely based on bg color
+@function TextColor-ByBackground($color) {
   @if (lightness($color) > 80) {
     @return black; // Lighter background, return dark color
   } @else {
     @return white; // Darker background, return light color
   }
 }
+
+@function Color-ByLightness($colorValue, $targetPer: 96%) {
+  $diff: $targetPer - lightness($colorValue);
+  $color-result: $colorValue;
+
+  @if ($diff>0) {
+    $color-result: lighten($colorValue, $diff);
+  } @else {
+    $diff-body: -1 * $diff;
+    $color-result: darken($colorValue, $diff-body);
+  }
+
+  @return $color-result;
+}
+
+/// For bg, text and border color
+/// HSL Colors: hsl(hue, saturation, lightness)
+@function Color-hsla($colors, $alpha:--bg-alpha, $lightness:--bg-lightness) {
+  $colors-hsla: ();
+  @each $colorKey, $colorValue in $colors {
+    $color: $colorValue;
+
+    @if (str-index($alpha, '--border')) {
+      $color: Color-ByLightness($colorValue, 70%); // 80
+      @if ($colorKey=='dark') {
+        $color: Color-ByLightness($colorValue, 45%);
+      } @else if ($colorKey=='night') {
+        $color: Color-ByLightness($colorValue, 35%);
+      } @else if ($colorKey=='light' or $colorKey=='white') {
+        $color: Color-ByLightness($colorValue, 90%);
+      }
+    }
+
+    $color-h: #{round(hue($color))};
+    $color-s: #{round(saturation($color))};
+    $color-l: #{round(lightness($color))};
+
+    $alpha-bg: #{var($alpha, 1)};
+    $lightness-bg: #{var($lightness, $color-l)};
+
+    $hsla-color: hsla($color-h, $color-s, $lightness-bg, $alpha-bg);
+
+    @if (str-index($alpha, '--border')) {
+      $hsla-color: hsla($color-h, $color-s, $color-l, $alpha-bg);
+    }
+
+    $colors-hsla: map-merge($colors-hsla, ($colorKey: $hsla-color));
+  }
+  @return $colors-hsla;
+}
+

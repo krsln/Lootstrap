@@ -1,0 +1,122 @@
+// ===========================================================================
+// Mixins - Color
+// ===========================================================================
+// CSS Variables (Custom Properties)
+
+@mixin Bg-Text-Border-variables($colors) {
+  @each $colorKey, $colorValue in $colors {
+    .Bg-#{$colorKey} {
+      --bg-lightness: #{lightness($colorValue)};
+      --bg-alpha: 1;
+      //color: #{TextColor-ByBackground($colorValue)}; // DON'T
+    }
+    .Text-#{$colorKey} {
+      --text-lightness: #{lightness($colorValue)};
+      --text-alpha: 1;
+    }
+    .Border-#{$colorKey} {
+      --border-alpha: 1;
+    }
+  }
+}
+
+@mixin Theme-components($theme-colors, $theme-components) {
+  @each $colorKey, $colorValue in $theme-colors {
+    $fg-muted: hsla(213, 11%, 69%, 1);
+
+    /*
+    // Colors: primary, secondary, success, info, warning, danger
+    */
+    $color-body: Color-ByLightness($colorValue, 96%); // 96% - DON'T CHANGE
+    $color-border: Color-ByLightness($colorValue, 70%); // 80
+    $color-active: $colorValue;
+    $color-shadow: 0, 0, 0 ; // Has to be this way.. check shadows
+
+    $color-darkest: $colorValue;
+    $color-dark: lighten($colorValue, 20%);
+    $color-light: Color-ByLightness($colorValue, 90%); // 90% - DON'T CHANGE
+    $color-lightest: Color-ByLightness($colorValue, 95%); // 95% - DON'T CHANGE
+
+    /*
+    // Colors: dark, night, light
+    */
+    @if ($colorKey=='dark') {
+      $color-body: Color-ByLightness($colorValue, 10%);
+      $color-border: Color-ByLightness($colorValue, 45%);
+      $color-active: Color-ByLightness($Purple, 60%); // #bb86fc;
+      $color-shadow: 255, 255, 255 ;
+
+      $color-darkest: Color-ByLightness($colorValue, 15%);
+      $color-dark: Color-ByLightness($colorValue, 25%);
+      $color-light: Color-ByLightness($colorValue, 30%);
+      $color-lightest: Color-ByLightness($colorValue, 40%);
+    }
+    @if ($colorKey=='night') {
+      $color-body: Color-ByLightness($colorValue, 5%);
+      $color-border: Color-ByLightness($colorValue, 35%);
+      $color-active: Color-ByLightness($Purple, 60%); // #bb86fc;
+      $color-shadow: 255, 255, 255 ;
+
+      $color-darkest: Color-ByLightness($colorValue, 10%);
+      $color-dark: Color-ByLightness($colorValue, 15%);
+      $color-light: Color-ByLightness($colorValue, 20%);
+      $color-lightest: Color-ByLightness($colorValue, 30%);
+    }
+    @if ($colorKey=='light' or $colorKey=='white') {
+      $color-body: Color-ByLightness($colorValue, 85%);
+      $color-border: Color-ByLightness($colorValue, 90%);
+      $color-active: Color-ByLightness($Blue, 60%); // #bb86fc;
+
+      $color-darkest: Color-ByLightness($colorValue, 90%);
+      $color-dark: Color-ByLightness($colorValue, 95%);
+      $color-light: Color-ByLightness($colorValue, 98%);
+      $color-lightest: Color-ByLightness($colorValue, 100%);
+    }
+
+    /*
+    // Colors: primary, secondary, success, info, warning, danger, dark, night, light
+    */
+    @each $comKey, $comValue in $theme-components {
+      $class-suffix: if($colorKey, if($comKey == ""  , "", "-") + $colorKey, "");
+
+      // .Theme-primary {
+      .#{$comKey + $class-suffix} {
+        .Btn-close {
+          @if (lightness($colorValue) < 80) {
+            filter: invert(1) grayscale(100%) brightness(200%);
+          }
+        }
+
+        //--body-lightness: #{lightness($color-body)};
+        --#{$comValue}-bg-body: #{$color-body};
+
+        --#{$comValue}-bg-darkest: #{$color-darkest};
+        --#{$comValue}-fg-darkest: #{TextColor-ByBackground($color-darkest)};
+        --#{$comValue}-bg-dark: #{$color-dark};
+        --#{$comValue}-fg-dark: #{TextColor-ByBackground($color-dark)};
+        --#{$comValue}-bg-light: #{$color-light};
+        --#{$comValue}-fg-light: #{TextColor-ByBackground($color-light)};
+        --#{$comValue}-bg-lightest: #{$color-lightest};
+        --#{$comValue}-fg-lightest: #{TextColor-ByBackground($color-lightest)};
+
+        --#{$comValue}-bg-active: #{$color-active};
+        --#{$comValue}-fg-active: #{TextColor-ByBackground($color-active)};
+
+        --#{$comValue}-fg-muted: #{$fg-muted};
+
+        /* Shadows */
+        --#{$comValue}-shadow-color: #{$color-shadow};
+
+        /* Border */
+        $color-h: #{round(hue($color-border))};
+        $color-s: #{round(saturation($color-border))};
+        $color-l: #{round(lightness($color-border))};
+
+        $alpha-bg: #{var(--border-alpha, 1)};
+        $hsla-color: hsla($color-h, $color-s, $color-l, $alpha-bg);
+
+        --#{$comValue}-border-color: #{$hsla-color};
+      }
+    }
+  }
+}

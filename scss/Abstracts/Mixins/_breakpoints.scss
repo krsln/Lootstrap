@@ -1,20 +1,10 @@
-//Breakpoints
-// https://github.com/twbs/bootstrap/blob/main/scss/mixins/_breakpoints.scss
+// ===========================================================================
+// Mixins - Breakpoints
+// ===========================================================================
 
-@function breakpoint-Min($name, $breakpoints) {
-  $min: map-get($breakpoints, $name);
-
-  @return if($min != 0, $min, null);
-}
-
-@function breakpoint-Infix($name, $breakpoints) {
-  @return if(breakpoint-Min($name, $breakpoints) == null, "", "-#{$name}");
-}
-
-@mixin media-min-With($name, $breakpoints) {
-  $min: breakpoint-Min($name, $breakpoints);
-  @if $min {
-    @media (min-width: $min) {
+@mixin media-min-W($breakpointValue) {
+  @if $breakpointValue != 0 {
+    @media (min-width: $breakpointValue) {
       @content;
     }
   } @else {
