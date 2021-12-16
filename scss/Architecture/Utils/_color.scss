@@ -8,7 +8,7 @@ $utilities-bg: () !default;
 $utilities-bg: (
   // Text
         "Text-lightness": (
-                Prefix: Text-lightness, Properties: --text-lightness, Important: false,
+                Prefix: Text-lightness, Properties: --#{$var-Prefix}text-lightness, Important: false,
                 Values: $color-Lightness-map
         ),
         "Text-color": (
@@ -16,7 +16,7 @@ $utilities-bg: (
                 Values: $colors-Text-hsla
         ),
         "Text-alpha": (
-                Prefix: Text-alpha, Properties: --text-alpha, Important: false,
+                Prefix: Text-alpha, Properties: --#{$var-Prefix}text-alpha, Important: false,
                 Values: $color-Alpha-map
         ),
   // Border-color, Border-alpha
@@ -25,19 +25,19 @@ $utilities-bg: (
                 Values: map-merge($colors-Border-hsla, ("transparent": transparent)),
         ),
         "Border-alpha": (
-                Prefix: Border-alpha, Properties: --border-alpha, Important: false,
+                Prefix: Border-alpha, Properties: --#{$var-Prefix}border-alpha, Important: false,
                 Values: $color-Alpha-map,
         ),
   // Bg
         "Bg-lightness": (
-                Prefix: Bg-lightness, Properties: --bg-lightness, Important: false,
+                Prefix: Bg-lightness, Properties: --#{$var-Prefix}bg-lightness, Important: false,
                 Values: $color-Lightness-map
         ),
         "Bg-color": (
                 Prefix: Bg, Properties: background-color, Important: true,
                 Values: map-merge($colors-Background-hsla, ("transparent": transparent)),
         ),
-        "Bg-alpha": (Prefix: Bg-alpha, Properties: --bg-alpha, Important: false, Values: $color-Alpha-map),
+        "Bg-alpha": (Prefix: Bg-alpha, Properties: --#{$var-Prefix}bg-alpha, Important: false, Values: $color-Alpha-map),
   // Opacity
         "Opacity": (Prefix: Opacity, Properties: opacity, Important: true, Values: $opacity-map),
   // Pseudo colors
@@ -66,119 +66,38 @@ $utilities-bg: (
 // ===========================================================================
 
 /*
-// Text-color
+// .Text-<color>, .Text-<theme>, .Text-muted {}
+// .Text-alpha-0, .Text-alpha-100 { }
+// .Text-lightness-0, .Text-lightness-100 {}
 */
-.Text-red, .Text-lime, .Text-blue, .Text-yellow, .Text-cyan, .Text-magenta, .Text-purple, .Text-green, .Text-maroon,
-.Text-navy, .Text-teal, .Text-olive, .Text-orange, .Text-pink, .Text-brown, .Text-indigo, .Text-white, .Text-silver, .Text-gray,
-.Text-primary, .Text-secondary, .Text-success, .Text-info, .Text-warning, .Text-danger, .Text-light, .Text-dark, .Text-night,
-.Text-muted {
-}
-
-/*
-// Text-alpha
-*/
-.Text-alpha-0, .Text-alpha-5, .Text-alpha-10, .Text-alpha-20, .Text-alpha-30, .Text-alpha-40,
-.Text-alpha-50, .Text-alpha-60, .Text-alpha-70, .Text-alpha-80, .Text-alpha-90, .Text-alpha-100 {
-}
-
-/*
-// Text-lightness-*
-*/
-.Text-lightness-0, .Text-lightness-5, .Text-lightness-10, .Text-lightness-20, .Text-lightness-30, .Text-lightness-40,
-.Text-lightness-50, .Text-lightness-60, .Text-lightness-70, .Text-lightness-80, .Text-lightness-90, .Text-lightness-100 {
-}
 
 // ===========================================================================
 // Border
 // ===========================================================================
-/*
-// Border-color
-*/
-
-.Border-red, .Border-lime, .Border-blue, .Border-yellow, .Border-cyan, .Border-magenta,
-.Border-purple, .Border-green, .Border-maroon, .Border-navy, .Border-teal, .Border-olive,
-.Border-orange, .Border-pink, .Border-brown, .Border-indigo, .Border-white, .Border-silver,
-.Border-gray, .Border-primary, .Border-secondary, .Border-success, .Border-info, .Border-warning,
-.Border-danger, .Border-light, .Border-dark, .Border-transparent {
-}
 
 /*
-// Border-alpha
+// .Border-<color>, .Border-<theme>, .Border-transparent {}
+// .Border-alpha-0, .Border-alpha-100 {}
 */
-
-.Border-alpha-0, .Border-alpha-5,
-.Border-alpha-10, .Border-alpha-20, .Border-alpha-30, .Border-alpha-40, .Border-alpha-50,
-.Border-alpha-60, .Border-alpha-70, .Border-alpha-80, .Border-alpha-90, .Border-alpha-100 {
-}
 
 // ===========================================================================
 // Bg
 // ===========================================================================
 
 /*
-// Bg-color
+// .Bg-<color>, .Bg-<theme> {}
+// .Bg-alpha-0, .Bg-alpha-100 {}
+// .Bg-lightness-0, .Bg-lightness-100 {}
+// .Opacity-0,  .Opacity-100 {}
 */
-.Bg-red, .Bg-lime, .Bg-blue, .Bg-yellow, .Bg-cyan, .Bg-magenta, .Bg-purple, .Bg-green, .Bg-maroon, .Bg-navy, .Bg-teal, .Bg-olive, .Bg-orange, .Bg-pink, .Bg-brown, .Bg-indigo, .Bg-white, .Bg-silver, .Bg-gray,
-.Bg-primary, .Bg-secondary, .Bg-success, .Bg-info, .Bg-warning, .Bg-danger, .Bg-light, .Bg-dark, .Bg-night {
-}
-
-/*
-// Bg-alpha
-*/
-.Bg-alpha-0, .Bg-alpha-5, .Bg-alpha-10, .Bg-alpha-20, .Bg-alpha-30, .Bg-alpha-40,
-.Bg-alpha-50, .Bg-alpha-60, .Bg-alpha-70, .Bg-alpha-80, .Bg-alpha-90, .Bg-alpha-100 {
-}
-
-/*
-// Bg-lightness-*
-*/
-.Bg-lightness-0, .Bg-lightness-5, .Bg-lightness-10, .Bg-lightness-20, .Bg-lightness-30, .Bg-lightness-40, .Bg-lightness-50, .Bg-lightness-60, .Bg-lightness-70, .Bg-lightness-80, .Bg-lightness-90, .Bg-lightness-100 {
-}
-
-/*
-// Opacity
-*/
-
-.Opacity-0,
-.Opacity-10, .Opacity-20, .Opacity-30, .Opacity-40, .Opacity-50,
-.Opacity-60, .Opacity-70, .Opacity-80, .Opacity-90, .Opacity-100 {
-}
-
 
 // ===========================================================================
 // Pseudo colors
 // ===========================================================================
 
 /*
-// Pseudo bg colors - before
+// .Before-bg-<color>:before, .Before-bg-<theme>:before {}
+// .Before-border-<color>:before, .Before-border-<theme>:before {}
+// .After-bg-<color>:after, .After-bg-<theme>:after {}
+// .After-border-<color>:after, .After-border-<theme>:after {}
 */
-
-.Before-bg-red:before, .Before-bg-lime:before, .Before-bg-blue:before, .Before-bg-yellow:before, .Before-bg-cyan:before, .Before-bg-magenta:before,
-.Before-bg-purple:before, .Before-bg-green:before, .Before-bg-maroon:before, .Before-bg-navy:before, .Before-bg-teal:before, .Before-bg-olive:before,
-.Before-bg-orange:before, .Before-bg-pink:before, .Before-bg-brown:before, .Before-bg-indigo:before, .Before-bg-white:before, .Before-bg-silver:before,
-.Before-bg-gray:before, .Before-bg-primary:before, .Before-bg-secondary:before, .Before-bg-success:before, .Before-bg-info:before, .Before-bg-warning:before,
-.Before-bg-danger:before, .Before-bg-light:before, .Before-bg-dark:before {
-}
-
-.Before-border-red:before, .Before-border-lime:before, .Before-border-blue:before, .Before-border-yellow:before, .Before-border-cyan:before, .Before-border-magenta:before,
-.Before-border-purple:before, .Before-border-green:before, .Before-border-maroon:before, .Before-border-navy:before, .Before-border-teal:before, .Before-border-olive:before,
-.Before-border-orange:before, .Before-border-pink:before, .Before-border-brown:before, .Before-border-indigo:before, .Before-border-white:before, .Before-border-silver:before,
-.Before-border-gray:before, .Before-border-primary:before, .Before-border-secondary:before, .Before-border-success:before, .Before-border-info:before, .Before-border-warning:before,
-.Before-border-danger:before, .Before-border-light:before, .Before-border-dark:before {
-}
-
-/*
-// Pseudo bg colors - after
-*/
-
-.After-bg-red:after, .After-bg-lime:after, .After-bg-blue:after, .After-bg-yellow:after, .After-bg-cyan:after, .After-bg-magenta:after, .After-bg-purple:after,
-.After-bg-green:after, .After-bg-maroon:after, .After-bg-navy:after, .After-bg-teal:after, .After-bg-olive:after, .After-bg-orange:after, .After-bg-pink:after,
-.After-bg-brown:after, .After-bg-indigo:after, .After-bg-white:after, .After-bg-silver:after, .After-bg-gray:after, .After-bg-primary:after, .After-bg-secondary:after,
-.After-bg-success:after, .After-bg-info:after, .After-bg-warning:after, .After-bg-danger:after, .After-bg-light:after, .After-bg-dark:after {
-}
-
-.After-border-red:after, .After-border-lime:after, .After-border-blue:after, .After-border-yellow:after, .After-border-cyan:after, .After-border-magenta:after, .After-border-purple:after,
-.After-border-green:after, .After-border-maroon:after, .After-border-navy:after, .After-border-teal:after, .After-border-olive:after, .After-border-orange:after, .After-border-pink:after,
-.After-border-brown:after, .After-border-indigo:after, .After-border-white:after, .After-border-silver:after, .After-border-gray:after, .After-border-primary:after, .After-border-secondary:after,
-.After-border-success:after, .After-border-info:after, .After-border-warning:after, .After-border-danger:after, .After-border-light:after, .After-border-dark:after {
-}

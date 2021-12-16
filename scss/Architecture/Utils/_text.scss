@@ -81,3 +81,50 @@ $utilities-Text: (
 
 .Txt-lowercase, .Txt-uppercase, .Txt-capitalize {
 }
+
+
+// TODO: Txt-d
+
+//.Txt-d {
+//  //text-decoration: #{var(--Txt-dl)} #{var(--Txt-ds)} #{var(--Txt-dc)};
+//  text-decoration-line: #{var(--Txt-dl)};
+//  text-decoration-style: #{var(--Txt-ds)};
+//  text-decoration-color: #{var(--Txt-dc)};
+//}
+
+//@include Utility-applier(true, Txt-d, text-decoration, (none:none));
+
+.Txt-d, .Txt-d-none {
+}
+
+/*
+// text-decoration-line -dl-: none underline overline line-through blink
+*/
+
+//@include Utility-applier(false, Txt-dl, --Txt-dl, (under:underline));
+//@include Utility-applier(false, Txt-dl, --Txt-dl, (over:overline));
+//@include Utility-applier(false, Txt-dl, --Txt-dl, (through:line-through));
+//@include Utility-applier(false, Txt-dl, --Txt-dl, (blink:blink));
+//@include Utility-applier(false, Txt-dl, --Txt-dl, (under-over:underline overline));
+//@include Utility-applier(false, Txt-dl, --Txt-dl, (under-over-through:overline underline line-through));
+
+.Txt-dl-under, .Txt-dl-over, .Txt-dl-through, .Txt-dl-blink, .Txt-dl-under-over, .Txt-dl-under-over-through {
+}
+
+/*
+// text-decoration-style -ds-: solid double dotted dashed wavy
+*/
+
+//@include Utility-applier(false, Txt-ds, --Txt-ds, (solid:solid, double:double, dotted:dotted, dashed:dashed, wavy:wavy));
+
+.Txt-ds-solid, .Txt-ds-double, .Txt-ds-dotted, .Txt-ds-dashed, .Txt-ds-wavy {
+}
+
+/*
+// text-decoration-color -dc-: theme-colors
+*/
+
+//@include Utility-applier(false, Txt-dc, --Txt-dc, $colors-theme);
+
+.Txt-dc-primary, .Txt-dc-secondary, .Txt-dc-success, .Txt-dc-info, .Txt-dc-warning, .Txt-dc-danger, .Txt-dc-light, .Txt-dc-dark {
+}

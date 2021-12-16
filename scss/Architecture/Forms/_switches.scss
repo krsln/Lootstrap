@@ -1,0 +1,86 @@
+/*
+// ===========================================================================
+// Forms - Switches
+// ===========================================================================
+*/
+
+@import "../_theme-colors";
+
+$switch-colors: (
+        "checked-lever-bg":$bg-Dark,
+        "checked-bg":$bg-Active,
+        "unchecked-lever-bg":$bg-Lightest,
+        "unchecked-bg":$bg-Light,
+        "disabled-lever-bg":rgba(0, 0, 0, .12),
+        "disabled-bg":#949494,
+);
+
+.Switch {
+  cursor: pointer;
+  user-select: none;
+  margin: .25rem;
+
+  label input[type=checkbox] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .Lever {
+      background-color: map-get($switch-colors, "checked-lever-bg");
+    }
+
+    &:checked + .Lever:after {
+      background-color: map-get($switch-colors, "checked-bg");
+      left: 24px;
+    }
+
+    &:checked:not(:disabled) ~ .Lever:active:after {
+      box-shadow: $Shadow;
+    }
+
+    &:not(:disabled) ~ .Lever:active:after {
+      box-shadow: $Shadow-inner;
+    }
+
+    &:disabled + .Lever {
+      cursor: default;
+    }
+
+    &:checked:disabled + .Lever {
+      background-color: map-get($switch-colors, "disabled-lever-bg");
+    }
+
+    &:disabled + .Lever:after, &:disabled:checked + .Lever:after {
+      background-color: map-get($switch-colors, "disabled-bg");
+    }
+  }
+
+  label .Lever {
+    content: "";
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 15px;
+    background-color: map-get($switch-colors, "unchecked-lever-bg");
+    border-radius: 15px;
+    transition: background 0.3s ease;
+    vertical-align: middle;
+    margin: 0 16px;
+    box-shadow: $Shadow-inner;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background-color: map-get($switch-colors, "unchecked-bg");
+      border: $Border;
+      box-shadow: $Shadow-inner;
+      left: -5px;
+      top: -3px;
+      transition: left 0.3s ease, background .3s ease, box-shadow 0.1s ease;
+    }
+  }
+}

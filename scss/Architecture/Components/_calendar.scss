@@ -3,44 +3,17 @@
 // ST: With Specific Theme
 // ===========================================================================
 
-/*#region Theme Variables */
-
-/* Colors */
-$bg-Body: var(--calendar-bg-body, var(--component-bg-body));
-$fg-Muted: var(--calendar-fg-muted, var(--component-fg-muted));
-
-$fg-Darkest: var(--calendar-fg-darkest, var(--component-fg-darkest));
-$bg-Darkest: var(--calendar-bg-darkest, var(--component-bg-darkest));
-$fg-Dark: var(--calendar-fg-dark, var(--component-fg-dark));
-$bg-Dark: var(--calendar-bg-dark, var(--component-bg-dark));
-$fg-Light: var(--calendar-fg-light, var(--component-fg-light));
-$bg-Light: var(--calendar-bg-light, var(--component-bg-light));
-$fg-Lightest: var(--calendar-fg-lightest, var(--component-fg-lightest));
-$bg-Lightest: var(--calendar-bg-lightest, var(--component-bg-lightest));
-
-$fg-Active: var(--calendar-fg-active, var(--component-fg-active));
-$bg-Active: var(--calendar-bg-active, var(--component-bg-active));
-
-/* Shadows */
-$Shadow-color: var(--calendar-shadow-color, var(--component-shadow-color));
-$Shadow: Colored-shadow($Shadow-color);
-$Shadow-inner: Colored-shadow-inner($Shadow-color);
-
-/* Border */
-$Border-color: var(--calendar-border-color, var(--component-border-color));
-$Border: 1px solid #{$Border-color};
-$Border-radius: var(--component-border-radius);
-
-/*#endregion */
+$component-Name: $var-Prefix + 'calendar-';
+@import "../_theme-customized";
 
 .Calendar {
   display: block;
   position: relative;
   overflow: hidden;
 
-  font-family: var(--component-font);
-  font-size: var(--component-font-size);
-  font-weight: var(--component-font-weight);
+  font-family: var(--ls-font);
+  font-size: var(--ls-font-size);
+  font-weight: var(--ls-font-weight);
 
   color: $fg-Light;
   background-color: $bg-Light;

@@ -3,35 +3,8 @@
 // ST: With Specific Theme
 // ===========================================================================
 
-/*#region Theme Variables */
-
-/* Colors */
-$bg-Body: var(--caret-bg-body, var(--component-bg-body));
-$fg-Muted: var(--caret-fg-muted, var(--component-fg-muted));
-
-$fg-Darkest: var(--caret-fg-darkest, var(--component-fg-darkest));
-$bg-Darkest: var(--caret-bg-darkest, var(--component-bg-darkest));
-$fg-Dark: var(--caret-fg-dark, var(--component-fg-dark));
-$bg-Dark: var(--caret-bg-dark, var(--component-bg-dark));
-$fg-Light: var(--caret-fg-light, var(--component-fg-light));
-$bg-Light: var(--caret-bg-light, var(--component-bg-light));
-$fg-Lightest: var(--caret-fg-lightest, var(--component-fg-lightest));
-$bg-Lightest: var(--caret-bg-lightest, var(--component-bg-lightest));
-
-$fg-Active: var(--caret-fg-active, var(--component-fg-active));
-$bg-Active: var(--caret-bg-active, var(--component-bg-active));
-
-/* Shadows */
-$Shadow-color: var(--caret-shadow-color, var(--component-shadow-color));
-$Shadow: Colored-shadow($Shadow-color);
-$Shadow-inner: Colored-shadow-inner($Shadow-color);
-
-/* Border */
-$Border-color: var(--caret-border-color, var(--component-border-color));
-$Border: 1px solid #{$Border-color};
-$Border-radius: var(--component-border-radius);
-
-/*#endregion */
+$component-Name: $var-Prefix + 'caret-';
+@import "../_theme-customized";
 
 .Caret {
   position: relative;

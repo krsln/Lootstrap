@@ -83,18 +83,14 @@ $filter-Colors: (
 
 /*
 // Filter colors
+// .F-<color>, .F-<theme> {}
 */
 
 @include Utility-applier(true, F, filter, $filter-Colors);
 
-.F-red, .F-lime, .F-blue, .F-yellow, .F-cyan, .F-magenta, .F-purple, .F-green,
-.F-maroon, .F-navy, .F-teal, .F-olive, .F-orange, .F-pink, .F-brown, .F-indigo,
-.F-white, .F-silver, .F-gray,
-.F-primary, .F-secondary, .F-success, .F-info, .F-warning, .F-danger, .F-light, .F-dark {
-}
-
 /*
 // Filter Blur
+// .F-blur-0, .F-blur-4 { }
 */
 
 .F-blur {
@@ -103,13 +99,10 @@ $filter-Colors: (
 
 @include Utility-applier(false, F-blur, --filter-blur, (0:0, 1:2px, 2:4px, 3: 6px, 4: 8px));
 
-.F-blur,
-.F-blur-0, .F-blur-1, .F-blur-2, .F-blur-3, .F-blur-4 {
-}
-
 /*
 // Filter drop-shadow
 // drop-shadow(<offset-x> <offset-y> <blur-radius> <color>)
+// .F-shadow-0, .F-shadow-3x {}
 */
 
 .F-shadow {
@@ -117,7 +110,3 @@ $filter-Colors: (
 }
 
 @include Utility-applier(false, F-shadow, --drop-shadow, $Drop-shadow-map);
-
-.F-shadow,
-.F-shadow-0, .F-shadow, .F-shadow-2x, .F-shadow-3x {
-}

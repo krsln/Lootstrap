@@ -2,7 +2,7 @@
 // Components - Container
 // ===========================================================================
 
-.Container {
+.Container, .Container-fluid {
   width: 100%;
 
   padding-right: 15px;
@@ -10,15 +10,40 @@
 
   margin-right: auto;
   margin-left: auto;
-
-  //color: $Component-fg-body;
-  //background-color: $Component-bg-body;
 }
 
-.Row {
-  display: flex;
-  flex-wrap: wrap;
+// From https://github.com/twbs/bootstrap/blob/main/scss/_containers.scss
+@each $containerKey, $containerValue in $breakpoints-Container {
+  $infix: if($containerKey == none, "", "-#{$containerKey}");
 
-  //margin-right: -15px;
-  //margin-left: -15px;
+  @include media-min-W(map-get($responsive-Breakpoints, $containerKey)) {
+    %Container-#{$infix} {
+      max-width: $containerValue;
+    }
+
+    // Extend each breakpoint which is smaller or equal to the current breakpoint
+    $extend-breakpoint: true;
+    @each $bpKey, $bpValue in $responsive-Breakpoints {
+      @if ($extend-breakpoint) {
+        $infixSecond: if($bpKey == none, "", "-#{$bpKey}");
+        .Container#{$infixSecond} {
+          @extend %Container-#{$infix};
+        }
+
+        // Once the current breakpoint is reached, stop extending
+        @if ($containerKey == $bpKey) {
+          $extend-breakpoint: false;
+        }
+      }
+    }
+  }
 }
+
+/*
+result for xxl:
+@media (min-width: 1440px) {
+  .Container-xxl, .Container-xl, .Container-lg, .Container-md, .Container-sm, .Container {
+    max-width: 1376px;
+  }
+}
+*/

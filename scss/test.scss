@@ -1,0 +1,37 @@
+/*
+// Configuration
+*/
+
+@import "Abstracts/_dir-functions";
+@import "Abstracts/_dir-mixins";
+@import "Abstracts/variables";
+
+//.strip-unit {
+//  $length: 42px;
+//  width: #{$length};
+//  --length: #{strip-unit($length)};
+//}
+
+//@each $breakpointKey, $breakpointValue in $responsive-Breakpoints {
+//  .Col-#{$breakpointKey} {
+//    --value: #{$breakpointValue};
+//  }
+//}
+
+//@each $colorKey, $colorValue in $colors-Background-hsla {
+//  .Bg-#{$colorKey} {
+//    --value: #{$colorValue};
+//  }
+//}
+
+@each $colorKey, $colorValue in $colors-Text-hsla {
+  .Text-#{$colorKey} {
+    --value: #{$colorValue};
+  }
+}
+
+@each $colorKey, $colorValue in $colors-Border-hsla {
+  .Border-#{$colorKey} {
+    --value: #{$colorValue};
+  }
+}

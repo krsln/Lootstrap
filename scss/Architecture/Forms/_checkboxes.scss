@@ -1,0 +1,183 @@
+/*
+// ===========================================================================
+// Forms - Checkbox
+// ===========================================================================
+*/
+
+@import "../_theme-colors";
+
+.Form-check {
+
+  [type="checkbox"] {
+    /* Remove default checkbox */
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+
+    + label, + span {
+      position: relative;
+      padding-left: 35px;
+      cursor: pointer;
+      display: inline-block;
+      height: 25px;
+      line-height: 25px;
+      font-size: 1rem;
+      user-select: none;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        z-index: 0;
+        border: 2px solid $Border-color;
+        border-radius: 1px;
+        margin-top: 3px;
+        transition: .2s;
+      }
+    }
+
+    &:checked {
+      + label:before,
+      + span:before {
+        top: -4px;
+        left: -5px;
+        width: 12px;
+        height: 22px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: transparent $bg-Active $bg-Active transparent;
+        transform: rotate(40deg);
+        transform-origin: 100% 100%;
+      }
+    }
+
+    &:indeterminate {
+      + label:before,
+      + span:before {
+        top: -11px;
+        left: -12px;
+        width: 10px;
+        height: 22px;
+        border: none;
+        border-right: 2px solid $bg-Active;
+        transform: rotate(90deg);
+        transform-origin: 100% 100%;
+      }
+    }
+
+    &:disabled {
+      &:checked + label:before, &:checked + span:before {
+        border-color: transparent $fg-Muted $fg-Muted transparent;
+      }
+
+      &:not(:checked) + label:before, &:not(:checked) + span:before {
+        border: none;
+        margin-left: 2px;
+        margin-top: 2px;
+        background-color: $fg-Muted;
+      }
+
+      &:indeterminate + label:before, &:indeterminate + span:before {
+        border-right: 2px solid $fg-Muted;
+        margin-left: 0;
+        margin-top: 0;
+        background-color: transparent;
+      }
+    }
+
+  }
+
+  // Filled in Style
+  &[class*="Filled-in"] {
+    //&.Filled-in {
+    [type="checkbox"] {
+      + label:after, + label:before, + span:after, + span:before {
+        content: "";
+        left: 0;
+        position: absolute;
+        /* .1s delay is for check animation */
+        transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+        border-style: solid;
+        border-width: 2px;
+      }
+
+      + label:after, + span:after {
+        border-radius: 2px;
+        height: 20px;
+        width: 20px;
+      }
+
+      + label:before, + span:before {
+        transform: rotateZ(37deg);
+        transform-origin: 100% 100%; // ? 20% 40%
+      }
+
+      &:not(:checked) {
+        + label:before, + span:before {
+          width: 0;
+          height: 0;
+          border: 3px solid transparent;
+          left: 6px;
+          top: 10px;
+        }
+
+        + label:after, + span:after {
+          background-color: transparent;
+          border-color: $Border-color;
+          top: 0;
+          z-index: 0;
+        }
+      }
+
+      &:checked {
+        + label:before, + span:before {
+          top: 0;
+          left: 1px;
+          width: 8px;
+          height: 13px;
+          border-top: 2px solid transparent;
+          border-left: 2px solid transparent;
+          border-right: 2px solid $fg-Active;
+          border-bottom: 2px solid $fg-Active;
+          //border-color: transparent $input-background $input-background transparent;
+          z-index: 1;
+        }
+
+        + label:after, + span:after {
+          top: 0;
+          border-color: $bg-Active;
+          background-color: $bg-Active;
+          z-index: 0;
+        }
+      }
+
+      &:disabled {
+        &:not(:checked) {
+          + label:before, + span:before {
+            background-color: transparent;
+            border-color: $fg-Muted;
+          }
+
+          + label:after, + span:after {
+            border-color: transparent;
+            background-color: $fg-Muted;
+          }
+        }
+
+        &:checked {
+          + label:before, + span:before {
+            background-color: transparent;
+          }
+
+          + label:after, + span:after {
+            background-color: $fg-Muted;
+            border-color: $fg-Muted;
+          }
+        }
+      }
+    }
+  }
+}

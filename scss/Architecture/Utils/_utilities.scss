@@ -95,45 +95,29 @@ $utilities: (
 
 /*
 // Cursor
+// .Cursor-<pointer, help, wait, not-allowed, zoom-in, zoom-out>
 */
-
-.Cursor-pointer, .Cursor-help, .Cursor-wait, .Cursor-not-allowed, .Cursor-zoom-in, .Cursor-zoom-out {
-}
-
 
 /*
-// Display
+// Overflow
+// .Overflow-<auto,hidden,visible,scroll>
 */
-.Overflow-auto, .Overflow-hidden, .Overflow-visible, .Overflow-scroll {
-}
 
 /*
 // Display + Responsive variants
+// .Display-<inline inline-block block grid table table-row table-cell flex inline-flex none>
 */
-
-.D-inline, .D-inline-block, .D-block, .D-grid, .D-table, .D-table-row, .D-table-cell, .D-flex, .D-inline-flex, .D-none {
-}
 
 /*
-// Box Shadow
+// Box Shadow  --component-shadow-color: 0, 0, 0;
+// .Shadow-<null,2x,3x>
+// .Shadow-<inner,both,br,t,r,l,b,x,y>-<null,2x,3x>
 */
-.Shadow, .Shadow-2x, .Shadow-3x,
-.Shadow-inner, .Shadow-both, .Shadow-br, .Shadow-t, .Shadow-r, .Shadow-l, .Shadow-b, .Shadow-x, .Shadow-y,
-.Shadow-inner-2x, .Shadow-both-2x, .Shadow-br-2x, .Shadow-t-2x, .Shadow-r-2x, .Shadow-l-2x, .Shadow-b-2x, .Shadow-x-2x, .Shadow-y-2x,
-.Shadow-inner-3x, .Shadow-both-3x, .Shadow-br-3x, .Shadow-t-3x, .Shadow-r-3x, .Shadow-l-3x, .Shadow-b-3x, .Shadow-x-3x, .Shadow-y-3x {
-  //--component-shadow-color: 0, 0, 0;
-}
-
 
 /*
 // Sizing Width & Height
+// .W-<10-100> .W-auto, .H-<10-100> .H-auto {}
 */
-
-.W-10, .W-20, .W-30, .W-40, .W-50, .W-60, .W-70, .W-80, .W-90, .W-100, .W-25, .W-75, .W-33, .W-66, .W-auto {
-}
-
-.H-10, .H-20, .H-30, .H-40, .H-50, .H-60, .H-70, .H-80, .H-90, .H-100, .H-25, .H-75, .H-33, .H-66, .H-auto {
-}
 
 .MW-100, .VW-100,
 .MH-100, .VH-100 {
@@ -141,9 +125,8 @@ $utilities: (
 
 /*
 // Order
+// .Order-<first, 0-5, last> {}
 */
-.Order-first, .Order-0, .Order-1, .Order-2, .Order-3, .Order-4, .Order-5, .Order-last {
-}
 
 /*
 // Visibility

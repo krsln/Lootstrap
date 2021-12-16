@@ -3,59 +3,108 @@
 // ===========================================================================
 @use 'sass:math';
 
-@mixin make-Columns($index, $numberOfColumns) {
-  //$per: percentage($index / $numberOfColumns);
-  $per: percentage(math.div($index, $numberOfColumns));
+//@mixin make-Col-Auto() {
+//  flex: 0 0 auto;
+//  width: auto;
+//}
+
+@mixin make-Col($index, $numberOfColumns: 12) {
+  //$percentage: percentage($index / $numberOfColumns);
+  $percentage: percentage(math.div($index, $numberOfColumns));
 
   flex: 0 0 auto;
-  width: $per;
+  width: $percentage;
 }
 
-@mixin make-Columns-offset($size, $numberOfColumns) {
-  //$num: $size / $numberOfColumns;
-  $num: math.div($size, $numberOfColumns);
+@mixin make-Col-Offset($index, $numberOfColumns: 12) {
+  //$num: $index / $numberOfColumns;
+  $num: math.div($index, $numberOfColumns);
   margin-left: if($num == 0, 0, percentage($num));
 }
 
-@mixin default-Column-props {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  //padding-right: 15px;
-  //padding-left: 15px;
-}
+//@mixin row-Cols($count) {
+//  > * {
+//    flex: 0 0 auto;
+//    width: math.div(100%, $count);
+//  }
+//}
 
-@mixin GridColumns($numberOfColumns, $breakpoints) {
+@mixin make-Grid-Cols($numberOfColumns: 12, $breakpoints: $breakpoints-Grid) {
   @each $breakpointKey, $breakpointValue in $breakpoints {
     $infix: if($breakpointKey == none, "", "-#{$breakpointKey}");
-
-    //$padding-Width: if($width == null, 6px, round(($width / 100) * 2));
-    $padding-Width: if($breakpointValue == null, 6px, round(math.div($breakpointValue, 100) * 2));
+    // none -sm -md -lg -xl -xxl
 
     @include media-min-W($breakpointValue) {
+      %Column#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+      }
 
-      @if $numberOfColumns > 0 {
-        @for $index from 1 through $numberOfColumns {
-          .Col#{$infix}-#{$index} {
-            @include default-Column-props;
-          }
-          .Col#{$infix}-#{$index} {
-            @include make-Columns($index, $numberOfColumns);
+      .Row-cols#{$infix}-auto > * {
+        //@include make-Col-Auto();
+        @extend %Column#{$infix}-auto;
+      }
 
-            padding-left: $padding-Width;
-            padding-right: $padding-Width;
-          }
-        }
-        // `$columns - 1` because offsetting by the width of an entire row isn't possible
-        @for $index from 0 through ($numberOfColumns - 1) {
-          @if not ($infix == "" and $index == 0) { // Avoid emitting useless .offset-0
-            .Offset#{$infix}-#{$index} {
-              @include make-Columns-offset($index, $numberOfColumns);
+      @if $grid-Row-Columns > 0 {
+        @for $index from 1 through $grid-Row-Columns {
+          .Row-cols#{$infix}-#{$index} {
+            //@include row-Cols($index);
+            > * {
+              flex: 0 0 auto;
+              width: math.div(100%, $index);
             }
           }
         }
       }
 
+      .Col#{$infix}-auto {
+        //@include make-Col-Auto();
+        @extend %Column#{$infix}-auto;
+      }
+
+      /*
+      // Col-* Offset-*
+      */
+
+      .Col#{$infix} {
+        flex: 1 0 0%; // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+      }
+
+      @if $numberOfColumns > 0 {
+        @for $index from 1 through $numberOfColumns {
+          .Col#{$infix}-#{$index} {
+            @include make-Col($index, $numberOfColumns);
+          }
+        }
+
+        // `$columns - 1` because offsetting by the width of an entire row isn't possible
+        @for $i from 0 through ($numberOfColumns - 1) {
+          @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+            .Offset#{$infix}-#{$i} {
+              @include make-Col-Offset($i, $numberOfColumns);
+            }
+          }
+        }
+      }
+
+      /*
+      // Gutters
+      // Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
+      */
+
+      @each $key, $value in $gutters-map {
+        .G#{$infix}-#{$key},
+        .GX#{$infix}-#{$key} {
+          --#{$var-Prefix}gutter-x: #{$value};
+        }
+
+        .G#{$infix}-#{$key},
+        .GY#{$infix}-#{$key} {
+          --#{$var-Prefix}gutter-y: #{$value};
+        }
+      }
+
     }
+
   }
 }

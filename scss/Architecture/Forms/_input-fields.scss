@@ -1,0 +1,287 @@
+/*
+// ===========================================================================
+// Forms - Text Inputs + Textarea
+// ===========================================================================
+*/
+
+@import "../_theme-colors";
+
+
+/*
+// Sizing
+*/
+
+$font-size-sm: .875rem;
+$font-size: 1rem;
+$font-size-lg: 1.25rem;
+
+/*
+<div class="Form Form-lg">
+  <input type="text" id="txtTestInputLg" class="Form-input Form-input-lg" required>
+  <label for="txtTestInputLg" class="Form-label">Large input</label>
+</div>
+<div class="Form">
+  <input type="text" id="txtTestInput" class="Form-input" required>
+  <label for="txtTestInput" class="Form-label">Normal input</label>
+</div>
+<div class="Form Form-sm">
+  <input type="text" id="txtTestInputSm" class="Form-input Form-input-sm" required>
+  <label for="txtTestInputSm" class="Form-label">Small input</label>
+</div>
+*/
+
+/*
+// Base Elements ::> Inputs & Select & Label + Colors
+*/
+
+.Form {
+  position: relative;
+  margin: 1.0rem 0 1.0rem 0;
+
+  input[type=text], input[type=password], input[type=email], textarea {
+    width: 100%;
+    padding: 5px 0;
+
+    color: $fg-Light;
+    background: $bg-Light;
+
+    box-sizing: content-box;
+    outline: none;
+    box-shadow: none;
+
+    font-weight: 400;
+    line-height: 1.5;
+
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $Border-color;
+
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  select {
+    width: 100%;
+
+    color: $fg-Light;
+    background: $bg-Light;
+
+    outline: none;
+
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $Border-color;
+  }
+
+  label {
+    position: absolute;
+    pointer-events: none;
+
+    top: 0;
+    left: 0;
+
+    font-size: 1rem;
+    color: $fg-Muted;
+    cursor: text;
+
+    transition: transform .2s ease-out, color .2s ease-out;
+  }
+
+}
+
+
+/*
+// General & Active state
+*/
+
+.Form {
+
+  .Form-input {
+    //margin: 0 0 0.5rem 0;
+
+    // Focused input style
+    &:focus:not([readonly]) {
+      box-shadow: $Shadow;
+      border-color: $bg-Active;
+
+      // Focused label style
+      + label {
+        color: $bg-Active;
+      }
+    }
+
+    /* active state */
+    &:focus ~ .Form-label,
+    &:valid ~ .Form-label {
+      transform: translateY(-80%); //$input-label-active-transform;
+    }
+  }
+
+  .Form-select {
+    padding: 5px 0;
+
+    > option {
+      //border-radius: 25px;
+      color: $fg-Lightest;
+      background: $bg-Lightest;
+
+      padding: .5rem;
+      margin: 3px 0;
+      box-shadow: $Shadow;
+
+      &:checked {
+        background: $bg-Active;
+        color: $fg-Active;
+      }
+
+      &:hover, &:active {
+        color: $fg-Dark;
+        background: $bg-Dark;
+      }
+    }
+
+    // Focused input style
+    &:focus:not([readonly]) {
+      box-shadow: $Shadow;
+      border-color: $bg-Active;
+
+      // Focused label style
+      + label {
+        color: $bg-Active;
+      }
+    }
+
+    /* active state */
+    &:focus ~ .Form-label,
+    &:valid ~ .Form-label {
+      transform: translateY(-80%); //$input-label-active-transform;
+    }
+  }
+
+  .Form-label {
+    transform: translateY(12px);
+    transform-origin: 0 100%;
+  }
+
+}
+
+/*
+// Prefix
+*/
+
+.Form {
+  .Form-input {
+    // Focused input style
+    &:focus:not([readonly]) {
+      // TODO: Prefix color not changing
+      // https://stackoverflow.com/questions/1817792/is-there-a-previous-sibling-selector
+
+      // Focused label style
+      ~ .Input-prefix,
+      ~ .Prefix {
+        color: $bg-Active;
+      }
+    }
+  }
+
+  .Prefix {
+    position: absolute;
+    transition: color .2s;
+
+    //color: $fg-Muted;
+    color: $bg-Active;
+
+    top: 0.25rem;
+    font-size: 1.75rem;
+
+    ~ input, ~ textarea {
+      width: calc(100% - 2.5rem);
+      margin-left: 2.5rem;
+    }
+
+    ~ label {
+      margin-left: 2.5rem;
+    }
+
+  }
+
+  // Inside Prefix
+
+  &.Input-pre-icon {
+    .Form-input {
+      width: calc(100% - 40px);
+      padding-left: 40px;
+
+      //padding-left: 2.7rem !important;
+    }
+
+    .Input-prefix {
+      left: 16px;
+      right: initial;
+    }
+
+    .Form-label {
+      left: 40px;
+      right: initial;
+    }
+  }
+
+  &.Input-post-icon {
+    .Form-input {
+      width: calc(100% - 40px);
+      padding-right: 40px;
+    }
+
+    .Input-prefix {
+      right: 16px;
+      left: initial;
+    }
+  }
+
+  .Input-prefix {
+    position: absolute;
+    top: 50%;
+
+    color: $fg-Light;
+    pointer-events: none;
+
+    transform: translateY(-50%);
+    transition: color .2s;
+  }
+}
+
+/*
+// Text Inputs Sizing
+*/
+
+.Form {
+
+  &.Form-sm {
+    label {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &.Form-lg {
+    label {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .Form-input {
+    height: calc(1.5em + 0.0rem + 2px);
+    padding: 5px 0;
+    font-size: $font-size;
+  }
+
+  .Form-input-sm {
+    height: calc(1.5em - 0.25rem + 2px);
+    padding: 3px 0;
+    font-size: $font-size-sm;
+  }
+
+  .Form-input-lg {
+    height: calc(1.5em + 0.5rem + 2px);
+    padding: 7px 0;
+    font-size: $font-size-lg;
+  }
+}

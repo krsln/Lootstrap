@@ -2,6 +2,7 @@
 // Mixins - Breakpoints
 // ===========================================================================
 
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
 @mixin media-min-W($breakpointValue) {
   @if $breakpointValue != 0 {
     @media (min-width: $breakpointValue) {

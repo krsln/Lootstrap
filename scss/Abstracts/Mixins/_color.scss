@@ -6,16 +6,16 @@
 @mixin Bg-Text-Border-variables($colors) {
   @each $colorKey, $colorValue in $colors {
     .Bg-#{$colorKey} {
-      --bg-lightness: #{lightness($colorValue)};
-      --bg-alpha: 1;
+      --#{$var-Prefix}bg-lightness: #{lightness($colorValue)};
+      --#{$var-Prefix}bg-alpha: 1;
       //color: #{TextColor-ByBackground($colorValue)}; // DON'T
     }
     .Text-#{$colorKey} {
-      --text-lightness: #{lightness($colorValue)};
-      --text-alpha: 1;
+      --#{$var-Prefix}text-lightness: #{lightness($colorValue)};
+      --#{$var-Prefix}text-alpha: 1;
     }
     .Border-#{$colorKey} {
-      --border-alpha: 1;
+      --#{$var-Prefix}border-alpha: 1;
     }
   }
 }
@@ -67,10 +67,14 @@
       $color-border: Color-ByLightness($colorValue, 90%);
       $color-active: Color-ByLightness($Blue, 60%); // #bb86fc;
 
+      //$color-darkest: Color-ByLightness($colorValue, 90%);
+      //$color-dark: Color-ByLightness($colorValue, 95%);
+      //$color-light: Color-ByLightness($colorValue, 98%);
+      //$color-lightest: Color-ByLightness($colorValue, 100%);
       $color-darkest: Color-ByLightness($colorValue, 90%);
       $color-dark: Color-ByLightness($colorValue, 95%);
-      $color-light: Color-ByLightness($colorValue, 98%);
-      $color-lightest: Color-ByLightness($colorValue, 100%);
+      $color-light: Color-ByLightness($colorValue, 100%);
+      $color-lightest: Color-ByLightness($colorValue, 98%);
     }
 
     /*
@@ -78,44 +82,45 @@
     */
     @each $comKey, $comValue in $theme-components {
       $class-suffix: if($colorKey, if($comKey == ""  , "", "-") + $colorKey, "");
+      $component-infix: if($comValue == null, "", "#{$comValue}-");
 
       // .Theme-primary {
       .#{$comKey + $class-suffix} {
-        .Btn-close {
+       &:not(.#{$comKey}-outline) .Btn-close {
           @if (lightness($colorValue) < 80) {
             filter: invert(1) grayscale(100%) brightness(200%);
           }
         }
 
         //--body-lightness: #{lightness($color-body)};
-        --#{$comValue}-bg-body: #{$color-body};
+        --#{$var-Prefix}#{$component-infix}bg-body: #{$color-body};
 
-        --#{$comValue}-bg-darkest: #{$color-darkest};
-        --#{$comValue}-fg-darkest: #{TextColor-ByBackground($color-darkest)};
-        --#{$comValue}-bg-dark: #{$color-dark};
-        --#{$comValue}-fg-dark: #{TextColor-ByBackground($color-dark)};
-        --#{$comValue}-bg-light: #{$color-light};
-        --#{$comValue}-fg-light: #{TextColor-ByBackground($color-light)};
-        --#{$comValue}-bg-lightest: #{$color-lightest};
-        --#{$comValue}-fg-lightest: #{TextColor-ByBackground($color-lightest)};
+        --#{$var-Prefix}#{$component-infix}bg-darkest: #{$color-darkest};
+        --#{$var-Prefix}#{$component-infix}fg-darkest: #{TextColor-ByBackground($color-darkest)};
+        --#{$var-Prefix}#{$component-infix}bg-dark: #{$color-dark};
+        --#{$var-Prefix}#{$component-infix}fg-dark: #{TextColor-ByBackground($color-dark)};
+        --#{$var-Prefix}#{$component-infix}bg-light: #{$color-light};
+        --#{$var-Prefix}#{$component-infix}fg-light: #{TextColor-ByBackground($color-light)};
+        --#{$var-Prefix}#{$component-infix}bg-lightest: #{$color-lightest};
+        --#{$var-Prefix}#{$component-infix}fg-lightest: #{TextColor-ByBackground($color-lightest)};
 
-        --#{$comValue}-bg-active: #{$color-active};
-        --#{$comValue}-fg-active: #{TextColor-ByBackground($color-active)};
+        --#{$var-Prefix}#{$component-infix}bg-active: #{$color-active};
+        --#{$var-Prefix}#{$component-infix}fg-active: #{TextColor-ByBackground($color-active)};
 
-        --#{$comValue}-fg-muted: #{$fg-muted};
+        --#{$var-Prefix}#{$component-infix}fg-muted: #{$fg-muted};
 
         /* Shadows */
-        --#{$comValue}-shadow-color: #{$color-shadow};
+        --#{$var-Prefix}#{$component-infix}shadow-color: #{$color-shadow};
 
         /* Border */
         $color-h: #{round(hue($color-border))};
         $color-s: #{round(saturation($color-border))};
         $color-l: #{round(lightness($color-border))};
 
-        $alpha-bg: #{var(--border-alpha, 1)};
+        $alpha-bg: #{var(--#{$var-Prefix}border-alpha, 1)};
         $hsla-color: hsla($color-h, $color-s, $color-l, $alpha-bg);
 
-        --#{$comValue}-border-color: #{$hsla-color};
+        --#{$var-Prefix}#{$component-infix}border-color: #{$hsla-color};
       }
     }
   }

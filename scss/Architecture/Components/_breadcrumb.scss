@@ -3,35 +3,7 @@
 // TS: Theme Support
 // ===========================================================================
 
-/*#region Theme Variables */
-
-/* Colors */
-$bg-Body: var(--component-bg-body);
-$fg-Muted: var(--component-fg-muted);
-
-$fg-Darkest: var(--component-fg-darkest);
-$bg-Darkest: var(--component-bg-darkest);
-$fg-Dark: var(--component-fg-dark);
-$bg-Dark: var(--component-bg-dark);
-$fg-Light: var(--component-fg-light);
-$bg-Light: var(--component-bg-light);
-$fg-Lightest: var(--component-fg-lightest);
-$bg-Lightest: var(--component-bg-lightest);
-
-$fg-Active: var(--component-fg-active);
-$bg-Active: var(--component-bg-active);
-
-/* Shadows */
-$Shadow-color: var(--component-shadow-color);
-$Shadow: Colored-shadow($Shadow-color);
-$Shadow-inner: Colored-shadow-inner($Shadow-color);
-
-/* Border */
-$Border-color: var(--component-border-color);
-$Border: 1px solid #{$Border-color};
-$Border-radius: var(--component-border-radius);
-
-/*#endregion */
+@import "../_theme-colors";
 
 /*
 // SVSs
@@ -49,9 +21,9 @@ $Breadcrumb-divider-verticalLine: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0
   position: relative;
   overflow: hidden;
 
-  font-family: var(--component-font);
-  font-size: var(--component-font-size);
-  font-weight: var(--component-font-weight);
+  font-family: var(--ls-font);
+  font-size: var(--ls-font-size);
+  font-weight: var(--ls-font-weight);
 
   color: $fg-Light;
   background-color: $bg-Light;
@@ -97,6 +69,13 @@ $Breadcrumb-divider-verticalLine: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0
       font-weight: bold;
     }
 
+    &:not(.active) {
+      .Breadcrumb-Link {
+        cursor: pointer;
+        padding: 0.75rem 0.25rem;
+      }
+    }
+
     &:not(&:first-child):before {
       display: inline-block;
       content: "";
@@ -115,7 +94,7 @@ $Breadcrumb-divider-verticalLine: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0
     ):before {
       color: inherit;
 
-      mask-image: var(--breadcrumb-divider, $Breadcrumb-divider-default);
+      mask-image: var(--#{$var-Prefix}breadcrumb-divider, $Breadcrumb-divider-default);
       mask-repeat: no-repeat;
       mask-position: center;
       background-color: currentColor;
@@ -124,21 +103,21 @@ $Breadcrumb-divider-verticalLine: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0
 }
 
 .Breadcrumb-chevron-larger {
-  --breadcrumb-divider: #{$Breadcrumb-divider-larger};
+  --#{$var-Prefix}breadcrumb-divider: #{$Breadcrumb-divider-larger};
 }
 
 .Breadcrumb-chevron-vertical {
-  --breadcrumb-divider: #{$Breadcrumb-divider-verticalLine};
+  --#{$var-Prefix}breadcrumb-divider: #{$Breadcrumb-divider-verticalLine};
 }
 
 .Breadcrumb-divider {
-  --breadcrumb-divider: '/';
+  --#{$var-Prefix}breadcrumb-divider: '/';
 
   .Breadcrumb-item {
     &:not(&:first-child):before {
-      color: $fg-Active; //#6c757d;
+      color: $fg-Light; //#6c757d;
       margin-top: -4px;
-      content: var(--breadcrumb-divider, "/");
+      content: var(--#{$var-Prefix}breadcrumb-divider, "/");
     }
   }
 }

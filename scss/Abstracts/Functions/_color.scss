@@ -45,12 +45,12 @@
 
 /// For bg, text and border color
 /// HSL Colors: hsl(hue, saturation, lightness)
-@function Color-hsla($colors, $alpha:--bg-alpha, $lightness:--bg-lightness) {
+@function Color-hsla($colors, $alpha:--ls-bg-alpha, $lightness:--ls-bg-lightness) {
   $colors-hsla: ();
   @each $colorKey, $colorValue in $colors {
     $color: $colorValue;
 
-    @if (str-index($alpha, '--border')) {
+    @if (str-index($alpha, '--#{$var-Prefix}border')) {
       $color: Color-ByLightness($colorValue, 70%); // 80
       @if ($colorKey=='dark') {
         $color: Color-ByLightness($colorValue, 45%);
@@ -68,12 +68,11 @@
     $alpha-bg: #{var($alpha, 1)};
     $lightness-bg: #{var($lightness, $color-l)};
 
-    $hsla-color: hsla($color-h, $color-s, $lightness-bg, $alpha-bg);
-
-    @if (str-index($alpha, '--border')) {
-      $hsla-color: hsla($color-h, $color-s, $color-l, $alpha-bg);
+    @if (str-index($alpha, '--#{$var-Prefix}border')) {
+      $lightness-bg: $color-l;
     }
 
+    $hsla-color: hsla($color-h, $color-s, $lightness-bg, $alpha-bg);
     $colors-hsla: map-merge($colors-hsla, ($colorKey: $hsla-color));
   }
   @return $colors-hsla;

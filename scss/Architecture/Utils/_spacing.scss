@@ -62,70 +62,20 @@ $utilities-Spacing: (
 // ===========================================================================
 
 /*
-// Margin
+Margin                  .M-<0-5>, .M-auto {}
+Margin X, Y             .M<X,Y>-<0-5>, .M<X,Y>-auto {}
+Margin directions       .M<T,R,E,B,L,S>-<0-5>, .M<T,R,E,B,L,S>-auto {}
+Negative Margin         .M-N<0-5>
+Negative Margin X, Y    .M<X,Y>-N<0-5>
+Negative M directions   .M<T,R,E,B,L,S>-N<0-5> {}
 */
-.M-0, .M-1, .M-2, .M-3, .M-4, .M-5, .M-auto {
-}
-
-/*
-// Margin X, Y
-*/
-.MX-0, .MX-1, .MX-2, .MX-3, .MX-4, .MX-5, .MX-auto,
-.MY-0, .MY-1, .MY-2, .MY-3, .MY-4, .MY-5, .MY-auto {
-}
-
-/*
-// Margin directions
-*/
-.MT-0, .MT-1, .MT-2, .MT-3, .MT-4, .MT-5, .MT-auto,
-.MR-0, .MR-1, .MR-2, .MR-3, .MR-4, .MR-5, .MR-auto, .ME-0, .ME-1, .ME-2, .ME-3, .ME-4, .ME-5, .ME-auto,
-.MB-0, .MB-1, .MB-2, .MB-3, .MB-4, .MB-5, .MB-auto,
-.ML-0, .ML-1, .ML-2, .ML-3, .ML-4, .ML-5, .ML-auto, .MS-0, .MS-1, .MS-2, .MS-3, .MS-4, .MS-5, .MS-auto {
-}
-
-/*
-// Negative Margin
-*/
-.M-N1, .M-N2, .M-N3, .M-N4, .M-N5 {
-}
-
-/*
-// Negative Margin X, Y
-*/
-.MX-N1, .MX-N2, .MX-N3, .MX-N4, .MX-N5, .MY-N1, .MY-N2, .MY-N3, .MY-N4, .MY-N5 {
-}
-
-/*
-// Negative Margin directions
-*/
-.MT-N1, .MT-N2, .MT-N3, .MT-N4, .MT-N5,
-.MR-N1, .MR-N2, .MR-N3, .MR-N4, .MR-N5, .ME-N1, .ME-N2, .ME-N3, .ME-N4, .ME-N5,
-.MB-N1, .MB-N2, .MB-N3, .MB-N4, .MB-N5,
-.ML-N1, .ML-N2, .ML-N3, .ML-N4, .ML-N5, .MS-N1, .MS-N2, .MS-N3, .MS-N4, .MS-N5 {
-}
 
 // ===========================================================================
 // Padding
 // ===========================================================================
 
 /*
-// Padding
+Padding                  .P-<0-5> {}
+Padding X, Y             .P<X,Y>-<0-5> {}
+Padding directions       .P<T,R,E,B,L,S>-<0-5> {}
 */
-.P-0, .P-1, .P-2, .P-3, .P-4, .P-5 {
-}
-
-/*
-// Padding X, Y
-*/
-.PX-0, .PX-1, .PX-2, .PX-3, .PX-4, .PX-5,
-.PY-0, .PY-1, .PY-2, .PY-3, .PY-4, .PY-5 {
-}
-
-/*
-// Padding directions
-*/
-.PT-0, .PT-1, .PT-2, .PT-3, .PT-4, .PT-5,
-.PR-0, .PR-1, .PR-2, .PR-3, .PR-4, .PR-5, .PE-0, .PE-1, .PE-2, .PE-3, .PE-4, .PE-5,
-.PB-0, .PB-1, .PB-2, .PB-3, .PB-4, .PB-5,
-.PL-0, .PL-1, .PL-2, .PL-3, .PL-4, .PL-5, .PS-0, .PS-1, .PS-2, .PS-3, .PS-4, .PS-5 {
-}
