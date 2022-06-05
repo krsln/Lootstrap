@@ -1,0 +1,85 @@
+@use 'sass:math';
+
+// Single side border-radius
+
+// Helper function to replace negative values with 0
+@function valid-radius($radius) {
+  $return: ();
+  @each $value in $radius {
+    @if type-of($value) == number {
+      $return: append($return, math.max($value, 0));
+    } @else {
+      $return: append($return, $value);
+    }
+  }
+  @return $return;
+}
+
+//@mixin border-radius($radius: $Border-radius, $fallback-border-radius: false) {
+@mixin Rounded($radius: $Border-radius, $fallback-border-radius: false) {
+  @if $Enable-rounded {
+    border-radius: valid-radius($radius);
+  }
+  //@else if $fallback-border-radius != false {
+  //  border-radius: $fallback-border-radius;
+  //}
+}
+
+
+/**
+ * Border-radius
+ *
+ * Single side.
+*/
+
+@mixin Rounded-top($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-top-left-radius: valid-radius($radius);
+    border-top-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-end($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-top-right-radius: valid-radius($radius);
+    border-bottom-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-bottom($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-bottom-right-radius: valid-radius($radius);
+    border-bottom-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-start($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-top-left-radius: valid-radius($radius);
+    border-bottom-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-top-start($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-top-left-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-top-end($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-top-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-bottom-end($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-bottom-right-radius: valid-radius($radius);
+  }
+}
+
+@mixin Rounded-bottom-start($radius: $Border-radius) {
+  @if $Enable-rounded {
+    border-bottom-left-radius: valid-radius($radius);
+  }
+}

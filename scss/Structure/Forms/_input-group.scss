@@ -1,0 +1,147 @@
+/**
+ * Forms - Input Group
+ *
+*/
+/*@formatter:off*/
+$Input-group-addon-padding-y            : $Input-padding-y !default;
+$Input-group-addon-padding-x            : $Input-padding-x !default;
+$Input-group-addon-font-weight          : $Input-font-weight !default;
+$Input-group-addon-color                : $Input-color !default;
+$Input-group-addon-bg                   : $Adaptive-bg-surface !default;
+$Input-group-addon-border-color         : $Input-border-color !default;
+/*@formatter:on*/
+
+
+//$Form-validation-states: (
+//        "valid": (
+//                "color": $form-feedback-valid-color,
+//                "icon": $form-feedback-icon-valid
+//        ),
+//        "invalid": (
+//                "color": $form-feedback-invalid-color,
+//                "icon": $form-feedback-icon-invalid
+//        )
+//) !default;
+
+//
+// Base styles
+//
+
+.Input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; // For form validation feedback
+  align-items: stretch;
+  width: 100%;
+
+  > .Form-control,
+  > .Form-select {
+    position: relative; // For focus state's z-index
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0; // https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
+  }
+
+  // Bring the "active" form control to the top of surrounding elements
+  > .Form-control:focus,
+  > .Form-select:focus {
+    z-index: 3;
+  }
+
+  // Ensure buttons are always above inputs for more visually pleasing borders.
+  // This isn't needed for `.Input-group-text` since it shares the same border-color
+  // as our inputs.
+  .Btn {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+
+    &:focus {
+      z-index: 3;
+    }
+  }
+}
+
+
+// Textual addons
+//
+// Serves as a catch-all element for any text or radio/checkbox input you wish
+// to prepend or append to an input.
+
+.Input-group-text {
+  display: flex;
+  align-items: center;
+  padding: $Input-group-addon-padding-y $Input-group-addon-padding-x;
+  font-size: $Input-font-size; // Match inputs
+  font-weight: $Input-group-addon-font-weight;
+  line-height: $Input-line-height;
+  color: $Input-group-addon-color;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $Input-group-addon-bg;
+  border: $Input-border-width solid $Input-group-addon-border-color;
+  @include Rounded($Input-border-radius);
+}
+
+
+// Sizing
+//
+// Remix the default form control sizing classes into new ones for easier
+// manipulation.
+
+.Input-group-lg > .Form-control,
+.Input-group-lg > .Form-select,
+.Input-group-lg > .Input-group-text,
+.Input-group-lg > .Btn {
+  padding: $Input-padding-y-lg $Input-padding-x-lg;
+  font-size: $Input-font-size-lg;
+  @include Rounded($Input-border-radius-lg);
+}
+
+.Input-group-sm > .Form-control,
+.Input-group-sm > .Form-select,
+.Input-group-sm > .Input-group-text,
+.Input-group-sm > .Btn {
+  padding: $Input-padding-y-sm $Input-padding-x-sm;
+  font-size: $Input-font-size-sm;
+  @include Rounded($Input-border-radius-sm);
+}
+
+.Input-group-lg > .Form-select,
+.Input-group-sm > .Form-select {
+  padding-right: $Form-select-padding-x + $Form-select-indicator-padding;
+}
+
+
+// Rounded corners
+//
+// These rulesets must come after the sizing ones to properly override sm and lg
+// border-radius values when extending. They're more specific than we'd like
+// with the `.Input-group >` part, but without it, we cannot override the sizing.
+
+// stylelint-disable-next-line no-duplicate-selectors
+.Input-group {
+  &:not(.has-validation) {
+    > :not(:last-child):not(.Dropdown-toggle):not(.Dropdown-menu),
+    > .Dropdown-toggle:nth-last-child(n + 3) {
+      @include Rounded-end(0);
+    }
+  }
+
+  &.Has-validation {
+    > :nth-last-child(n + 3):not(.Dropdown-toggle):not(.Dropdown-menu),
+    > .Dropdown-toggle:nth-last-child(n + 4) {
+      @include Rounded-end(0);
+    }
+  }
+
+  $validation-messages: "";
+  //@each $state in map-keys($Form-validation-states) {
+  //  $validation-messages: $validation-messages + ":not(." + unquote($state) + "-tooltip)" + ":not(." + unquote($state) + "-feedback)";
+  //}
+
+  > :not(:first-child):not(.Dropdown-menu)#{$validation-messages} {
+    margin-left: -$Input-border-width;
+    @include Rounded-start(0);
+  }
+}

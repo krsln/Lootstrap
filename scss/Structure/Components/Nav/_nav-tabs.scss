@@ -1,0 +1,60 @@
+/**
+ * Components - Nav Tabs
+ *
+*/
+
+.Nav-tabs {
+  --#{$Prefix}nav-link-border-radius: #{0};
+
+  --#{$Prefix}nav-link-hover-bg: #{$Nav-tabs-link-hover-bg};
+  --#{$Prefix}nav-link-hover-color: #{$Nav-tabs-link-hover-color};
+  --#{$Prefix}nav-link-hover-border-color: #{$Nav-tabs-link-hover-border-color};
+
+  --#{$Prefix}nav-link-active-color: #{$Nav-tabs-link-active-color};
+  --#{$Prefix}nav-link-active-bg: #{$Nav-tabs-link-active-bg};
+  --#{$Prefix}nav-link-active-border-color: #{$Nav-tabs-link-active-border-color};
+
+  border-bottom: 0;
+
+  .Nav-link {
+    color: inherit;
+    background: none;
+
+    border: solid transparent;
+    border-width: 0 0 2px;
+    //border-radius: 0;
+
+    //padding: 1rem 1.75rem;
+    margin-bottom: -1px;
+
+    &:hover,
+    &:focus {
+      color: var(--#{$Prefix}nav-link-hover-color);
+      background-color: var(--#{$Prefix}nav-link-hover-bg);
+      border-color: var(--#{$Prefix}nav-link-hover-border-color);
+
+      isolation: isolate;
+    }
+
+    &.Disabled,
+    &:disabled {
+      color: var(--#{$Prefix}nav-link-disabled-color);
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .Nav-link.Active,
+  .Nav-item.Show .Nav-link {
+    color: var(--#{$Prefix}nav-link-active-color);
+    background-color: var(--#{$Prefix}nav-link-active-bg);
+    border-color: var(--#{$Prefix}nav-link-active-border-color);
+  }
+
+  .Dropdown-menu {
+    // Make dropdown border overlap tab border
+    //margin-top: calc(var(--#{$Prefix}nav-border-width) * -1); // stylelint-disable-line function-disallowed-list
+    // Remove the top rounded corners here since there is a hard edge above the menu
+    @include Rounded-top(0);
+  }
+}

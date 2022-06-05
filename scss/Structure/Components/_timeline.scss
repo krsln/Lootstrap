@@ -1,0 +1,85 @@
+/**
+ * Components - Timeline
+ *
+*/
+
+.Timeline {
+  display: block;
+  position: relative;
+
+  font-family: $Timeline-font-family;
+  min-width: 0;
+
+  color: $Timeline-color;
+  background-color: $Timeline-bg;
+  background-clip: border-box;
+
+  padding: 0;
+  margin-bottom: (2 * $Timeline-space);
+}
+
+.Timeline-header {
+  padding: $Timeline-header-padding;
+  text-align: center;
+}
+
+.Timeline-item {
+  position: relative;
+  display: flex;
+
+  align-items: center;
+
+  &.Inverted {
+    flex-direction: row-reverse;
+
+    &:after {
+      left: auto;
+      right: 16px;
+    }
+
+    .Timeline-badge {
+      margin-right: 0;
+      margin-left: 0.75rem;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    content: " ";
+    background-color: $Timeline-line-color;
+
+    //z-index: -1;
+
+    width: 3px;
+    height: 100%;
+
+    left: 16px;
+    right: auto;
+    top: 0;
+  }
+
+  &.First:after {
+    height: 50%;
+    top: 50%;
+  }
+
+  &.Last:after {
+    height: 50%;
+    top: 0;
+  }
+
+  .Timeline-badge {
+    width: $Timeline-badge-width;
+
+    z-index: 1001;
+
+    margin-right: $Timeline-space;
+    margin-bottom: $Timeline-space;
+  }
+
+  .Timeline-content {
+    width: 100%;
+    margin-left: auto;
+  }
+}
+

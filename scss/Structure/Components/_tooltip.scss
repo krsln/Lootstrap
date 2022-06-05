@@ -1,0 +1,70 @@
+/**
+ * Components - Tooltip
+ *
+ * Works with .Caret
+*/
+
+.Tooltip {
+  --#{$Prefix}tooltip-padding-y: #{$Tooltip-padding-y};
+  --#{$Prefix}tooltip-padding-x: #{$Tooltip-padding-x};
+  --#{$Prefix}tooltip-color: #{$Tooltip-color};
+  --#{$Prefix}tooltip-bg: #{$Tooltip-bg};
+
+  --#{$Prefix}tooltip-border-width: #{$Tooltip-border-width};
+  --#{$Prefix}tooltip-border-color: #{$Tooltip-border-color};
+  --#{$Prefix}tooltip-border-radius: 0;
+
+  --#{$Prefix}tooltip-box-shadow: #{$Tooltip-box-shadow};
+  --#{$Prefix}caret-size: 7px;
+
+  &.Tooltip-outline {
+    --#{$Prefix}tooltip-color: #{$Tooltip-color};
+    --#{$Prefix}tooltip-bg: transparent;
+    --#{$Prefix}tooltip-border-color: #{$Tooltip-border-color};
+  }
+
+  position: absolute;
+  display: flex;
+  z-index: 1000;
+
+  padding: var(--#{$Prefix}tooltip-padding-y) var(--#{$Prefix}tooltip-padding-x);
+
+  color: var(--#{$Prefix}tooltip-color);
+  background-color: var(--#{$Prefix}tooltip-bg);
+
+  border: var(--#{$Prefix}tooltip-border-width) solid var(--#{$Prefix}tooltip-border-color);
+  @include Rounded(var(--#{$Prefix}tooltip-border-radius));
+  box-shadow: var(--#{$Prefix}tooltip-box-shadow);
+}
+
+.Tooltip-rounded {
+  --#{$Prefix}tooltip-border-radius: #{$Tooltip-border-radius};
+}
+
+@each $key, $color in $Theme-colors {
+  $variant-bg: $color;
+  $variant-color: Color-contrast($variant-bg);
+  $variant-border-color: $color;
+
+  $variant-outline-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  $variant-outline-color: Color-contrast($variant-bg);
+  $variant-outline-border-color: darken($color, 10%);
+
+  .Tooltip-#{$key} {
+    --#{$Prefix}tooltip-color: #{$variant-color};
+    --#{$Prefix}tooltip-bg:  #{$variant-bg};
+    --#{$Prefix}tooltip-border-color: #{$variant-border-color};
+
+    --#{$Prefix}caret-pseudo-before-bg: #{$variant-border-color};
+    --#{$Prefix}caret-pseudo-after-fg: #{$variant-bg};
+
+    &.Tooltip-outline {
+      --#{$Prefix}tooltip-color: #{$variant-outline-color};
+      --#{$Prefix}tooltip-bg:  #{$variant-outline-bg};
+      --#{$Prefix}tooltip-border-color: #{$variant-outline-border-color};
+
+      --#{$Prefix}caret-pseudo-before-bg: #{$variant-outline-border-color};
+      --#{$Prefix}caret-pseudo-after-fg: #{$variant-outline-bg};
+    }
+  }
+}

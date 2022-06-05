@@ -1,0 +1,43 @@
+/**
+ * Layout - Container widths
+ *
+ * Set the Container width, and override it for fixed nav bars in media queries.
+*/
+
+@if $Enable-container-classes {
+  // Single Container class with breakpoint max-widths
+  .Container,
+    // 100% wide Container at all breakpoints
+  .Container-fluid {
+    @include Make-container();
+  }
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $Container-max-widths {
+    .Container-#{$breakpoint} {
+      @extend .Container-fluid;
+    }
+
+    @include media-breakpoint-up($breakpoint, $Grid-breakpoints) {
+      %responsive-Container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+
+      // Extend each breakpoint which is smaller or equal to the current breakpoint
+      $extend-breakpoint: true;
+
+      @each $name, $width in $Grid-breakpoints {
+        @if ($extend-breakpoint) {
+          .Container#{breakpoint-infix($name, $Grid-breakpoints)} {
+            @extend %responsive-Container-#{$breakpoint};
+          }
+
+          // Once the current breakpoint is reached, stop extending
+          @if ($breakpoint == $name) {
+            $extend-breakpoint: false;
+          }
+        }
+      }
+    }
+  }
+}

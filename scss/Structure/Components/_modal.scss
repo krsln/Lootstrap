@@ -1,0 +1,283 @@
+/**
+ * Components - Modal
+ *
+*/
+$zindex-modal-backdrop: 1050 !default;
+$zindex-modal: 1055 !default;
+
+/*@formatter:off*/
+$Modal-font-family                    : $Font-family-base !default;
+$Modal-border-color                   : $Border-color;
+$Modal-border-width                   : $Border-width !default;
+
+$Modal-content-bg                     : $Adaptive-bg-surface !default;
+$Modal-content-color                  : $Adaptive-fg-surface !default;
+$Modal-content-border-color           : transparent !default;
+$Modal-content-border-width           : 0 !default;
+$Modal-content-border-radius          : .5rem !default;
+$Modal-content-inner-border-radius    : calc(#{$Modal-content-border-radius} - #{$Modal-border-width}) !default;
+
+$Modal-header-border-color            : $Modal-border-color !default;
+$Modal-header-border-width            : $Modal-border-width !default;
+$Modal-header-padding-y               : .75rem !default; // $modal-inner-padding
+$Modal-header-padding-x               : .75rem !default; // $modal-inner-padding
+$Modal-title-line-height              : $Line-height-base !default;
+$Modal-footer-bg                      : inherit !default;
+$Modal-footer-border-color            : $Modal-border-color !default;
+$Modal-footer-border-width            : $Modal-border-width !default;
+$Modal-footer-margin-between          : .5rem !default;
+
+$Modal-transition                     : transform .3s ease-out !default;
+$Modal-scale-transform                : scale(1.02) !default;
+$Modal-fade-transform                 : translate(0, -50px) !default;
+$Modal-show-transform                 :  none !default;
+
+$Modal-inner-padding                  : $Spacer * .75 !default;
+$Modal-dialog-margin                  : .5rem !default;
+$Modal-dialog-margin-sm-up            : 1.75rem !default;
+
+$Modal-content-box-shadow             : $Shadow-1 !default;
+$Modal-content-box-shadow-sm-up       : $Shadow-2 !default;
+
+$Modal-width-sm:                          300px !default;
+$Modal-width-md:                          500px !default;
+$Modal-width-lg:                          800px !default;
+$Modal-width-xl:                          1140px !default;
+
+
+//$modal-backdrop-bg:                 $Black !default;
+//$modal-backdrop-opacity:            .5 !default;
+
+/*@formatter:on*/
+
+// .Modal-open      - body class for killing the scroll
+// .Modal           - container to scroll within
+// .Modal-dialog    - positioning shell for the actual modal
+// .Modal-content   - actual modal w/ bg and corners and stuff
+
+
+// Container that the modal scrolls within
+.Modal {
+  --#{$Prefix}modal-zindex: #{$zindex-modal};
+  --#{$Prefix}modal-width: #{$Modal-width-md};
+  --#{$Prefix}modal-padding: #{$Modal-inner-padding};
+  --#{$Prefix}modal-margin: #{$Modal-dialog-margin};
+  --#{$Prefix}modal-color: #{$Modal-content-color};
+  --#{$Prefix}modal-bg: #{$Modal-content-bg};
+  --#{$Prefix}modal-border-color: #{$Modal-content-border-color};
+  --#{$Prefix}modal-border-width: #{$Modal-content-border-width};
+  --#{$Prefix}modal-border-radius: #{$Modal-content-border-radius};
+  --#{$Prefix}modal-box-shadow: #{$Modal-content-box-shadow};
+  --#{$Prefix}modal-inner-border-radius: #{$Modal-content-inner-border-radius};
+
+  --#{$Prefix}modal-header-padding-x: #{$Modal-header-padding-x};
+  --#{$Prefix}modal-header-padding-y: #{$Modal-header-padding-y};
+  --#{$Prefix}modal-header-border-color: #{$Modal-header-border-color};
+  --#{$Prefix}modal-header-border-width: #{$Modal-header-border-width};
+  --#{$Prefix}modal-title-line-height: #{$Modal-title-line-height};
+  --#{$Prefix}modal-footer-gap: #{$Modal-footer-margin-between};
+  --#{$Prefix}modal-footer-bg: #{$Modal-footer-bg};
+  --#{$Prefix}modal-footer-border-color: #{$Modal-footer-border-color};
+  --#{$Prefix}modal-footer-border-width: #{$Modal-footer-border-width};
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--#{$Prefix}modal-zindex);
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // Prevent Chrome on Windows from adding a focus outline.
+  outline: 0;
+
+  font-family: $Modal-font-family;
+}
+
+// Shell div to position the modal with bottom padding
+.Modal-dialog {
+  position: relative;
+  width: auto;
+  margin: var(--#{$Prefix}modal-margin);
+  // allow clicks to pass through for custom click handling to close modal
+  pointer-events: none;
+
+  // When fading in the modal, animate it to slide down
+  .Modal.Fade & {
+    @include Transition($Modal-transition);
+    transform: $Modal-fade-transform;
+  }
+
+  .Modal.Show & {
+    transform: $Modal-show-transform;
+  }
+
+  // When trying to close, animate focus to scale
+  .Modal.Modal-static & {
+    transform: $Modal-scale-transform;
+  }
+}
+
+//.Modal-dialog-scrollable {
+//  height: calc(100% - var(--#{$Prefix}modal-margin) * 2);
+//
+//  .Modal-content {
+//    max-height: 100%;
+//    overflow: hidden;
+//  }
+//
+//  .Modal-body {
+//    overflow-y: auto;
+//  }
+//}
+//
+//.Modal-dialog-centered {
+//  display: flex;
+//  align-items: center;
+//  min-height: calc(100% - var(--#{$Prefix}modal-margin) * 2);
+//}
+
+// Actual modal
+.Modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%; // Ensure `.Modal-content` extends the full width of the parent `.Modal-dialog`
+  // counteract the pointer-events: none; in the .Modal-dialog
+  color: var(--#{$Prefix}modal-color);
+  pointer-events: auto;
+  background-color: var(--#{$Prefix}modal-bg);
+  background-clip: padding-box;
+  border: var(--#{$Prefix}modal-border-width) solid var(--#{$Prefix}modal-border-color);
+  @include Rounded(var(--#{$Prefix}modal-border-radius));
+  box-shadow: var(--#{$Prefix}modal-box-shadow);
+  //@include Box-shadow(var(--#{$Prefix}modal-box-shadow)); // $Enable-shadows
+  // Remove focus outline from opened modal
+  outline: 0;
+}
+
+//// Modal background
+//.Modal-backdrop {
+//  // scss-docs-start modal-backdrop-css-vars
+//  --#{$Prefix}backdrop-zindex: #{$zindex-modal-backdrop};
+//  --#{$Prefix}backdrop-bg: #{$modal-backdrop-bg};
+//  --#{$Prefix}backdrop-opacity: #{$modal-backdrop-opacity};
+//  // scss-docs-end modal-backdrop-css-vars
+//
+//  //@include overlay-backdrop(var(--#{$Prefix}backdrop-zindex), var(--#{$Prefix}backdrop-bg), var(--#{$Prefix}backdrop-opacity));
+//}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.Modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
+  padding: var(--#{$Prefix}modal-header-padding-y) var(--#{$Prefix}modal-header-padding-x);
+  border-bottom: var(--#{$Prefix}modal-header-border-width) solid var(--#{$Prefix}modal-header-border-color);
+  @include Rounded-top(var(--#{$Prefix}modal-inner-border-radius));
+
+  .Btn-close {
+    padding: calc(var(--#{$Prefix}modal-header-padding-y) * .25) calc(var(--#{$Prefix}modal-header-padding-x) * .25);
+    margin: calc(var(--#{$Prefix}modal-header-padding-y) * -.25) calc(var(--#{$Prefix}modal-header-padding-x) * -.25) calc(var(--#{$Prefix}modal-header-padding-y) * -.25) auto;
+  }
+}
+
+// Title text within header
+.Modal-title {
+  margin-bottom: 0;
+  line-height: var(--#{$Prefix}modal-title-line-height);
+}
+
+// Modal body
+// Where all modal content resides (sibling of .Modal-header and .Modal-footer)
+.Modal-body {
+  position: relative;
+  // Enable `flex-grow: 1` so that the body take up as much space as possible
+  // when there should be a fixed height on `.Modal-dialog`.
+  flex: 1 1 auto;
+  padding: var(--#{$Prefix}modal-padding);
+}
+
+// Footer (for actions)
+.Modal-footer {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center; // vertically center
+  justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
+  padding: calc(var(--#{$Prefix}modal-padding) - var(--#{$Prefix}modal-footer-gap) * .5);
+  background-color: var(--#{$Prefix}modal-footer-bg);
+  border-top: var(--#{$Prefix}modal-footer-border-width) solid var(--#{$Prefix}modal-footer-border-color);
+  @include Rounded-bottom(var(--#{$Prefix}modal-inner-border-radius));
+
+  // Place margin between footer elements
+  // This solution is far from ideal because of the universal selector usage,
+  // but is needed to fix https://github.com/twbs/bootstrap/issues/24800
+  > * {
+    margin: calc(var(--#{$Prefix}modal-footer-gap) * .5); // Todo in v6: replace with gap on parent class
+  }
+}
+
+// Scale up the modal
+@include media-breakpoint-up(sm) {
+  .Modal {
+    --#{$Prefix}modal-margin: #{$Modal-dialog-margin-sm-up};
+    --#{$Prefix}modal-box-shadow: #{$Modal-content-box-shadow-sm-up};
+  }
+
+  // Automatically set modal's width for larger viewports
+  .Modal-dialog {
+    max-width: var(--#{$Prefix}modal-width);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .Modal-sm {
+    --#{$Prefix}modal-width: #{$Modal-width-sm};
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .Modal-lg,
+  .Modal-xl {
+    --#{$Prefix}modal-width: #{$Modal-width-lg};
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .Modal-xl {
+    --#{$Prefix}modal-width: #{$Modal-width-xl};
+  }
+}
+
+//@each $breakpoint in map-keys($Grid-breakpoints) {
+//  $infix: breakpoint-infix($breakpoint, $Grid-breakpoints);
+//  $postfix: if($infix != "", $infix + "-down", "");
+//
+//  @include media-breakpoint-down($breakpoint) {
+//    .Modal-fullscreen#{$postfix} {
+//      width: 100vw;
+//      max-width: none;
+//      height: 100%;
+//      margin: 0;
+//
+//      .Modal-content {
+//        height: 100%;
+//        border: 0;
+//        @include Rounded(0);
+//      }
+//
+//      .Modal-header,
+//      .Modal-footer {
+//        @include Rounded(0);
+//      }
+//
+//      .Modal-body {
+//        overflow-y: auto;
+//      }
+//    }
+//  }
+//}

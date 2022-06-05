@@ -1,0 +1,230 @@
+/**
+ * Forms - Check/radio
+ *
+*/
+
+/*@formatter:off*/
+
+$Form-check-input-width                  : 1em !default;
+$Form-check-min-height                   : $Font-size-base * $Line-height-base !default;
+$Form-check-padding-start                : $Form-check-input-width + .5em !default;
+$Form-check-margin-bottom                : .125rem !default;
+$Form-check-label-color                  : null !default;
+$Form-check-label-cursor                 : null !default;
+$Form-check-transition                   : null !default;
+
+$Form-check-input-active-filter          : brightness(90%) !default;
+$Form-check-input-bg                     : $Input-bg !default;
+$Form-check-input-border                 : 1px solid rgba($Black, .25) !default;
+$Form-check-input-border-radius          : 0; //.25em !default;
+$Form-check-radio-border-radius          : 50% !default;
+$Form-check-input-focus-border           : $Input-focus-border-color !default;
+$Form-check-input-focus-box-shadow       : $Input-focus-box-shadow !default;
+
+$Form-check-input-checked-color          : $Adaptive-fg-accent !default;
+$Form-check-input-checked-bg-color       : $Adaptive-bg-accent !default;
+$Form-check-input-checked-border-color   : $Form-check-input-checked-bg-color !default;
+$Form-check-input-checked-bg-image       : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$Form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/></svg>";
+$Form-check-radio-checked-bg-image       : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$Form-check-input-checked-color}'/></svg>";
+
+$Form-check-input-disabled-opacity       : .5 !default;
+$Form-check-label-disabled-opacity       : $Form-check-input-disabled-opacity !default;
+$Form-check-btn-check-disabled-opacity   : $Btn-disabled-opacity !default;
+
+$Form-check-inline-margin-end            : 1rem !default;
+
+$Form-check-input-indeterminate-color         : $Adaptive-fg-accent !default;
+$Form-check-input-indeterminate-bg-color      : $Adaptive-bg-accent !default;
+$Form-check-input-indeterminate-border-color  : $Form-check-input-indeterminate-bg-color !default;
+$Form-check-input-indeterminate-bg-image      : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$Form-check-input-indeterminate-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/></svg>";
+
+/*@formatter:on*/
+
+
+/*@formatter:off*/
+$Form-switch-color               : $Muted !default;
+$Form-switch-width               : 2em !default;
+$Form-switch-padding-start       : $Form-switch-width + .5em !default;
+$Form-switch-bg-image            : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$Form-switch-color}'/></svg>";
+$Form-switch-border-radius       : $Form-switch-width !default;
+$Form-switch-transition          : background-position .15s ease-in-out !default;
+
+$Form-switch-focus-color         : $Muted !default;
+$Form-switch-focus-bg-image      : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$Form-switch-focus-color}'/></svg>";
+
+$Form-switch-checked-color       : $White !default; // No CSS var here!
+$Form-switch-checked-bg-image    : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$Form-switch-checked-color}'/></svg>";
+$Form-switch-checked-bg-position : right center !default;
+/*@formatter:on*/
+
+
+.Form-check {
+  display: block;
+  min-height: $Form-check-min-height;
+  padding-left: $Form-check-padding-start;
+  margin-bottom: $Form-check-margin-bottom;
+
+  .Form-check-input {
+    float: left;
+    margin-left: $Form-check-padding-start * -1;
+  }
+}
+
+.Form-check-reverse {
+  padding-right: $Form-check-padding-start;
+  padding-left: 0;
+  text-align: right;
+
+  .Form-check-input {
+    float: right;
+    margin-right: $Form-check-padding-start * -1;
+    margin-left: 0;
+  }
+}
+
+.Form-check-input {
+  width: $Form-check-input-width;
+  height: $Form-check-input-width;
+  margin-top: ($Line-height-base - $Form-check-input-width) * .5; // line-height minus check height
+  vertical-align: top;
+  background-color: $Form-check-input-bg;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: $Form-check-input-border;
+  appearance: none;
+  @include Transition($Form-check-transition);
+
+  &[type="checkbox"] {
+    @include Rounded($Form-check-input-border-radius);
+  }
+
+  &[type="radio"] {
+    // stylelint-disable-next-line property-disallowed-list
+    border-radius: $Form-check-radio-border-radius;
+  }
+
+  &:active {
+    filter: $Form-check-input-active-filter;
+  }
+
+  &:focus {
+    border-color: $Form-check-input-focus-border;
+    outline: 0;
+    box-shadow: $Form-check-input-focus-box-shadow;
+  }
+
+  &:checked {
+    background-color: $Form-check-input-checked-bg-color;
+    border-color: $Form-check-input-checked-border-color;
+
+    &[type="checkbox"] {
+      @if $Enable-gradients {
+        background-image: SVG-url($Form-check-input-checked-bg-image), var(--#{$Prefix}gradient);
+      } @else {
+        background-image: SVG-url($Form-check-input-checked-bg-image);
+      }
+    }
+
+    &[type="radio"] {
+      @if $Enable-gradients {
+        background-image: SVG-url($Form-check-radio-checked-bg-image), var(--#{$Prefix}gradient);
+      } @else {
+        background-image: SVG-url($Form-check-radio-checked-bg-image);
+      }
+    }
+  }
+
+  &[type="checkbox"]:indeterminate {
+    background-color: $Form-check-input-indeterminate-bg-color;
+    border-color: $Form-check-input-indeterminate-border-color;
+
+    @if $Enable-gradients {
+      background-image: SVG-url($Form-check-input-indeterminate-bg-image), var(--#{$Prefix}gradient);
+    } @else {
+      background-image: SVG-url($Form-check-input-indeterminate-bg-image);
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    filter: none;
+    opacity: $Form-check-input-disabled-opacity;
+  }
+
+  // Use disabled attribute in addition of :disabled pseudo-class
+  // See: https://github.com/twbs/bootstrap/issues/28247
+  &[disabled],
+  &:disabled {
+    ~ .Form-check-label {
+      cursor: default;
+      opacity: $Form-check-label-disabled-opacity;
+    }
+  }
+}
+
+.Form-check-label {
+  color: $Form-check-label-color;
+  cursor: $Form-check-label-cursor;
+}
+
+//
+// Switch
+//
+
+.Form-switch {
+  padding-left: $Form-switch-padding-start;
+
+  .Form-check-input {
+    width: $Form-switch-width;
+    margin-left: $Form-switch-padding-start * -1;
+    background-image: SVG-url($Form-switch-bg-image);
+    background-position: left center;
+    @include Rounded($Form-switch-border-radius);
+    @include Transition($Form-switch-transition);
+
+    &:focus {
+      background-image: SVG-url($Form-switch-focus-bg-image);
+    }
+
+    &:checked {
+      background-position: $Form-switch-checked-bg-position;
+
+      @if $Enable-gradients {
+        background-image: SVG-url($Form-switch-checked-bg-image), var(--#{$Prefix}gradient);
+      } @else {
+        background-image: SVG-url($Form-switch-checked-bg-image);
+      }
+    }
+  }
+
+  &.Form-check-reverse {
+    padding-right: $Form-switch-padding-start;
+    padding-left: 0;
+
+    .Form-check-input {
+      margin-right: $Form-switch-padding-start * -1;
+      margin-left: 0;
+    }
+  }
+}
+
+.Form-check-inline {
+  display: inline-block;
+  margin-right: $Form-check-inline-margin-end;
+}
+
+.Btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+
+  &[disabled],
+  &:disabled {
+    + .Btn {
+      pointer-events: none;
+      filter: none;
+      opacity: $Form-check-btn-check-disabled-opacity;
+    }
+  }
+}

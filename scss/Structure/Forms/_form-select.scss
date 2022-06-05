@@ -1,0 +1,125 @@
+/**
+ * Forms - Select
+ *
+*/
+
+/*@formatter:off*/
+$Form-select-font-family              : $Input-font-family !default;
+$Form-select-font-size                : $Input-font-size !default;
+$Form-select-font-weight              : $Input-font-weight !default;
+$Form-select-line-height              : $Input-line-height !default;
+
+$Form-select-padding-y                : $Input-padding-y !default;
+$Form-select-padding-x                : $Input-padding-x !default;
+
+$Form-select-border-width             : $Input-border-width !default;
+$Form-select-border-color             : $Input-border-color !default;
+$Form-select-border-radius            : $Input-border-radius !default;
+$Form-select-box-shadow               : $Input-box-shadow !default;
+
+$Form-select-padding-y-sm             : $Input-padding-y-sm !default;
+$Form-select-padding-x-sm             : $Input-padding-x-sm !default;
+$Form-select-font-size-sm             : $Input-font-size-sm !default;
+$Form-select-border-radius-sm         : $Input-border-radius-sm !default;
+
+$Form-select-padding-y-lg             : $Input-padding-y-lg !default;
+$Form-select-padding-x-lg             : $Input-padding-x-lg !default;
+$Form-select-font-size-lg             : $Input-font-size-lg !default;
+$Form-select-border-radius-lg         : $Input-border-radius-lg !default;
+
+$Form-select-color                    : $Input-color !default;
+$Form-select-bg                       : $Input-bg !default;
+$Form-select-bg-position              : right $Form-select-padding-x center !default;
+$Form-select-bg-size                  : 16px 12px !default; // In pixels because image dimensions
+
+$Form-select-disabled-color           : null !default;
+$Form-select-disabled-bg              : $Input-disabled-bg !default;
+$Form-select-disabled-border-color    : $Input-disabled-border-color !default;
+
+$Form-select-focus-border-color       : $Input-focus-border-color !default;
+$Form-select-focus-width              : $Input-focus-width !default;
+$Form-select-focus-box-shadow         : $Input-focus-box-shadow !default;
+
+$Form-select-indicator-padding        : $Form-select-padding-x * 3 !default; // Extra padding for background-image
+$Form-select-indicator-color          : $Muted !default;
+$Form-select-indicator                : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$Form-select-indicator-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>";
+
+$Form-select-transition               : $Input-transition !default;
+
+/*@formatter:on*/
+
+.Form-select {
+  display: block;
+  width: 100%;
+
+  padding: $Form-select-padding-y $Form-select-indicator-padding $Form-select-padding-y $Form-select-padding-x;
+  -moz-padding-start: calc(#{$Form-select-padding-x} - 3px); // See https://github.com/twbs/bootstrap/issues/32636
+
+  font-family: $Form-select-font-family;
+  font-size: $Form-select-font-size;
+  font-weight: $Form-select-font-weight;
+  line-height: $Form-select-line-height;
+
+  color: $Form-select-color;
+
+  background-color: $Form-select-bg;
+  background-image: SVG-url($Form-select-indicator);
+  background-repeat: no-repeat;
+  background-position: $Form-select-bg-position;
+  background-size: $Form-select-bg-size;
+
+  border: $Form-select-border-width solid $Form-select-border-color;
+
+  @include Rounded($Form-select-border-radius, 0);
+  @include Box-shadow($Form-select-box-shadow);
+  @include Transition($Form-select-transition);
+  appearance: none;
+
+  &:focus {
+    border-color: $Form-select-focus-border-color;
+    outline: 0;
+
+    @if $Enable-shadows {
+      @include Box-shadow($Form-select-box-shadow, $Form-select-focus-box-shadow);
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: $Form-select-focus-box-shadow;
+    }
+  }
+
+  &[multiple],
+  &[size]:not([size="1"]) {
+    padding-right: $Form-select-padding-x;
+    background-image: none;
+  }
+
+  &:disabled {
+    color: $Form-select-disabled-color;
+    background-color: $Form-select-disabled-bg;
+    border-color: $Form-select-disabled-border-color;
+  }
+
+  // Remove outline from select box in FF
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $Form-select-color;
+  }
+}
+
+.Form-select-sm {
+  padding-top: $Form-select-padding-y-sm;
+  padding-bottom: $Form-select-padding-y-sm;
+  padding-left: $Form-select-padding-x-sm;
+
+  font-size: $Form-select-font-size-sm;
+  @include Rounded($Form-select-border-radius-sm);
+}
+
+.Form-select-lg {
+  padding-top: $Form-select-padding-y-lg;
+  padding-bottom: $Form-select-padding-y-lg;
+  padding-left: $Form-select-padding-x-lg;
+
+  font-size: $Form-select-font-size-lg;
+  @include Rounded($Form-select-border-radius-lg);
+}

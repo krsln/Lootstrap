@@ -1,0 +1,260 @@
+/**
+ * Components - Avatar
+ *
+ * Avatars are found throughout material design with uses in everything from tables to dialog menus.
+ *
+ * https://codepen.io/avenart/pen/dypjQmm
+ * https://ishadeed.com/article/thinking-about-the-cut-out-effect/
+ *
+*/
+
+
+//
+// Avatar Badge
+//
+
+.Avatar-badge {
+  position: absolute;
+  right: 7%;
+  bottom: 7%;
+  width: 16%;
+  height: 16%;
+
+  //right: 6%;
+  //bottom: 6%;
+  //width: 18%;
+  //height: 18%;
+
+  background: $Avatar-badge-off;
+  border-radius: 50%;
+
+  &.Online {
+    background: $Avatar-badge-on;
+  }
+}
+
+//
+// Avatar - with SVG Mask
+//
+
+//noinspection CssUnknownProperty
+.Avatar,
+.Avatar-group {
+
+  // For Avatar's Badge Placement
+
+  &.Sign-bottom {
+    svg mask circle[fill="black"] {
+      cx: 85%; // 85%
+      cy: 85%; // 85%
+      r: 10%; // 10%
+    }
+  }
+
+  &.Sign-top {
+    svg mask circle[fill="black"] {
+      cx: 85%; // 85%
+      cy: 15%; // 85%
+      r: 10%; // 10%
+    }
+
+    .Avatar-badge {
+      right: 7%;
+      top: 7%;
+      width: 16%;
+      height: 16%;
+    }
+  }
+
+  // For Both Avatar & Group
+
+  &.Sqr {
+    margin: 0;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+
+    mask {
+      circle[fill="white"] {
+        cx: calc(100% / 2); // 50%
+        cy: calc(100% / 2); // 50%
+        r: calc(100% / 2 - 3%); // 47%
+      }
+
+      rect[fill="white"] {
+        width: 85%;
+        height: 85%;
+        cy: 18;
+        x: 7.5%;
+        y: 7.5%;
+
+        rx: 0;
+        ry: 0;
+
+        &.Round {
+          rx: 8;
+          ry: 8;
+        }
+      }
+    }
+
+    g {
+      image {
+        width: 100%;
+        height: 100%;
+
+        x: 0;
+        y: 0;
+        preserveAspectRatio: "xMidYMid slice";
+      }
+
+      text {
+        fill: currentColor;
+        dominant-baseline: central;
+        text-anchor: middle;
+      }
+
+      circle.Avatar-border,
+      rect.Avatar-border {
+        fill: none;
+        stroke: rgba(0, 0, 0, 0.1);
+        stroke-width: 10%;
+      }
+
+      circle {
+        cx: calc(100% / 2); // 50%
+        cy: calc(100% / 2); // 50%
+        r: calc(100% / 2 - 3%); // 47%
+      }
+
+      rect {
+        width: 85%;
+        height: 85%;
+        cy: 18;
+        x: 7.5%;
+        y: 7.5%;
+
+        rx: 0;
+        ry: 0;
+
+        &.Round {
+          rx: 8;
+          ry: 8;
+        }
+      }
+    }
+
+  }
+}
+
+//
+// Avatar Group - with SVG Mask
+//
+
+//noinspection CssUnknownProperty
+.Avatar-group {
+  position: relative;
+  display: flex;
+
+  &:not(&.Avatar-group-reversed) {
+    svg mask circle[fill="black"] {
+      cx: -25%;
+      cy: 50%;
+      r: 50%;
+    }
+
+    // Specific Groups
+    &.Twin, &.Triplet, &.Quadruplet, {
+
+      &.Twin {
+        .Sqr:not(:first-child) {
+          margin-left: -15%;
+        }
+      }
+
+      &.Triplet {
+        .Sqr:not(:first-child) {
+          margin-left: -10%;
+        }
+      }
+
+      &.Quadruplet {
+        .Sqr:not(:first-child) {
+          margin-left: -8%;
+        }
+      }
+    }
+
+    &:not(.Twin):not(.Triplet):not(.Quadruplet) {
+      .Sqr {
+        &:not(:first-child) {
+          margin-left: -8%;
+
+          &:nth-child(n+4) {
+            margin-left: -21%; // -6.25%
+
+            svg mask circle[fill="black"] {
+              cx: 23%; // 10%
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.Avatar-group-reversed {
+    svg mask circle[fill="black"] {
+      cx: 125%;
+      cy: 50%;
+      r: 50%;
+    }
+
+    // Specific Groups
+    &.Twin, &.Triplet, &.Quadruplet, {
+
+      &.Twin {
+        .Sqr:not(:last-child) {
+          margin-right: -15%;
+        }
+      }
+
+      &.Triplet {
+        .Sqr:not(:last-child) {
+          margin-right: -10%;
+        }
+      }
+
+      &.Quadruplet {
+        .Sqr:not(:last-child) {
+          margin-right: -8%;
+        }
+      }
+    }
+
+    &:not(.Twin):not(.Triplet):not(.Quadruplet) {
+      svg mask circle[fill="black"] {
+        cx: 77%;
+      }
+
+      .Sqr {
+        //noinspection CssUnknownProperty
+        &:not(:last-child) {
+          margin-right: -21%; // -6.25%
+
+          // last 3 child => -n+3
+          &:nth-last-child(-n+3) {
+            margin-right: -8%;
+
+            svg mask circle[fill="black"] {
+              cx: 124%;
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+}

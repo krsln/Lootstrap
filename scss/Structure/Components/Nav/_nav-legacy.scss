@@ -1,0 +1,41 @@
+/**
+ * Components - Nav Tabs Legacy
+ *
+*/
+
+.Nav-tabs-classic {
+  border-bottom: 1px solid $Nav-classic-border-color;
+
+  .Nav-item {
+    padding-right: 2px;
+  }
+
+  .Nav-link {
+    margin-bottom: -1px;
+    background: none;
+    border: 1px solid transparent;
+
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+
+    &:hover,
+    &:focus {
+      border-color: $Nav-classic-border-color;
+      // Prevents active .nav-link tab overlapping focus outline of previous/next .nav-link
+      isolation: isolate;
+    }
+
+    &.Disabled {
+      color: $Nav-classic-disabled-color;
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .Nav-link.Active,
+  .Nav-item.Show .Nav-link {
+    color: $Nav-classic-active-color;
+    background-color: $Nav-classic-active-bg;
+    border-color: $Nav-classic-border-color $Nav-classic-border-color $Nav-classic-active-bg;
+  }
+}

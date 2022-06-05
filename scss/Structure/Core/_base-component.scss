@@ -1,0 +1,97 @@
+/**
+ * Components - Base
+ *
+ *  These are base components. Don't set any color!!
+*/
+
+//
+// Centered Content of all shapes
+.Centered {
+  @extend %Centered;
+}
+
+//
+// Rectangle
+.Rect {
+  @extend %Rectangle;
+
+  flex: 1 0 auto;
+  margin: .125rem;
+}
+
+//
+// Diamond - With Sqr
+.Diamond {
+  margin: 0;
+
+  transform: rotate(45deg);
+
+  .Centered {
+    transform: rotate(-45deg);
+  }
+}
+
+//
+// Square & Circle
+.Square, .Sqr, .Circle {
+  @extend %Square;
+}
+
+.Square {
+  flex: 1 0 auto;
+  margin: .125rem;
+
+  user-select: none;
+}
+
+.Sqr,
+.Circle {
+  width: 100%;
+  overflow: hidden;
+
+  margin: .125rem;
+}
+
+.Circle {
+  border-radius: 50%;
+}
+
+//
+// Extensions
+//
+
+%Centered {
+  position: absolute;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+%Square {
+  position: relative;
+  display: flex;
+
+  &:after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+%Rectangle {
+  position: relative;
+  display: flex;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 50%;
+  }
+}

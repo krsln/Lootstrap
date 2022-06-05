@@ -1,0 +1,96 @@
+/**
+ * Utils - Border & Border-radius
+ *
+*/
+
+$utilities-Border: () !default;
+$utilities-Border: (
+  // Border
+        "Border": (
+                Class: Border, Properties: border, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+  // Border Directions
+        "Border-top": (
+                Class: Border-top, Properties: border-top, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+        "Border-right": (
+                Class: Border-end, Properties: border-right, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+        "Border-bottom": (
+                Class: Border-bottom, Properties: border-bottom, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+        "Border-left": (
+                Class: Border-start, Properties: border-left, Important: true,
+                Values: (null: $Border-width solid $Border-color, 0: 0),
+        ),
+  // Border-width
+        "Border-width": (
+                Class: Border, Properties: border-width, Important: true,
+                Values: $Border-widths,
+        ),
+  // Rounded
+        "Rounded": (
+                Class: Rounded, Properties: border-radius, Important: true,
+                Values: (
+                        null: #{var(--#{$Prefix}border-radius, $Rounded)},
+                        0: 0, circle: $Rounded-circle, pill: $Rounded-pill
+                ),
+        ),
+  // Scale
+        "Rounded-scale": (
+                Class: Rounded, Properties: --#{$Prefix}border-radius, Important: false,
+                Values: (1: $Rounded-sm, 2: $Rounded-md, 3: $Rounded-lg, 4: $Rounded-xl, 5: $Rounded-xxl),
+        ),
+  // Rounded Directions
+        "Rounded-top": (
+                Class: Rounded-top, Properties: border-top-left-radius border-top-right-radius, Important: false,
+                Values: (null: #{var(--#{$Prefix}border-radius, $Rounded)}),
+        ),
+        "Rounded-top-0": (
+                Class: Rounded-top, Properties: border-top-left-radius border-top-right-radius, Important: true,
+                Values: (0: 0),
+        ),
+        "Rounded-right": (
+                Class: Rounded-end, Properties: border-top-right-radius border-bottom-right-radius, Important: false,
+                Values: (null: #{var(--#{$Prefix}border-radius, $Rounded)}),
+        ),
+        "Rounded-right-0": (
+                Class: Rounded-end, Properties: border-top-right-radius border-bottom-right-radius, Important: true,
+                Values: (0: 0),
+        ),
+        "Rounded-bottom": (
+                Class: Rounded-bottom, Properties: border-bottom-right-radius border-bottom-left-radius, Important: false,
+                Values: (null: #{var(--#{$Prefix}border-radius, $Rounded)}),
+        ),
+        "Rounded-bottom-0": (
+                Class: Rounded-bottom, Properties: border-bottom-right-radius border-bottom-left-radius, Important: true,
+                Values: (0: 0),
+        ),
+        "Rounded-left": (
+                Class: Rounded-start, Properties: border-bottom-left-radius border-top-left-radius, Important: false,
+                Values: (null: #{var(--#{$Prefix}border-radius, $Rounded)}),
+        ),
+        "Rounded-left-0": (
+                Class: Rounded-start, Properties: border-bottom-left-radius border-top-left-radius, Important: true,
+                Values: (0: 0),
+        ),
+  // Subtractive 1 Side
+        "Rounded-top-left-0": (
+                Class: Rounded-tl, Properties: border-top-left-radius, Important: true, Values: (0: 0)
+        ),
+        "Rounded-top-right-0": (
+                Class: Rounded-tr, Properties: border-top-right-radius, Important: true, Values: (0: 0)
+        ),
+        "Rounded-bottom-right-0": (
+                Class: Rounded-br, Properties: border-bottom-right-radius, Important: true, Values: (0: 0)
+        ),
+        "Rounded-bottom-left-0": (
+                Class: Rounded-bl, Properties: border-bottom-left-radius, Important: true, Values: (0: 0)
+        ),
+);
+
+@include Utilities($utilities-Border);

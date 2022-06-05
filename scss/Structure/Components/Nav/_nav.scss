@@ -1,0 +1,119 @@
+/**
+ * Components - Nav
+ *
+ * Base class
+ * Kickstart any navigation component with a set of style resets. Works with `<nav>`s, `<ul>`s or `<ol>`s.
+*/
+
+.Nav {
+  --#{$Prefix}nav-link-padding-x: #{$Nav-link-padding-x};
+  --#{$Prefix}nav-link-padding-y: #{$Nav-link-padding-y};
+  --#{$Prefix}nav-link-border-radius: #{$Nav-link-border-radius};
+  --#{$Prefix}nav-link-font-size: #{$Nav-link-font-size};
+  --#{$Prefix}nav-link-font-weight: #{$Nav-link-font-weight};
+
+  --#{$Prefix}nav-link-color: #{$Nav-link-color};
+  --#{$Prefix}nav-link-bg: #{$Nav-link-bg};
+  --#{$Prefix}nav-link-disabled-color: #{$Nav-link-disabled-color};
+
+  --#{$Prefix}nav-link-active-color: #{$Nav-link-active-color};
+  --#{$Prefix}nav-link-active-bg: #{$Nav-link-active-bg};
+  --#{$Prefix}nav-link-active-border-color: #{$Nav-link-active-color};
+
+  display: flex;
+  flex-wrap: wrap;
+
+  font-family: $Nav-font-family;
+  list-style: none;
+
+  padding-left: 0;
+  margin-bottom: 0;
+
+  .Nav-link.Active,
+  .Nav-item.Show .Nav-link {
+    color: var(--#{$Prefix}nav-link-active-color);
+    @include Gradient-bg(var(--#{$Prefix}nav-link-active-bg));
+    border-color: var(--#{$Prefix}nav-link-active-border-color);
+  }
+}
+
+.Nav-link {
+  display: block;
+
+  //text-transform: uppercase;
+  line-height: 1;
+  font-size: var(--#{$Prefix}nav-link-font-size);
+  font-weight: var(--#{$Prefix}nav-link-font-weight);
+  text-decoration: if($Link-decoration == none, null, none);
+
+  color: var(--#{$Prefix}nav-link-color);
+  background-color: var(--#{$Prefix}nav-link-bg);
+
+  padding: var(--#{$Prefix}nav-link-padding-y) var(--#{$Prefix}nav-link-padding-x);
+  @include Rounded(var(--#{$Prefix}nav-link-border-radius));
+  @include Transition($Nav-link-transition);
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    text-decoration: if($Link-decoration == underline, none, null);
+  }
+
+  // Disabled state lightens text
+  &.Disabled {
+    color: var(--#{$Prefix}nav-link-disabled-color);
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+//
+// Justified variants
+//
+
+.Nav-fill {
+  > .Nav-link,
+  .Nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+.Nav-justified {
+  > .Nav-link,
+  .Nav-item {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.Nav-fill,
+.Nav-justified {
+  .Nav-item .Nav-link {
+    //width: 100%; // Make sure button will grow
+    width: auto;
+  }
+}
+
+// Tabbable tabs
+//
+// Hide tabbable panes to start, show them when `.active`
+
+.Tab-content {
+  .Tab-pane {
+    display: none;
+
+    &.Fade {
+      transition: opacity .15s linear;
+
+      &:not(.Show) {
+        opacity: 0;
+      }
+    }
+
+    &.Active {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+/**
+ * Ripple effect
+ *
+ * https://css-tricks.com/how-to-recreate-the-ripple-effect-of-material-design-buttons/
+ * Cant do it without js based on mouse click coords
+*/
+
+
+/*@formatter:off*/
+$Ripple-bg              : #fff;
+$Ripple-outline-bg      : hsla($Adaptive-bg-contrast-hsl, 100);
+/*@formatter:on*/
+
+//button.Btn:not(:disabled):not(.Disabled),
+.Ripple {
+  position: relative;
+  overflow: hidden;
+  //noinspection CssInvalidFunction
+  transform: translate3d(0, 0, 0);
+
+  &[class*='Btn-outline-'], &.Btn-link {
+    &:after {
+      background-image: radial-gradient(circle, $Ripple-outline-bg 10%, transparent 10.01%);
+      //background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+    }
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+    background-image: radial-gradient(circle, $Ripple-bg 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+
+  &:active:after {
+    transform: scale(0, 0);
+    opacity: .2;
+    transition: 0s;
+  }
+}

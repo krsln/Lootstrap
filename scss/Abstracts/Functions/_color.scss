@@ -2,79 +2,41 @@
 // Functions - Color
 // ===========================================================================
 
-/// Slightly lighten a color
-/// @access public
-/// @param {Color} $color - color to tint
-/// @param {Number} $percentage - percentage of `$color` in returned color
-/// @return {Color}
-@function Tint($color, $percentage) {
-  @return mix(white, $color, $percentage);
+/// Add percentage of white to a color
+/// Tint: is the mixture of a color with white, which increases lightness
+/// Usage  => Tint($Dark, 42%) Tint(red, 42%) Tint(#BADA55, 42%)
+@function Tint-color($color, $percent) {
+  @return mix(white, $color, $percent);
 }
 
-/// Slightly darken a color
-/// @access public
-/// @param {Color} $color - color to shade
-/// @param {Number} $percentage - percentage of `$color` in returned color
-/// @return {Color}
-@function Shade($color, $percentage) {
-  @return mix(black, $color, $percentage);
+/// Add percentage of black to a color
+/// Shade: is the mixture of a color with black, which reduces lightness
+/// Usage  => Shade($Light, 42%) Shade(red, 42%) Shade(#663399, 42%)
+@function Shade-color($color, $percent) {
+  @return mix(black, $color, $percent);
 }
 
-// Set Text Color Entirely based on bg color
-@function TextColor-ByBackground($color) {
-  @if (lightness($color) > 80) {
-    @return black; // Lighter background, return dark color
-  } @else {
-    @return white; // Darker background, return light color
-  }
+// Shade the color if the weight is positive, else tint it
+@function Shift-color($color, $weight) {
+  @return if($weight > 0, Shade-color($color, $weight), Tint-color($color, -$weight));
 }
 
-@function Color-ByLightness($colorValue, $targetPer: 96%) {
-  $diff: $targetPer - lightness($colorValue);
-  $color-result: $colorValue;
-
-  @if ($diff>0) {
-    $color-result: lighten($colorValue, $diff);
-  } @else {
-    $diff-body: -1 * $diff;
-    $color-result: darken($colorValue, $diff-body);
-  }
-
-  @return $color-result;
+// Return opaque color
+// Usage  => Opaque(#fff, rgba(0, 0, 0, .5)) => #808080
+@function Opaque($background, $foreground) {
+  @return mix(rgba($foreground, 1), $background, opacity($foreground) * 100);
 }
 
-/// For bg, text and border color
-/// HSL Colors: hsl(hue, saturation, lightness)
-@function Color-hsla($colors, $alpha:--ls-bg-alpha, $lightness:--ls-bg-lightness) {
-  $colors-hsla: ();
-  @each $colorKey, $colorValue in $colors {
-    $color: $colorValue;
-
-    @if (str-index($alpha, '--#{$var-Prefix}border')) {
-      $color: Color-ByLightness($colorValue, 70%); // 80
-      @if ($colorKey=='dark') {
-        $color: Color-ByLightness($colorValue, 45%);
-      } @else if ($colorKey=='night') {
-        $color: Color-ByLightness($colorValue, 35%);
-      } @else if ($colorKey=='light' or $colorKey=='white') {
-        $color: Color-ByLightness($colorValue, 90%);
-      }
-    }
-
-    $color-h: #{round(hue($color))};
-    $color-s: #{round(saturation($color))};
-    $color-l: #{round(lightness($color))};
-
-    $alpha-bg: #{var($alpha, 1)};
-    $lightness-bg: #{var($lightness, $color-l)};
-
-    @if (str-index($alpha, '--#{$var-Prefix}border')) {
-      $lightness-bg: $color-l;
-    }
-
-    $hsla-color: hsla($color-h, $color-s, $lightness-bg, $alpha-bg);
-    $colors-hsla: map-merge($colors-hsla, ($colorKey: $hsla-color));
-  }
-  @return $colors-hsla;
+/// Usage  => --warning-rgb: #{hexToRGB($Warning)};
+/// res    => --warning-rgb: 230, 172, 0;
+///   background-color: #{rgba(var(--warning-rgb), .5)};
+@function colorToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
 }
 
+/// Usage  => --warning-hls: #{colorToHSL($Warning)};
+/// res    => --warning-hls: 45deg, 100%, 45%;
+///   background-color: #{hsla(var(--warning-hls), .5)};
+@function colorToHSL($color) {
+  @return round(hue($color)), round(saturation($color)), round(lightness($color));
+}

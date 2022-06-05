@@ -1,0 +1,209 @@
+/**
+ * Components - List Group
+ *
+*/
+
+.List {
+  --#{$Prefix}list-color: #{$List-color};
+  --#{$Prefix}list-bg: #{$List-bg};
+  --#{$Prefix}list-active-color: #{$List-active-color};
+  --#{$Prefix}list-active-bg: #{$List-active-bg};
+
+  --#{$Prefix}list-active-border-color: #{$List-active-border-color};
+  --#{$Prefix}list-border-color: #{$List-border-color};
+  --#{$Prefix}list-border-width: #{$List-border-width};
+  --#{$Prefix}list-border-radius: #{$List-border-radius};
+
+  --#{$Prefix}list-item-padding-y: #{$List-item-padding-y};
+  --#{$Prefix}list-item-padding-x: #{$List-item-padding-x};
+
+  --#{$Prefix}list-action-color: #{$List-action-color};
+  --#{$Prefix}list-action-hover-color: #{$List-action-hover-color};
+  --#{$Prefix}list-action-hover-bg: #{$List-action-hover-bg};
+  --#{$Prefix}list-action-active-color: #{$List-action-active-color};
+  --#{$Prefix}list-action-active-bg: #{$List-action-active-bg};
+
+  --#{$Prefix}list-disabled-color: #{$List-disabled-color};
+  --#{$Prefix}list-disabled-bg: #{$List-disabled-bg};
+
+  display: flex;
+  flex-direction: column;
+  font-family: $List-font-family;
+
+  // No need to set list-style: none; since .List-item is block level
+  padding-left: 0; // reset padding because ul and ol
+  margin-bottom: 0;
+
+  @include Rounded(var(--#{$Prefix}list-border-radius));
+}
+
+.List-numbered {
+  list-style-type: none;
+  counter-reset: section;
+
+  > .List-item::before {
+    // Increments only this instance of the section counter
+    content: counters(section, ".") ". ";
+    counter-increment: section;
+  }
+}
+
+// Interactive list items
+//
+// Use anchor or button elements instead of `li`s or `div`s to create interactive
+// list items. Includes an extra `.active` modifier class for selected items.
+
+.List-item-action {
+  width: 100%; // For `<button>`s (anchors become 100% by default though)
+  color: var(--#{$Prefix}list-action-color);
+  text-align: inherit; // For `<button>`s (anchors inherit)
+
+  // Hover state
+  &:hover,
+  &:focus {
+    z-index: 1; // Place hover/focus items above their siblings for proper border styling
+    color: var(--#{$Prefix}list-action-hover-color);
+    text-decoration: none;
+    background-color: var(--#{$Prefix}list-action-hover-bg);
+  }
+
+  &:active {
+    color: var(--#{$Prefix}list-action-active-color);
+    background-color: var(--#{$Prefix}list-action-active-bg);
+  }
+}
+
+// Individual list items
+//
+// Use on `li`s or `div`s within the `.List` parent.
+
+.List-item {
+  position: relative;
+  display: block;
+  padding: var(--#{$Prefix}list-item-padding-y) var(--#{$Prefix}list-item-padding-x);
+  color: var(--#{$Prefix}list-color);
+  text-decoration: if($Link-decoration == none, null, none);
+  background-color: var(--#{$Prefix}list-bg);
+  border: var(--#{$Prefix}list-border-width) solid var(--#{$Prefix}list-border-color);
+
+  &:first-child {
+    @include Rounded-top(inherit);
+  }
+
+  &:last-child {
+    @include Rounded-bottom(inherit);
+  }
+
+  &.Disabled,
+  &:disabled {
+    color: var(--#{$Prefix}list-disabled-color);
+    pointer-events: none;
+    background-color: var(--#{$Prefix}list-disabled-bg);
+  }
+
+  // Include both here for `<a>`s and `<button>`s
+  &.Active {
+    z-index: 2; // Place active items above their siblings for proper border styling
+    color: var(--#{$Prefix}list-active-color);
+    background-color: var(--#{$Prefix}list-active-bg);
+    border-color: var(--#{$Prefix}list-active-border-color);
+  }
+
+  & + & {
+    border-top-width: 0;
+
+    &.Active {
+      margin-top: calc(var(--#{$Prefix}list-border-width) * -1); // stylelint-disable-line function-disallowed-list
+      border-top-width: var(--#{$Prefix}list-border-width);
+    }
+  }
+}
+
+// Horizontal
+//
+// Change the layout of list group items from vertical (default) to horizontal.
+
+@each $breakpoint in map-keys($Grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $Grid-breakpoints);
+
+    .List-horizontal#{$infix} {
+      flex-direction: row;
+
+      > .List-item {
+        &:first-child {
+          @include Rounded-bottom-start(var(--#{$Prefix}list-border-radius));
+          @include Rounded-top-end(0);
+        }
+
+        &:last-child {
+          @include Rounded-top-end(var(--#{$Prefix}list-border-radius));
+          @include Rounded-bottom-start(0);
+        }
+
+        &.Active {
+          margin-top: 0;
+        }
+
+        + .List-item {
+          border-top-width: var(--#{$Prefix}list-border-width);
+          border-left-width: 0;
+
+          &.active {
+            margin-left: calc(var(--#{$Prefix}list-border-width) * -1); // stylelint-disable-line function-disallowed-list
+            border-left-width: var(--#{$Prefix}list-border-width);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Flush list items
+//
+// Remove borders and border-radius to keep list group items edge-to-edge. Most
+// useful within other components (e.g., cards).
+
+.List-flush {
+  @include Rounded(0);
+
+  > .List-item {
+    border-width: 0 0 var(--#{$Prefix}list-border-width);
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+  }
+}
+
+
+// scss-docs-start list-modifiers
+// List group contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+@each $key, $color in $Theme-colors {
+  $variant-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .50));
+  $variant-color: Color-contrast($variant-bg);
+
+  $variant-active-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .90));
+  $variant-active-color: Color-contrast($variant-bg);
+
+  $variant-hover-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  $variant-hover-color: Color-contrast($variant-bg);
+
+  .List-item-#{$key} {
+    --#{$Prefix}list-color: #{$variant-color};
+    --#{$Prefix}list-bg: #{$variant-bg};
+    --#{$Prefix}list-active-color: #{$variant-active-color};
+    --#{$Prefix}list-active-bg: #{$variant-active-bg};
+    --#{$Prefix}list-active-border-color: #{$variant-active-bg};
+
+    --#{$Prefix}list-action-hover-color: #{$variant-hover-color};
+    --#{$Prefix}list-action-hover-bg: #{$variant-hover-bg};
+    --#{$Prefix}list-action-active-color: #{Color-contrast($color)};
+    --#{$Prefix}list-action-active-bg: #{$color};
+  }
+}

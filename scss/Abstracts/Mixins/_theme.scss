@@ -1,0 +1,97 @@
+// ===========================================================================
+// Mixins - Theme Colors
+// ===========================================================================
+
+// CSS Variables (Custom Properties)
+
+//Theme Variants & Colored Components
+@mixin Themed($Theme-colors) {
+  // Colors: light, dark, night
+  // Colors: primary, secondary, success, info, warning, danger
+  @each $colorKey, $colorValue in $Theme-colors {
+    $Lightness: lightness($colorValue);
+
+    $C-body: Color-ByLightness($colorValue, 90%); // 90% - DON'T CHANGE
+    $C-border: Color-ByLightness($colorValue, 85%); // 80
+    //$Shady: Shade($colorValue, 25%);
+
+    $C-gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0));
+    $C-contrast: if($colorKey=='light', hsl(0, 0%, 0%), hsl(0, 0%, 100%));
+    $C-shadow: darken($colorValue, 50%);
+    //$C-shadow: hsl(0, 0%, 0%);
+    //$C-shadow: if($colorKey=='dark' or $colorKey=='night', hsl(0, 0%, 100%), hsl(0, 0%, 0%));
+
+    $C-hue: $colorValue;
+    $C-accent: $colorValue;
+
+    $C-surface: Color-ByLightness($colorValue, 96%); // 96% - DON'T CHANGE
+
+    @if ($colorKey=='light') {
+      $C-accent: $Primary;
+
+      $C-shadow: hsl(240, 7%, 18%); // Dark
+      $C-body: Color-ByLightness($colorValue, ($Lightness - 5));
+      $C-border: Color-ByLightness($colorValue, ($Lightness - 10));
+
+      $C-surface: $White;
+    }
+    @if (index((dark, night), $colorKey)) {
+      $C-accent: Tint-color($Primary, 50%) ;
+
+      // hsl(0, 0%, 7%) Night for Dark
+      // hsl(0, 0%, 0%) Black for Night
+      $C-shadow: if($colorKey=='dark', hsl(0, 0%, 7%), hsl(0, 0%, 0%));
+      $C-body: Color-ByLightness($colorValue, ($Lightness - 6));
+      $C-border: Color-ByLightness($colorValue, ($Lightness + 10));
+
+      $C-surface: $colorValue;
+    }
+
+    $Root: if($colorKey=='light', ",:root", "");
+
+    @if (index((light, dark, night), $colorKey)) {
+      .Theme-#{$colorKey + $Root} {
+        .Btn-close {
+          @if (lightness($colorValue) < 80) {
+            filter: invert(1) grayscale(100%) brightness(200%);
+          }
+        }
+
+        //--#{$Prefix}scheme: #{$colorKey};
+
+        --#{$Prefix}contrast-hsl: #{colorToHSL($C-contrast)};
+
+        --#{$Prefix}bg-hue-hsl: #{colorToHSL($C-hue)};
+        --#{$Prefix}bg-hue: #{$C-hue};
+        --#{$Prefix}fg-hue: #{Color-contrast($C-hue)};
+
+        --#{$Prefix}bg-accent-hsl: #{colorToHSL($C-accent)};
+        --#{$Prefix}bg-accent: #{$C-accent};
+        --#{$Prefix}fg-accent: #{Color-contrast($C-accent)};
+
+        --#{$Prefix}bg-surface: #{$C-surface};
+        --#{$Prefix}fg-surface: #{Color-contrast($C-surface)};
+
+        --#{$Prefix}bg-body: #{$C-body};
+        //--#{$Prefix}fg-body: #{Color-contrast($C-body)};
+
+        --#{$Prefix}border-hsl: #{colorToHSL($C-border)};
+        --#{$Prefix}shadow-hsl: #{colorToHSL($C-shadow)};
+
+        --#{$Prefix}gradient: #{$C-gradient};
+      }
+    }
+
+    .Accent-#{$colorKey} {
+      --#{$Prefix}bg-accent-hsl: #{colorToHSL($C-accent)};
+      --#{$Prefix}bg-accent: #{$C-accent};
+      --#{$Prefix}fg-accent: #{Color-contrast($C-accent)};
+    }
+
+  }
+  @each $key in (0, 5, 7, 8, 9, 11, 12, 14, 15, 16) {
+    .Overlay-#{$key} {
+      background-color: hsla(var(--#{$Prefix}contrast-hsl), $key * 1%);
+    }
+  }
+}

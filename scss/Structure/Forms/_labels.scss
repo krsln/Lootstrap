@@ -1,0 +1,49 @@
+/**
+ * Forms - Labels
+ *
+*/
+/*@formatter:off*/
+$Form-label-font-size                 : null !default;
+$Form-label-font-style                : null !default;
+$Form-label-font-weight               : null !default;
+
+$Form-label-margin-bottom             : .5rem !default;
+$Form-label-color                     : $Adaptive-fg-surface !default;
+/*@formatter:on*/
+
+.Form-label {
+  margin-bottom: $Form-label-margin-bottom;
+
+  font-size: $Form-label-font-size;
+  font-style: $Form-label-font-style;
+  font-weight: $Form-label-font-weight;
+
+  color: $Form-label-color;
+}
+
+// For use with horizontal and inline forms, when you need the label (or legend)
+// text to align with the form controls.
+.Col-form-label {
+  padding-top: calc(#{$Input-padding-y} + #{$Input-border-width});
+  padding-bottom: calc(#{$Input-padding-y} + #{$Input-border-width});
+  margin-bottom: 0; // Override the `<legend>` default
+
+  font-size: inherit; // Override the `<legend>` default
+  font-style: $Form-label-font-style;
+  font-weight: $Form-label-font-weight;
+  line-height: $Input-line-height;
+
+  color: $Form-label-color;
+}
+
+.Col-form-label-lg {
+  padding-top: calc(#{$Input-padding-y-lg} + #{$Input-border-width});
+  padding-bottom: calc(#{$Input-padding-y-lg} + #{$Input-border-width});
+  font-size: $Input-font-size-lg;
+}
+
+.Col-form-label-sm {
+  padding-top: calc(#{$Input-padding-y-sm} + #{$Input-border-width});
+  padding-bottom: calc(#{$Input-padding-y-sm} + #{$Input-border-width});
+  font-size: $Input-font-size-sm;
+}

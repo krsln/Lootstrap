@@ -1,0 +1,59 @@
+/**
+ * Components - Floating Button
+ *
+ * To make a circle button.
+*/
+
+.Btn-floating {
+  position: relative;
+
+  color: $Btn-floating-color;
+  background-color: $Btn-floating-bg;
+
+  padding: $Btn-floating-padding;
+  border-radius: $Btn-floating-border-radius;
+
+  @include Button-floating-size($Btn-floating-size, $Btn-floating-size, $Btn-floating-size, $Btn-floating-size);
+
+  &.Btn-lg {
+    @include Button-floating-size($Btn-floating-size-lg, $Btn-floating-size-lg, $Btn-floating-size-lg, $Btn-floating-size-lg);
+  }
+
+  &.Btn-sm {
+    @include Button-floating-size($Btn-floating-size-sm, $Btn-floating-size-sm, $Btn-floating-size-sm, $Btn-floating-size-sm);
+  }
+
+  &[class*="Btn-outline-"] {
+    @include Button-floating-fa-size($Btn-floating-outline-size, $Btn-floating-outline-size);
+
+    &.Btn-lg {
+      @include Button-floating-fa-size($Btn-floating-outline-size-lg, $Btn-floating-outline-size-lg);
+    }
+
+    &.Btn-sm {
+      @include Button-floating-fa-size($Btn-floating-outline-size-sm, $Btn-floating-outline-size-sm);
+    }
+  }
+}
+
+.Btn-group {
+  .Btn-group-lg {
+    > .Btn-floating.Btn {
+      @include Button-floating-size($Btn-floating-size-lg, $Btn-floating-size-lg, $Btn-floating-size-lg, $Btn-floating-size-lg);
+    }
+
+    > [class*="Btn-outline-"].Btn-floating.Btn {
+      @include Button-floating-fa-size($Btn-floating-outline-size-lg, $Btn-floating-outline-size-lg);
+    }
+  }
+
+  &.Btn-group-sm {
+    > .Btn-floating.Btn {
+      @include Button-floating-size($Btn-floating-size-sm, $Btn-floating-size-sm, $Btn-floating-size-sm, $Btn-floating-size-sm);
+    }
+
+    > [class*="Btn-outline-"].Btn-floating.Btn {
+      @include Button-floating-fa-size($Btn-floating-outline-size-sm, $Btn-floating-outline-size-sm);
+    }
+  }
+}

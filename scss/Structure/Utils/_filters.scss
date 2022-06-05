@@ -1,0 +1,33 @@
+/**
+ * Utils - Filters ( Colorizing SVG Backgrounds )
+ *
+ * https://css-tricks.com/solved-with-css-colorizing-svg-backgrounds/
+ * The filter CSS property applies graphical effects like blur or color shift to an element. Filters are commonly used to adjust the rendering of images, backgrounds, and borders.
+ * Black images could be turned into white images with filter: invert(100%), than the colorize feature will work here too:
+ * https://codepen.io/sosuke/pen/Pjoqqp
+ * https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
+*/
+
+.F-blur {
+  filter: $F-Blur;
+}
+
+.F-shadow {
+  filter: $F-Shadow;
+}
+
+$utilities-Filter: () !default;
+$utilities-Filter: (
+        "F-<colors>": (
+                Class: F, Properties: filter, Important: true, Values: $Filter-colors,
+        ),
+        "F-blur": (
+                Class: F-blur, Properties: --#{$Prefix}filter-blur, Important: false,
+                Values: (0:0, 1:2px, 2:4px, 3: 6px, 4: 8px),
+        ),
+        "F-shadow": (
+                Class: F-shadow, Properties: --#{$Prefix}drop-shadow, Important: false, Values: $Drop-shadow-map,
+        ),
+);
+
+@include Utilities($utilities-Filter);

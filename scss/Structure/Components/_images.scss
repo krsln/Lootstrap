@@ -1,0 +1,52 @@
+/**
+ * Components - Images
+ *
+ * - Responsive image
+ * - Retina image
+*/
+
+/*@formatter:off*/
+$Thumbnail-padding                  : .25rem !default;
+$Thumbnail-bg                       : inherit !default;
+$Thumbnail-border-width             : $Border-width !default;
+$Thumbnail-border-color             : $Border-color !default;
+$Thumbnail-border-radius            : $Border-radius !default;
+$Thumbnail-box-shadow               : $Shadow !default; //  -sm
+/*@formatter:on*/
+
+// Responsive image
+//
+// Keep images from scaling beyond the width of their parents.
+
+@mixin Img-fluid {
+  // Part 1: Set a maximum relative to the parent
+  max-width: 100%;
+  // Part 2: Override the height to auto, otherwise images will be stretched
+  // when setting a width and height attribute on the img element.
+  height: auto;
+}
+
+// Responsive images (ensure images don't scale beyond their parents)
+//
+// This is purposefully opt-in via an explicit class rather than being the default for all `<img>`s.
+// We previously tried the "images are responsive by default" approach in Bootstrap v2,
+// and abandoned it in Bootstrap v3 because it breaks lots of third-party widgets (including Google Maps)
+// which weren't expecting the images within themselves to be involuntarily resized.
+// See also https://github.com/twbs/bootstrap/issues/18178
+
+.Img-fluid {
+  @include Img-fluid();
+}
+
+// Image thumbnails
+.Img-thumbnail {
+  padding: $Thumbnail-padding;
+  background-color: $Thumbnail-bg;
+  border: $Thumbnail-border-width solid $Thumbnail-border-color;
+
+  @include Rounded($Thumbnail-border-radius);
+  @include Box-shadow($Thumbnail-box-shadow);
+
+  // Keep them at most 100% wide
+  @include Img-fluid();
+}

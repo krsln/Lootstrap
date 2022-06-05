@@ -4,6 +4,7 @@
 /*@formatter:off*/
 $White    : hsl(0, 0%, 100%) !default;
 $Black    : hsl(0,0%,0%) !default;
+
 $Silver   : hsl(0, 0%, 75%) !default;
 $Gray	  :	hsl(213,8%,45%)  !default;
 
@@ -14,30 +15,43 @@ $Yellow   : hsl(45,100%,51%) !default;
 $Cyan     : hsl(180,100%,50%) !default;
 $Magenta  : hsl(300,100%, 50%) !default;
 
-$Purple   : hsl(261,51%,51%) !default;
+//$Purple   : hsl(261,51%,51%) !default;
+
+$Purple   : rgb(160,32,240) !default;
+$Violet   : rgb(143,0,255) !default;
+
 $Green    : hsl(134,61%,41%) !default;
 $Maroon   : hsl(331, 74%, 30%) !default;
 $Navy     : hsl(210, 100%, 12%) !default;
 $Teal     : hsl(162,73%,46%) !default;
 $Olive    : hsl(60,100%, 25%) !default;
 $Orange   : hsl(24,93%,50%) !default;
-$Pink     : hsl(324,79%,60%) !default;
+
+//$Pink     : hsl(324,79%,60%) !default;
+$Pink     : rgb(255,192,203) !default;
+
 $Brown    : hsl(0, 33%, 38%) !default;
 $Indigo   : hsl(270, 100%, 25%) !default;
 
-$Success    : $Green !default;
-$Info       : $Blue !default;
-$Warning    : $Yellow !default;
-$Danger     : $Red !default;
-
-$Primary    : hsl(260,81%,38%) !default;
-$Secondary  : hsl(208,7%,46%) !default;
-$Light      : hsl(210,20%,98%) !default;
-$Dark       : hsl(210,10%,23%) !default;
+/*
+// Theming
+// 2022.02
+*/
+$Night      : hsl(0, 0%, 7%) !default;      // #121212                      => Tint(black, 7%); // #121212
+$Dark       : hsl(240, 7%, 18%) !default;   // #2B2B31  based mixed         => mix(Tint(blue, 15%), Tint(black, 17%), 3%); // #2b2b31
+$Light      : hsl(0, 0%, 98%) !default;     // #FAFAFA  based $mdb-Light    => Shade(white, 2%); // #fafafa
+$Primary    : hsl(217, 96%, 52%) !default;  // #0F69FA  based $bs-Primary
+$Secondary  : hsl(208,7%,46%) !default;     // #6D767E  based $bs-Secondary
+$Success    : hsl(150, 67%, 35%) !default;  // #1D9559  based $bs-Success
+$Danger     : hsl(354,66%,54%) !default;    // #D73C4C  based mixed
+$Warning    : hsl(45, 100%, 45%) !default;  // #E6AC00  based mixed
+$Info       : hsl(195, 90%, 55%) !default;  // #25C0F4  based mixed $bs-Info / $mdb-Info
 /*@formatter:on*/
 
+$Prefix: ls-;
+
 // 'red', 'lime', 'blue', 'yellow', 'cyan', 'magenta', 'purple', 'green', 'maroon', 'navy', 'teal', 'olive', 'orange', 'pink', 'brown', 'indigo', 'white', 'silver', 'gray'
-$colors: (
+$Base-colors: (
         "red" : $Red,
         "lime" : $Lime,
         "blue" : $Blue,
@@ -54,51 +68,72 @@ $colors: (
         "pink" : $Pink,
         "brown" : $Brown,
         "indigo" : $Indigo,
+        "black" : $Black,
         "white" : $White,
         "silver" : $Silver,
         "gray" : $Gray,
 ) !default;
 
-$colors-Theme: (
+// primary, secondary, success, info, warning, danger, light, dark, night
+$Theme-colors: (
+        "light" : $Light,
+        "dark" : $Dark,
+        "night" : $Night,
         "primary" : $Primary,
         "secondary" : $Secondary,
         "success" : $Success,
         "info" : $Info,
         "warning" : $Warning,
-        "danger" : $Danger,
-        "light" : $Light,
-        "dark" : $Dark,
-        "night" : $Black
+        "danger" : $Danger, //"error" : $Danger,
 ) !default;
 
-$theme-Components: (
-        'Theme': null,
-        'Alert':'alert',
-        'Calendar':'calendar',
-        'Card':'card',
-        'Caret':'caret',
-        'Toast':'toast',
-        'Btn':'btn',
-        'Btn-outline':'btn',
-) !default;
+$Muted: hsla(213, 11%, 69%, 1);
 
-$var-Prefix: ls-;
+// Customize the light and dark text colors for use in our color contrast function.
+$Color-contrast-dark: $Black !default;
+$Color-contrast-light: $White !default;
 
 /*
 // Colors
 */
 
-$colors-all: map-merge($colors, $colors-Theme);
+$Colors: map-merge($Base-colors, $Theme-colors);
+//$colors-all: map-merge($colors-all, ("light" : $Light, "dark" : $Dark, "night" : $Night));
 
-$colors-Background-hsla: ();
-$colors-Background-hsla: Color-hsla($colors-all, --ls-bg-alpha, --ls-bg-lightness);
+$Bg-colors-hsla: ();
+$Bg-colors-hsla: Color-hsla($Colors, --#{$Prefix}bg-alpha, --#{$Prefix}bg-lightness);
+$Bg-colors-hsla: map-merge($Bg-colors-hsla, ("transparent": transparent));
 
-$colors-Text-hsla: ();
-$colors-Text-hsla: Color-hsla($colors-all, --ls-text-alpha, --ls-text-lightness);
+$Text-colors-hsla: ();
+$Text-colors-hsla: Color-hsla($Colors, --#{$Prefix}text-alpha, null);
+$Text-colors-hsla: map-merge($Text-colors-hsla, ("muted": $Muted, "reset": inherit,));
 
-$colors-Border-hsla: ();
-$colors-Border-hsla: Color-hsla($colors-all, --ls-border-alpha, --ls-border-lightness);
+$Border-colors-hsla: ();
+$Border-colors-hsla: Color-hsla($Colors, --#{$Prefix}border-alpha, null);
+$Border-colors-hsla: map-merge($Border-colors-hsla, ("transparent": transparent));
 
+/*
+// ===========================================================================
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+// ===========================================================================
+*/
+
+/*@formatter:off*/
+$Enable-rounded                 : true !default;
+$Enable-shadows                 : false !default;
+$Enable-button-pointers         : true !default;
+
+$Enable-gradients               : false !default;
+$Enable-transitions             : true !default;  // _transition.scss mixin
+$Enable-reduced-motion          : true !default;  // _transition.scss mixin
+
+$Enable-grid-classes            : true !default;
+$Enable-container-classes       : true !default;
+
+$Enable-negative-margins        : true;
+/*@formatter:on*/
 
 /*
 // ===========================================================================
@@ -106,96 +141,365 @@ $colors-Border-hsla: Color-hsla($colors-all, --ls-border-alpha, --ls-border-ligh
 // ===========================================================================
 */
 
-$color-Alpha-map: (0: 0, 5: .05, 10: .1, 20: .2, 30: .3, 40: .4, 50: .5, 60: .6, 70: .7, 80: .8, 90: .9, 100: 1) !default;
-$color-Lightness-map: (0:0%, 5: 5%, 10:10%, 20:20%, 30:30%, 40:40%, 50:50%, 60:60%, 70:70%, 80:80%, 90:90%, 100:100%) !default;
-$opacity-map: (0: 0, 10: .1, 20: .2, 30: .3, 40: .4, 50: .5, 60: .6, 70: .7, 80: .8, 90: .9, 100: 1) !default;
-$sizes-percents: (
-        10:10%, 20:20%, 30:30%, 40:40%, 50:50%, 60:60%, 70:70%, 80:80%, 90:90%, 100:100%,
-        25:25%, 75:75%, 33:33.333%, 66:66.666%, auto:auto
+$Color-alpha-map: (0: 0, 5: .05, 10: .1, 20: .2, 30: .3, 40: .4, 50: .5, 60: .6, 70: .7, 80: .8, 90: .9, 100: 1) !default;
+$Color-lightness-map: (0:0%, 5: 5%, 10:10%, 20:20%, 30:30%, 40:40%, 50:50%, 60:60%, 70:70%, 80:80%, 90:90%, 100:100%) !default;
+
+
+/*
+// ==============================================================================================
+// Borders
+// ==============================================================================================
+*/
+
+/*@formatter:off*/
+$Border-color-hsl: var(--#{$Prefix}border-hsl);
+$Border-color: hsla($Border-color-hsl, var(--#{$Prefix}border-alpha));
+$Border: 1px solid $Border-color;
+
+$Border-width   : 1px !default;
+$Border-widths  : (0: 0, 1: 1px, 2: 2px, 3: 3px, 4: 4px, 5: 5px) !default;
+
+$Rounded        : .25rem !default;
+//$Border-radius  : var(--#{$Prefix}border-radius);
+$Border-radius  : $Rounded;
+
+$Rounded-sm     : .20rem !default;
+$Rounded-md     : .375rem !default;
+$Rounded-lg     : .75rem !default;
+$Rounded-xl     : 1.0rem !default;
+$Rounded-xxl    : 1.5rem !default;
+
+$Rounded-pill   : 50rem !default;
+$Rounded-circle : 50% !default;
+
+/*@formatter:on*/
+
+/*
+// ==============================================================================================
+// Transition
+// ==============================================================================================
+*/
+
+$Transition-base: all .2s ease-in-out !default;
+//$Transition-fade:             opacity .15s linear !default;
+//$Transition-collapse:         height .35s ease !default;
+//$Transition-collapse-width:   width .35s ease !default;
+
+/*
+// ==============================================================================================
+// Positioning
+// ==============================================================================================
+*/
+
+$Position-values: (
+        0: 0,
+        50: 50%,
+        100: 100%
 ) !default;
 
 /*
-// Border radius
+// ==============================================================================================
+// Sizing
+// ==============================================================================================
 */
 
-$Rounded: .25rem !default;
-$Rounded-2x: .5rem !default;
-$Rounded-3x: .75rem !default;
-$Rounded-pill: 50rem !default;
+$Sizes-percents: (
+        10:10%, 20:20%, 30:30%, 40:40%, 50:50%, 60:60%, 70:70%, 80:80%, 90:90%, 100:100%,
+        5:5%, 15:15%, 25:25%, 35:35%, 45:45%, 55:55%, 65:65%, 75:75%, 85:85%, 95:95%,
+        33:33.333%, 66:66.666%, auto:auto
+) !default;
 
 /*
-// Border
+// ==============================================================================================
+// Spacing => Margin, Padding
+// ==============================================================================================
 */
 
-$Border-width: 1px !default;
-$Border-widths: (0: 0, 1: 1px, 2: 2px, 3: 3px, 4: 4px, 5: 5px) !default;
-
-/*
-// Spacing
-*/
-
-$spacer: 1rem !default; // 16px
-$spacers-map: (
+$Spacer: 1rem !default;
+$Spacers: (
         0: 0,
-        1: ($spacer * 0.25),
-        2: ($spacer * 0.5),
-        3: ($spacer * 1.00),
-        4: ($spacer * 1.50),
-        5: ($spacer * 3.00),
+        1: ($Spacer * 0.25),
+        2: ($Spacer * 0.5),
+        3: ($Spacer * 1.00),
+        4: ($Spacer * 1.50),
+        5: ($Spacer * 3.00),
 );
-$negative-spacers: (
-        N1: ($spacer * -0.25),
-        N2: ($spacer * -0.5),
-        N3: ($spacer * -1.00),
-        N4: ($spacer * -1.50),
-        N5: ($spacer * -3.00),
-);
+$Spacers-negative: if($Enable-negative-margins, (
+        n1: ($Spacer * -0.25),
+        n2: ($Spacer * -0.5),
+        n3: ($Spacer * -1.00),
+        n4: ($Spacer * -1.50),
+        n5: ($Spacer * -3.00),
+), null) !default;
 
 
-/*
-// Grid System
-// Set the number of columns and specify the width of the gutters.
+
+/**
+ * Typography
+ *
+ * Font, line-height, and color for body text, headings, and more.
 */
 
-$breakpoints-Grid: (none: 0, sm : 480px, md : 768px, lg : 1024px, xl : 1280px, xxl : 1440px);
-$breakpoints-Container: (sm : 480px, md : 768px, lg : 976px, xl : 1232px, xxl : 1376px);
-$responsive-Breakpoints: $breakpoints-Grid;
+/*@formatter:off*/
+// Font family
+$Font-family-sans-serif: //
+        // Cross-platform generic font family (default user interface font)
+        system-ui,
+                // Safari for macOS and iOS (San Francisco)
+        -apple-system,
+                // Windows
+        "Segoe UI",
+                // Android
+        Roboto,
+                // Basic web fallback
+        "Helvetica Neue", Arial,
+                // Linux
+        "Noto Sans",
+        "Liberation Sans",
+                // Sans serif fallback
+        sans-serif,
+                // Emoji fonts
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$Font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$Font-family-base: var(--#{$Prefix}font-sans-serif) !default;
+$Font-family-code: var(--#{$Prefix}font-monospace) !default;
 
-$grid-Columns: 12 !default;
-$grid-Gutter-width: 1.5rem; // 1rem
-$grid-Row-Columns: 6 !default;
+// Font-weight
+$Font-weight-lighter    : lighter !default;
+$Font-weight-light      : 300 !default;
+$Font-weight-normal     : 400 !default;
+$Font-weight-bold       : 700 !default;
+$Font-weight-bolder     : bolder !default;
 
-$gutters-map: $spacers-map !default;
+$Line-height-base       : 1.5 !default;
+$Line-height-sm         : 1.25 !default;
+$Line-height-lg         : 2 !default;
+
+// Font-size
+$Font-size-base         : 1rem !default; // Assumes the browser default, typically `16px`
+$Font-size-sm           : $Font-size-base * .875 !default;
+$Font-size-lg           : $Font-size-base * 1.25 !default;
+
+$H1-font-size: $Font-size-base * 2.5 !default;
+$H2-font-size: $Font-size-base * 2 !default;
+$H3-font-size: $Font-size-base * 1.75 !default;
+$H4-font-size: $Font-size-base * 1.5 !default;
+$H5-font-size: $Font-size-base * 1.25 !default;
+$H6-font-size: $Font-size-base !default;
+
+$Font-sizes: (
+        1: $H1-font-size,
+        2: $H2-font-size,
+        3: $H3-font-size,
+        4: $H4-font-size,
+        5: $H5-font-size,
+        6: $H6-font-size
+) !default;
+/*@formatter:on*/
+
 
 /*
+// ==============================================================================================
 // Shadow
-// Box-shadow with rgba variable
-// --component-shadow-color: 0, 0, 0; // Has to be like this :p
-// https://stackoverflow.com/questions/59250927/box-shadow-with-rgba-variable
-*/
-$Shadow-color: var(--#{$var-Prefix}shadow-color);
-
-$Shadow: 0px 1px 1px -1px rgba($Shadow-color, 0.18), 0px 2px 2px 0px rgba($Shadow-color, 0.12), 0px 4px 6px 0px rgba($Shadow-color, 0.06);
-$Shadow-2x: 0px 1px 1px 0px rgba($Shadow-color, 0.18), 0px 2px 3px 0px rgba($Shadow-color, 0.12), 0px 6px 9px 0px rgba($Shadow-color, 0.06);
-$Shadow-3x: 0px 2px 2px 0px rgba($Shadow-color, 0.18), 0px 3px 4px 0px rgba($Shadow-color, 0.12), 0px 9px 12px 0px rgba($Shadow-color, 0.06);
-
-$Shadow-map: (null: $Shadow, 2x: $Shadow-2x, 3x: $Shadow-3x,);
-$Shadow-map: map-merge($Shadow-map, Shadow-Separator(null, $Shadow));
-$Shadow-map: map-merge($Shadow-map, Shadow-Separator(2x, $Shadow-2x));
-$Shadow-map: map-merge($Shadow-map, Shadow-Separator(3x, $Shadow-3x));
-
-$Drop-shadow: drop-shadow(0px 1px 1px rgba($Shadow-color, 0.72)) drop-shadow(0px 2px 2px rgba($Shadow-color, 0.48)) drop-shadow(0px 4px 6px rgba($Shadow-color, 0.24));
-$Drop-shadow-2x: drop-shadow(0px 1px 1px rgba($Shadow-color, 0.72)) drop-shadow(0px 2px 3px rgba($Shadow-color, 0.48)) drop-shadow(0px 6px 9px rgba($Shadow-color, 0.24));
-$Drop-shadow-3x: drop-shadow(0px 2px 2px rgba($Shadow-color, 0.72)) drop-shadow(0px 3px 4px rgba($Shadow-color, 0.48)) drop-shadow(0px 9px 12px rgba($Shadow-color, 0.24));
-
-$Drop-shadow-map: (0: drop-shadow(0 0 #0000), null: $Drop-shadow, 2x: $Drop-shadow-2x, 3x: $Drop-shadow-3x,);
-
-/*
-// Typography
 //
-// Font, line-height, and color for body text, headings, and more.
+// https://torquemag.io/2022/03/css-box-shadow-tutorial/
+// https://css-tricks.com/almanac/properties/b/box-shadow/
+// box-shadow: [horizontal offset] [vertical offset] [blur radius] [optional spread radius] [color];
+//
+// Box-shadow with rgba variable https://stackoverflow.com/questions/59250927/box-shadow-with-rgba-variable
+// --component-shadow-color: 0, 0, 0; // Has to be like this :p
+// ==============================================================================================
 */
 
-// TODO: font
-$font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-size-base: 1rem !default; // 16px
+$Shadow-color: var(--#{$Prefix}shadow-hsl);
+
+$Shadow-1-inset: inset 0 1px 3px hsla($Shadow-color, 0.12), inset 0 1px 2px hsla($Shadow-color, 0.24);
+$Shadow-1: 0 1px 3px hsla($Shadow-color, 0.12), 0 1px 2px hsla($Shadow-color, 0.24);
+$Shadow-2: 0 3px 6px hsla($Shadow-color, 0.15), 0 3px 6px hsla($Shadow-color, 0.24);
+$Shadow-3: 0 9px 21px hsla($Shadow-color, 0.18), 0 6px 6px hsla($Shadow-color, 0.24);
+$Shadow-4: 0 12px 27px hsla($Shadow-color, 0.24), 0 9px 9px hsla($Shadow-color, 0.21);
+$Shadow-5: 0 18px 36px hsla($Shadow-color, 0.32), 0 15px 12px hsla($Shadow-color, 0.21);
+
+$Shadow: $Shadow-1;
+$Shadow-hover: $Shadow-3;
+$Shadow-inset: $Shadow-1-inset;
+
+$Shadow-map: (
+        inner: $Shadow-inset,
+        null: $Shadow,
+        0: none,
+        1: $Shadow-1,
+        2 : $Shadow-2,
+        3 : $Shadow-3,
+        4 : $Shadow-4,
+        5 : $Shadow-5,
+);
+
+$Drop-shadow-0: drop-shadow(0 0 #0000);
+$Drop-shadow-1: drop-shadow(0 1px 3px hsla($Shadow-color, 0.24)) drop-shadow(0 1px 2px hsla($Shadow-color, 0.48));
+$Drop-shadow-2: drop-shadow(0 3px 6px hsla($Shadow-color, 0.30)) drop-shadow(0 3px 6px hsla($Shadow-color, 0.48));
+$Drop-shadow-3: drop-shadow(0 9px 21px hsla($Shadow-color, 0.32)) drop-shadow(0 6px 6px hsla($Shadow-color, 0.48));
+$Drop-shadow-4: drop-shadow(0 12px 27px hsla($Shadow-color, 0.48)) drop-shadow(0 9px 9px hsla($Shadow-color, 0.42));
+$Drop-shadow-5: drop-shadow(0 18px 36px hsla($Shadow-color, 0.64)) drop-shadow(0 15px 12px hsla($Shadow-color, 0.42));
+
+$Drop-shadow: $Drop-shadow-1;
+$Drop-shadow-map: (
+        null: $Drop-shadow,
+        0: $Drop-shadow-0,
+        1: $Drop-shadow-1,
+        2: $Drop-shadow-2,
+        3: $Drop-shadow-3,
+        4: $Drop-shadow-4,
+        5: $Drop-shadow-5,
+);
+
+//region Grid System
+
+/*@formatter:off*/
+
+/**
+ * Grid breakpoints
+ *
+ * Define the minimum dimensions at which your layout will change,
+ * adapting to different screen sizes, for use in media queries.
+*/
+
+$Grid-breakpoints: (
+        //xs: 0,
+        //sm : 480px,
+        //md : 768px,
+        //lg : 1024px,
+        //xl : 1280px,
+        //xxl : 1440px,
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+);
+
+/**
+ * Grid containers
+ *
+ * Define the maximum width of `.container` for different screen sizes.
+*/
+
+$Container-max-widths: (
+        //sm : 480px,
+        //md : 768px,
+        //lg : 976px,
+        //xl : 1232px,
+        //xxl : 1376px,
+        xs: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px
+);
+
+/**
+ * Grid columns
+ *
+ * Set the number of columns and specify the width of the gutters.
+*/
+
+$Grid-columns           : 12 !default;
+$Grid-row-columns       : 6 !default;
+
+$Grid-gutter-width      : 1.5rem;
+$Gutters                : $Spacers !default;
+
+/**
+ * Container padding
+ *
+*/
+
+$Container-padding-x: $Grid-gutter-width !default;
+
+/*@formatter:on*/
+
+//endregion
+
+
+/**
+ * Filter Colors
+ *
+*/
+
+/*#region Filter Colors */
+
+/*@formatter:off*/
+
+$F-Blur     : blur(var(--#{$Prefix}filter-blur, 0));
+$F-Shadow   : #{var(--#{$Prefix}drop-shadow, drop-shadow(0 0 #0000))};
+
+$F-White    : $F-Blur $F-Shadow invert(1) grayscale(100%) brightness(200%) !default;
+$F-Silver   : $F-Blur $F-Shadow invert(89%) sepia(0%) saturate(7%) hue-rotate(172deg) brightness(91%) contrast(82%) !default; // BFBFBF
+$F-Gray	    : $F-Blur $F-Shadow invert(46%) sepia(2%) saturate(2321%) hue-rotate(174deg) brightness(94%) contrast(86%) !default; // 6A727C
+
+$F-Red      : $F-Blur $F-Shadow invert(31%) sepia(83%) saturate(1382%) hue-rotate(325deg) brightness(87%) contrast(93%) !default; // D73C4C
+$F-Lime     : $F-Blur $F-Shadow invert(70%) sepia(52%) saturate(6787%) hue-rotate(83deg) brightness(127%) contrast(120%) !default; // 00FF00
+$F-Blue     : $F-Blur $F-Shadow invert(23%) sepia(98%) saturate(1650%) hue-rotate(198deg) brightness(104%) contrast(105%) !default; // 0367D8;
+$F-Yellow   : $F-Blur $F-Shadow invert(68%) sepia(88%) saturate(529%) hue-rotate(354deg) brightness(101%) contrast(103%) !default; // FFC105
+$F-Cyan     : $F-Blur $F-Shadow invert(74%) sepia(89%) saturate(1247%) hue-rotate(131deg) brightness(106%) contrast(109%) !default; // 00FFFF
+$F-Magenta  : $F-Blur $F-Shadow invert(17%) sepia(100%) saturate(3641%) hue-rotate(296deg) brightness(117%) contrast(124%) !default; // FF00FF
+
+$F-Purple   : $F-Blur $F-Shadow invert(28%) sepia(68%) saturate(1773%) hue-rotate(242deg) brightness(88%) contrast(88%) !default; // 6F42C2
+$F-Green    : $F-Blur $F-Shadow invert(52%) sepia(15%) saturate(2202%) hue-rotate(82deg) brightness(99%) contrast(86%) !default; // 29A847
+$F-Maroon   : $F-Blur $F-Shadow invert(10%) sepia(85%) saturate(3597%) hue-rotate(317deg) brightness(96%) contrast(92%) !default; // 85144B
+$F-Navy     : $F-Blur $F-Shadow invert(10%) sepia(15%) saturate(7084%) hue-rotate(187deg) brightness(100%) contrast(104%) !default; // 001F3D
+$F-Teal     : $F-Blur $F-Shadow invert(72%) sepia(9%) saturate(3292%) hue-rotate(110deg) brightness(91%) contrast(85%) !default; // 20CB98
+$F-Olive    : $F-Blur $F-Shadow invert(37%) sepia(91%) saturate(1164%) hue-rotate(40deg) brightness(94%) contrast(100%) !default; // 808000
+$F-Orange   : $F-Blur $F-Shadow invert(42%) sepia(21%) saturate(5566%) hue-rotate(2deg) brightness(104%) contrast(93%) !default; // F66809
+$F-Pink     : $F-Blur $F-Shadow invert(40%) sepia(65%) saturate(3659%) hue-rotate(302deg) brightness(103%) contrast(83%) !default; // EA48A9
+$F-Brown    : $F-Blur $F-Shadow invert(20%) sepia(12%) saturate(6107%) hue-rotate(327deg) brightness(103%) contrast(71%) !default; // 814141
+$F-Indigo   : $F-Blur $F-Shadow invert(4%) sepia(86%) saturate(7495%) hue-rotate(259deg) brightness(101%) contrast(101%) !default; // 400080
+
+$F-Success  : $F-Green !default;
+$F-Info     : $F-Blue !default;
+$F-Warning  : $F-Yellow !default;
+$F-Danger   : $F-Red !default;
+
+$F-Primary  : $F-Blur $F-Shadow invert(24%) sepia(68%) saturate(6878%) hue-rotate(257deg) brightness(66%) contrast(115%) !default; // 4712AF
+$F-Secondary: $F-Blur $F-Shadow invert(49%) sepia(8%) saturate(443%) hue-rotate(166deg) brightness(91%) contrast(91%) !default; // 6D767E
+$F-Light    : $F-Blur $F-Shadow invert(100%) sepia(14%) saturate(445%) hue-rotate(176deg) brightness(100%) contrast(97%) !default; // F9FAFB
+$F-Dark     : $F-Blur $F-Shadow invert(21%) sepia(10%) saturate(581%) hue-rotate(169deg) brightness(96%) contrast(92%) !default; // 353B41
+
+$Filter-colors: (
+        "red"     : $F-Red,
+        "lime"    : $F-Lime,
+        "blue"    : $F-Blue,
+        "yellow"  : $F-Yellow,
+        "cyan"    : $F-Cyan,
+        "magenta" : $F-Magenta,
+        "purple"  : $F-Purple,
+        "green"   : $F-Green,
+        "maroon"  : $F-Maroon,
+        "navy"    : $F-Navy,
+        "teal"    : $F-Teal,
+        "olive"   : $F-Olive,
+        "orange"  : $F-Orange,
+        "pink"    : $F-Pink,
+        "brown"   : $F-Brown,
+        "indigo"  : $F-Indigo,
+        "white"   : $F-White,
+        "silver"  : $F-Silver,
+        "gray"    : $F-Gray,
+        // Colors - Theme
+        "primary"   : $F-Primary,
+        "secondary" : $F-Secondary,
+        "success"   : $F-Success,
+        "info"      : $F-Info,
+        "warning"   : $F-Warning,
+        "danger"    : $F-Danger,
+        "light"     : $F-Light,
+        "dark"      : $F-Dark,
+        // NONE
+        "black"     : $F-Dark,
+        "none"      : $F-Dark,
+);
+
+/*@formatter:on*/
+
+/*#endregion */

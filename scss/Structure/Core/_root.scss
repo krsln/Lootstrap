@@ -1,0 +1,22 @@
+/**
+ * Root
+ *
+ * Custom variable values only support SassScript inside `#{0}`.
+*/
+
+:root {
+
+  // Color palette
+  @each $colorKey, $colorValue in $Colors {
+    --#{$Prefix}#{to-lower-case($colorKey)}: #{$colorValue};
+  }
+
+  // Others
+  --#{$Prefix}border-radius: #{$Border-radius};
+  --#{$Prefix}border-alpha: 1; // DONT TOUCH THIS :p
+
+  // Font
+  --#{$Prefix}font-sans-serif: #{inspect($Font-family-sans-serif)};
+  --#{$Prefix}font-monospace: #{inspect($Font-family-monospace)};
+
+}

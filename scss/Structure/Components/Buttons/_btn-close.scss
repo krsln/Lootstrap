@@ -1,0 +1,99 @@
+/**
+ * Components - Close Button
+ *
+*/
+
+.Btn-close {
+  display: inline-block;
+  box-sizing: content-box;
+
+  width: $Btn-close-size;
+  height: $Btn-close-size;
+
+  color: $Btn-close-color;
+  background: SVG-url($Btn-close-default-icon-bg) no-repeat center;
+  background-size: contain;
+  background-clip: inherit;
+
+  padding: $Btn-close-padding;
+  opacity: $Btn-close-opacity;
+
+  border: $Btn-close-border; // for button elements
+  border-radius: $Btn-close-border-radius;
+
+  // Override <a>'s hover style
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+    opacity: $Btn-close-opacity-hover;
+  }
+
+  &:focus {
+    outline: 0;
+    //box-shadow: $btn-close-focus-shadow;
+    opacity: $Btn-close-opacity-focus;
+  }
+
+  &:disabled,
+  &.Disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: $Btn-close-opacity-disabled;
+  }
+}
+
+.Btn-close-white {
+  filter: $Btn-close-white-filter;
+}
+
+/**
+ * Close - Pure Css
+ *
+ * https://stackoverflow.com/questions/18611195/x-close-button-only-using-css (answer - 1)
+*/
+
+.Btn-close-pure {
+  position: relative;
+  width: $Btn-close-size * 2;
+  height: $Btn-close-size * 2;
+
+  padding: $Btn-close-padding;
+  opacity: $Btn-close-opacity;
+
+  color: inherit;
+  background: transparent;
+
+  border: $Btn-close-border; // for button elements
+  border-radius: $Btn-close-border-radius;
+
+  //cursor: pointer;
+  vertical-align: middle;
+
+  &:not(:disabled):not(.Disabled):hover,
+  &:not(:disabled):not(.Disabled):focus {
+    opacity: $Btn-close-opacity-focus;
+  }
+
+  &:disabled, &.Disabled {
+    cursor: default;
+  }
+
+  &:before, &:after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 10%;
+    border-radius: 5px;
+    background-color: currentColor;
+  }
+
+  &:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}

@@ -1,0 +1,111 @@
+@use 'sass:math';
+
+// ===========================================================================
+// Functions - Color
+// ===========================================================================
+
+/*#region Color-contrast-base */
+
+/// Color Relative Luminance Calculator
+/// Relative luminance follows the photometric definition of luminance, but with the values normalized to 1 or 100 for a reference white.
+///
+/// Usage  => Luminance($Dark)
+/// Tested => https://contrastchecker.online/color-relative-luminance-calculator
+/// Adapted from: https://gist.github.com/voxpelli/6304812
+@function Luminance($color) {
+  // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+  $rgba: red($color), green($color), blue($color);
+  $rgba2: ();
+
+  @for $i from 1 through 3 {
+    $rgb: nth($rgba, $i);
+    $rgb: math.div($rgb, 255);
+
+    //$rgb: if($rgb < .03928, $rgb / 12.92, ch-pow(($rgb + .055) / 1.055, 2.4, 16));
+    $rgb: if($rgb < .03928, math.div($rgb, 12.92), math.pow(math.div($rgb + 0.055, 1.055), 2.4));
+
+    $rgba2: append($rgba2, $rgb);
+  }
+
+  @return .2126 * nth($rgba2, 1) + .7152 * nth($rgba2, 2) + 0.0722 * nth($rgba2, 3);
+}
+
+/// Calculate contrast ratio of foreground and background colors and check for Web Content Accessibility Guidelines (WCAG) https://www.w3.org/WAI/standards-guidelines/wcag/.
+///
+// Usage  => Contrast-ratio($Dark, $Light)
+/// Tested => https://contrastchecker.online/
+/// Tested => https://coolors.co/contrast-checker/2b2b31-fafafa
+@function Contrast-ratio($color1, $color2) {
+  // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+  $luminance1: Luminance($color1) + .05;
+  $luminance2: Luminance($color2) + .05;
+  $ratio: math.div($luminance1, $luminance2);
+
+  @if $luminance2 > $luminance1 {
+    $ratio: math.div(1, $ratio);
+  }
+
+  $ratio: math.div(round($ratio * 1000), 1000);
+
+  @return $ratio;
+}
+
+/// Get best Text Color From array, based on bg color
+/// Usage  => Color-contrast($Dark)
+@function Color-contrast-base($base, $colors: ($Color-contrast-dark, $Color-contrast-light), $tolerance: 0) {
+  $best: nth($colors, 1);
+  $contrast: Contrast-ratio($base, $best);
+
+  @for $i from 2 through length($colors) {
+    $currentColor: nth($colors, $i);
+    $currentContrast: Contrast-ratio($base, $currentColor);
+    @if ($currentContrast - $contrast > $tolerance) {
+      $best: $currentColor;
+      $contrast: $currentContrast;
+    }
+  }
+
+  @if ($contrast < 3) {
+    @warn "Contrast ratio of #{$best} on #{$base} is pretty bad, just #{$contrast}";
+  }
+
+  @return $best;
+}
+
+/*#endregion */
+
+// Set Text Color Entirely based on bg color' lightness
+// Results are not quite accurate but OK
+@function Text-color-byLightness($color) {
+  @if (lightness($color) > 50) {
+    @return $Color-contrast-dark; //#000; Lighter background, return dark color
+  } @else {
+    @return $Color-contrast-light; //#fff; Darker background, return light color
+  }
+}
+
+/// Set Text Color Entirely based on bg color (Black or White)
+/// Usage  => @include Text-color-byBrightness($Warning);
+@function Text-color-byBrightness($color) {
+  $color-brightness: round((red($color)*299)+(green($color)*587)+ math.div(blue($color) * 114, 1000));
+  $light-color: round((red(#ffffff)*299)+(green(#ffffff)*587)+ math.div(blue(#ffffff) * 114, 1000));
+
+  @if abs($color-brightness) < math.div($light-color, 2) {
+    @return $Color-contrast-light;
+  } @else {
+    @return $Color-contrast-dark;
+  }
+}
+
+//
+// Main Function => Color-contrast
+//
+
+@function Color-contrast($color) {
+  //$color: Text-color-byLightness($color);
+  $color: Text-color-byBrightness($color);
+  //$color: Color-contrast-base($color);
+  @return if($color, $color, inherit);
+}

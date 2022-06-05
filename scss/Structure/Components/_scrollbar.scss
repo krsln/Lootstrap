@@ -1,0 +1,142 @@
+/**
+ * Components - Scrollbar
+ *
+::-webkit-scrollbar — the entire scrollbar.
+::-webkit-scrollbar-button — the buttons on the scrollbar (arrows pointing upwards and downwards).
+::-webkit-scrollbar-thumb — the draggable scrolling handle.
+::-webkit-scrollbar-track — the track (progress bar) of the scrollbar.
+::-webkit-scrollbar-track-piece — the part of the track (progress bar) not covered by the handle.
+::-webkit-scrollbar-corner — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet.
+::-webkit-resizer — the draggable resizing handle that appears at the bottom corner of some elements.
+*/
+
+/*@formatter:off*/
+$Scrollbar-width                     : .8rem !default;
+
+$Scrollbar-track-bg                  : hsla($Adaptive-bg-accent-hsl, .04) !default;
+$Scrollbar-track-border-width        : 1px !default;
+$Scrollbar-track-border-color        : hsla($Adaptive-bg-accent-hsl, .06) !default;
+$Scrollbar-track-border-radius       : .2rem !default;
+
+$Scrollbar-hover-box-shadow          : inset 0 0 6px hsla($Adaptive-bg-accent-hsl, 0.15) !default;
+
+$Scrollbar-thumb-bg                  : hsla($Adaptive-bg-accent-hsl, .25) !default;
+$Scrollbar-thumb-border-width        : 1px !default;
+$Scrollbar-thumb-border-color        : hsla($Adaptive-bg-accent-hsl, .30) !default;
+$Scrollbar-thumb-border-radius       : .2rem !default;
+
+$Scrollbar-thumb-hover-bg            : hsla($Adaptive-bg-accent-hsl, 0.80) !default;
+$Scrollbar-thumb-hover-border-color  : hsla($Adaptive-bg-accent-hsl, 0.90) !default;
+$Scrollbar-thumb-active              : $Adaptive-bg-accent !default;
+
+/*@formatter:on*/
+
+.Scrollbar {
+  --#{$Prefix}scrollbar-width: #{$Scrollbar-width};
+
+  --#{$Prefix}scrollbar-track-bg: #{$Scrollbar-track-bg};
+  --#{$Prefix}scrollbar-track-border-width: #{$Scrollbar-track-border-width};
+  --#{$Prefix}scrollbar-track-border-color: #{$Scrollbar-track-border-color};
+  --#{$Prefix}scrollbar-track-border-radius: #{$Scrollbar-track-border-radius};
+
+  --#{$Prefix}scrollbar-thumb-bg: #{$Scrollbar-thumb-bg};
+  --#{$Prefix}scrollbar-thumb-border-width: #{$Scrollbar-thumb-border-width};
+  --#{$Prefix}scrollbar-thumb-border-color: #{$Scrollbar-thumb-border-color};
+  --#{$Prefix}scrollbar-thumb-border-radius: #{$Scrollbar-thumb-border-radius};
+
+  scrollbar-gutter: auto;
+
+  &::-webkit-scrollbar {
+    width: var(--#{$Prefix}scrollbar-width); /* Mostly for vertical scrollbars */
+    height: var(--#{$Prefix}scrollbar-width); /* Mostly for horizontal scrollbars */
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  // This represents the base of the scrollbar. We can style it by adding background colors, shadows, border-radius, and borders.
+  &::-webkit-scrollbar-track {
+    border-radius: var(--#{$Prefix}scrollbar-track-border-radius);
+    background: var(--#{$Prefix}scrollbar-track-bg);
+    border: var(--#{$Prefix}scrollbar-track-border-width) solid var(--#{$Prefix}scrollbar-track-border-color);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: var(--#{$Prefix}scrollbar-thumb-border-radius);
+    background: var(--#{$Prefix}scrollbar-thumb-bg);
+    border: var(--#{$Prefix}scrollbar-thumb-border-width) solid var(--#{$Prefix}scrollbar-thumb-border-color);
+
+    background-clip: padding-box;
+
+    &:active {
+      background: $Scrollbar-thumb-active
+    }
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-track {
+      box-shadow: $Scrollbar-hover-box-shadow;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      box-shadow: $Scrollbar-hover-box-shadow;
+
+      &:hover {
+        background: $Scrollbar-thumb-hover-bg;
+        border-color: $Scrollbar-thumb-hover-border-color;
+      }
+    }
+  }
+
+  /// For Internet Explorer
+  & {
+    scrollbar-face-color: $Scrollbar-thumb-active;
+    scrollbar-track-color: $Scrollbar-track-bg;
+  }
+}
+
+//
+// Scrollbar-rounded
+//
+
+.Scrollbar-rounded {
+  --#{$Prefix}scrollbar-track-border-radius: .6rem;
+  --#{$Prefix}scrollbar-thumb-border-radius: .6rem;
+}
+
+//
+// Scrollbar-width
+//
+
+.Scrollbar-2 {
+  --#{$Prefix}scrollbar-width: 1rem;
+}
+
+.Scrollbar-3 {
+  --#{$Prefix}scrollbar-width: 1.1rem;
+}
+
+// NEW APPROACH
+//
+// If you are into the PostCSS thing, there is a postcss-scrollbar plugin though.
+// The idea is that you write the standardized syntax and it makes the vendor prefixes versions to match.
+// Meaning you’re limited in styling choices to what the spec provides, but that’s probably a smart move long-term anyway.
+/*
+.Scrollbar-Test {
+
+  // It works in a way that lets us reserve the space in advance. The default value is auto, and the other value is stable.
+  scrollbar-gutter: stable;
+
+  // Two valid colors. The first applies to the thumb of the scrollbar, the second to the track.
+  //scrollbar-color: #6969dd #e0e0e0;
+  scrollbar-color: hsla($Bg-accent-hsl, 0.40) hsla($Bg-hue-hsl, 0.10);
+  scrollbar-width: thin;
+}
+*/

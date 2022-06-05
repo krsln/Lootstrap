@@ -1,0 +1,141 @@
+/**
+ * Components - Breadcrumb
+ *
+*/
+
+.Breadcrumb {
+  --#{$Prefix}breadcrumb-padding-x: #{$Breadcrumb-padding-x};
+  --#{$Prefix}breadcrumb-padding-y: #{$Breadcrumb-padding-y};
+  --#{$Prefix}breadcrumb-margin-bottom: #{$Breadcrumb-margin-bottom};
+
+  --#{$Prefix}breadcrumb-font-size: #{$Breadcrumb-font-size};
+
+  --#{$Prefix}breadcrumb-bg: #{$Breadcrumb-bg};
+  --#{$Prefix}breadcrumb-color: #{$Breadcrumb-color};
+  --#{$Prefix}breadcrumb-border: #{$Breadcrumb-border};
+  --#{$Prefix}breadcrumb-border-radius: #{$Breadcrumb-border-radius};
+
+  --#{$Prefix}breadcrumb-hover-border-color: #{$Breadcrumb-hover-border-color};
+  --#{$Prefix}breadcrumb-hover-bg: #{$Breadcrumb-hover-bg};
+  --#{$Prefix}breadcrumb-divider-color: #{$Breadcrumb-divider-color};
+
+  --#{$Prefix}breadcrumb-link-padding: #{$Breadcrumb-link-padding};
+  --#{$Prefix}breadcrumb-item-padding-x: #{$Breadcrumb-item-padding-x};
+  --#{$Prefix}breadcrumb-item-active-color: #{$Breadcrumb-active-color};
+
+  position: relative;
+  display: flex;
+
+  flex-wrap: wrap;
+  list-style: none;
+
+  font-family: $Breadcrumb-font-family;
+  font-size: var(--#{$Prefix}breadcrumb-font-size);
+
+  color: var(--#{$Prefix}breadcrumb-color);
+  background-color: var(--#{$Prefix}breadcrumb-bg);
+  border: var(--#{$Prefix}breadcrumb-border);
+  @include Rounded(var(--#{$Prefix}breadcrumb-border-radius));
+
+  padding: var(--#{$Prefix}breadcrumb-padding-y) var(--#{$Prefix}breadcrumb-padding-x);
+  margin-bottom: var(--#{$Prefix}breadcrumb-margin-bottom);
+}
+
+.Breadcrumb-item {
+  position: relative;
+  display: flex;
+  user-select: none;
+
+  align-items: center;
+
+  // The separator between breadcrumbs (by default, a forward-slash: "/")
+  + .Breadcrumb-item {
+    padding-left: var(--#{$Prefix}breadcrumb-item-padding-x);
+
+    &::before {
+      //content: $Breadcrumb-divider;
+      content: var(--#{$Prefix}breadcrumb-divider, $Breadcrumb-divider);
+      color: var(--#{$Prefix}breadcrumb-divider-color);
+
+      float: left; // Suppress inline spacings and underlining of the separator
+      margin-top: -2px;
+      padding-right: var(--#{$Prefix}breadcrumb-item-padding-x);
+    }
+  }
+
+  .Breadcrumb-Link {
+    vertical-align: top;
+    text-decoration: none;
+
+    color: inherit;
+    padding: var(--#{$Prefix}breadcrumb-link-padding);
+    border-bottom: 1px solid transparent;
+  }
+
+  &:not(.Active) {
+    .Breadcrumb-Link {
+      &:hover {
+        border-bottom-color: var(--#{$Prefix}breadcrumb-hover-border-color);
+        background: var(--#{$Prefix}breadcrumb-hover-bg);
+      }
+    }
+  }
+
+  &.Active {
+    font-weight: 600;
+    cursor: default;
+    color: var(--#{$Prefix}breadcrumb-item-active-color);
+  }
+}
+
+//
+// Preset
+//
+
+.Breadcrumb-larger,
+.Breadcrumb-vertical,
+.Breadcrumb-regular {
+  --#{$Prefix}breadcrumb-padding-x: #{$Breadcrumb-padding-x * 2.5};
+  --#{$Prefix}breadcrumb-padding-y: #{$Breadcrumb-padding-y * 2.5};
+  --#{$Prefix}breadcrumb-border: #{$Breadcrumb-preset-border};
+  --#{$Prefix}breadcrumb-border-radius: #{$Breadcrumb-preset-border-radius};
+
+  &:hover {
+    box-shadow: $Breadcrumb-preset-shadow;
+  }
+
+  .Breadcrumb-item {
+    // The separator between breadcrumbs (by default, a forward-slash: "/")
+    + .Breadcrumb-item {
+      //padding-left: .5rem;
+
+      &::before {
+        //display: inline-block;
+        content: "";
+
+        width: 0.50rem;
+        height: 100%;
+
+        margin-top: 2px;
+        margin-right: var(--#{$Prefix}breadcrumb-item-padding-x);
+        //margin-right: 0.30em;
+
+        mask-image: var(--#{$Prefix}breadcrumb-divider, SVG-url($Breadcrumb-preset-default-icon-bg));
+        mask-repeat: no-repeat;
+        mask-position: center;
+        opacity: $Breadcrumb-preset-icon-opacity;
+
+        color: inherit;
+        background-color: var(--#{$Prefix}breadcrumb-divider-color);
+      }
+    }
+  }
+}
+
+.Breadcrumb-larger {
+  --#{$Prefix}breadcrumb-divider: #{SVG-url($Breadcrumb-preset-larger-icon-bg)};
+}
+
+.Breadcrumb-vertical {
+  --#{$Prefix}breadcrumb-divider: #{SVG-url($Breadcrumb-preset-vertical-icon-bg)};
+}

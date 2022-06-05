@@ -1,0 +1,600 @@
+/*@formatter:off*/
+
+// ******************************************************************************************************* //
+// * Adaptive
+// *
+
+$Adaptive-bg-hue-hsl        : var(--#{$Prefix}bg-hue-hsl);
+$Adaptive-bg-hue            : var(--#{$Prefix}bg-hue);
+$Adaptive-fg-hue            : var(--#{$Prefix}fg-hue);
+
+$Adaptive-bg-surface            : var(--#{$Prefix}bg-surface);
+$Adaptive-fg-surface            : var(--#{$Prefix}fg-surface);
+
+$Adaptive-bg-contrast-hsl       : var(--#{$Prefix}contrast-hsl);
+
+$Adaptive-bg-accent-hsl         : var(--#{$Prefix}bg-accent-hsl);
+$Adaptive-bg-accent             : var(--#{$Prefix}bg-accent);
+$Adaptive-fg-accent             : var(--#{$Prefix}fg-accent);
+
+$Adaptive-border-color-hsl      : var(--#{$Prefix}border-hsl);
+$Adaptive-border-color          : hsla($Adaptive-border-color-hsl, 1);
+
+// ******************************************************************************************************* //
+// * Alert
+// *
+
+$Alert-font-family                   : $Font-family-base !default;
+$Alert-padding                       : 1.25rem 1.125rem;
+$Alert-margin-bottom                 : .75rem;
+
+$Alert-border-width                  : $Border-width !default;
+$Alert-border-radius                 : 0.5rem !default;
+$Alert-box-shadow                    : $Shadow;
+
+$Alert-min-width                     : 350px;
+
+$Alert-icon-margin-right             : .5rem;
+$Alert-icon-drop-shadow              : drop-shadow(0 0 hsla($Adaptive-bg-accent-hsl, .25));
+
+// Initial values
+$Alert-init-bg                        : $Adaptive-bg-hue;
+$Alert-init-color                     : $Adaptive-fg-hue;
+$Alert-init-border-color              : hsla($Adaptive-bg-accent-hsl, .5);
+$Alert-init-icon-color                : hsla($Adaptive-bg-accent-hsl, .5);
+
+// ******************************************************************************************************* //
+// * Avatar
+// *
+
+$Avatar-badge-off           : $Danger;
+$Avatar-badge-on            : $Lime;
+
+// ******************************************************************************************************* //
+// * Badge
+// *
+
+$Badge-font-family               : $Font-family-base !default;
+$Badge-font-size                 : .75em;
+$Badge-font-weight               : $Font-weight-bold;
+
+$Badge-bg                        : transparent;
+$Badge-color                     : $White;
+$Badge-color-light               : $Dark; // color for light bg
+$Badge-border-radius             : $Border-radius !default;
+
+$Badge-padding-y                 : .35em !default;
+$Badge-padding-x                 : .65em !default;
+$Badge-box-shadow                : $Shadow;
+
+$Badge-dot-size                  : .5rem;
+$Badge-dot-padding               : 0;
+$Badge-dot-margin-left           : -0.3125rem;
+$Badge-dot-border-radius         : .25rem;
+
+$Badge-notification-font-size    : .6em;
+$Badge-notification-padding      : 0.2em 0.45em;
+$Badge-notification-margin-top   : -0.1rem;
+$Badge-notification-margin-left  : -0.5rem;
+
+// ******************************************************************************************************* //
+// * Breadcrumb
+// *
+
+$Breadcrumb-font-family         : $Font-family-base !default;
+$Breadcrumb-font-size           : inherit;
+
+$Breadcrumb-bg                  : $Adaptive-bg-surface;
+$Breadcrumb-color               : $Adaptive-fg-surface;
+$Breadcrumb-border              : none;
+$Breadcrumb-border-radius       : 0;
+
+$Breadcrumb-margin-bottom       : .50rem;
+$Breadcrumb-padding-y           : .25rem;
+$Breadcrumb-padding-x           : .25rem;
+
+$Breadcrumb-item-padding-x      : .5rem !default;
+$Breadcrumb-link-padding        : .25rem;
+
+$Breadcrumb-divider             : quote("/");
+$Breadcrumb-divider-color       : $Adaptive-bg-accent;
+$Breadcrumb-hover-bg            : hsla($Adaptive-bg-accent-hsl, .01);
+$Breadcrumb-hover-border-color  : hsla($Adaptive-bg-accent-hsl, .25);
+$Breadcrumb-active-color        : inherit;
+
+//$Breadcrumb-default-icon-bg-OLD     : "<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path fill='currentColor' d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z'/></svg>";
+//$Breadcrumb-larger-icon-bg-OLD      : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5.7 9.7'><path fill='none' stroke='rgba(0, 0, 0, 0.6)' stroke-width='1.3' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10' d='M.8 8.8l4-4-4-4'/></svg>";
+$Breadcrumb-preset-default-icon-bg   : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'><polygon fill='currentColor' points='7.75 6.72 6.73 5.63 6.48 5.35 6.22 5.08 1.52 0 0 1.65 4.7 6.72 4.95 7 4.7 7.28 0 12.35 1.52 14 6.22 8.92 6.48 8.65 6.73 8.37 7.75 7.28 8 7 7.75 6.72'/></svg>";
+$Breadcrumb-preset-larger-icon-bg    : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 28'><polygon fill='currentColor' points='11.62 13.45 10.1 11.26 9.71 10.71 9.33 10.16 2.29 0 0 3.29 7.05 13.45 7.43 14 7.05 14.55 0 24.71 2.29 28 9.33 17.84 9.71 17.29 10.1 16.75 11.62 14.55 12 14 11.62 13.45'/></svg>";
+$Breadcrumb-preset-vertical-icon-bg  : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1.5 16'><path fill='currentColor' d='M1.5,15c0,.55-.34,1-.75,1S0,15.55,0,15V1C0,.45.34,0,.75,0s.75.45.75,1Z'/></svg>";
+
+$Breadcrumb-preset-icon-opacity      : .75;
+$Breadcrumb-preset-border            : $Border;
+$Breadcrumb-preset-border-radius     : $Border-radius;
+$Breadcrumb-preset-shadow            : $Shadow;
+
+// ******************************************************************************************************* //
+// * Buttons
+// *
+
+$Btn-font-family              : $Font-family-base !default;
+$Btn-font-weight              : $Font-weight-normal !default;
+$Btn-font-size                : $Font-size-base !default; // .75rem
+$Btn-line-height              : $Line-height-base !default; // 1.5
+
+$Btn-margin                   : .250rem !default;
+$Btn-padding                  : .625rem 1.5rem .5rem;
+
+$Btn-bg                       : inherit;
+$Btn-color                    : inherit;
+$Btn-border-width             : $Border-width !default;
+$Btn-border-color             : hsla(0, 0%, 0%, .03);
+$Btn-border-radius            : $Rounded !default;
+$Btn-box-shadow               : $Shadow-1;
+$Btn-focus-box-shadow         : $Shadow-2;
+// Set to `nowrap` to prevent text wrapping
+$Btn-white-space              : null !default;
+$Btn-transition               : color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+$Btn-disabled-opacity         : .65 !default;
+
+// *
+// * Btn Link
+// *
+
+$Btn-link-color               : $Link-color !default;
+$Btn-link-hover-color         : $Link-hover-color !default;
+$Btn-link-disabled-color      : $Muted !default;
+
+// *
+// * Hover , Active and Disabled states
+// *
+// * Set in Mixins/_button.scss
+
+$Btn-hover-bg-shade-amount      : 15% !default;
+$Btn-hover-bg-tint-amount       : 15% !default;
+$Btn-hover-border-shade-amount  : 20% !default;
+$Btn-hover-border-tint-amount   : 10% !default;
+$Btn-active-bg-shade-amount     : 20% !default;
+$Btn-active-bg-tint-amount      : 20% !default;
+$Btn-active-border-shade-amount : 25% !default;
+$Btn-active-border-tint-amount  : 10% !default;
+
+// *
+// * Btn Sizes
+// *
+
+$Btn-font-size-sm                : $Font-size-base * .750 !default; // .75rem
+$Btn-font-size-lg                : $Font-size-base * .875 !default; // .875rem
+$Btn-line-height-sm              : $Line-height-base * .90 !default; // 1.50
+$Btn-line-height-lg              : $Line-height-base * 1.10 !default; // 1.60 $Line-height-lg
+$Btn-padding-sm                  : .375rem 1.0rem .3125rem;
+$Btn-padding-lg                  : .750rem 1.6875rem .6875rem;
+$Btn-border-radius-sm            : $Rounded-sm;
+$Btn-border-radius-lg            : $Rounded-md;
+$Btn-outline-padding-sm          : .25rem .875rem .1875rem !default;
+$Btn-outline-padding             : .50rem 1.375rem .375rem !default;
+$Btn-outline-padding-lg          : .625rem 1.5625rem .5625rem !default;
+
+// *
+// * Btn-close
+// *
+
+$Btn-close-padding                  : .25em .25em;
+
+$Btn-close-bg                       : inherit;
+$Btn-close-color                    : inherit;
+$Btn-close-border                   : 0 !default;
+$Btn-close-border-radius            : $Rounded !default;
+
+$Btn-close-opacity-disabled         : .25;
+$Btn-close-opacity                  : .50;
+$Btn-close-opacity-hover            : .75;
+$Btn-close-opacity-focus            : 1.0;
+
+$Btn-close-size                     : 1em !default;
+$Btn-close-default-icon-bg          : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23.17 23.17'><rect fill='currentColor' x='-4' y='10.2' width='31.17' height='2.77' rx='1' transform='translate(-4.8 11.58) rotate(-45)'/><rect fill='currentColor' x='10.2' y='-4' width='2.77' height='31.17' rx='1' transform='translate(-4.8 11.58) rotate(-45)'/></svg>";
+$Btn-close-white-filter             : invert(1) grayscale(100%) brightness(200%);
+
+// *
+// * Btn-floating
+// *
+
+$Btn-floating-padding                  : 0 !important;
+
+$Btn-floating-bg                       : null !default;
+$Btn-floating-color                    : null !default;
+$Btn-floating-border-radius            : $Rounded-circle !default;
+
+$Btn-floating-size-sm                  : 1.8125rem !default;
+$Btn-floating-size                     : 2.3125rem !default;
+$Btn-floating-size-lg                  : 2.8125rem !default;
+
+$Btn-floating-outline-size-sm          : $Btn-floating-size-sm - .25; // 1.5625rem;
+$Btn-floating-outline-size             : $Btn-floating-size - .25;    // 2.0625rem;
+$Btn-floating-outline-size-lg          : $Btn-floating-size-lg - .25; // 2.5625rem;
+
+// *
+// * Btn-group
+// *
+
+$Btn-group-margin                      : $Btn-margin !default;
+$Btn-group-border-radius               : $Rounded !default;
+
+// ******************************************************************************************************* //
+// * Card
+// *
+
+$Card-font-family               : $Font-family-base !default;
+
+$Card-bg                        : $Adaptive-bg-surface !default;
+$Card-color                     : $Adaptive-fg-surface !default;
+$Card-border-base               : none !default;
+$Card-border-width              : $Border-width !default;
+$Card-border-color              : $Adaptive-border-color; //,rgba($Black, .01);
+$Card-border-radius             : $Border-radius !default;
+$Card-inner-border-radius       : calc(#{$Border-radius} - #{$Card-border-width}) !default;
+
+$Card-margin-bottom             : .50rem;
+
+$Card-box-shadow                : $Shadow; // null !default;
+$Card-overflow                  : visible;
+$Card-spacer-y                  : $Spacer !default;
+$Card-spacer-x                  : $Spacer !default;
+$Card-title-spacer-y            : $Spacer * .5 !default;
+$Card-cap-padding-y             : $Card-spacer-y * .5 !default;
+$Card-cap-padding-x             : $Card-spacer-x !default;
+$Card-cap-bg                    : hsla($Adaptive-bg-accent-hsl, .05) !default;
+$Card-cap-color                 : null !default;
+$Card-img-overlay-padding       : $Spacer !default;
+
+// ******************************************************************************************************* //
+// * Caret
+// *
+
+$Caret-border-width              : $Border-width !default;
+$Caret-border-color              : $Border-color;
+
+$Caret-init-size                 : 8px;
+
+// &:after is bg, &:before is border
+$Caret-accent                    : $Adaptive-bg-accent;
+$Caret-pseudo-before-bg          : $Border-color;
+$Caret-pseudo-after-fg           : $Adaptive-bg-surface;
+
+// ******************************************************************************************************* //
+// * Carousel
+// *
+
+$Carousel-font-family                 : $Font-family-base !default;
+
+$Carousel-transition-duration         : .6s !default;
+$Carousel-transition-duration         : .6s !default;
+$Carousel-transition                  : transform $Carousel-transition-duration ease-in-out !default;
+
+$Carousel-control-width               : 12% !default;
+$Carousel-control-color               : $White !default;
+$Carousel-control-opacity             : .35 !default;
+$Carousel-control-hover-opacity       : .9 !default;
+$Carousel-control-transition          : opacity .15s ease !default;
+// svg size: 18.63x29.62
+$Carousel-control-icon-width          : 1.125rem !default;
+$Carousel-control-icon-height         : 1.8125rem !default;
+$Carousel-control-next-icon-bg        : "<svg xmlns='http://www.w3.org/2000/svg'><path fill='#{$Carousel-control-color}' d='M18.5,14.52,16.91,13l-1.58-1.57-.64-.63L12.24,8.33,4.76.94a2.91,2.91,0,0,0-4-.23,2.84,2.84,0,0,0,.23,4L8.43,12.1l2.45,2.42a.43.43,0,0,1,0,.63L8.43,17.57,1,25a2.83,2.83,0,0,0-.23,4,2.9,2.9,0,0,0,4-.23l7.48-7.39,2.45-2.42.64-.63,1.58-1.57,1.59-1.56A.43.43,0,0,0,18.5,14.52Z' /></svg>";
+$Carousel-control-prev-icon-bg        : "<svg xmlns='http://www.w3.org/2000/svg'><path fill='#{$Carousel-control-color}' d='M.13,15.15l1.59,1.56,1.59,1.57.63.63,2.45,2.42,7.48,7.39a2.9,2.9,0,0,0,4,.23,2.82,2.82,0,0,0-.23-4L10.2,17.57,7.75,15.15a.45.45,0,0,1,0-.63L10.2,12.1l7.48-7.39a2.83,2.83,0,0,0,.23-4,2.91,2.91,0,0,0-4,.23L6.39,8.33,3.94,10.75l-.63.63L1.72,13,.13,14.52A.45.45,0,0,0,.13,15.15Z' /></svg>";
+
+$Carousel-indicator-width             : 30px !default;
+$Carousel-indicator-height            : 3px !default;
+$Carousel-indicator-spacer            : 3px !default;
+$Carousel-indicator-opacity           : .5 !default;
+$Carousel-indicator-active-bg         : $White !default;
+$Carousel-indicator-active-opacity    : 1 !default;
+$Carousel-indicator-transition        : opacity .6s ease !default;
+$Carousel-indicator-hit-area-height   : 10px !default;
+
+$Carousel-caption-width               : 70% !default;
+$Carousel-caption-spacer              : 1.25rem !default;
+$Carousel-caption-color               : $White !default;
+$Carousel-caption-padding-y           : 1.25rem !default;
+
+$Carousel-dark-indicator-active-bg    : $Black !default;
+$Carousel-dark-caption-color          : $Black !default;
+$Carousel-dark-control-icon-filter    : invert(1) grayscale(100) !default;
+
+// ******************************************************************************************************* //
+// * List
+// *
+
+$List-font-family               : $Font-family-base !default;
+
+$List-bg                        : $Adaptive-bg-surface !default;
+$List-color                     : $Adaptive-fg-surface !default;
+$List-active-color              : $Adaptive-fg-accent !default;
+$List-active-bg                 : $Adaptive-bg-accent !default;
+
+$List-border-width              : $Border-width !default;
+$List-border-color              : $Border-color; //,rgba($Black, .01);
+$List-border-radius             : $Border-radius !default;
+
+$List-active-border-color       : $List-active-bg !default;
+
+$List-item-padding-y            : $Spacer * .5 !default;
+$List-item-padding-x            : $Spacer !default;
+
+$List-action-color              : $List-color !default;
+$List-action-hover-color        : $List-action-color !default;
+$List-action-hover-bg           : hsla($Adaptive-bg-accent-hsl, .08) !default;
+$List-action-active-color       : $List-active-color !default;
+$List-action-active-bg          : $List-active-bg !default;
+
+$List-disabled-color            : $Muted !default;
+$List-disabled-bg               : $List-bg !default;
+
+// ******************************************************************************************************* //
+// * Nav
+// *
+
+$Nav-font-family                : $Font-family-base !default;
+$Nav-link-transition            : color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out !default;
+
+$Nav-link-padding-y            : 1rem !default;
+$Nav-link-padding-x            : 1.75rem !default;
+$Nav-link-border-radius        : $Border-radius !default;
+$Nav-link-font-size            : 12px;
+$Nav-link-font-weight          : 500;
+
+$Nav-link-color                 : #0d6efd !default;
+$Nav-link-bg                    : $Adaptive-bg-surface !default;
+$Nav-link-disabled-color        : $Muted !default;
+
+$Nav-link-active-color          : $Adaptive-fg-accent !default;
+$Nav-link-active-bg             : $Adaptive-bg-accent !default;
+$Nav-link-active-border-color   : $Adaptive-bg-accent !default;
+
+//
+// Tabs classic
+//
+
+$Nav-classic-border-color               : $Border-color !default;
+$Nav-classic-disabled-color             : $Muted !default;
+$Nav-classic-active-bg                  : $Adaptive-bg-surface;
+$Nav-classic-active-color               : $Adaptive-fg-surface;
+
+//
+// Tabs
+//
+
+$Nav-tabs-link-hover-bg              : hsla($Adaptive-bg-contrast-hsl, .02);
+$Nav-tabs-link-hover-color           : hsla($Adaptive-bg-contrast-hsl, 1);
+$Nav-tabs-link-hover-border-color    : $Border-color !default;
+$Nav-tabs-link-active-color          : $Adaptive-bg-accent !default;
+$Nav-tabs-link-active-bg             : transparent !default;
+$Nav-tabs-link-active-border-color   : $Adaptive-bg-accent !default;
+
+//
+// Pills
+//
+
+$Nav-pills-link-bg                  : hsla($Adaptive-bg-contrast-hsl, .05);
+$Nav-pills-link-color               : hsla($Adaptive-bg-contrast-hsl, 1);
+$Nav-pills-link-margin              : 0.5rem;
+$Nav-pills-border-radius            : $Border-radius !default;
+$Nav-pills-link-box-shadow          : $Shadow;
+
+// ******************************************************************************************************* //
+// * Pagination
+// *
+
+$Pagination-font-family              : $Font-family-base !default;
+
+$Pagination-font-size                 : $Font-size-base !default;
+$Pagination-color                     : inherit !default;
+$Pagination-bg                        : inherit !default;
+$Pagination-arrow-color               : hsla($Adaptive-bg-accent-hsl, .50) !default;
+$Pagination-arrow-bg                  : $Pagination-bg !default;
+
+$Pagination-border-radius             : $Border-radius !default;
+$Pagination-border-width              : $Border-width !default;
+$Pagination-border-color              : hsla($Adaptive-bg-accent-hsl, .03) !default;
+
+$Pagination-margin-start              : calc(#{$Pagination-border-width} * -1) !default;
+$Pagination-transition                : color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+$Pagination-focus-color               : $Link-hover-color !default;
+$Pagination-focus-bg                  : hsla($Adaptive-bg-accent-hsl, .20) !default;
+$Pagination-focus-box-shadow          : $Shadow-2 !default;
+$Pagination-focus-outline             : 0 !default;
+
+$Pagination-hover-color               : $Adaptive-bg-accent !default;
+$Pagination-hover-bg                  : hsla($Adaptive-bg-accent-hsl, .10) !default;
+$Pagination-hover-border-color        : hsla($Adaptive-bg-accent-hsl, .20) !default;
+
+$Pagination-active-color              : $Adaptive-fg-accent !default;
+$Pagination-active-bg                 : $Adaptive-bg-accent !default;
+$Pagination-active-border-color       : $Adaptive-bg-accent !default;
+
+$Pagination-disabled-color            : $Muted !default;
+$Pagination-disabled-bg               : transparent !default;
+$Pagination-disabled-border-color     : $Pagination-border-color !default;
+
+// Sizes
+$Pagination-padding-y                   : .375rem !default;
+$Pagination-padding-x                   : .75rem !default;
+$Pagination-padding-y-sm                : .25rem !default;
+$Pagination-padding-x-sm                : .5rem !default;
+$Pagination-padding-y-lg                : .75rem !default;
+$Pagination-padding-x-lg                : 1.5rem !default;
+$Pagination-font-size-sm                : $Font-size-base * .750 !default; // .75rem
+$Pagination-font-size-lg                : $Font-size-base * .875 !default; // .875rem
+$Pagination-border-radius-sm            : $Rounded-sm;
+$Pagination-border-radius-lg            : $Rounded-md;
+
+// ******************************************************************************************************* //
+// * Progress
+// *
+
+$Progress-font-family     : $Font-family-base !default;
+$Progress-height          : .75rem !default;
+$Progress-font-size       : $Font-size-base * .75 !default;
+
+$Progress-bg              : #eee !default;
+$Progress-border-radius   : $Border-radius !default;
+$Progress-box-shadow      : $Shadow-inset !default;
+
+$Progress-bar-color       : $Adaptive-fg-accent !default;
+$Progress-bar-bg          : $Adaptive-bg-accent !default;
+
+$Progress-bar-anim-timing : 1s linear infinite !default;
+$Progress-bar-transition  : width .6s ease !default;
+
+
+// ******************************************************************************************************* //
+// * Spinner
+// *
+
+$Spinner-width                      : 2rem !default;
+$Spinner-height                     : $Spinner-width !default;
+//$Spinner-margin                     : .25rem !default;
+$Spinner-border-width               : .25em !default;
+$Spinner-animation-speed            : .75s !default;
+$Spinner-vertical-align             : -.125em !default;
+// Small
+$Spinner-width-sm                   : 1rem !default;
+$Spinner-height-sm                  : $Spinner-width-sm !default;
+$Spinner-border-width-sm            : .2em !default;
+// Vortex
+$Spinner-vortex-max                 : 3.5rem !default;
+$Spinner-vortex-accent-hsl          : $Adaptive-bg-accent-hsl !default;
+$Spinner-vortex-border-width        : 2px !default;
+$Spinner-vortex-border-color        : hsl(240, 7%, 18%) !default; // Dark
+
+// ROYGBIV or VIBGYOR Rainbow Color Codes: Red, orange, yellow, green, blue, indigo, violet
+// $Spinner-colors: (1 : $Red, 2 : $Orange, 3 : $Yellow, 4 : $Lime, 5: $Blue, 6 : $Purple, 7 : $Magenta, 8 : $Pink,) !default;
+$Spinner-vortex-colors: (
+        1 : #FF0000, 2 : #FF7F00, 3 : #FFFF00, 4 : #00FF00,
+        5 : #0000FF, 6 : #4B0082, 7 : #9400D3, 8 : #FF00FF) !default;
+
+// ******************************************************************************************************* //
+// * Test
+// *
+
+
+
+
+
+// ******************************************************************************************************* //
+// * Table
+// *
+
+$Table-font-family               : $Font-family-base !default;
+
+$Table-accent-bg                 : transparent !default;
+$Table-bg                        : transparent !default;
+$Table-color                     : $Adaptive-fg-surface;
+
+$Table-border-width              : $Border-width !default;
+$Table-border-factor             : .1 !default;
+$Table-border-color              : $Adaptive-border-color; //,rgba($Black, .01);
+
+$Table-striped-color              : $Table-color !default;
+$Table-striped-bg-factor          : .05 !default;
+$Table-striped-bg                 : rgba($Black, $Table-striped-bg-factor) !default;
+$Table-active-color               : $Table-color !default;
+$Table-active-bg-factor           : .1 !default;
+$Table-active-bg                  : rgba($Black, $Table-active-bg-factor) !default;
+$Table-hover-color                : $Table-color !default;
+$Table-hover-bg-factor            : .075 !default;
+$Table-hover-bg                   : rgba($Black, $Table-hover-bg-factor) !default;
+
+$Table-striped-order              : odd !default;
+$Table-striped-columns-order      : even !default;
+
+$Card-margin-bottom               : $Spacer;
+
+$Table-cell-padding-y             : .75rem !default;
+$Table-cell-padding-x             : 1.0rem !default;
+$Table-cell-padding-y-sm          : .375rem !default;
+$Table-cell-padding-x-sm          : 1.00rem !default;
+$Table-cell-vertical-align        : top !default;
+
+$Table-bg-scale                   : -80% !default;
+$Table-variants: (
+        "primary"   : Shift-color($Primary, $Table-bg-scale),
+        "secondary" : Shift-color($Secondary, $Table-bg-scale),
+        "success"   : Shift-color($Success, $Table-bg-scale),
+        "info"      : Shift-color($Info, $Table-bg-scale),
+        "warning"   : Shift-color($Warning, $Table-bg-scale),
+        "danger"    : Shift-color($Danger, $Table-bg-scale),
+        "light"     : $Light,
+        "dark"      : $Dark,
+) !default;
+
+// ******************************************************************************************************* //
+// * Timeline
+// *
+
+$Timeline-font-family               : $Font-family-base !default;
+
+$Timeline-line-color                : $Border-color !default;
+$Timeline-space                     : .750rem;
+
+$Timeline-color                     : $Adaptive-fg-surface !default;
+$Timeline-bg                        : $Adaptive-bg-surface !default;
+
+$Timeline-header-padding            : 1rem;
+$Timeline-badge-width               : 40px !default;
+
+// ******************************************************************************************************* //
+// * TreeView
+// *
+
+$Tree-accent-hsl                  : $Adaptive-bg-accent-hsl !default;
+$Tree-font-family                 : $Font-family-base !default;
+
+$Tree-margin-bottom               : .50rem;
+$Tree-padding-start               : 1rem;
+
+$Tree-separator-bg                : hsla($Tree-accent-hsl, .50);
+
+$Tree-icon-active-color           : $Adaptive-fg-accent;
+$Tree-icon-color                  : $Adaptive-bg-accent;
+
+$Tree-trunk-bg                    : hsla($Adaptive-bg-contrast-hsl, .01);
+$Tree-trunk-hover-bg              : hsla($Tree-accent-hsl, .02);
+$Tree-trunk-child-hover-bg        : hsla($Tree-accent-hsl, .05);
+$Tree-trunk-expanded-border-color : $Border-color;
+
+$Tree-branch-hover-bg             : hsla($Tree-accent-hsl, .10);
+$Tree-branch-hover-border-color   : hsla($Tree-accent-hsl, .20);
+$Tree-branch-active-color         : $Adaptive-fg-accent;
+$Tree-branch-active-bg            : $Adaptive-bg-accent;
+$Tree-branch-active-border-color  : $Adaptive-bg-accent;
+$Tree-branch-disabled-color       : $Muted;
+$Tree-branch-disabled-bg          : hsla($Adaptive-bg-contrast-hsl, .10);
+$Tree-branch-chevron-color        : $Adaptive-bg-accent;
+
+// ******************************************************************************************************* //
+// * Tooltip
+// *
+
+$Tooltip-font-family               : $Font-family-base !default;
+
+$Tooltip-padding-y                 : .3125rem !default;
+$Tooltip-padding-x                 : .625rem !default;
+$Tooltip-border-radius             : $Rounded-md !default;
+$Tooltip-box-shadow                : $Shadow;
+
+$Tooltip-color                     : $Adaptive-fg-surface !default;
+$Tooltip-bg                        : $Adaptive-bg-surface !default;
+$Tooltip-border-width              : 1px !default;
+$Tooltip-border-color              : $Border-color !default;
+
+// ******************************************************************************************************* //
+// * Test
+// *
+
+/*@formatter:on*/
+
+
+/*@formatter:off*/
+
+/*@formatter:on*/

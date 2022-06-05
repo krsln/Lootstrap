@@ -1,0 +1,55 @@
+/*@formatter:off*/
+// hr
+$HR-margin-y              : $Spacer !default;
+$HR-color                 : inherit !default;
+$HR-bg-color              : currentColor !default;
+$HR-border-width          : 0 !default;
+$HR-height                : $Border-width !default;
+$HR-opacity               : .25 !default;
+
+// <h1> - <h6>
+$Headings-margin-bottom   : $Spacer * .5 !default;
+$Headings-font-family     : null !default;
+$Headings-font-style      : null !default;
+$Headings-font-weight     : 500 !default;
+$Headings-line-height     : 1.2 !default;
+$Headings-color           : null !default;
+
+$Paragraph-margin-bottom  : 1rem !default;
+
+$DT-font-weight           : $Font-weight-bold !default;
+$Strong-font-weight       : $Font-weight-bolder !default;
+$Small-font-size          : .875em !default;
+
+$Mark-padding             : .2em !default;
+$Mark-bg                  : #fcf8e3 !default;
+
+$Sub-Sup-font-size: .75em !default;
+
+// Links
+// Style anchor elements.
+$Link-color               : $Primary !default;
+$Link-decoration          : underline !default;
+$Link-shade-percentage    : 20% !default;
+$Link-hover-color         : mix(black, $Link-color, $Link-shade-percentage) !default;
+$Link-hover-decoration    : null !default;
+
+$Code-font-size           : $Small-font-size !default;
+$Code-color               : #d63384 !default;
+$Pre-color                : null !default;
+
+$KBD-padding-y            : .2rem !default;
+$KBD-padding-x            : .4rem !default;
+$KBD-font-size            : $Code-font-size !default;
+$KBD-color                : white !default;
+$KBD-bg                   : #212529 !default;
+$KBD-nested-font-weight   : $Font-weight-bold !default;
+
+$Table-th-font-weight     : null !default;
+$Table-cell-padding-y     : .5rem !default;
+$Table-caption-color      : $Muted !default;
+
+$Legend-margin-bottom     : .5rem !default;
+$Legend-font-size         : 1.5rem !default;
+$Legend-font-weight       : null !default;
+/*@formatter:on*/

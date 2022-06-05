@@ -1,0 +1,42 @@
+/**
+ * Components - Nav Pills
+ *
+*/
+
+.Nav-pills {
+  --#{$Prefix}nav-link-color: #{$Nav-pills-link-color};
+  --#{$Prefix}nav-link-bg: #{$Nav-pills-link-bg};
+
+  --#{$Prefix}nav-link-border-radius: #{$Nav-pills-border-radius};
+  --#{$Prefix}nav-link-box-shadow: #{$Nav-pills-link-box-shadow};
+
+  --#{$Prefix}nav-pills-link-margin: #{$Nav-pills-link-margin};
+
+  margin-left: calc(-1px * var(--#{$Prefix}nav-pills-link-margin));
+
+  .Nav-link {
+    color: var(--#{$Prefix}nav-link-color);
+    background-color: var(--#{$Prefix}nav-link-bg);
+    border: 0;
+
+    //padding: 1rem 1.75rem;
+    margin: var(--#{$Prefix}nav-pills-link-margin);
+
+    &:hover,
+    &:focus {
+      box-shadow: var(--#{$Prefix}nav-link-box-shadow);
+    }
+
+    &.Disabled,
+    &:disabled {
+      color: var(--#{$Prefix}nav-link-disabled-color);
+      background-color: var(--#{$Prefix}nav-link-bg);
+      border-color: inherit;
+    }
+  }
+
+  .Nav-link.Active,
+  .Show > .Nav-link {
+    box-shadow: var(--#{$Prefix}nav-link-box-shadow);
+  }
+}

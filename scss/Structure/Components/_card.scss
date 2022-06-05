@@ -1,0 +1,210 @@
+/**
+ * Components - Card
+ *
+*/
+
+.Card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  word-wrap: break-word;
+  overflow: $Card-overflow;
+
+  font-family: $Card-font-family;
+
+  color: $Card-color;
+  background-color: $Card-bg;
+  background-clip: border-box;
+
+  border: $Card-border-base;
+  border-radius: $Card-border-radius;
+  box-shadow: $Card-box-shadow;
+
+  //padding: 0;
+  margin-bottom: $Card-margin-bottom;
+
+  > hr {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  > .List {
+    border-top: inherit;
+    border-bottom: inherit;
+
+    &:first-child {
+      border-top-width: 0;
+      @include Rounded-top($Card-inner-border-radius);
+    }
+
+    &:last-child {
+      border-bottom-width: 0;
+      @include Rounded-bottom($Card-inner-border-radius);
+    }
+  }
+
+  // Due to specificity of the above selector (`.Card > .List`), we must
+  // use a child selector here to prevent double borders.
+  > .Card-header + .List-group,
+  > .List + .Card-footer {
+    border-top: 0;
+  }
+}
+
+.Card-body {
+  // Enable `flex-grow: 1` for decks and groups so that card blocks take up
+  // as much space as possible, ensuring footers are aligned to the bottom.
+  flex: 1 1 auto;
+  padding: $Card-spacer-y $Card-spacer-x;
+  color: inherit; // $Card-color;
+}
+
+.Card-title {
+  margin-bottom: $Card-title-spacer-y;
+}
+
+.Card-subtitle {
+  margin-top: calc(-.5 * #{$Card-title-spacer-y});
+  margin-bottom: 0;
+}
+
+.Card-text:last-child {
+  margin-bottom: 0;
+}
+
+.Card-link {
+  &:hover {
+    text-decoration: if($Link-hover-decoration == underline, none, null);
+  }
+
+  + .Card-link {
+    margin-left: $Card-spacer-x;
+  }
+}
+
+//
+// Optional textual caps
+//
+
+.Card-header {
+  padding: $Card-cap-padding-y $Card-cap-padding-x;
+  margin-bottom: 0; // Removes the default margin-bottom of <hN>
+
+  color: $Card-cap-color;
+  background-color: $Card-cap-bg;
+  border-bottom: $Card-border-width solid $Card-border-color;
+
+  &:first-child {
+    @include Rounded($Card-inner-border-radius $Card-inner-border-radius 0 0);
+  }
+}
+
+.Card-footer {
+  padding: $Card-cap-padding-y $Card-cap-padding-x;
+
+  color: $Card-cap-color;
+  background-color: $Card-cap-bg;
+  border-top: $Card-border-width solid $Card-border-color;
+
+  &:last-child {
+    @include Rounded(0 0 $Card-inner-border-radius $Card-inner-border-radius);
+  }
+}
+
+//
+// Header navs
+//
+
+.Card-header-tabs {
+  margin-right: calc(-.5 * #{$Card-cap-padding-x});
+  margin-bottom: calc(-1 * #{$Card-cap-padding-y});
+  margin-left: calc(-.5 * #{$Card-cap-padding-x});
+  border-bottom: 0;
+}
+
+.Card-header-pills {
+  margin-right: calc(-.5 * #{$Card-cap-padding-x});
+  margin-left: calc(-.5 * #{$Card-cap-padding-x});
+}
+
+//
+// Card image
+//
+
+.Card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: $Card-img-overlay-padding;
+  @include Rounded($Card-inner-border-radius);
+}
+
+.Card-img,
+.Card-img-top,
+.Card-img-bottom {
+  width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
+}
+
+.Card-img,
+.Card-img-top {
+  @include Rounded-top($Card-inner-border-radius);
+}
+
+.Card-img,
+.Card-img-bottom {
+  @include Rounded-bottom($Card-inner-border-radius);
+}
+
+//
+// Horizontal
+// TODO: ...
+//
+
+.Card-horizontal {
+  flex-direction: row;
+
+  .Card-img {
+    &:not(:empty) {
+      width: 40%;
+    }
+
+    border-top-right-radius: 0;
+    border-bottom-left-radius: $Card-border-radius;
+  }
+
+  .Card-body {
+    width: 60%;
+
+    padding: 0.5rem 1rem;
+  }
+
+  /*
+   * Device = Most of the Smartphones Mobiles (Portrait)
+   * Screen = B/w 320px to 479px
+   * https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
+   */
+  @media (min-width: 320px) and (max-width: 480px) {
+
+    .Card-horizontal {
+      flex-direction: column;
+
+      .Card-body {
+        width: 100%;
+      }
+
+      .Card-img {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: $Card-border-radius;
+
+        &:not(:empty) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

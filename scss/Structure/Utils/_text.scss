@@ -1,0 +1,59 @@
+/**
+ * Utils - Text
+ *
+*/
+
+$utilities-Text: () !default;
+$utilities-Text: (
+  // Font
+        "Font-family": (
+                Class: Font, Properties: font-family, Important: true,
+                Values: (monospace: var(--#{$Prefix}font-monospace))
+        ),
+        "Font-size": (
+                Class: FS, Properties: font-size, Important: true,
+                Values: $Font-sizes
+        ),
+        "Font-style": (
+                Class: FST, Properties: font-style, Important: true, Values: italic normal
+        ),
+        "Font-weight": (
+                Class: FW, Properties: font-weight, Important: true,
+                Values: (
+                        light: $Font-weight-light,
+                        lighter: $Font-weight-lighter,
+                        normal: $Font-weight-normal,
+                        bold: $Font-weight-bold,
+                        bolder: $Font-weight-bolder
+                )
+        ),
+  // Line
+        "Line-height": (
+                Class: LH, Properties: line-height, Important: true,
+                Values: (1: 1, sm: $Line-height-sm, base: $Line-height-base, lg: $Line-height-lg,)
+        ),
+  // Text
+        "Text-align": (
+                Class: Text, Properties: text-align, Important: true, Responsive: true,
+                Values: (start: left, center: center, end: right)
+        ),
+        "Text-decoration": (
+                Class: Text-decoration, Properties: text-decoration, Important: true,
+                Values: (none, underline, line-through, overline,)
+        ),
+        "Text-transform": (
+                Class: Text, Properties: text-transform, Important: true,
+                Values: lowercase uppercase capitalize
+        ),
+        "White-space": (
+                Class: Text, Properties: white-space, Important: true,
+                Values: (wrap: normal, nowrap: nowrap,)
+        ),
+        "Word-wrap": (
+                Class: Text, Properties: word-wrap word-break, Important: true, // rtl: false
+                Values: (break: break-word)
+        ),
+  // Color => for text colors, muted and reset check _color.scss
+);
+
+@include Utilities($utilities-Text);

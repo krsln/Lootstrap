@@ -1,0 +1,126 @@
+// ===========================================================================
+// Mixins - Buttons
+// ===========================================================================
+
+//
+// Border-radius, Padding, Font-size, Line-height
+//
+
+@mixin Button-size-map($sizes) {
+  padding: map-get($sizes, padding);
+  font-size: map-get($sizes, font-size);
+  line-height: map-get($sizes, line-height);
+  border-radius: map-get($sizes, border-radius);
+}
+
+@mixin Button-size($padding, $font-size, $line-height, $border-radius) {
+  padding: $padding;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+@mixin Button-floating-fa-size($icon-w, $icon-lh) {
+  .fa-solid, .fa-regular, .fa-light, .fa-brands,
+  .fa-thin, .fa-duotone, .fab, .far, .fas {
+    width: $icon-w;
+    line-height: $icon-lh;
+  }
+}
+
+@mixin Button-floating-size($w, $h, $icon-w, $icon-lh) {
+  width: $w;
+  height: $h;
+
+  @include Button-floating-fa-size($icon-w, $icon-lh);
+}
+
+//
+// Buttons Variations
+//
+
+@mixin Buttons-regular($bg, $border) {
+  $color: Color-contrast($bg);
+
+  $hover-bg: if($color == $Color-contrast-light, Shade-color($bg, $Btn-hover-bg-shade-amount), Tint-color($bg, $Btn-hover-bg-tint-amount));
+  $hover-color: Color-contrast($hover-bg);
+  $hover-border: if($color == $Color-contrast-light, Shade-color($border, $Btn-hover-border-shade-amount), Tint-color($border, $Btn-hover-border-tint-amount));
+
+  $active-bg: if($color == $Color-contrast-light, Shade-color($bg, $Btn-active-bg-shade-amount), Tint-color($bg, $Btn-active-bg-tint-amount));
+  $active-color: Color-contrast($active-bg);
+  $active-border: if($color == $Color-contrast-light, Shade-color($border, $Btn-active-border-shade-amount), Tint-color($border, $Btn-active-border-tint-amount));
+
+  $disabled-bg: $bg;
+  $disabled-border: $border;
+  $disabled-color: Color-contrast($disabled-bg);
+
+  --#{$Prefix}btn-bg: #{$bg};
+  --#{$Prefix}btn-color: #{$color};
+  --#{$Prefix}btn-border-color: #{$border};
+
+  --#{$Prefix}btn-hover-bg: #{$hover-bg};
+  --#{$Prefix}btn-hover-color: #{$hover-color};
+  --#{$Prefix}btn-hover-border-color: #{$hover-border};
+  //--#{$Prefix}btn-focus-shadow-rgb: #{colorToRGB(mix($color, $border, 15%))};
+
+  --#{$Prefix}btn-active-bg: #{$active-bg};
+  --#{$Prefix}btn-active-color: #{$active-color};
+  --#{$Prefix}btn-active-border-color: #{$active-border};
+  //--#{$Prefix}btn-active-shadow: #{$Btn-active-box-shadow};
+
+  --#{$Prefix}btn-disabled-bg: #{$disabled-bg};
+  --#{$Prefix}btn-disabled-color: #{$disabled-color};
+  --#{$Prefix}btn-disabled-border-color: #{$disabled-border};
+}
+
+@mixin Buttons-outline($bg, $border) {
+  $color: $bg;
+
+  $hover-bg: transparent;
+  $hover-color: darken($bg, 10%);
+  $hover-border: darken($bg, 10%);
+
+  $active-bg: transparent;
+  $active-color: inherit;
+  $active-border: darken($bg, 10%);
+
+  $disabled-bg: transparent;
+  $disabled-border: lighten($bg, 10%);
+  $disabled-color: inherit;
+
+  --#{$Prefix}btn-bg: #{transparent};
+  --#{$Prefix}btn-color: #{$color};
+  //--#{$Prefix}btn-border-width: 2px;
+  --#{$Prefix}btn-border-color: #{$border};
+
+  --#{$Prefix}btn-hover-bg: #{$hover-bg};
+  --#{$Prefix}btn-hover-color: #{$hover-color};
+  --#{$Prefix}btn-hover-border-color: #{$hover-border};
+  //--#{$Prefix}btn-focus-shadow-rgb: #{colorToRGB(mix($color, $border, 15%))};
+
+  --#{$Prefix}btn-active-bg: #{$active-bg};
+  --#{$Prefix}btn-active-color: #{$active-color};
+  --#{$Prefix}btn-active-border-color: #{$active-border};
+  //--#{$Prefix}btn-active-shadow: #{$Btn-active-box-shadow};
+
+  --#{$Prefix}btn-disabled-bg: #{$disabled-bg};
+  --#{$Prefix}btn-disabled-color: #{$disabled-color};
+  --#{$Prefix}btn-disabled-border-color: #{$disabled-border};
+}
+
+@mixin Buttons-gradient($name, $value) {
+  .Btn {
+    &.#{$name}-gradient {
+      color: $White;
+      transition: .5s ease;
+
+      &:hover, &:focus, &:active,
+      &:active:focus &.active {
+        background: linear-gradient(lighten(map-get($value, start), 5%), lighten(map-get($value, end), 5%));
+      }
+    }
+  }
+}
+
+//#region Button mixin
+//#endregion

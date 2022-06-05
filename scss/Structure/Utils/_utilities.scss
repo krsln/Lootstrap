@@ -1,0 +1,159 @@
+/**
+ * Utils - Common Utilities (Rest of all)
+ *
+*/
+
+// Values: Class: *, Properties: *, Important: *, Responsive: *, Values: *, Values: *, Pseudo:*
+$utilities: () !default;
+$utilities: (
+  /*
+  // Opacity
+  */
+        "Opacity": (
+                Class: Opacity, Properties: opacity, Important: true, Responsive: true,
+                Values: (
+                        0: 0, 5: 0.05, 10: 0.1, 15: 0.15, 20: 0.2, 25: 0.25, 30: 0.3, 35: 0.35, 40: 0.4, 45: 0.45, 50: 0.5,
+                        55: 0.55, 60: 0.6, 65: 0.65, 70: 0.7, 75: 0.75, 80: 0.8, 85: 0.85, 90: 0.9, 95: 0.95, 100: 1,
+                )
+        ),
+  /*
+  // Cursor
+  */
+        "Cursor": (
+                Class: Cursor, Properties: cursor, Important: true,
+                Values: (
+                        pointer: pointer,
+                        help: help,
+                        wait: wait,
+                        not-allowed: not-allowed,
+                        zoom-in: zoom-in,
+                        zoom-out: zoom-out,
+                ),
+        ),
+  /*
+  // Align
+  */
+  //"Align": (
+  //        Class: Align, Properties: vertical-align, Important: true, Responsive: true,
+  //        Values: (baseline top middle bottom text-bottom text-top)
+  //),
+  /*
+  // Float
+  */
+        "Float": (
+                Class: Float, Properties: float, Important: true, Responsive: true,
+                Values: (start: left, end: right, none: none,)
+        ),
+  /*
+  // Overflow
+  */
+        "Overflow": (
+                Class: Overflow, Properties: overflow, Important: true,
+                Values: auto hidden visible scroll
+        ),
+  /*
+  // Display
+  */
+        "Display": (
+                Class: D, Properties: display,
+                Important: true, Responsive: true, Print: true,
+                Values: inline inline-block block grid table table-row table-cell flex inline-flex none
+        ),
+  /*
+  // Flex, Flex-direction, Flex-grow, Flex-shrink,Flex-wrap
+  */
+        "Flex": (
+                Class: Flex, Properties: flex, Important: true, Responsive: true,
+                Values: (fill: 1 1 auto)
+        ),
+        "Flex-direction": (
+                Class: Flex, Properties: flex-direction, Important: true, Responsive: true,
+                Values: row column row-reverse column-reverse
+        ),
+        "Flex-grow": (
+                Class: Flex, Properties: flex-grow, Important: true, Responsive: true,
+                Values: (grow-0: 0, grow-1: 1,)
+        ),
+        "Flex-shrink": (
+                Class: Flex, Properties: flex-shrink, Important: true, Responsive: true,
+                Values: (shrink-0: 0, shrink-1: 1,)
+        ),
+        "Flex-wrap": (
+                Class: Flex, Properties: flex-wrap, Important: true, Responsive: true,
+                Values: wrap nowrap wrap-reverse
+        ),
+  /*
+  // Justify content, Align-items, Align-content, Align-self
+  */
+        "Justify-content": (
+                Class: Justify-content, Properties: justify-content, Important: true, Responsive: true,
+                Values: (
+                        start: flex-start, end: flex-end, center: center,
+                        between: space-between, around: space-around, evenly: space-evenly,
+                )
+        ),
+        "Align-items": (
+                Class: Align-items, Properties: align-items, Important: true, Responsive: true,
+                Values: (start: flex-start, end: flex-end, center: center, baseline: baseline, stretch: stretch,)
+        ),
+        "Align-content": (
+                Class: Align-content, Properties: align-content, Important: true, Responsive: true,
+                Values: (start: flex-start, end: flex-end, center: center, between: space-between, around: space-around, stretch: stretch,)
+        ),
+        "Align-self": (
+                Class: Align-self, Properties: align-self, Important: true, Responsive: true,
+                Values: (auto: auto, start: flex-start, end: flex-end, center: center, baseline: baseline, stretch: stretch,)
+        ),
+  /*
+  // Order
+  */
+        "Order": (
+                Class: Order, Properties: order, Important: true, Responsive: true,
+                Values: (first: -1, 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, last: 6)
+        ),
+  /*
+  // Shadow
+  */
+        "Shadow": (
+                Class: Shadow, Properties: box-shadow, Important: true, Values: $Shadow-map
+        ),
+        "Shadow-hover": (
+                Class: Shadow, Properties: box-shadow, Important: true, Pseudo:hover, Values: (null: $Shadow-hover)
+        ),
+  /*
+  // Sizing Width, Height
+  */
+        "Width": (
+                Class: W, Properties: width, Important: true, Responsive: true, Values: $Sizes-percents
+        ),
+        "Max-width": (
+                Class: MW, Properties: max-width, Important: true, Values: (100: 100%)
+        ),
+        "Viewport-width": (
+                Class: VW, Properties: width, Important: true, Values: (100: 100vw)
+        ),
+        "Min-viewport-width": (
+                Class: Min-VW, Properties: min-width, Values: (100: 100vw)
+        ),
+        "Height": (
+                Class: H, Properties: height, Important: true, Values: $Sizes-percents
+        ),
+        "Max-height": (
+                Class: MH, Properties: max-height, Important: true, Values: (100: 100%)
+        ),
+        "Viewport-height": (
+                Class: VH, Properties: height, Important: true, Values: (100: 100vw)
+        ),
+        "Min-viewport-height": (
+                Class: Min-VH, Properties: min-height, Values: (100: 100vh)
+        ),
+  /*
+  // Visibility
+  */
+        "Visibility": (
+                Class: null, Properties: visibility, Important: true,
+                Values: (Visible: visible, Invisible: hidden, Hidden: hidden,)
+        ),
+);
+
+@include Utilities($utilities);

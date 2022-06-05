@@ -1,52 +1,40 @@
 @import '_header.scss';
 
-/*
-// Configuration
-*/
+// Abstract files
+//
+// Abstract partial, there is a file with all the variables, mixins, and similar components.
 
-@import "Abstracts/_dir-functions";
-@import "Abstracts/_dir-mixins";
-@import "Abstracts/variables";
+@import "Abstracts/_dir-abstracts";
 
-/*
-// :root
-*/
+// Vendor Files
+//@import "Vendor/bootstrap.scss";
 
-@import "Architecture/root";
+// Core files
+//
+// The Core partial contains files like typography, resets, and boilerplate code, used across the whole website.
+// Once you write this code, there is no further overwriting.
 
-/*
-// Utils
-*/
-
-@import "Architecture/_dir-utils";
-
-/*
-// Layout & components
-*/
-
-@import "Architecture/_dir-components";
-@import "Architecture/_dir-forms";
-@import "Architecture/_dir-layout";
-@import "Architecture/_dir-svg";
-
-@import "Architecture/anim";
-@import "Architecture/theme";
-
-
-// Vendor
-//@import "Vendor/__vendor-dir";
-
-// Abstracts
-//@import "OLD/Abstracts/__abstracts-dir";
-
-// Core
-//@import "OLD/Core/__core-dir";
+@import "Structure/Core/_dir-core";
 
 // Components
-//@import "OLD/Components/__components-dir";
+//
+// The Components partial contains styles for all components that are to be created for one website,
+// including buttons, carousels, tabs, modals, and the like
+
+@import "Structure/Components/_dir-components";
+
+// Forms
+//
+
+@import "Structure/Forms/_dir-forms";
 
 // Layouts
-//@import "OLD/Layouts/__layouts-dir";
+//
+// The Layout partial has all styles necessary for the layout of the site, i.e., header, footer.
 
-// Themes
-//@import "Themes/__themes-dir";
+@import "Structure/Layouts/_dir-layouts";
+
+// Forms
+//
+
+@import "Structure/Utils/_dir-utils";

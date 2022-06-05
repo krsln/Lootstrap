@@ -1,0 +1,222 @@
+/**
+ * Components - Carousel
+ *
+*/
+
+.Carousel {
+  position: relative;
+  font-family: $Carousel-font-family;
+}
+
+.Carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  @include Clearfix();
+}
+
+.Carousel-item {
+  position: relative;
+  display: none;
+  float: left;
+  width: 100%;
+
+  margin-right: -100%;
+  backface-visibility: hidden;
+  @include Transition($Carousel-transition);
+}
+
+.Carousel-item.Active,
+.Carousel-item-next,
+.Carousel-item-prev {
+  display: block;
+}
+
+.Carousel-item-next:not(.Carousel-item-start),
+.Active.Carousel-item-end {
+  transform: translateX(100%);
+}
+
+.Carousel-item-prev:not(.Carousel-item-end),
+.Active.Carousel-item-start {
+  transform: translateX(-100%);
+}
+
+/**
+ * Alternate transitions
+ *
+*/
+
+.Carousel-fade {
+  .Carousel-item {
+    opacity: 0;
+    transition-property: opacity;
+    transform: none;
+  }
+
+  .Carousel-item.Active,
+  .Carousel-item-next.Carousel-item-start,
+  .Carousel-item-prev.Carousel-item-end {
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .Active.Carousel-item-start,
+  .Active.Carousel-item-end {
+    z-index: 0;
+    opacity: 0;
+    @include Transition(opacity 0s $Carousel-transition-duration);
+  }
+}
+
+/**
+ * Left / right controls for nav
+ *
+*/
+
+.Carousel-control-prev,
+.Carousel-control-next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  // Use flex for alignment (1-3)
+  display: flex; // 1. allow flex styles
+  align-items: center; // 2. vertically center contents
+  justify-content: center; // 3. horizontally center contents
+  width: $Carousel-control-width;
+  padding: 0;
+  color: $Carousel-control-color;
+  text-align: center;
+  background: none;
+  border: 0;
+  opacity: $Carousel-control-opacity;
+  @include Transition($Carousel-control-transition);
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    color: $Carousel-control-color;
+    text-decoration: none;
+    outline: 0;
+    opacity: $Carousel-control-hover-opacity;
+  }
+}
+
+.Carousel-control-prev {
+  left: 0;
+  background-image: if($Enable-gradients, linear-gradient(90deg, rgba($Black, .25), rgba($Black, .001)), null);
+}
+
+.Carousel-control-next {
+  right: 0;
+  background-image: if($Enable-gradients, linear-gradient(270deg, rgba($Black, .25), rgba($Black, .001)), null);
+}
+
+// Icons for within
+.Carousel-control-prev-icon,
+.Carousel-control-next-icon {
+  display: inline-block;
+  width: $Carousel-control-icon-width;
+  height: $Carousel-control-icon-height;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+
+.Carousel-control-prev-icon {
+  background-image: SVG-url($Carousel-control-prev-icon-bg);
+  //@include SVG-background($Carousel-control-prev-icon-bg);
+
+}
+
+.Carousel-control-next-icon {
+  background-image: SVG-url($Carousel-control-next-icon-bg);
+  //@include SVG-background($Carousel-control-next-icon-bg);
+}
+
+/**
+ * Optional indicator pips/controls
+ *
+ * Add a container (such as a list) with the following class and add an item (ideally a focusable control,
+ * like a button) with data-bs-target for each slide your Carousel holds.
+*/
+
+.Carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  // Use the .Carousel-control's width as margin so we don't overlay those
+  margin-right: $Carousel-control-width;
+  margin-bottom: 1rem;
+  margin-left: $Carousel-control-width;
+  list-style: none;
+
+  [data-ls-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: $Carousel-indicator-width;
+    height: $Carousel-indicator-height;
+    padding: 0;
+    margin-right: $Carousel-indicator-spacer;
+    margin-left: $Carousel-indicator-spacer;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: $Carousel-indicator-active-bg;
+    background-clip: padding-box;
+    border: 0;
+    // Use transparent borders to increase the hit area by 10px on top and bottom.
+    border-top: $Carousel-indicator-hit-area-height solid transparent;
+    border-bottom: $Carousel-indicator-hit-area-height solid transparent;
+    opacity: $Carousel-indicator-opacity;
+    @include Transition($Carousel-indicator-transition);
+  }
+
+  .Active {
+    opacity: $Carousel-indicator-active-opacity;
+  }
+}
+
+/**
+ * Optional captions
+ *
+*/
+
+.Carousel-caption {
+  position: absolute;
+
+  right: (100% - $Carousel-caption-width) * .5;
+  bottom: $Carousel-caption-spacer;
+  left: (100% - $Carousel-caption-width) * .5;
+
+  color: $Carousel-caption-color;
+  padding-top: $Carousel-caption-padding-y;
+  padding-bottom: $Carousel-caption-padding-y;
+  text-align: center;
+}
+
+/**
+ * Dark mode
+ *
+*/
+
+.Carousel-dark {
+  .Carousel-control-prev-icon,
+  .Carousel-control-next-icon {
+    filter: $Carousel-dark-control-icon-filter;
+  }
+
+  .Carousel-indicators [data-ls-target] {
+    background-color: $Carousel-dark-indicator-active-bg;
+  }
+
+  .Carousel-caption {
+    color: $Carousel-dark-caption-color;
+  }
+}

@@ -1,7 +1,26 @@
 {
   "name": "@qrsln/lootstrap",
-  "version": "21.11.04-beta.0",
-  "description": "LootStrap is a scss library and is still in beta! There is much to improve! Please keep your expectations low.",
+  "version": "22.6.5-beta.1",
+  "scripts": {
+    "/************        Pre~        ************/": " --- Start --- ",
+    "Clean-dist": "rimraf dist/css",
+    "Change-version": "node build/VersionUpdater.js",
+    "Change-header": "node build/Header.js",
+    "css-pre": "npm-run-all Clean-dist Change-version Change-header",
+    "/************        ~Pre        ************/": " --- End --- ",
+    "css-compile": "sass --style expanded --source-map --embed-sources --no-error-css scss/:dist/css/",
+    "css-clean-main": "cleancss -O1 --format beautify --output dist/css/lootstrap.css dist/css/lootstrap.css",
+    "css-prefix-main": "postcss --config build/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
+    "css-minify-main": "cleancss -O1 --format breakWith=lf --output dist/css/lootstrap.min.css dist/css/lootstrap.css",
+    "sass:Watch": "sass  --watch scss/:dist/css/",
+    "/************        test        ************/": " --- End --- ",
+    "testHeader": "node build/Lootstrap.sh",
+    "/************        /        ************/": " --- End --- ",
+    "css": "npm-run-all css-pre css-compile css-clean-main css-prefix-main css-minify-main",
+    "p:live": "npm run css && npm publish --access public",
+    "p:beta": "npm run css && npm publish --tag beta --access public"
+  },
+  "description": "Lootstrap is a scss library and is still in beta! There is much to improve!",
   "style": "dist/css/lootstrap.css",
   "sass": "scss/lootstrap.scss",
   "repository": {
@@ -9,6 +28,7 @@
     "url": "git+https://github.com/krsln/Lootstrap.git"
   },
   "keywords": [
+    "Lootstrap",
     "css",
     "sass",
     "scss",
@@ -26,29 +46,14 @@
   "bugs": {
     "url": "https://github.com/krsln/Lootstrap/issues"
   },
-  "homepage": "https://github.com/krsln/Lootstrap#readme",
-  "scripts": {
-    "css": "npm-run-all cleaning header css-compile css-clean-main:SassDoesnt css-prefix-main css-minify-main",
-    "cleaning": "rimraf dist/css",
-    "testHeader": "node build/Lootstrap.sh",
-    "header": "node build/Lootstrap.js",
-    "css-compile": "sass --style expanded --source-map --embed-sources --no-error-css scss/:dist/css/",
-    "css-clean-main:SassDoesnt": "cleancss -O1 --format beautify --output dist/css/lootstrap.css dist/css/lootstrap.css",
-    "css-prefix-main": "postcss --config build/postcss.config.js --replace \"dist/css/*.css\" \"!dist/css/*.min.css\"",
-    "css-minify-main": "cleancss -O1 --format breakWith=lf --output dist/css/lootstrap.min.css dist/css/lootstrap.css",
-    "sass:Watch": "sass  --watch scss/:dist/css/",
-    "/************        /        ************/": " --- End --- ",
-    "p:live": "npm run css && npm publish --access public",
-    "p:beta": "npm run css && npm publish --tag beta --access public"
-  },
+  "homepage": "https://krsln.github.io/Showcase/Lootstrap",
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "clean-css-cli": "^5.4.2",
-    "nodemon": "^2.0.14",
+    "autoprefixer": "^10.4.7",
+    "clean-css-cli": "^5.6.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.3.11",
-    "postcss-cli": "^9.0.2",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.43.4"
+    "sass": "^1.52.2"
   }
 }

@@ -1,0 +1,134 @@
+/**
+ * Components - Caret
+ *
+*/
+
+.Caret-top, .Caret-bottom,
+.Caret-end, .Caret-start {
+  --#{$Prefix}caret-border-color: #{$Caret-border-color};
+  --#{$Prefix}caret-border-width: #{$Caret-border-width};
+  --#{$Prefix}caret-size: #{$Caret-init-size};
+  --#{$Prefix}caret-pseudo-before-bg: #{$Caret-pseudo-before-bg};
+  --#{$Prefix}caret-pseudo-after-fg: #{$Caret-pseudo-after-fg};
+
+  position: relative;
+  overflow: visible;
+
+  border: var(--#{$Prefix}caret-border-width) solid var(--#{$Prefix}caret-border-color);
+
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-style: solid;
+
+    width: 0;
+    height: 0;
+
+    z-index: 1;
+    clear: both;
+
+    border-width: #{var(--#{$Prefix}caret-size)};
+  }
+
+  &.Caret-top,
+  &.Caret-bottom {
+    &:after {
+      left: calc(50% - var(--#{$Prefix}caret-size));
+    }
+
+    &:before {
+      left: calc(50% - var(--#{$Prefix}caret-size));
+    }
+  }
+
+  &.Caret-start,
+  &.Caret-end {
+    &:after {
+      top: calc(50% - var(--#{$Prefix}caret-size));
+    }
+
+    &:before {
+      top: calc(50% - var(--#{$Prefix}caret-size));
+    }
+  }
+}
+
+.Caret-top {
+  &:after {
+    bottom: 100%;
+    border-color: transparent transparent var(--#{$Prefix}caret-pseudo-after-fg) transparent; /* top | right | bottom | left */
+  }
+
+  &:before {
+    bottom: calc(100% + 1px);
+    border-color: transparent transparent var(--#{$Prefix}caret-pseudo-before-bg) transparent; /* top | right | bottom | left */
+  }
+}
+
+.Caret-bottom {
+  &:after {
+    top: 100%;
+    border-color: var(--#{$Prefix}caret-pseudo-after-fg) transparent transparent transparent;
+  }
+
+  &:before {
+    top: calc(100% + 1px);
+    border-color: var(--#{$Prefix}caret-pseudo-before-bg) transparent transparent transparent;
+  }
+}
+
+.Caret-end {
+  &:after {
+    left: 100%;
+    border-color: transparent transparent transparent var(--#{$Prefix}caret-pseudo-after-fg);
+  }
+
+  &:before {
+    left: calc(100% + 1px);
+    border-color: transparent transparent transparent var(--#{$Prefix}caret-pseudo-before-bg);
+  }
+}
+
+.Caret-start {
+  &:after {
+    right: 100%;
+    border-color: transparent var(--#{$Prefix}caret-pseudo-after-fg) transparent transparent;
+  }
+
+  &:before {
+    right: calc(100% + 1px);
+    border-color: transparent var(--#{$Prefix}caret-pseudo-before-bg) transparent transparent;
+  }
+}
+
+//
+// Caret colors
+//
+
+@each $key, $color in $Theme-colors {
+  $variant-border: darken($color, 10%);
+  $variant-bg: $color;
+
+  .Caret-#{$key} {
+    --#{$Prefix}caret-border-color: #{$variant-border};
+    --#{$Prefix}caret-pseudo-before-bg: #{$variant-border};
+    --#{$Prefix}caret-pseudo-after-fg: #{$variant-bg};
+  }
+}
+
+.Caret-accent {
+  --#{$Prefix}caret-pseudo-before-bg: #{$Caret-pseudo-before-bg};
+  --#{$Prefix}caret-pseudo-after-fg: #{$Caret-accent};
+}
+
+//
+// Caret Size
+//
+
+@include Utilities((
+        "Caret Size": (
+                Class: Caret, Properties: --#{$Prefix}caret-size, Important: true,
+                Values: (0: 0, 1: 6px, 2: 8px, 3: 10px, 4: 12px, 5: 16px)
+        ),
+));

@@ -1,0 +1,79 @@
+/**
+ * Utils - Bg & Fg & Border Colors
+ *
+*/
+
+// Not: Must be before real class set
+@each $colorKey, $colorValue in $Colors {
+  .Bg-#{$colorKey} {
+    --#{$Prefix}bg-lightness: #{lightness($colorValue)};
+    --#{$Prefix}bg-alpha: 1;
+  }
+
+  .Fg-#{$colorKey} {
+    //--#{$Prefix}text-lightness: #{lightness($colorValue)};
+    --#{$Prefix}text-alpha: 1;
+  }
+
+  .Bc-#{$colorKey} {
+    --#{$Prefix}border-alpha: 1;
+  }
+}
+
+$utilities-Colors: () !default;
+$utilities-Colors: (
+  // New Approach
+        "Bg": (
+                Class: Bg, Properties: background-color, Important: true, Values: $Bg-colors-hsla
+        ),
+        "Fg": (
+                Class: Fg, Properties: color, Important: true, Values: $Text-colors-hsla
+        ),
+        "Bc": (
+                Class: Bc, Properties: border-color, Important: true, Values: $Border-colors-hsla
+        ),
+  // Pseudo Colors
+        "Bg-before-after": (
+                Class: Bg, Properties: background-color, Pseudo: before after, Important: true,
+                Values: (null: var(--#{$Prefix}bg-color))
+        ),
+        "Bg-pseudo": (
+                Class: Bg-pseudo, Properties: --#{$Prefix}bg-color, Values: $Bg-colors-hsla
+        ),
+        "Bc-before-after": (
+                Class: Bc, Properties: border-color, Pseudo: before after, Important: true,
+                Values: (null: var(--#{$Prefix}bc-color))
+        ),
+        "Bc-pseudo": (
+                Class: Bc-pseudo, Properties: --#{$Prefix}bc-color, Values: $Border-colors-hsla
+        ),
+  // Border
+        "Bc-top": (
+                Class: Bc-top, Properties: border-top-color, Important: true, Values: $Border-colors-hsla
+        ),
+        "Bc-right": (
+                Class: Bc-right, Properties: border-right-color, Important: true, Values: $Border-colors-hsla
+        ),
+        "Bc-bottom": (
+                Class: Bc-bottom, Properties: border-bottom-color, Important: true, Values: $Border-colors-hsla
+        ),
+        "Bc-left": (
+                Class: Bc-left, Properties: border-left-color, Important: true, Values: $Border-colors-hsla
+        ),
+  // Alpha
+        "Bg-alpha": (
+                Class: Bg-alpha, Properties: --#{$Prefix}bg-alpha, Values: $Color-alpha-map
+        ),
+        "Fg-alpha": (
+                Class: Fg-alpha, Properties: --#{$Prefix}text-alpha, Values: (25: .25, 50: .5, 75: .75, 100: 1)
+        ),
+        "Bc-alpha": (
+                Class: Bc-alpha, Properties: --#{$Prefix}border-alpha, Values: (25: .25, 50: .5, 75: .75, 100: 1)
+        ),
+  // lightness
+        "Bg-lightness": (
+                Class: Bg-lightness, Properties: --#{$Prefix}bg-lightness, Values: $Color-lightness-map
+        ),
+);
+
+@include Utilities($utilities-Colors);

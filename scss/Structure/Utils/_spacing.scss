@@ -1,0 +1,90 @@
+/**
+ * Utils - Spacing ( Margin, Padding )
+ *
+*/
+
+$utilities-Spacing: () !default;
+$utilities-Spacing: (
+  // Margin
+        "M": (
+                Class: M, Properties: margin, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+        "MX": (
+                Class: MX, Properties: margin-right margin-left, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+        "MY": (
+                Class: MY, Properties: margin-top margin-bottom, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+  // Margin directions
+        "M-top": (
+                Class: MT, Properties: margin-top, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+        "M-end": (
+                Class: ME, Properties: margin-right, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+        "M-bottom": (
+                Class: MB, Properties: margin-bottom, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+        "M-start": (
+                Class: MS, Properties: margin-left, Important: true, Responsive: true,
+                Values: map-merge($Spacers, (auto: auto))
+        ),
+  // Negative Margin
+        "Neg M": (
+                Class: M, Properties: margin, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+        "Neg MX": (
+                Class: MX, Properties: margin-right margin-left, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+        "Neg MY": (
+                Class: MY, Properties: margin-top margin-bottom, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+  // Negative Margin directions
+        "Neg M-top": (
+                Class: MT, Properties: margin-top, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+        "Neg M-end": (
+                Class: ME, Properties: margin-right, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+        "Neg M-bottom": (
+                Class: MB, Properties: margin-bottom, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+        "Neg M-start": (
+                Class: MS, Properties: margin-left, Important: true, Responsive: true, Values: $Spacers-negative
+        ),
+  // Padding
+        "P": (
+                Class: P, Properties: padding, Important: true, Responsive: true, Values: $Spacers
+        ),
+        "PX": (
+                Class: PX, Properties: padding-right padding-left, Important: true, Responsive: true, Values: $Spacers
+        ),
+        "PY": (
+                Class: PY, Properties: padding-top padding-bottom, Important: true, Responsive: true, Values: $Spacers
+        ),
+  // Padding directions
+        "P-top": (
+                Class: PT, Properties: padding-top, Important: true, Responsive: true, Values: $Spacers
+        ),
+        "P-end": (
+                Class: PE, Properties: padding-right, Important: true, Responsive: true, Values: $Spacers
+        ),
+        "P-bottom": (
+                Class: PB, Properties: padding-bottom, Important: true, Responsive: true, Values: $Spacers
+        ),
+        "P-start": (
+                Class: PS, Properties: padding-left, Important: true, Responsive: true, Values: $Spacers
+        ),
+  // Gap utility
+        "Gap": (
+                Class: Gap, Properties: gap, Important: true, Responsive: true, Values: $Spacers
+        ),
+);
+
+@include Utilities($utilities-Spacing);

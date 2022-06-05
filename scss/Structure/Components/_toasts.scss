@@ -1,0 +1,282 @@
+/**
+ * Components - Toasts
+ *
+*/
+
+/*@formatter:off*/
+
+$Toast-font-family                   : $Font-family-base !default;
+$Toast-font-size                     : .875rem !default;
+
+$Toast-min-width                     : 200px !default;
+$Toast-max-width                     : 350px !default;
+$Toast-padding-x                     : .75rem !default;
+$Toast-padding-y                     : .5rem !default;
+$Toast-margin-bottom                 : .75rem;
+$Toast-border-width                  : $Border-width !default;
+$Toast-border-radius                 : $Border-radius !default;
+$Toast-box-shadow                    : $Shadow;
+
+// Initial values
+$Toast-init-bg                        : $Adaptive-bg-surface;
+$Toast-init-color                     : $Adaptive-fg-surface;
+$Toast-init-border-color              : hsla($Adaptive-bg-accent-hsl, .25);
+
+$Toast-init-header-bg                 : $Adaptive-bg-hue;
+$Toast-init-header-color              : $Adaptive-fg-hue;
+$Toast-init-header-border-color       : hsla($Adaptive-bg-accent-hsl, .5);
+$Toast-init-header-icon-color         : hsla($Adaptive-bg-accent-hsl, .5);
+
+
+/*@formatter:on*/
+
+.Toast {
+  --#{$Prefix}toast-padding-x: #{$Toast-padding-x};
+  --#{$Prefix}toast-padding-y: #{$Toast-padding-y};
+  --#{$Prefix}toast-margin-bottom: #{$Toast-margin-bottom};
+  --#{$Prefix}toast-min-width: #{$Toast-min-width};
+  --#{$Prefix}toast-max-width: #{$Toast-max-width};
+  --#{$Prefix}toast-font-size: #{$Toast-font-size};
+
+  --#{$Prefix}toast-color: #{$Toast-init-color};
+  --#{$Prefix}toast-bg: #{$Toast-init-bg};
+  --#{$Prefix}toast-border-color: #{$Toast-init-border-color};
+  --#{$Prefix}toast-border-width: #{$Toast-border-width};
+  --#{$Prefix}toast-border-radius: #{$Toast-border-radius};
+  --#{$Prefix}toast-box-shadow: #{$Toast-box-shadow};
+
+  --#{$Prefix}toast-header-color: #{$Toast-init-header-color};
+  --#{$Prefix}toast-header-bg: #{$Toast-init-header-bg};
+  --#{$Prefix}toast-header-border-color: #{$Toast-init-header-border-color};
+  --#{$Prefix}toast-header-icon-color: #{$Toast-init-header-icon-color};
+
+  position: relative;
+  display: block;
+
+  font-family: $Toast-font-family;
+
+  width: var(--#{$Prefix}toast-max-width);
+  max-width: 100%;
+  min-width: var(--#{$Prefix}toast-min-width);
+
+  margin-bottom: var(--#{$Prefix}toast-margin-bottom);
+  margin-right: auto !important;
+  margin-left: auto !important;
+
+  //@include font-size(var(--#{$Prefix}toast-font-size));
+  font-size: var(--#{$Prefix}toast-font-size);
+  pointer-events: auto;
+
+  color: var(--#{$Prefix}toast-color);
+  background-color: var(--#{$Prefix}toast-bg);
+  background-clip: padding-box;
+  border: var(--#{$Prefix}toast-border-width) solid var(--#{$Prefix}toast-border-color);
+  box-shadow: var(--#{$Prefix}toast-box-shadow);
+  @include Rounded(var(--#{$Prefix}toast-border-radius));
+
+  &.Showing {
+    opacity: 0;
+  }
+
+  &:not(.Show) {
+    display: none;
+  }
+
+  .Progress {
+    position: absolute;
+
+    width: 100%;
+    left: 0;
+    bottom: 0;
+
+    border: none;
+
+    .Progress-bar {
+      color: var(--#{$Prefix}toast-header-color);
+      background-color: var(--#{$Prefix}toast-header-bg);
+    }
+  }
+}
+
+.Toast-header {
+  display: flex;
+  align-items: center;
+  padding: var(--#{$Prefix}toast-padding-y) var(--#{$Prefix}toast-padding-x);
+  margin-top: -1px; // To fix rounded top issue
+
+  color: var(--#{$Prefix}toast-header-color);
+  background-color: var(--#{$Prefix}toast-header-bg);
+  background-clip: padding-box;
+  border-bottom: var(--#{$Prefix}toast-border-width) solid var(--#{$Prefix}toast-header-border-color);
+  @include Rounded-top(calc(var(--#{$Prefix}toast-border-radius) - var(--#{$Prefix}toast-border-width)));
+
+  .Toast-icon {
+    color: var(--#{$Prefix}toast-header-icon-color);
+    font-size: 160%;
+
+    //filter: $Toast-icon-drop-shadow;
+    margin-right: calc(var(--#{$Prefix}toast-padding-x) * .5);
+
+    // Quick fix for NgLootstrap/Notify/Toast custom letter symbol
+    span {
+      line-height: 120%;
+    }
+  }
+
+  .Btn-close {
+    margin-right: calc(var(--#{$Prefix}toast-padding-x) * -.5);
+    margin-left: var(--#{$Prefix}toast-padding-x);
+  }
+
+  .Notify-countdown {
+  }
+}
+
+.Toast-body {
+  padding: var(--#{$Prefix}toast-padding-x);
+  word-wrap: break-word;
+}
+
+
+//
+// Generate contextual modifier classes for colorizing the alert.
+//
+@each $key, $color in $Theme-colors {
+  .Toast-#{$key} {
+    $color-hsl: hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .10);
+    $color-opaque: Opaque(#fff, $color-hsl);
+
+    --#{$Prefix}toast-bg: #{$color-opaque};
+    --#{$Prefix}toast-color: #{Shade-color($color, 75%)};
+    --#{$Prefix}toast-border-color: #{Tint-color($color, 50%)};
+
+    --#{$Prefix}toast-header-bg: #{$color};
+    --#{$Prefix}toast-header-color: #{Color-contrast($color)};
+    --#{$Prefix}toast-header-icon-color: #{Tint-color($color, 75%)};
+    --#{$Prefix}toast-header-border-color: #{Shade-color($color, 20%)};
+
+    .Btn-close {
+      @if (lightness($color) < 80) {
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+    }
+  }
+}
+
+//.Toast {
+//  display: block;
+//  position: relative;
+//  overflow: hidden;
+//
+//  border-top-left-radius: $Border-radius;
+//  border-top-right-radius: $Border-radius;
+//
+//  border: $Border;
+//  box-shadow: $Shadow;
+//
+//  min-width: 200px;
+//  //max-width: 600px;
+//  margin-bottom: .5rem;
+//
+//  align-items: center;
+//
+//  margin-right: auto !important;
+//  margin-left: auto !important;
+//
+//  &.Toast-gradient {
+//    .Toast-header{
+//      background: linear-gradient(180deg, $Bg-lightest 0%, $Bg-lighter 35%, $Bg-hue 100%); // vertical
+//    }
+//    &.Toast-outline {
+//      .Toast-header{
+//        background: linear-gradient(180deg, $Bg-surface 0%, $Bg-lightest 35%, $Bg-lighter 100%); // vertical
+//      }
+//    }
+//  }
+//
+//  &.Toast-outline {
+//    //border: 1px solid hsla($Bg-accent-hsl, .5);
+//
+//    .Toast-header {
+//      color: $Fg-lighter;
+//      background-color: $Bg-lighter;
+//
+//      .Toast-icon {
+//        color: $Bg-accent;
+//      }
+//
+//      .Toast-right {
+//        .Countdown {
+//          color: $Fg-lightest;
+//          background-color: $Bg-lightest;
+//
+//          //border-color: hsla($Bg-accent-hsl, .5);
+//        }
+//      }
+//    }
+//
+//    .Toast-body {
+//      color: $Fg-surface;
+//      background-color: $Bg-surface;
+//    }
+//
+//  }
+//
+//  .Toast-header {
+//    display: flex;
+//    border-bottom: $Border;
+//    padding: .3rem;
+//    align-items: center;
+//
+//    color: $Fg-hue;
+//    background-color: $Bg-hue;
+//
+//    //@include border-radius-Top($Component-border-radius);
+//
+//    .Toast-icon {
+//      display: flex;
+//      font-size: medium;
+//      padding-right: .4rem;
+//
+//      color: $Bg-lightest;
+//      filter: drop-shadow(0 0 hsla($Bg-accent-hsl, .5));
+//    }
+//
+//    .Toast-right {
+//      margin-left: auto;
+//      order: 2;
+//
+//      .Countdown {
+//        position: relative;
+//        display: inline;
+//
+//        vertical-align: top;
+//        font-size: 0.65em;
+//
+//        padding: 0 0.25rem;
+//        margin-right: 3px;
+//        top: 6px;
+//
+//        color: $Fg-lighter;
+//        background-color: $Bg-lighter;
+//        border: 1px solid $Border-color;
+//
+//      }
+//    }
+//  }
+//
+//  .Toast-body {
+//    color: $Fg-surface;
+//    background-color: $Bg-surface;
+//
+//    padding: .75rem;
+//  }
+//
+//  .Progress {
+//    background-color: $Bg-lightest;
+//
+//    .Progress-bar {
+//      background-color: $Bg-accent;
+//    }
+//  }
+//}

@@ -1,0 +1,458 @@
+/*
+// ===========================================================================
+// Forms - Text Inputs + Textarea
+// ===========================================================================
+*/
+
+$form-disabled: $Muted;
+
+/*
+// Sizing
+*/
+
+$font-size-sm: .875rem;
+$font-size: 1rem;
+$font-size-lg: 1.25rem;
+
+.Form-material, .Form-outline,
+.Form {
+  /*
+  // Regular Size
+  */
+  .Form-control, .Form-select {
+    padding: 4px 0;
+    font-size: $font-size;
+
+    + .Form-label {
+      font-size: $font-size;
+    }
+  }
+
+  /*
+  // Small Size
+  */
+
+  %Form-control-sm {
+    padding: 3px 0;
+    font-size: $font-size-sm;
+
+    + .Form-label {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &.Form-sm {
+    .Form-control, .Form-select,
+    .Form-control-sm {
+      @extend %Form-control-sm;
+    }
+  }
+
+  .Form-control-sm {
+    @extend %Form-control-sm;
+  }
+
+  /*
+  // Large Size
+  */
+
+  %Form-control-lg {
+    padding: 5px 0;
+    font-size: $font-size-lg;
+
+    + .Form-label {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &.Form-lg {
+    .Form-control, .Form-select,
+    .Form-control-lg {
+      @extend %Form-control-lg;
+    }
+  }
+
+  .Form-control-lg {
+    @extend %Form-control-lg;
+  }
+}
+
+/*
+// Material (default) inputs
+*/
+
+.Form,
+.Form-material {
+  position: relative;
+  margin: 1.0rem 0;
+  line-height: 1.5;
+
+  $input-label-active-transform: translateY(-85%);
+
+  textarea {
+    padding: 5px;
+  }
+
+  /* Input, Textarea */
+  input, textarea, select {
+    width: 100%;
+
+    color: inherit;
+    background: transparent;
+
+    box-sizing: content-box;
+    outline: none;
+    box-shadow: none;
+
+    //font-weight: 400;
+
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $Border-color;
+
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+  .Form-control, .Form-textarea, .Form-select {
+    // Focused input style
+    &:focus:not([readonly]) {
+      box-shadow: $Shadow-inset;
+      border-color: $Adaptive-bg-accent;
+
+      // Focused label style
+      + label {
+        color: $Adaptive-bg-accent;
+      }
+    }
+
+    /* active state */
+    &:placeholder-shown ~ .Form-label,
+    &:required:valid ~ .Form-label,
+    &:not(:required) ~ .Form-label,
+    &:focus ~ .Form-label {
+      transform: $input-label-active-transform;
+    }
+
+    &:not(:disabled):not(:read-only) {
+      /* Hover */
+      &:hover {
+        border-bottom-color: $Adaptive-bg-accent;
+      }
+
+      /* Focus */
+      &:focus {
+        + .Form-label {
+          color: $Adaptive-bg-accent;
+        }
+      }
+    }
+
+    /* Disabled */
+    &:disabled {
+      color: $form-disabled;
+
+      + .Form-label {
+        color: $form-disabled;
+      }
+    }
+  }
+
+  .Form-select {
+    padding: 5px;
+
+    > option {
+      //border-radius: 25px;
+      color: $Adaptive-fg-surface;
+      background: $Adaptive-bg-surface;
+
+      padding: .5rem;
+      margin: 3px 0;
+      box-shadow: $Shadow-inset;
+
+      &:checked {
+        background: $Adaptive-bg-accent;
+        color: $Adaptive-fg-accent;
+      }
+
+      &:hover, &:active {
+        color: $Adaptive-fg-surface;
+        background-color: $Adaptive-bg-surface;
+      }
+    }
+
+    //&:invalid ~ .Form-label, //&:valid ~ .Form-label,  &:focus ~ .Form-label
+    /* active state */
+    ~ .Form-label {
+      transform: $input-label-active-transform;
+    }
+  }
+
+  // Draw the lines in textarea with each rows
+  .Form-textarea {
+    $textarea-line-height: 2em;
+    $gradient-height: calc(2em - 1px);
+    $line-color: hsla($Border-color-hsl, var(--#{$Prefix}border-alpha));;
+    $background-gradient: linear-gradient(transparent, transparent $gradient-height, $line-color 0px) ;
+
+    /*
+    // How to set a bottom border for every row in a textarea?
+    // You can use gradient as the background image to get an effect that looks like underline:
+    */
+    --#{$Prefix}border-alpha: .3;
+    line-height: $textarea-line-height;
+    background-image: $background-gradient;
+    background-size: 100% $textarea-line-height;
+
+    &:focus:not([readonly]) {
+      //box-shadow: Shadow-mixer($Shadow, $Shadow-inset);
+      background-image: $background-gradient;
+      background-size: 100% $textarea-line-height;
+    }
+  }
+
+  .Form-label {
+    position: absolute;
+    display: block;
+    width: 100%;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+    color: hsla($Adaptive-bg-accent-hsl, 0.6);
+    cursor: text;
+
+    transition: transform .2s ease-out, color .2s ease-out;
+  }
+
+}
+
+/*
+// Outline Style inputs
+*/
+
+.Form-outline {
+  position: relative;
+  display: block;
+  margin: 0.5rem 0;
+  padding-top: 6px;
+  line-height: 1.5;
+
+  $border-passive-color: hsla($Adaptive-bg-accent-hsl, 0.38);
+  $border-hover-color: hsla($Adaptive-bg-accent-hsl, 0.87);
+  $border-active-color: $Adaptive-bg-accent;
+
+  /* Input, Textarea */
+  input, textarea, select {
+    width: 100%;
+    height: inherit;
+
+    box-sizing: border-box;
+    margin: 0;
+    //padding: 15px 13px 15px;
+
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    color: inherit;
+    background: transparent;
+
+    border-radius: 4px;
+    //border: 1px solid $border-passive-color;
+    border: 1px solid $Border-color;
+
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+
+  /* Hover */
+  &:hover {
+    .Form-control {
+
+      &:not(:disabled) {
+        // TODO: When input is empty
+        // TODO: When input has no place holder
+        &:not(:focus):not(:placeholder-shown) {
+          border-color: $border-hover-color;
+
+          + .Form-label:before, + .Form-label:after, {
+            border-top-color: $border-hover-color;
+          }
+        }
+
+        // TODO: When input has place holder
+        &:placeholder-shown {
+          border-color: transparent $border-hover-color $border-hover-color;
+
+          + .Form-label:before, + .Form-label:after, {
+            border-top-color: $border-hover-color;
+          }
+        }
+
+        // TODO: When input is not empty
+        &:required:valid, &:valid {
+          border-color: transparent $border-hover-color $border-hover-color;
+
+          + .Form-label:before, + .Form-label:after, {
+            border-top-color: $border-hover-color;
+          }
+        }
+
+      }
+    }
+  }
+
+  .Form-control, .Form-textarea, .Form-select {
+    /* Corners */
+    + .Form-label {
+      &:before, &:after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        min-width: 10px;
+        height: 8px;
+
+        margin-top: 6px;
+        //border-top: 1px solid hsla($Adaptive-bg-accent-hsl, 0.6);
+        border-top: 1px solid transparent;
+
+        pointer-events: none;
+        box-shadow: inset 0 1px transparent;
+        transition: border 0.2s, box-shadow 0.2s;
+      }
+
+      &:before {
+        margin-right: 4px;
+        border-left: solid 1px transparent;
+        border-radius: 4px 0;
+      }
+
+      &:after {
+        flex-grow: 1;
+        margin-left: 4px;
+        border-right: solid 1px transparent;
+        border-radius: 0 4px;
+      }
+    }
+
+    /* active state */
+    &:placeholder-shown ~ .Form-label,
+    &:required:valid ~ .Form-label,
+    &:not(:required) ~ .Form-label,
+    &:focus ~ .Form-label {
+      line-height: 15px;
+    }
+
+    // Done: When input has place holder
+    &:placeholder-shown {
+      border-color: transparent $border-passive-color $border-passive-color;
+
+      + .Form-label:before, + .Form-label:after, {
+        border-top-color: $border-passive-color;
+      }
+    }
+
+    // TODO: When input is not empty
+    &:required:valid, &:valid {
+      border-color: transparent $border-passive-color $border-passive-color;
+
+      + .Form-label:before, + .Form-label:after, {
+        border-top-color: $border-passive-color;
+      }
+    }
+
+    /* Focus */
+    &:focus {
+      border-color: transparent $border-active-color $border-active-color;
+      box-shadow: inset 1px 0 $Adaptive-bg-accent, inset -1px 0 $Adaptive-bg-accent, inset 0 -1px $Adaptive-bg-accent;
+      outline: none;
+
+      + .Form-label {
+        color: $Adaptive-bg-accent;
+
+        &:before, &:after {
+          border-top-color: $border-active-color;
+          box-shadow: inset 0 1px $Adaptive-bg-accent;
+        }
+      }
+    }
+
+    /* Disabled */
+    &:disabled, &:disabled + .Form-label {
+      //border-color: transparent hsla($Adaptive-bg-accent-hsl, 0.38) hsla($Adaptive-bg-accent-hsl, 0.38) !important;
+      color: hsla($Adaptive-bg-accent-hsl, 0.38);
+      pointer-events: none;
+    }
+  }
+
+  .Form-select {
+    padding: 5px;
+
+    > option {
+      //border-radius: 25px;
+
+      padding: .5rem;
+      margin: 3px 0;
+      box-shadow: $Shadow-inset;
+
+      &:checked {
+        background: $Adaptive-bg-accent;
+        color: $Adaptive-fg-accent;
+      }
+
+      &:hover, &:active {
+        color: $Adaptive-fg-surface;
+        background-color: $Adaptive-bg-surface;
+      }
+    }
+
+    /* active state */
+    ~ .Form-label {
+      line-height: 15px;
+    }
+  }
+
+  // Draw the lines in textarea with each rows
+  .Form-textarea {
+    $textarea-line-height: 2em;
+    $gradient-height: calc(2em - 1px);
+    $line-color: hsla($Border-color-hsl, var(--#{$Prefix}border-alpha));
+
+    $background-gradient: linear-gradient(transparent, transparent $gradient-height, $line-color 0px) ;
+
+    /*
+    // How to set a bottom border for every row in a textarea?
+    // You can use gradient as the background image to get an effect that looks like underline:
+    */
+    --#{$Prefix}border-alpha: .3;
+    line-height: $textarea-line-height;
+    background-image: $background-gradient;
+    background-size: 100% $textarea-line-height;
+
+    &:focus:not([readonly]) {
+      //box-shadow: Shadow-mixer($Shadow, $Shadow-inset);
+      background-image: $background-gradient;
+      background-size: 100% $textarea-line-height;
+    }
+  }
+
+  .Form-label {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+    color: hsla($Adaptive-bg-accent-hsl, 0.6);
+    cursor: text;
+
+    //font-size: 75%;
+    //line-height: 15px;
+    line-height: 50px;
+    transition: color 0.2s, font-size 0.2s, line-height 0.2s;
+  }
+
+}

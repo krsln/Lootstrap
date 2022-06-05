@@ -1,0 +1,41 @@
+
+// TODO: Bg-gradient
+.Bg-gradient {
+  background-image: var(--#{$Prefix}gradient) !important;
+}
+
+.Bg-accent {
+  background-color: var(--#{$Prefix}bg-accent) !important;
+}
+
+.Fg-accent {
+  color: var(--#{$Prefix}bg-accent) !important;
+}
+
+.Bg-image {
+  display: inline-block;
+  color: inherit;
+
+  background: var(--#{$Prefix}background);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  background-clip: inherit;
+}
+
+.Bg-mask {
+  display: inline-block;
+  background-color: black;
+
+  mask: var(--#{$Prefix}background);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  mask-clip: inherit;
+}
+
+.Bg-image-test {
+  --#{$Prefix}background: none;
+}

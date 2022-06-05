@@ -1,0 +1,168 @@
+/**
+ * Components - Spinner
+ *
+*/
+
+//
+// Rotating border
+//
+
+.Spinner-grow,
+.Spinner-border {
+  display: inline-block;
+
+  width: var(--#{$Prefix}spinner-width);
+  height: var(--#{$Prefix}spinner-height);
+  vertical-align: var(--#{$Prefix}spinner-vertical-align);
+
+  border-radius: 50%;
+  animation: var(--#{$Prefix}spinner-animation-speed) linear infinite var(--#{$Prefix}spinner-animation-name);
+
+  + .Spinner-grow,
+  + .Spinner-border {
+    margin-left: .25rem;
+  }
+}
+
+@keyframes Keyframe-SpinnerBorder {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.Spinner-border {
+  // scss-docs-start spinner-border-css-vars
+  --#{$Prefix}spinner-width: #{$Spinner-width};
+  --#{$Prefix}spinner-height: #{$Spinner-height};
+  --#{$Prefix}spinner-vertical-align: #{$Spinner-vertical-align};
+  --#{$Prefix}spinner-border-width: #{$Spinner-border-width};
+  --#{$Prefix}spinner-animation-speed: #{$Spinner-animation-speed};
+  --#{$Prefix}spinner-animation-name: Keyframe-SpinnerBorder;
+  // scss-docs-end spinner-border-css-vars
+
+  border: var(--#{$Prefix}spinner-border-width) solid currentcolor;
+  border-right-color: transparent;
+}
+
+//
+// Growing circle
+//
+
+@keyframes Keyframe-SpinnerGrow {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.Spinner-grow {
+  --#{$Prefix}spinner-width: #{$Spinner-width};
+  --#{$Prefix}spinner-height: #{$Spinner-height};
+  --#{$Prefix}spinner-vertical-align: #{$Spinner-vertical-align};
+  --#{$Prefix}spinner-animation-speed: #{$Spinner-animation-speed};
+  --#{$Prefix}spinner-animation-name: Keyframe-SpinnerGrow;
+
+  background-color: currentcolor;
+  opacity: 0;
+}
+
+@if $Enable-reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    .Spinner-border,
+    .Spinner-grow {
+      --#{$Prefix}spinner-animation-speed: #{$Spinner-animation-speed * 2};
+    }
+  }
+}
+
+//
+// Small size Spinner
+//
+
+.Spinner-sm {
+  --#{$Prefix}spinner-width: #{$Spinner-width-sm};
+  --#{$Prefix}spinner-height: #{$Spinner-height-sm};
+  --#{$Prefix}spinner-border-width: #{$Spinner-border-width-sm};
+}
+
+//
+// Spinner-vortex
+//
+
+.Spinner-vortex {
+  position: relative;
+  display: inline-block;
+
+  //min-width: 25px;
+  //min-height: 25px;
+  width: 100%;
+  height: 100%;
+  max-width: $Spinner-vortex-max;
+  max-height: $Spinner-vortex-max;
+
+  span {
+    position: absolute;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    margin: auto;
+
+    left: 0;
+    right: 0;
+
+    &:before {
+      position: absolute;
+      display: inline-block;
+      width: 100%;
+      height: 50%;
+
+      border-radius: 50%;
+      border: $Spinner-vortex-border-width solid $Spinner-vortex-border-color;
+
+      content: " ";
+      top: 0;
+      transform: scale(0);
+    }
+
+    @for $index from 1 through 8 {
+      &:nth-child(7n+#{$index}) {
+        transform: rotate(45 * $index * 1deg);
+
+        &:before {
+          animation: Keyframe-opacity 0.8s linear ($index * 0.1s) normal none infinite running;
+
+        // Colored
+          background-color: map-get($Spinner-vortex-colors, $index);
+        }
+      }
+    }
+
+  }
+
+  &.Quadratic {
+    width: 90%;
+    height: 90%;
+
+    span {
+      &:before {
+        border-radius: 0;
+      }
+    }
+  }
+
+  &.Adaptive {
+    span {
+      @for $index from 1 through 8 {
+        &:nth-child(7n+#{$index}) {
+          &:before {
+            background-color: hsla($Spinner-vortex-accent-hsl, $index * 12%);
+          }
+        }
+      }
+    }
+  }
+
+}

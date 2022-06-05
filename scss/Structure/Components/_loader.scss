@@ -1,0 +1,77 @@
+/**
+ * Components - Loader
+ *
+ * https://medium.com/@pppped/how-to-code-a-responsive-circular-percentage-chart-with-svg-and-css-3632f8cd7705
+*/
+
+/*@formatter:off*/
+$Loader-font-family              : $Font-family-base !default;
+
+$Loader-outer-circle-bg       : #ccc;
+/*@formatter:on*/
+
+.Loader {
+  --#{$Prefix}loader-status: inherit;
+  --#{$Prefix}loader-per: 0;
+
+  display: flex;
+
+  font-family: $Loader-font-family;
+
+  .Centered {
+
+    .Loader-text:not(text) {
+      display: inline-block;
+      position: absolute;
+
+      font-weight: bold;
+      font-size: 100%;
+
+      @include media-breakpoint-up(md) {
+        font-size: 200%;
+      }
+
+      &:before {
+        content: var(--#{$Prefix}loader-status, attr(data-ls-status));
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+
+      text, text.Loader-text {
+        fill: currentColor;
+        dominant-baseline: central;
+        text-anchor: middle;
+
+        font-weight: bold;
+      }
+
+      circle, path {
+        fill: none;
+
+        stroke-width: 4%;
+        stroke-linecap: butt;
+      }
+
+      .Loader-bg {
+        stroke: $Loader-outer-circle-bg;
+      }
+
+      .Loader-fg {
+        stroke: currentColor;
+        animation: Keyframe-loader 1s ease-out forwards;
+
+        stroke-dasharray: var(--#{$Prefix}loader-per, 0), 100;
+        transition: stroke-dasharray 0.4s cubic-bezier(0.04, 0.24, 0.18, 1);
+      }
+    }
+  }
+}
+
+@keyframes Keyframe-loader {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}

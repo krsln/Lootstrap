@@ -1,0 +1,319 @@
+// ===========================================================================
+// Components - Navbar
+// ===========================================================================
+$Bg-accent: var(--#{$Prefix}bg-accent);
+$Fg-accent: var(--#{$Prefix}fg-accent);
+
+.Navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 0.5625rem;
+  padding-bottom: 0.5rem;
+
+  box-shadow: $Shadow;
+
+  // Because flex properties aren't inherited, we need to redeclare these first
+  // few properties so that content nested within behave properly.
+  // The `flex-wrap` property is inherited to simplify the expanded navbars
+  %container-flex-properties {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  > .Container,
+  > .Container-fluid {
+    @extend %container-flex-properties;
+  }
+
+  @each $breakpoint, $container-max-width in $Container-max-widths {
+    $infix: if($breakpoint == none or $breakpoint == null or $breakpoint == xs, "", "-#{$breakpoint}");
+
+    > .Container#{$infix} {
+      @extend %container-flex-properties;
+    }
+  }
+}
+
+/*
+// Navbar brand
+// Used for brand, project, or site names.
+*/
+
+.Navbar-brand {
+  display: flex;
+  align-items: center;
+
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    //color: var(--#{$prefix}navbar-brand-hover-color);
+    text-decoration: none;
+  }
+}
+
+
+// Navbar nav
+// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
+$Navbar-nav-link-padding-y            : .5rem !default;
+$Navbar-nav-link-padding-x            : 1rem !default;
+
+.Navbar-nav {
+  --#{$Prefix}nav-link-padding-x: #{$Navbar-nav-link-padding-x};
+  --#{$Prefix}nav-link-padding-y: #{$Navbar-nav-link-padding-y};
+
+  display: flex;
+  flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .Show > .Nav-link,
+  .Nav-link.Active {
+    color: $Fg-accent;
+    background-color: $Bg-accent;
+  }
+
+  .Dropdown-menu {
+    position: static;
+  }
+}
+
+// Navbar text
+//
+//
+
+.Navbar-text {
+  //padding-top: $nav-link-padding-y;
+  //padding-bottom: $nav-link-padding-y;
+  //color: var(--#{$prefix}navbar-color);
+
+  a,
+  a:hover,
+  a:focus {
+    color: $Fg-accent;
+  }
+}
+
+
+// Responsive navbar
+//
+// Custom styles for responsive collapsing and toggling of navbar contents.
+// Powered by the collapse Bootstrap JavaScript plugin.
+
+// When collapsed, prevent the toggleable navbar contents from appearing in
+// the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
+// on the `.navbar` parent.
+.Navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  // For always expanded or extra full navbars, ensure content aligns itself
+  // properly vertically. Can be easily overridden with flex utilities.
+  align-items: center;
+}
+
+// Button for toggling the navbar when in its collapsed state
+.Navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  //color: var(--#{$prefix}navbar-color);
+  color: red;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: box-shadow .15s ease-in-out;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+    //box-shadow: 0 0 0 var(--#{$prefix}navbar-toggler-focus-width);
+  }
+}
+
+.Collapse {
+  &:not(.Show) {
+    display: none;
+  }
+}
+
+// Keep as a separate element so folks can easily override it with another icon
+// or image file as needed.
+.Navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  //background-image: var(--#{$prefix}navbar-toggler-icon-bg);
+
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+.Navbar-nav-scroll {
+  //max-height: var(--#{$prefix}scroll-height, 75vh);
+  overflow-y: auto;
+}
+
+// Generate series of `.navbar-expand-*` responsive classes for configuring
+// where your navbar collapses.
+.Navbar-expand {
+  @each $breakpoint in map-keys($Grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $Grid-breakpoints);
+    $infix: if(breakpoint-min($breakpoint, $Grid-breakpoints) == null, "", "-#{$breakpoint}");
+
+    &#{$infix} {
+      @include media-breakpoint-up($next) {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+
+        .Navbar-nav {
+          flex-direction: row;
+
+          .Dropdown-menu {
+            position: absolute;
+          }
+
+          .Nav-link {
+            padding-right: 0.5rem;
+            padding-left: 0.5rem;
+            //padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
+            //padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
+          }
+        }
+
+        .Navbar-nav-scroll {
+          overflow: visible;
+        }
+
+        .Navbar-collapse {
+          display: flex !important; // stylelint-disable-line declaration-no-important
+          flex-basis: auto;
+        }
+
+        .Navbar-toggler {
+          display: none;
+        }
+
+        //.offcanvas {
+        //  // stylelint-disable declaration-no-important
+        //  position: static;
+        //  z-index: auto;
+        //  flex-grow: 1;
+        //  width: auto !important;
+        //  height: auto !important;
+        //  visibility: visible !important;
+        //  background-color: transparent !important;
+        //  border: 0 !important;
+        //  transform: none !important;
+        //  @include box-shadow(none);
+        //  @include transition(none);
+        //  // stylelint-enable declaration-no-important
+        //
+        //  .offcanvas-header {
+        //    display: none;
+        //  }
+        //
+        //  .offcanvas-body {
+        //    display: flex;
+        //    flex-grow: 0;
+        //    padding: 0;
+        //    overflow-y: visible;
+        //  }
+        //}
+      }
+    }
+  }
+}
+
+// Navbar themes
+//
+// Styles for switching between navbars with light or dark background.
+
+.Navbar-light {
+  //@include deprecate("`.navbar-light`", "v5.2.0", "v6.0.0", true);
+  color: inherit;
+  //color: $Fg-lighter;
+  //background-color: $Bg-lighter;
+
+  .Navbar-brand,
+  .Navbar-brand:focus,
+  .Navbar-brand:hover {
+    color: rgba(0, 0, 0, .9);
+  }
+
+  .Navbar-nav {
+    .Nav-link {
+      color: rgba(0, 0, 0, .55);
+
+      &:hover,
+      &:focus {
+        color: rgba(0, 0, 0, .55);
+        background-color: inherit;
+      }
+
+      &.Disabled, &:disabled {
+        color: rgba(0, 0, 0, .3);
+      }
+    }
+
+    .Nav-link.Active,
+    .Show > .Nav-link {
+      color: $Fg-accent;
+    }
+  }
+
+}
+
+.Navbar-dark {
+  .Navbar-brand {
+    color: #fff;
+  }
+
+  .Navbar-toggler {
+    color: rgba(255, 255, 255, .55);
+    border-color: rgba(255, 255, 255, .1);
+  }
+
+  .Navbar-nav {
+    .Nav-link {
+      color: rgba(255, 255, 255, .55);
+
+      &:hover,
+      &:focus {
+        color: rgba(255, 255, 255, .55);
+        background-color: inherit;
+      }
+
+      &.Disabled, &:disabled {
+        color: rgba(255, 255, 255, .25);
+      }
+    }
+
+    .Nav-link.Active,
+    .Show > .Nav-link {
+      color: #fff;
+    }
+  }
+
+}
+
+

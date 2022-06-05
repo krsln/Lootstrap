@@ -1,0 +1,256 @@
+/**
+ * Forms - Form controls
+ *
+ * General form controls (plus a few specific high-level interventions)
+*/
+
+/*@formatter:off*/
+$Input-padding-y                      : .375rem !default;
+$Input-padding-x                      : .75rem !default;
+
+$Input-font-family                    : $Font-family-base !default;
+$Input-font-size                      : $Font-size-base !default;
+$Input-font-weight                    : $Font-weight-normal !default;
+$Input-line-height                    : $Line-height-base !default;
+
+$Input-padding-y-sm                   : .25rem !default;
+$Input-padding-x-sm                   : .5rem !default;
+$Input-font-size-sm                   : $Font-size-sm !default;
+
+$Input-padding-y-lg                   : .5rem !default;
+$Input-padding-x-lg                   : 1rem !default;
+$Input-font-size-lg                   : $Font-size-lg !default;
+
+$Input-bg                             : $Adaptive-bg-surface !default;
+$Input-disabled-color                 : $Muted !default;
+$Input-disabled-bg                    : hsla(213, 11%, 69%, 25%) !default;
+$Input-disabled-border-color          : null !default;
+
+$Input-color                          : $Adaptive-fg-surface !default;
+$Input-border-color                   : $Border-color !default;
+$Input-border-width                   : $Border-width !default;
+$Input-box-shadow                     : $Shadow-inset !default;
+
+$Input-border-radius                  : .375rem !default;
+$Input-border-radius-sm               : .25rem !default;
+$Input-border-radius-lg               : .50rem !default;
+
+$Input-focus-bg                       : $Input-bg !default;
+$Input-focus-border-color             : $Border-color !default;
+$Input-focus-color                    : $Input-color !default;
+$Input-focus-width                    : .25rem !default;
+$Input-focus-box-shadow               : 0 0 0 $Input-focus-width hsla($Adaptive-bg-accent-hsl, .25) !default;
+
+$Input-placeholder-color              : $Muted !default;
+$Input-plaintext-color                : $Muted !default;
+
+$Input-height-border                  : $Input-border-width * 2 !default;
+
+$Input-height                         : calc(#{$Input-line-height} * 1em + calc(#{$Input-padding-y} * 2 + #{$Input-height-border})) !default;
+$Input-height-sm                      : calc(#{$Input-line-height} * 1em + calc(#{$Input-padding-y-sm} * 2 + #{$Input-height-border})) !default;
+$Input-height-lg                      : calc(#{$Input-line-height} * 1em + calc(#{$Input-padding-y-lg} * 2 + #{$Input-height-border})) !default;
+
+$Input-transition                     : border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+$Input-group-addon-bg                 : $Adaptive-bg-surface !default;
+
+$Form-file-button-color               : $Input-color !default;
+$Form-file-button-bg                  : $Input-group-addon-bg !default;
+$Form-file-button-hover-bg            : $Form-file-button-bg !default;
+
+$Form-color-width                     : 3rem !default;
+/*@formatter:on*/
+
+.Form-control {
+  display: block;
+  width: 100%;
+
+  padding: $Input-padding-y $Input-padding-x;
+
+  font-family: $Input-font-family;
+  font-size: $Input-font-size;
+  font-weight: $Input-font-weight;
+  line-height: $Input-line-height;
+
+  color: $Input-color;
+  background-color: $Input-bg;
+  background-clip: padding-box;
+  border: $Input-border-width solid $Input-border-color;
+  appearance: none; // Fix appearance for date inputs in Safari
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited style-ability of `<select>`s in CSS.
+  @include Rounded($Input-border-radius, 0);
+  @include Box-shadow($Input-box-shadow);
+  @include Transition($Input-transition);
+
+  &[type="file"] {
+    overflow: hidden; // prevent pseudo element button overlap
+
+    &:not(:disabled):not([readonly]) {
+      cursor: pointer;
+    }
+  }
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  &:focus {
+    color: $Input-focus-color;
+    background-color: $Input-focus-bg;
+    border-color: $Input-focus-border-color;
+    outline: 0;
+
+    @if $Enable-shadows {
+      @include Box-shadow($Input-box-shadow, $Input-focus-box-shadow);
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: $Input-focus-box-shadow;
+    }
+  }
+
+  // Add some height to date inputs on iOS
+  // https://github.com/twbs/bootstrap/issues/23307
+  // TODO: we can remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=198959 is resolved
+  &::-webkit-date-and-time-value {
+    // Multiply line-height by 1em if it has no unit
+    height: if(unit($Input-line-height) == "", $Input-line-height * 1em, $Input-line-height);
+  }
+
+  // Placeholder
+  &::placeholder {
+    color: $Input-placeholder-color;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+
+  // Disabled and read-only inputs
+  //
+  // HTML5 says that controls under a fieldset > legend:first-child won't be
+  // disabled if the fieldset is disabled. Due to implementation difficulty, we
+  // don't honor that edge case; we style them as disabled anyway.
+  &:disabled,
+  &[readonly] {
+    color: $Input-disabled-color;
+    background-color: $Input-disabled-bg;
+    border-color: $Input-disabled-border-color;
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+  }
+
+  // File input buttons theming
+  &::file-selector-button {
+    padding: $Input-padding-y $Input-padding-x;
+    margin: (-$Input-padding-y) (-$Input-padding-x);
+    margin-inline-end: $Input-padding-x;
+    color: $Form-file-button-color;
+    @include Gradient-bg($Form-file-button-bg);
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: $Input-border-width;
+    border-radius: 0; // stylelint-disable-line property-disallowed-list
+    @include Transition($Btn-transition);
+  }
+
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: $Form-file-button-hover-bg;
+  }
+}
+
+// Readonly controls as plain text
+//
+// Apply class to a readonly input to make it appear like regular plain
+// text (without any border, background color, focus indicator)
+
+.Form-control-plaintext {
+  display: block;
+  width: 100%;
+  padding: $Input-padding-y 0;
+  margin-bottom: 0; // match inputs if this class comes on inputs with default margins
+  line-height: $Input-line-height;
+
+  color: $Input-plaintext-color;
+  background-color: transparent;
+  border: solid transparent;
+  border-width: $Input-border-width 0;
+
+  &.Form-control-sm,
+  &.Form-control-lg {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Form control sizing
+//
+// Build on `.Form-control` with modifier classes to decrease or increase the
+// height and font-size of form controls.
+//
+// Repeated in `_input_group.scss` to avoid Sass extend issues.
+
+.Form-control-sm {
+  min-height: $Input-height-sm;
+  padding: $Input-padding-y-sm $Input-padding-x-sm;
+  font-size: $Input-font-size-sm;
+  @include Rounded($Input-border-radius-sm);
+
+  &::file-selector-button {
+    padding: $Input-padding-y-sm $Input-padding-x-sm;
+    margin: (-$Input-padding-y-sm) (-$Input-padding-x-sm);
+    margin-inline-end: $Input-padding-x-sm;
+  }
+}
+
+.Form-control-lg {
+  min-height: $Input-height-lg;
+  padding: $Input-padding-y-lg $Input-padding-x-lg;
+  font-size: $Input-font-size-lg;
+  @include Rounded($Input-border-radius-lg);
+
+  &::file-selector-button {
+    padding: $Input-padding-y-lg $Input-padding-x-lg;
+    margin: (-$Input-padding-y-lg) (-$Input-padding-x-lg);
+    margin-inline-end: $Input-padding-x-lg;
+  }
+}
+
+// Make sure textarea s don't shrink too much when resized
+// https://github.com/twbs/bootstrap/pull/29124
+textarea {
+  &.Form-control {
+    min-height: $Input-height;
+  }
+
+  &.Form-control-sm {
+    min-height: $Input-height-sm;
+  }
+
+  &.Form-control-lg {
+    min-height: $Input-height-lg;
+  }
+}
+
+.Form-control-color {
+  width: $Form-color-width;
+  height: $Input-height;
+  padding: $Input-padding-y;
+
+  &:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+
+  &::-moz-color-swatch {
+    border: 0 !important; // stylelint-disable-line declaration-no-important
+    @include Rounded($Input-border-radius);
+  }
+
+  &::-webkit-color-swatch {
+    @include Rounded($Input-border-radius);
+  }
+
+  &.Form-control-sm {
+    height: $Input-height-sm;
+  }
+
+  &.Form-control-lg {
+    height: $Input-height-lg;
+  }
+}

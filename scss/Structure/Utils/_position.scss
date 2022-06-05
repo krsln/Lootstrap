@@ -1,0 +1,31 @@
+/**
+ * Utils - Positioning
+ *
+ * Define the edge positioning anchors of the position utilities.
+*/
+
+$utilities-Positioning: () !default;
+$utilities-Positioning: (
+        "Position": (
+                Class: Position, Properties: position, Important: true,
+                Values: (static relative absolute fixed sticky)
+        ),
+        "Top": (
+                Class: Top, Properties: top, Important: true, Values: $Position-values
+        ),
+        "Bottom": (
+                Class: Bottom, Properties: bottom, Important: true, Values: $Position-values
+        ),
+        "Start": (
+                Class: Start, Properties: left, Important: true, Values: $Position-values
+        ),
+        "End": (
+                Class: End, Properties: right, Important: true, Values: $Position-values
+        ),
+        "Translate-middle": (
+                Class: Translate-middle, Properties: transform, Important: true,
+                Values: (null: translate(-50%, -50%), x: translateX(-50%), y: translateY(-50%),)
+        ),
+);
+
+@include Utilities($utilities-Positioning);

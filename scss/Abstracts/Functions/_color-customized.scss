@@ -1,0 +1,53 @@
+// ===========================================================================
+// Functions - Color
+// ===========================================================================
+
+@function Color-ByLightness($colorValue, $targetPer: 96%) {
+  $diff: $targetPer - lightness($colorValue);
+  $color-result: $colorValue;
+
+  @if ($diff>0) {
+    $color-result: lighten($colorValue, $diff);
+  } @else {
+    $diff-body: -1 * $diff;
+    $color-result: darken($colorValue, $diff-body);
+  }
+
+  @return $color-result;
+}
+
+/// For bg, text and border color
+/// HSL Colors: hsl(hue, saturation, lightness)
+@function Color-hsla($colors, $alpha:--ls-bg-alpha, $lightness:--ls-bg-lightness) {
+  $colors-hsla: ();
+  @each $colorKey, $colorValue in $colors {
+    $color: $colorValue;
+
+    // Not: Dont f*ck with border color..
+    //@if (str-index($alpha, '--#{$var-Prefix}border')) {
+    //  $color: Color-ByLightness($colorValue, 70%); // 80
+    //  @if ($colorKey=='dark') {
+    //    $color: Color-ByLightness($colorValue, 45%);
+    //  } @else if ($colorKey=='night') {
+    //    $color: Color-ByLightness($colorValue, 35%);
+    //  } @else if ($colorKey=='light' or $colorKey=='white') {
+    //    $color: Color-ByLightness($colorValue, 90%);
+    //  }
+    //}
+
+    $color-h: #{round(hue($color))};
+    $color-s: #{round(saturation($color))};
+    $color-l: #{round(lightness($color))};
+
+    $alpha-bg: #{var($alpha, 1)};
+    $lightness-bg: #{var($lightness, $color-l)};
+
+    @if (str-index($alpha, '--#{$Prefix}border') or str-index($alpha, '--#{$Prefix}text')) {
+      $lightness-bg: $color-l;
+    }
+
+    $hsla-color: hsla($color-h, $color-s, $lightness-bg, $alpha-bg);
+    $colors-hsla: map-merge($colors-hsla, ($colorKey: $hsla-color));
+  }
+  @return $colors-hsla;
+}

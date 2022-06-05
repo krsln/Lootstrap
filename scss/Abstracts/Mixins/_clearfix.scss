@@ -1,0 +1,12 @@
+/**
+ * ClearFix
+ *
+*/
+
+@mixin Clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}

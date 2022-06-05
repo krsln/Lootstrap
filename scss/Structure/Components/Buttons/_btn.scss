@@ -1,0 +1,180 @@
+/**
+ * Components - Buttons Main
+ *
+*/
+
+.Btn {
+  --#{$Prefix}btn-font-family: #{$Btn-font-family};
+  --#{$Prefix}btn-font-size: #{$Btn-font-size};
+  --#{$Prefix}btn-font-weight: #{$Btn-font-weight};
+  --#{$Prefix}btn-line-height: #{$Btn-line-height};
+
+  --#{$Prefix}btn-margin: #{$Btn-margin};
+  --#{$Prefix}btn-padding: #{$Btn-padding};
+  --#{$Prefix}btn-bg: #{$Btn-bg};
+  --#{$Prefix}btn-color: #{$Btn-color};
+  --#{$Prefix}btn-border-width: #{$Btn-border-width};
+  --#{$Prefix}btn-border-color: #{$Btn-border-color};
+  --#{$Prefix}btn-border-radius: #{$Btn-border-radius};
+  --#{$Prefix}btn-box-shadow: #{$Btn-box-shadow};
+  --#{$Prefix}btn-focus-box-shadow: #{$Btn-focus-box-shadow};
+
+  --#{$Prefix}btn-disabled-opacity: #{$Btn-disabled-opacity};
+
+  position: relative;
+  display: inline-block;
+
+  user-select: none;
+  vertical-align: middle;
+  text-align: center;
+
+  white-space: $Btn-white-space;
+  text-decoration: if($Link-decoration == none, null, none);
+  cursor: if($Enable-button-pointers, pointer, null);
+
+  font-family: var(--#{$Prefix}btn-font-family);
+  font-size: var(--#{$Prefix}btn-font-size);
+  font-weight: var(--#{$Prefix}btn-font-weight);
+  line-height: var(--#{$Prefix}btn-line-height);
+
+  margin: var(--#{$Prefix}btn-margin);
+  padding: var(--#{$Prefix}btn-padding);
+  color: var(--#{$Prefix}btn-color);
+  border: var(--#{$Prefix}btn-border-width) solid var(--#{$Prefix}btn-border-color);
+
+  @include Gradient-bg(var(--#{$Prefix}btn-bg));
+  @include Rounded(var(--#{$Prefix}btn-border-radius));
+  @include Box-shadow(var(--#{$Prefix}btn-box-shadow));
+  @include Transition($Btn-transition);
+
+  &:hover {
+    text-decoration: if($Link-hover-decoration == underline, none, null);
+
+    color: var(--#{$Prefix}btn-hover-color);
+    background-color: var(--#{$Prefix}btn-hover-bg);
+    border-color: var(--#{$Prefix}btn-hover-border-color, hsla(0, 0%, 0%, .06));
+  }
+
+  //.Btn-check:focus + &,
+  &:focus {
+    outline: 0;
+    color: var(--#{$Prefix}btn-hover-color);
+    border-color: var(--#{$Prefix}btn-hover-border-color, hsla(0, 0%, 0%, .09));
+    @include Gradient-bg(var(--#{$Prefix}btn-hover-bg));
+
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $Enable-shadows {
+      box-shadow: var(--#{$Prefix}btn-box-shadow), var(--#{$Prefix}btn-focus-box-shadow);
+    } @else {
+      box-shadow: var(--#{$Prefix}btn-focus-box-shadow);
+    }
+  }
+
+  //.Btn-check:checked + &, .Btn-check:active + &,
+  &:active,
+  &.Active,
+  &.Show {
+    color: var(--#{$Prefix}btn-hover-color);
+    @include Gradient-bg(var(--#{$Prefix}btn-hover-bg));
+    border-color: var(--#{$Prefix}btn-hover-border-color, hsla(0, 0%, 0%, .09));
+    outline: 0;
+
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $Enable-shadows {
+      box-shadow: var(--#{$Prefix}btn-active-shadow), var(--#{$Prefix}btn-focus-box-shadow);
+    } @else {
+      box-shadow: var(--#{$Prefix}btn-focus-box-shadow);
+    }
+  }
+
+  &:disabled,
+  &.Disabled,
+  fieldset:disabled & {
+    color: var(--#{$Prefix}btn-disabled-color);
+    background-color: var(--#{$Prefix}btn-disabled-bg);
+    border-color: var(--#{$Prefix}btn-disabled-border-color);
+    opacity: var(--#{$Prefix}btn-disabled-opacity);
+
+    @include Box-shadow(none);
+    pointer-events: none;
+    background-image: if($Enable-gradients, none, null);
+  }
+}
+
+.Btn-rounded {
+  border-radius: 50rem;
+}
+
+[class*="Btn-outline-"] {
+  padding: $Btn-outline-padding;
+
+  &.Btn-lg {
+    padding: $Btn-outline-padding-lg;
+  }
+
+  &.Btn-sm {
+    padding: $Btn-outline-padding-sm;
+  }
+}
+
+/*
+ * Button Sizes
+ *
+ * Border-radius, Padding, Font-size, Line-height
+ */
+
+.Btn-lg {
+  //@include Button-size(map-get($Button-sizes, Large));
+  @include Button-size($Btn-padding-lg, $Btn-font-size-lg, $Btn-line-height-lg, $Btn-border-radius-lg);
+}
+
+.Btn-sm {
+  //@include Button-size(map-get($Button-sizes, Small));
+  @include Button-size($Btn-padding-sm, $Btn-font-size-sm, $Btn-line-height-sm, $Btn-border-radius-sm);
+}
+
+/*
+ * Link buttons
+ *
+ * Make a button look and behave like a link
+ */
+
+.Btn-link {
+  --#{$Prefix}btn-font-weight: #{$Font-weight-normal};
+
+  --#{$Prefix}btn-color: #{$Btn-link-color};
+  --#{$Prefix}btn-bg: transparent;
+  --#{$Prefix}btn-border-color: transparent;
+  --#{$Prefix}btn-box-shadow: none;
+  --#{$Prefix}btn-focus-box-shadow: none;
+
+  --#{$Prefix}btn-hover-color: #{$Btn-link-hover-color};
+  --#{$Prefix}btn-hover-border-color: transparent;
+  --#{$Prefix}btn-active-border-color: transparent;
+  --#{$Prefix}btn-disabled-color: #{$Btn-link-disabled-color};
+  --#{$Prefix}btn-disabled-border-color: transparent;
+
+  text-decoration: $Link-decoration;
+
+  &:hover,
+  &:focus {
+    text-decoration: $Link-hover-decoration;
+  }
+
+  // No need for an active state here
+}
+
+/*
+ * Button Variants
+ *
+ * primary, secondary, success, info, warning, danger, light, dark, night
+ */
+
+@each $colorKey, $colorValue in $Theme-colors {
+  .Btn-#{$colorKey} {
+    @include Buttons-regular($colorValue, $colorValue);
+  }
+  .Btn-outline-#{$colorKey} {
+    @include Buttons-outline($colorValue, $colorValue);
+  }
+}

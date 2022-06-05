@@ -1,0 +1,117 @@
+/**
+ * Components - Pagination
+ *
+ * Depending on base component `Square`
+*/
+
+/*@formatter:off*/
+$Rating-font-family                 : $Font-family-base !default;
+
+$Rating-bg                        : whitesmoke;
+$Rating-color                     : hsla($Adaptive-bg-contrast-hsl, 1);
+
+$Rating-active-color              : $Adaptive-fg-accent !default;
+$Rating-active-bg                 : $Adaptive-bg-accent !default;
+
+$Rating-fraction-gradient         : linear-gradient(to right, var(--#{$Prefix}rating-active-bg) 0%, var(--#{$Prefix}rating-bg) 100%);
+$Rating-fraction-color            : $Rating-color !default;
+
+/*@formatter:on*/
+
+
+.Rating-base {
+  --#{$Prefix}rating-color: #{$Rating-color};
+  --#{$Prefix}rating-bg: #{$Rating-bg};
+
+  --#{$Prefix}rating-active-color: #{$Rating-active-color};
+  --#{$Prefix}rating-active-bg: #{$Rating-active-bg};
+
+  //--#{$Prefix}rating-border-radius: 0;
+
+  --#{$Prefix}rating-fraction-gradient: #{$Rating-fraction-gradient};
+  --#{$Prefix}rating-fraction-color: #{$Rating-fraction-color};
+
+  display: flex;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+
+  font-family: $Rating-font-family;
+
+  .Square, .Sqr, .Circle {
+    margin: .125rem;
+  }
+
+  .Centered:not(.Rating-value) {
+    color: var(--#{$Prefix}rating-color);
+    background-color: var(--#{$Prefix}rating-bg);
+    border: none;
+
+    //@include Rounded(var(--#{$Prefix}rating-border-radius));
+
+    &.Selected, &.Hovered {
+      background: var(--#{$Prefix}rating-active-bg);
+      color: var(--#{$Prefix}rating-active-color);
+    }
+
+    &.Fraction,
+    &.Selected .Fraction,
+    &.Hovered .Fraction {
+      background: var(--#{$Prefix}rating-fraction-gradient);
+      color: var(--#{$Prefix}rating-fraction-color);
+    }
+
+  }
+}
+
+.Rating {
+  @extend .Rating-base;
+
+  // direct child of Rating div
+  > svg {
+    linearGradient {
+      stop[offset="0%"] {
+        stop-color: var(--#{$Prefix}rating-active-bg);
+      }
+
+      stop[offset="100%"] {
+        stop-color: var(--#{$Prefix}rating-bg);;
+      }
+    }
+  }
+
+  $FaGradientId: #{var(--#{$Prefix}rating-gradient-id)};
+
+  .Centered:not(.Rating-value) {
+    color: var(--#{$Prefix}rating-bg);
+    background: transparent;
+
+    svg {
+      height: auto;
+      max-height: 100%;
+    }
+
+    &.Selected, &.Hovered {
+      color: var(--#{$Prefix}rating-active-bg);
+      background: transparent;
+    }
+
+    &.Fraction,
+    &.Selected .Fraction,
+    &.Hovered .Fraction {
+      background: transparent;
+
+      svg {
+        path {
+          //fill: url(#FaFractionGradient) hsla($Bg-accent-hsl, .5);
+          fill: $FaGradientId hsla($Adaptive-bg-contrast-hsl, .5);
+        }
+      }
+
+      //// for text :: Not works for fa svg
+      background: var(--#{$Prefix}rating-fraction-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+  }
+}

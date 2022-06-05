@@ -1,0 +1,66 @@
+/**
+ * Components - Progress
+ *
+*/
+.Progress {
+  //@include rfs($Progress-font-size, --#{$Prefix}progress-font-size);
+  --#{$Prefix}progress-height: #{$Progress-height};
+  --#{$Prefix}progress-font-size: #{$Progress-font-size};
+
+  --#{$Prefix}progress-bg: #{$Progress-bg};
+  --#{$Prefix}progress-border-radius: #{$Progress-border-radius};
+  --#{$Prefix}progress-box-shadow: #{$Progress-box-shadow};
+
+  --#{$Prefix}progress-bar-color: #{$Progress-bar-color};
+  --#{$Prefix}progress-bar-bg: #{$Progress-bar-bg};
+  --#{$Prefix}progress-bar-transition: #{$Progress-bar-transition};
+
+  display: flex;
+  overflow: hidden; // force rounded corners by cropping it
+
+  height: var(--#{$Prefix}progress-height);
+  font-family: $Progress-font-family;
+  font-size: var(--#{$Prefix}progress-font-size);
+  //@include font-size(var(--#{$Prefix}progress-font-size));
+
+  background-color: var(--#{$Prefix}progress-bg);
+  @include Rounded(var(--#{$Prefix}progress-border-radius));
+  @include Box-shadow(var(--#{$Prefix}progress-box-shadow));
+}
+
+.Progress-bar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+
+  color: var(--#{$Prefix}progress-bar-color);
+  background-color: var(--#{$Prefix}progress-bar-bg);
+  @include Transition(var(--#{$Prefix}progress-bar-transition));
+}
+
+.Progress-bar-striped {
+  @include Gradient-striped();
+  background-size: var(--#{$Prefix}progress-height) var(--#{$Prefix}progress-height);
+}
+
+// Disable animation if transitions are disabled
+@if $Enable-transitions {
+  .Progress-bar-animated {
+    animation: $Progress-bar-anim-timing Progress-bar-Stripes;
+
+    @if $Enable-reduced-motion {
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+  }
+  @keyframes Progress-bar-Stripes {
+    0% {
+      background-position-x: $Progress-height;
+    }
+  }
+}

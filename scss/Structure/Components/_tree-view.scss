@@ -1,0 +1,197 @@
+/**
+ * Components - TreeView
+ *
+ * Css BEM - Block Element Modifier
+ * Roots > Trunks > Branches > leaves
+*/
+
+.Tree-view {
+  position: relative;
+  padding-left: $Tree-padding-start;
+  margin-bottom: $Tree-margin-bottom;
+
+  font-family: $Tree-font-family;
+  //border: 1px solid black;
+}
+
+.Tree-trunk {
+  position: relative;
+  display: block;
+
+  background-color: $Tree-trunk-bg;
+
+  &:hover {
+    background-color: $Tree-trunk-hover-bg;
+  }
+
+  &.Expanded {
+    transition: all .3s ease;
+    animation: Keyframe-FadeIn .3s ease-in-out;
+
+    padding-left: $Tree-padding-start;
+    border-left: 1px dotted $Tree-trunk-expanded-border-color;
+    border-bottom: 1px dotted $Tree-trunk-expanded-border-color;
+  }
+
+  &.Collapsed {
+    display: none;
+  }
+
+}
+
+.Tree-branch {
+  position: relative;
+  display: flex;
+
+  border: 1px solid transparent;
+  border-radius: .25rem;
+
+  margin: 1px;
+  align-items: center;
+
+  &:not(.Active):not(.Disabled):hover {
+    background-color: $Tree-branch-hover-bg;
+    border-color: $Tree-branch-hover-border-color;
+
+    + .Tree-trunk {
+      background-color: $Tree-trunk-child-hover-bg;
+    }
+  }
+
+  &.Active {
+    color: $Tree-branch-active-color;
+    background-color: $Tree-branch-active-bg;
+    border-color: $Tree-branch-active-border-color;
+
+    .Tree-leaf--icon {
+      color: $Tree-icon-active-color !important;
+    }
+  }
+
+  &.Disabled {
+    cursor: not-allowed;
+
+    color: $Tree-branch-disabled-color;
+    background-color: $Tree-branch-disabled-bg;
+
+    .Tree-leaf--icon {
+      color: $Tree-branch-disabled-color !important;
+    }
+  }
+
+  .Tree-chevron {
+    display: flex;
+    flex: 1 auto;
+
+    //width: 20px;
+    margin-left: -20px;
+
+    color: $Tree-branch-chevron-color;
+
+    // https://css.gg/chevron-right
+
+    .gg-chevron-down {
+      box-sizing: border-box;
+      position: relative;
+      display: inline-block;
+      transform: scale(1);
+
+      width: 16px;
+      height: 16px;
+
+      border: 2px solid transparent;
+      border-radius: 100px;
+
+      &:after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        transform: rotate(45deg);
+        left: 4px;
+        top: 0;
+      }
+    }
+
+    .gg-chevron-right {
+      box-sizing: border-box;
+      position: relative;
+      display: inline-block;
+      transform: scale(1);
+
+      width: 16px;
+      height: 16px;
+
+      border: 2px solid transparent;
+      border-radius: 100px;
+
+      &:after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid;
+        border-right: 2px solid;
+        transform: rotate(-45deg);
+        //right: 6px;
+        top: 2px
+      }
+    }
+  }
+
+  .Tree-leaf {
+    display: flex;
+    flex: 1 auto;
+    width: calc(100% - 20px);
+
+    padding: 0 5px;
+
+    .Tree-leaf--checkbox {
+      display: inline;
+    }
+
+    .Tree-leaf--content {
+      display: flex;
+      width: 100%;
+
+      align-items: center;
+
+      .Tree-leaf--icon {
+        margin-right: .25rem;
+        color: $Tree-icon-color;
+      }
+
+      .Tree-leaf--label {
+      }
+
+      .Tree-leaf--caption {
+        margin-left: auto !important;
+      }
+    }
+
+  }
+}
+
+.Tree-separator {
+  //background-color: $Border-color;
+  background-color: $Tree-separator-bg;
+
+  hr {
+    margin: .25rem 0;
+  }
+}
+
+@keyframes Keyframe-FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,126 @@
+/**
+ * Forms - Range
+ *
+ * Style range inputs the same across browsers. Vendor-specific rules for pseudo
+ * elements cannot be mixed. As such, there are no shared styles for focus or active states on prefixed selectors.
+*/
+
+/*@formatter:off*/
+$Form-range-track-width                   : 100% !default;
+$Form-range-track-height                  : .5rem !default;
+$Form-range-track-cursor                  : pointer !default;
+$Form-range-track-bg                      : hsla($Adaptive-bg-accent-hsl, .10) !default;
+$Form-range-track-border-radius           : 1rem !default;
+$Form-range-track-box-shadow              : $Shadow-inset !default;
+
+$Form-range-thumb-width                   : 1rem !default;
+$Form-range-thumb-height                  : $Form-range-thumb-width !default;
+$Form-range-thumb-bg                      : hsla($Adaptive-bg-accent-hsl, .5) !default;
+$Form-range-thumb-border                  : 0 !default;
+$Form-range-thumb-border-radius           : 1rem !default;
+$Form-range-thumb-box-shadow              : 0 .1rem .25rem rgba($Black, .1) !default;
+
+$Form-range-thumb-focus-box-shadow        : 0 0 0 1px $Adaptive-bg-surface, $Input-focus-box-shadow !default;
+$Form-range-thumb-focus-box-shadow-width  : $Input-focus-width !default; // For focus box shadow issue in Edge
+$Form-range-thumb-active-bg               : $Adaptive-bg-accent !default;
+$Form-range-thumb-disabled-bg             : $Muted !default;
+
+$Form-range-thumb-transition              : background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+
+/*@formatter:on*/
+
+
+
+.Form-range {
+  width: 100%;
+  height: calc(#{$Form-range-thumb-height} +  #{$Form-range-thumb-focus-box-shadow-width * 2});
+  padding: 0; // Need to reset padding
+  background-color: transparent;
+  appearance: none;
+
+  &:focus {
+    outline: 0;
+
+    // Pseudo-elements must be split across multiple rule sets to have an effect.
+    // No box-shadow() mixin for focus accessibility.
+    &::-webkit-slider-thumb { box-shadow: $Form-range-thumb-focus-box-shadow; }
+    &::-moz-range-thumb     { box-shadow: $Form-range-thumb-focus-box-shadow; }
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    width: $Form-range-thumb-width;
+    height: $Form-range-thumb-height;
+    margin-top: ($Form-range-track-height - $Form-range-thumb-height) * .5; // Webkit specific
+    @include Gradient-bg($Form-range-thumb-bg);
+    border: $Form-range-thumb-border;
+    @include Rounded($Form-range-thumb-border-radius);
+    @include Box-shadow($Form-range-thumb-box-shadow);
+    @include Transition($Form-range-thumb-transition);
+    appearance: none;
+
+    &:active {
+      @include Gradient-bg($Form-range-thumb-active-bg);
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: $Form-range-track-width;
+    height: $Form-range-track-height;
+
+    color: transparent; // Why?
+    cursor: $Form-range-track-cursor;
+
+    background-color: $Form-range-track-bg;
+    border-color: transparent;
+
+    @include Rounded($Form-range-track-border-radius);
+    @include Box-shadow($Form-range-track-box-shadow);
+  }
+
+  &::-moz-range-thumb {
+    width: $Form-range-thumb-width;
+    height: $Form-range-thumb-height;
+
+    @include Gradient-bg($Form-range-thumb-bg);
+    border: $Form-range-thumb-border;
+
+    @include Rounded($Form-range-thumb-border-radius);
+    @include Box-shadow($Form-range-thumb-box-shadow);
+    @include Transition($Form-range-thumb-transition);
+    appearance: none;
+
+    &:active {
+      @include Gradient-bg($Form-range-thumb-active-bg);
+    }
+  }
+
+  &::-moz-range-track {
+    width: $Form-range-track-width;
+    height: $Form-range-track-height;
+
+    color: transparent;
+    cursor: $Form-range-track-cursor;
+
+    background-color: $Form-range-track-bg;
+    border-color: transparent; // Firefox specific?
+
+    @include Rounded($Form-range-track-border-radius);
+    @include Box-shadow($Form-range-track-box-shadow);
+  }
+
+  &:disabled {
+    pointer-events: none;
+
+    &::-webkit-slider-thumb {
+      background-color: $Form-range-thumb-disabled-bg;
+    }
+
+    &::-moz-range-thumb {
+      background-color: $Form-range-thumb-disabled-bg;
+    }
+  }
+}

@@ -3,31 +3,14 @@
 // Mixins - Utilities
 // ===========================================================================
 */
-@mixin Utility-applier($important, $class-prefix, $properties, $values, $pseudo:null ) {
-  @each $key, $value in $values {
-    // Don't prefix if value key is null (eg. with shadow class)
-    $class-suffix: if($key, if($class-prefix == ""  , "", "-") + $key, "");
 
-    @if $value != null {
-      .#{$class-prefix + $class-suffix} {
+// Properties:	Required,  Values:	Required, ClassName:	Optional, Pseudo:	Optional,
+// (Css-Var:	Optional, CSS-VarName:	Optional),  Local-CSS-Variables: Optional,
+// Responsive:	Optional, Print:  Optional,
 
-        @if $pseudo != null {
-          &:#{$pseudo} {
-            @each $property in $properties {
-              #{$property}: $value if($important, !important, null);
-            }
-          }
-        } @else {
-          @each $property in $properties {
-            #{$property}: $value if($important, !important, null);
-          }
-        }
-      }
-    }
-  }
-}
-
-@mixin Utility-value-separator($utility, $breakpoints: $responsive-Breakpoints) {
+// Utility generator
+// Used to generate utilities & print utilities
+@mixin generate-Utility($utility, $infix) {
   $values: map-get($utility, Values);
 
   // If the values are a list or string, convert it into a map
@@ -35,39 +18,118 @@
     $values: zip($values, $values);
   }
 
-  $properties: map-get($utility, Properties);
-  // Multiple properties are possible, for example with vertical or horizontal margins or paddings
-  @if type-of($properties) == "string" {
-    $properties: append((), $properties);
-  }
+  $Properties: map-get($utility, Properties);
 
-  $important: map-get($utility, Important);
-  $responsive: map-get($utility, Responsive);
-  $pseudo: map-get($utility, Pseudo); // null before after
-  $print: map-get($utility, Print); // TODO: media print..
+  // Multiple properties are possible, for example with vertical or horizontal margins or paddings
+  @if type-of($Properties) == "string" {
+    $properties: append((), $Properties);
+  }
 
   // Use custom class if present
-  $class-prefix: if(map-has-key($utility, Prefix), map-get($utility, Prefix), nth($properties, 1));
-  $class-prefix: if($class-prefix == null, "", $class-prefix);
+  $property-class: if(map-has-key($utility, Class), map-get($utility, Class), nth($Properties, 1));
+  $property-class: if($property-class == null, "", $property-class);
 
-  @if $responsive {
-    @each $breakpointKey, $breakpointValue in $breakpoints {
-      $responsive-Infix: if($breakpointValue == 0, "", "-#{$breakpointKey}");
-      @include media-min-W($breakpointValue) {
-        @include Utility-applier($important, $class-prefix + $responsive-Infix, $properties, $values, $pseudo);
+  // deprecated: Use custom CSS variable name if present, otherwise default to `Class`
+  //$CSS-VariableName: if(map-has-key($utility, CSS-VarName), map-get($utility, CSS-VarName), map-get($utility, Class));
+  //$Is-Css-Var: map-get($utility, Css-Var);
+
+  // Local CSS variable
+  $Local-CSS-Variables: map-get($utility, Local-CSS-Variables);
+
+  // State params to generate pseudo-classes
+  $Pseudo-Classes: if(map-has-key($utility, Pseudo), map-get($utility, Pseudo), ());
+
+  $Important: if(map-has-key($utility, Important), map-get($utility, Important), false);
+
+  $infix: if($property-class == "" and str-slice($infix, 1, 1) == "-", str-slice($infix, 2), $infix);
+
+  @each $key, $value in $values {
+
+    // Don't prefix if value key is null (eg. with shadow class)
+    $property-class-modifier: if($key, if($property-class == "" and $infix == "", "", "-") + $key, "");
+
+    @if $value != null {
+
+      //@if $Is-Css-Var {
+      //  @if length($Pseudo-Classes) > 0 {
+      //    @each $pseudo in $Pseudo-Classes {
+      //      .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
+      //        --#{$Prefix}#{$CSS-VariableName}: #{$value};
+      //      }
+      //    }
+      //  } @else {
+      //    .#{$property-class + $infix + $property-class-modifier} {
+      //      --#{$Prefix}#{$CSS-VariableName}: #{$value};
+      //    }
+      //  }
+      //} @else {
+
+        @if length($Pseudo-Classes) > 0 {
+          @each $pseudo in $Pseudo-Classes {
+            .#{$property-class + $infix + $property-class-modifier}-#{$pseudo}:#{$pseudo} {
+              @each $property in $Properties {
+                #{$property}: $value if($Important, !important, null);
+              }
+            }
+          }
+        } @else {
+          .#{$property-class + $infix + $property-class-modifier} {
+            @each $property in $Properties {
+              @if $Local-CSS-Variables {
+                @each $local-var, $variable in $Local-CSS-Variables {
+                  --#{$Prefix}#{$local-var}: #{$variable};
+                }
+              }
+              #{$property}: $value if($Important, !important, null);
+            }
+          }
+        }
+
+      //}
+
+    }
+  }
+
+}
+
+// Loop over each breakpoint
+@mixin responsive-Utilities($utilities, $breakpoints: $Grid-breakpoints) {
+  // Loop over each breakpoint
+  @each $breakpoint in map-keys($breakpoints) {
+
+    // Generate media query if needed
+    @include media-breakpoint-up($breakpoint) {
+      $infix: if(breakpoint-min($breakpoint, $breakpoints) == null, "", "-#{$breakpoint}");
+
+      // Loop over each utility property
+      @each $key, $utility in $utilities {
+        // The utility can be disabled with `false`, thus check if the utility is a map first
+        // Only proceed if responsive media queries are enabled or if it's the base media query
+        @if type-of($utility) == "map" and (map-get($utility, Responsive) or $infix == "") {
+          @include generate-Utility($utility, $infix);
+        }
       }
     }
-  } @else {
-    @include Utility-applier($important, $class-prefix, $properties, $values, $pseudo);
   }
 }
 
-/*
- *  KEY     : VALUES
- * "Opacity": (Prefix: Opacity, Properties: opacity, Important: true, Responsive: false, Values: $opacity-map,),
- */
-@mixin Utilities($utilities) {
-  @each $keyUtil, $valueUtil in $utilities {
-    @include Utility-value-separator($valueUtil);
+// Print utilities
+@mixin print-Utilities($utilities) {
+  @media print {
+    @each $key, $utility in $utilities {
+      // The utility can be disabled with `false`, thus check if the utility is a map first
+      // Then check if the utility needs print styles
+      @if type-of($utility) == "map" and map-get($utility, Print) == true {
+        @include generate-Utility($utility, "-print");
+      }
+    }
   }
 }
+
+@mixin Utilities($utilities) {
+  @include responsive-Utilities($utilities);
+  @include print-Utilities($utilities);
+}
+
+
+

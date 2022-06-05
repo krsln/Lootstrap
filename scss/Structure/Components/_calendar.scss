@@ -1,0 +1,241 @@
+/**
+ * Components - Calendar
+ *
+*/
+
+/// TODO: shit
+
+
+/*@formatter:off*/
+$Calendar-font-family                   : $Font-family-base !default;
+
+$Calendar-color                         : $Adaptive-fg-surface !default;
+$Calendar-bg                            : $Adaptive-bg-surface !default;
+$Calendar-border-width                  : 1px !default;
+$Calendar-border-color                  : $Border-color !default;
+
+$Calendar-box-shadow                    : $Shadow;
+$Calendar-margin-bottom                 : 1rem;
+
+$Calendar-space-y                       : .25rem !default;
+$Calendar-space-x                       : .25rem !default;
+
+$Calendar-header-bg                     : hsla($Adaptive-bg-accent-hsl, .12) !default;
+
+$Calendar-body-color                    : inherit !default;
+$Calendar-body-bg                       : inherit !default;
+
+$Calendar-disabled                      : $Muted !default;
+$Calendar-weekday-bg                    : hsla($Adaptive-bg-accent-hsl, .05) !default;
+$Calendar-weekday-border-color          : $Border-color !default;
+$Calendar-available-hover-bg            : hsla($Adaptive-bg-accent-hsl, .25) !default;
+$Calendar-available-hover-border-color  : $Border-color !default;
+
+$Calendar-today-color                   : $Adaptive-fg-accent !default;
+$Calendar-today-bg                      : $Adaptive-bg-accent !default;
+$Calendar-today-border-color            : $Border-color !default;
+
+$Calendar-range-color                   : $Adaptive-fg-accent !default;
+$Calendar-range-bg                      : $Adaptive-bg-accent !default;
+$Calendar-range-border-color            : $Border-color !default;
+
+$Calendar-ranged-between-color          : $Adaptive-bg-accent;
+$Calendar-ranged-between-bg             : hsla($Adaptive-bg-accent-hsl, .05);
+/*@formatter:on*/
+
+.Calendar {
+  --#{$Prefix}calendar-color: #{$Calendar-color};
+  --#{$Prefix}calendar-bg: #{$Calendar-bg};
+  --#{$Prefix}calendar-border-width: #{$Calendar-border-width};
+  --#{$Prefix}calendar-border-color: #{$Calendar-border-color};
+
+  --#{$Prefix}calendar-margin-bottom: #{$Calendar-margin-bottom};
+  --#{$Prefix}calendar-space-y: #{$Calendar-space-y};
+  --#{$Prefix}calendar-space-x: #{$Calendar-space-x};
+
+  --#{$Prefix}calendar-header-bg: #{$Calendar-header-bg};
+
+  --#{$Prefix}calendar-body-color: #{$Calendar-body-color};
+  --#{$Prefix}calendar-body-bg: #{$Calendar-body-bg};
+  --#{$Prefix}calendar-disabled: #{$Calendar-disabled};
+
+  --#{$Prefix}calendar-weekday-bg: #{$Calendar-weekday-bg};
+  --#{$Prefix}calendar-weekday-border-color: #{$Calendar-weekday-border-color};
+  --#{$Prefix}calendar-available-hover-bg: #{$Calendar-available-hover-bg};
+  --#{$Prefix}calendar-available-hover-border-color: #{$Calendar-available-hover-border-color};
+  --#{$Prefix}calendar-today-color: #{$Calendar-today-color};
+  --#{$Prefix}calendar-today-bg: #{$Calendar-today-bg};
+  --#{$Prefix}calendar-today-border-color: #{$Calendar-today-border-color};
+  --#{$Prefix}calendar-range-color: #{$Calendar-range-color};
+  --#{$Prefix}calendar-range-bg: #{$Calendar-range-bg};
+  --#{$Prefix}calendar-range-border-color: #{$Calendar-range-border-color};
+  --#{$Prefix}calendar-ranged-between-color: #{$Calendar-ranged-between-color};
+  --#{$Prefix}calendar-ranged-between-bg: #{$Calendar-ranged-between-bg};
+
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  font-family: $Calendar-font-family;
+
+  color: var(--#{$Prefix}calendar-color);
+  background-color: var(--#{$Prefix}calendar-bg);
+
+  border: var(--#{$Prefix}calendar-border-width) solid var(--#{$Prefix}calendar-border-color);
+  box-shadow: $Calendar-box-shadow;
+
+  margin-bottom: var(--#{$Prefix}calendar-margin-bottom);
+}
+
+.Calendar-header {
+  display: flex;
+  padding: 0 16px;
+  margin: var(--#{$Prefix}calendar-space-y) var(--#{$Prefix}calendar-space-x);
+
+  background-color: var(--#{$Prefix}calendar-header-bg);
+
+  align-items: center; /* Vertical */
+  justify-content: center; /* Horizontal */
+
+  .Calendar-arrow {
+    padding: var(--#{$Prefix}calendar-space-y) var(--#{$Prefix}calendar-space-x);
+    font-size: 1.5rem;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  span, .Calendar-arrow {
+    cursor: pointer;
+  }
+}
+
+.Calendar-body {
+  position: relative;
+  margin: var(--#{$Prefix}calendar-space-y) var(--#{$Prefix}calendar-space-x);
+  padding: 0 10px 10px;
+
+  color: var(--#{$Prefix}calendar-body-color);
+  background-color: var(--#{$Prefix}calendar-body-bg);
+
+  .Row {
+
+    &:first-child {
+      background-color: var(--#{$Prefix}calendar-weekday-bg);
+
+      font-size: .8rem;
+      border-bottom: 1px solid var(--#{$Prefix}calendar-weekday-border-color);
+
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    .Square {
+      border: 1px solid transparent;
+      border-radius: 50%;
+
+      margin-left: 0;
+      margin-right: 0;
+
+      &.Cal-disabled {
+        color: var(--#{$Prefix}calendar-disabled);
+      }
+
+      &.Cal-available {
+        cursor: pointer;
+        font-weight: normal;
+
+        &:hover {
+          background-color: var(--#{$Prefix}calendar-available-hover-bg);
+          border-color: var(--#{$Prefix}calendar-available-hover-border-color);
+        }
+      }
+
+      &.Cal-weekend {
+        font-weight: bold;
+        color: var(--#{$Prefix}calendar-disabled);
+      }
+
+      &.Cal-today {
+        color: var(--#{$Prefix}calendar-today-color);
+        background-color: var(--#{$Prefix}calendar-today-bg);
+        border-color: var(--#{$Prefix}calendar-today-border-color);
+      }
+
+      &.Cal-available, &.Cal-ranged {
+        &.Cal-range-start, &.Cal-range-end {
+          color: var(--#{$Prefix}calendar-range-color);
+          background-color: var(--#{$Prefix}calendar-range-bg);
+          border-color: var(--#{$Prefix}calendar-range-border-color);
+        }
+      }
+
+      // Cell-selected = Cal-range-start
+      &.Cal-ranged {
+        border-radius: 0;
+
+        &:not(.Cal-range-start):not(.Cal-range-end) {
+          color: var(--#{$Prefix}calendar-ranged-between-color);
+          background-color: var(--#{$Prefix}calendar-ranged-between-bg);
+
+          border-top-color: var(--#{$Prefix}calendar-range-border-color);
+          border-bottom-color: var(--#{$Prefix}calendar-range-border-color);
+
+          &.Cal-available:hover {
+            background-color: var(--#{$Prefix}calendar-available-hover-bg);
+          }
+        }
+
+        &.Cal-range-start {
+          border-radius: 50% 0 0 50%;
+        }
+
+        &.Cal-range-end {
+          border-radius: 0 50% 50% 0;
+        }
+
+        &.Cal-range-start.Cal-range-end {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+
+@each $key, $color in $Theme-colors {
+  $variant-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .50));
+  $variant-color: Color-contrast($variant-bg);
+
+  $variant-active-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .90));
+  $variant-active-color: Color-contrast($variant-bg);
+
+  $variant-hover-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  $variant-hover-color: Color-contrast($variant-bg);
+
+  .Calendar-#{$key} {
+    --#{$Prefix}calendar-color: #{$variant-color};
+    --#{$Prefix}calendar-bg: #{$variant-bg};
+    --#{$Prefix}calendar-border-color: #{red};
+
+    //--#{$Prefix}calendar-body-color: #{$Calendar-body-color};
+    //--#{$Prefix}calendar-body-bg: #{$Calendar-body-bg};
+    //--#{$Prefix}calendar-disabled: #{$Calendar-disabled};
+    //
+    //--#{$Prefix}calendar-weekday-bg: #{$Calendar-weekday-bg};
+    //--#{$Prefix}calendar-weekday-border-color: #{$Calendar-weekday-border-color};
+    //--#{$Prefix}calendar-available-hover-bg: #{$Calendar-available-hover-bg};
+    //--#{$Prefix}calendar-available-hover-border-color: #{$Calendar-available-hover-border-color};
+    //--#{$Prefix}calendar-today-color: #{$Calendar-today-color};
+    //--#{$Prefix}calendar-today-bg: #{$Calendar-today-bg};
+    //--#{$Prefix}calendar-today-border-color: #{$Calendar-today-border-color};
+    //--#{$Prefix}calendar-range-color: #{$Calendar-range-color};
+    //--#{$Prefix}calendar-range-bg: #{$Calendar-range-bg};
+    //--#{$Prefix}calendar-range-border-color: #{$Calendar-range-border-color};
+    //--#{$Prefix}calendar-ranged-between-color: #{$Calendar-ranged-between-color};
+    //--#{$Prefix}calendar-ranged-between-bg: #{$Calendar-ranged-between-bg};
+
+  }
+}

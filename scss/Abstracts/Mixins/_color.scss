@@ -1,127 +1,131 @@
 // ===========================================================================
 // Mixins - Color
 // ===========================================================================
+
 // CSS Variables (Custom Properties)
 
-@mixin Bg-Text-Border-variables($colors) {
-  @each $colorKey, $colorValue in $colors {
-    .Bg-#{$colorKey} {
-      --#{$var-Prefix}bg-lightness: #{lightness($colorValue)};
-      --#{$var-Prefix}bg-alpha: 1;
-      //color: #{TextColor-ByBackground($colorValue)}; // DON'T
-    }
-    .Text-#{$colorKey} {
-      --#{$var-Prefix}text-lightness: #{lightness($colorValue)};
-      --#{$var-Prefix}text-alpha: 1;
-    }
-    .Border-#{$colorKey} {
-      --#{$var-Prefix}border-alpha: 1;
-    }
-  }
-}
-
-@mixin Theme-components($theme-colors, $theme-components) {
-  @each $colorKey, $colorValue in $theme-colors {
-    $fg-muted: hsla(213, 11%, 69%, 1);
-
-    /*
-    // Colors: primary, secondary, success, info, warning, danger
-    */
-    $color-body: Color-ByLightness($colorValue, 96%); // 96% - DON'T CHANGE
-    $color-border: Color-ByLightness($colorValue, 70%); // 80
-    $color-active: $colorValue;
-    $color-shadow: 0, 0, 0 ; // Has to be this way.. check shadows
-
-    $color-darkest: $colorValue;
-    $color-dark: lighten($colorValue, 20%);
-    $color-light: Color-ByLightness($colorValue, 90%); // 90% - DON'T CHANGE
-    $color-lightest: Color-ByLightness($colorValue, 95%); // 95% - DON'T CHANGE
-
-    /*
-    // Colors: dark, night, light
-    */
-    @if ($colorKey=='dark') {
-      $color-body: Color-ByLightness($colorValue, 10%);
-      $color-border: Color-ByLightness($colorValue, 45%);
-      $color-active: Color-ByLightness($Purple, 60%); // #bb86fc;
-      $color-shadow: 255, 255, 255 ;
-
-      $color-darkest: Color-ByLightness($colorValue, 15%);
-      $color-dark: Color-ByLightness($colorValue, 25%);
-      $color-light: Color-ByLightness($colorValue, 30%);
-      $color-lightest: Color-ByLightness($colorValue, 40%);
-    }
-    @if ($colorKey=='night') {
-      $color-body: Color-ByLightness($colorValue, 5%);
-      $color-border: Color-ByLightness($colorValue, 35%);
-      $color-active: Color-ByLightness($Purple, 60%); // #bb86fc;
-      $color-shadow: 255, 255, 255 ;
-
-      $color-darkest: Color-ByLightness($colorValue, 10%);
-      $color-dark: Color-ByLightness($colorValue, 15%);
-      $color-light: Color-ByLightness($colorValue, 20%);
-      $color-lightest: Color-ByLightness($colorValue, 30%);
-    }
-    @if ($colorKey=='light' or $colorKey=='white') {
-      $color-body: Color-ByLightness($colorValue, 85%);
-      $color-border: Color-ByLightness($colorValue, 90%);
-      $color-active: Color-ByLightness($Blue, 60%); // #bb86fc;
-
-      //$color-darkest: Color-ByLightness($colorValue, 90%);
-      //$color-dark: Color-ByLightness($colorValue, 95%);
-      //$color-light: Color-ByLightness($colorValue, 98%);
-      //$color-lightest: Color-ByLightness($colorValue, 100%);
-      $color-darkest: Color-ByLightness($colorValue, 90%);
-      $color-dark: Color-ByLightness($colorValue, 95%);
-      $color-light: Color-ByLightness($colorValue, 100%);
-      $color-lightest: Color-ByLightness($colorValue, 98%);
-    }
-
-    /*
-    // Colors: primary, secondary, success, info, warning, danger, dark, night, light
-    */
-    @each $comKey, $comValue in $theme-components {
-      $class-suffix: if($colorKey, if($comKey == ""  , "", "-") + $colorKey, "");
-      $component-infix: if($comValue == null, "", "#{$comValue}-");
-
-      // .Theme-primary {
-      .#{$comKey + $class-suffix} {
-       &:not(.#{$comKey}-outline) .Btn-close {
-          @if (lightness($colorValue) < 80) {
-            filter: invert(1) grayscale(100%) brightness(200%);
-          }
-        }
-
-        //--body-lightness: #{lightness($color-body)};
-        --#{$var-Prefix}#{$component-infix}bg-body: #{$color-body};
-
-        --#{$var-Prefix}#{$component-infix}bg-darkest: #{$color-darkest};
-        --#{$var-Prefix}#{$component-infix}fg-darkest: #{TextColor-ByBackground($color-darkest)};
-        --#{$var-Prefix}#{$component-infix}bg-dark: #{$color-dark};
-        --#{$var-Prefix}#{$component-infix}fg-dark: #{TextColor-ByBackground($color-dark)};
-        --#{$var-Prefix}#{$component-infix}bg-light: #{$color-light};
-        --#{$var-Prefix}#{$component-infix}fg-light: #{TextColor-ByBackground($color-light)};
-        --#{$var-Prefix}#{$component-infix}bg-lightest: #{$color-lightest};
-        --#{$var-Prefix}#{$component-infix}fg-lightest: #{TextColor-ByBackground($color-lightest)};
-
-        --#{$var-Prefix}#{$component-infix}bg-active: #{$color-active};
-        --#{$var-Prefix}#{$component-infix}fg-active: #{TextColor-ByBackground($color-active)};
-
-        --#{$var-Prefix}#{$component-infix}fg-muted: #{$fg-muted};
-
-        /* Shadows */
-        --#{$var-Prefix}#{$component-infix}shadow-color: #{$color-shadow};
-
-        /* Border */
-        $color-h: #{round(hue($color-border))};
-        $color-s: #{round(saturation($color-border))};
-        $color-l: #{round(lightness($color-border))};
-
-        $alpha-bg: #{var(--#{$var-Prefix}border-alpha, 1)};
-        $hsla-color: hsla($color-h, $color-s, $color-l, $alpha-bg);
-
-        --#{$var-Prefix}#{$component-infix}border-color: #{$hsla-color};
-      }
-    }
-  }
-}
+//@mixin Theme-components($theme-colors, $theme-components) {
+//  $var-ls: $var-Prefix; // ls-
+//
+//  $light-Primary: hsl(265, 100%, 47%); // #6400F0
+//  $light-Primary-variant: hsl(258, 100%, 35%); // #3600B3
+//  $light-Secondary: hsl(174, 96%, 44%); // #04DCC6
+//  $light-Secondary-variant: hsl(180, 100%, 26%); // #008585
+//
+//  $dark-Primary: hsl(267, 95%, 76%); // #BC88FC
+//  $dark-Primary-variant: hsl(258, 100%, 35%); // #3600B3
+//  $dark-Secondary: hsl(174, 96%, 44%); // #04DCC6 Secondary
+//
+//  $fg-muted: hsla(213, 11%, 69%, 1);
+//
+//  @each $colorKey, $colorValue in $theme-colors {
+//    $color-lightness: lightness($colorValue);
+//    /*
+//    // Colors: primary, secondary, success, info, warning, danger
+//    */
+//    $color-body: Color-ByLightness($colorValue, 90%); // 90% - DON'T CHANGE
+//    $color-border: Color-ByLightness($colorValue, 85%); // 80
+//    $color-shadow-rgb: 0, 0, 0 ; // Has to be this way.. check shadows
+//
+//    $color-primary: $colorValue; // lighten($colorValue, 10%);
+//    $color-surface: Color-ByLightness($colorValue, 96%); // 96% - DON'T CHANGE
+//
+//    $color-lightest: Color-ByLightness($colorValue, 94%); // 95% - DON'T CHANGE
+//    $color-light: Color-ByLightness($colorValue, ($color-lightness + 36));
+//    $color-dark: Color-ByLightness($colorValue, ($color-lightness + 18));
+//    $color-darkest: $colorValue;
+//
+//    /*
+//    // Colors: dark, night, light
+//    */
+//    @if ($colorKey=='dark' or $colorKey=='night') {
+//      /*
+//      Rules:
+//      - Body is darkest
+//      - Surface is second darkest
+//      - lightness: $Night 7%, $Dark 18%
+//      */
+//      $color-body: Color-ByLightness($colorValue, ($color-lightness - 6));
+//      $color-border: Color-ByLightness($colorValue, ($color-lightness + 10));
+//      $color-shadow-rgb: 255, 255, 255;
+//
+//      $color-primary: $dark-Primary;
+//      $color-surface: $colorValue;
+//
+//      $color-lightest: Color-ByLightness($colorValue, ($color-lightness + 16));
+//      $color-light: Color-ByLightness($colorValue, ($color-lightness + 12));
+//      $color-dark: Color-ByLightness($colorValue, ($color-lightness + 8));
+//      $color-darkest: Color-ByLightness($colorValue, ($color-lightness + 4));
+//    }
+//    @if ($colorKey=='light') {
+//      /*
+//       Rules:
+//       - Reversed
+//       - lightness: 98% #fafafa rgb(250, 250, 250)
+//      */
+//      $color-body: Color-ByLightness($colorValue, ($color-lightness - 5));
+//      $color-border: Color-ByLightness($colorValue, ($color-lightness - 10));
+//
+//      $color-primary: $light-Primary; // #6400f0;
+//      $color-surface: Color-ByLightness($colorValue, ($color-lightness + 2)); // #fff
+//
+//      $color-lightest: $colorValue;
+//      $color-light: Color-ByLightness($colorValue, ($color-lightness - 2));
+//      $color-dark: Color-ByLightness($colorValue, ($color-lightness - 4));
+//      $color-darkest: Color-ByLightness($colorValue, ($color-lightness - 8));
+//    }
+//
+//    /*
+//    // Colors: primary, secondary, success, info, warning, danger, dark, night, light
+//    */
+//    @each $comKey, $comValue in $theme-components {
+//      $class-suffix: if($colorKey, if($comKey == ""  , "", "-") + $colorKey, "");
+//      $component-infix: if($comValue == null, "", "#{$comValue}-");
+//
+//      // .Theme-primary {
+//      .#{$comKey + $class-suffix} {
+//        &:not(.#{$comKey}-outline) .Btn-close {
+//          @if (lightness($colorValue) < 80) {
+//            filter: invert(1) grayscale(100%) brightness(200%);
+//          }
+//        }
+//
+//        /*
+//        // Background colors
+//        */
+//        --#{$var-ls}#{$component-infix}bg: #{$colorValue};
+//        --#{$var-ls}#{$component-infix}bg-hsl: #{colorToHSL($colorValue)};
+//
+//        --#{$var-ls}#{$component-infix}bg-body: #{$color-body};
+//        --#{$var-ls}#{$component-infix}bg-active: #{$color-primary};
+//        --#{$var-ls}#{$component-infix}bg-active-hsl: #{colorToHSL($color-primary)};
+//
+//        --#{$var-ls}#{$component-infix}bg-surface: #{$color-surface};
+//        --#{$var-ls}#{$component-infix}bg-lightest: #{$color-lightest};
+//        --#{$var-ls}#{$component-infix}bg-light: #{$color-light};
+//        --#{$var-ls}#{$component-infix}bg-dark: #{$color-dark};
+//        --#{$var-ls}#{$component-infix}bg-darkest: #{$color-darkest};
+//
+//        /*
+//        // Foreground colors
+//        */
+//        --#{$var-ls}#{$component-infix}fg-muted: #{$fg-muted};
+//
+//        --#{$var-ls}#{$component-infix}fg-body: #{Best-fg-color($color-body)};
+//        --#{$var-ls}#{$component-infix}fg-active: #{Best-fg-color($color-primary)};
+//
+//        --#{$var-ls}#{$component-infix}fg-surface: #{Best-fg-color($color-surface)};
+//        --#{$var-ls}#{$component-infix}fg-lightest: #{Best-fg-color($color-lightest)};
+//        --#{$var-ls}#{$component-infix}fg-light: #{Best-fg-color($color-light)};
+//        --#{$var-ls}#{$component-infix}fg-dark: #{Best-fg-color($color-dark)};
+//        --#{$var-ls}#{$component-infix}fg-darkest: #{Best-fg-color($color-darkest)};
+//
+//        /* Shadows */
+//        --#{$var-ls}#{$component-infix}shadow-color-rgb: #{$color-shadow-rgb};
+//
+//        /* Border */
+//        --#{$var-ls}#{$component-infix}border-color-hsl: #{colorToHSL($color-border)};
+//      }
+//    }
+//  }
+//}
