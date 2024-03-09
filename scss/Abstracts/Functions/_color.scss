@@ -24,7 +24,7 @@
 // Return opaque color
 // Usage  => Opaque(#fff, rgba(0, 0, 0, .5)) => #808080
 @function Opaque($background, $foreground) {
-  @return mix(rgba($foreground, 1), $background, opacity($foreground) * 100);
+  @return mix(rgba($foreground, 1), $background, opacity($foreground) * 100%);
 }
 
 /// Usage  => --warning-rgb: #{hexToRGB($Warning)};

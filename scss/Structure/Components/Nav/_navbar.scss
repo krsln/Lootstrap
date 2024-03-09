@@ -15,6 +15,7 @@ $Fg-accent: var(--#{$Prefix}fg-accent);
   padding-top: 0.5625rem;
   padding-bottom: 0.5rem;
 
+  background-color: $Navbar-bg;
   box-shadow: $Shadow;
 
   // Because flex properties aren't inherited, we need to redeclare these first
@@ -246,7 +247,7 @@ $Navbar-nav-link-padding-x            : 1rem !default;
 
 // Navbar themes
 //
-// Styles for switching between navbars with light or dark background.
+// Styles for switching between nav bars with light or dark background.
 
 .Navbar-light {
   //@include deprecate("`.navbar-light`", "v5.2.0", "v6.0.0", true);

@@ -248,6 +248,19 @@ $Card-cap-color                 : null !default;
 $Card-img-overlay-padding       : $Spacer !default;
 
 // ******************************************************************************************************* //
+// * Card + Accordion
+// *
+
+$Accordion-border-base          : $Card-border-base;
+$Accordion-border-width         : $Card-border-width;
+$Accordion-border-color         : $Card-border-color;
+$Accordion-border-radius        : $Card-border-radius;
+$Accordion-border-color-focus   : $Adaptive-bg-accent;
+
+$Accordion-disabled-color       : $Muted;
+$Accordion-margin-bottom        : $Card-margin-bottom;
+$Accordion-header-height        : 50px;
+// ******************************************************************************************************* //
 // * Caret
 // *
 
@@ -349,6 +362,8 @@ $Nav-link-disabled-color        : $Muted !default;
 $Nav-link-active-color          : $Adaptive-fg-accent !default;
 $Nav-link-active-bg             : $Adaptive-bg-accent !default;
 $Nav-link-active-border-color   : $Adaptive-bg-accent !default;
+
+$Navbar-bg                      : $Adaptive-bg-surface !default;
 
 //
 // Tabs classic

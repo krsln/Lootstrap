@@ -1,0 +1,103 @@
+/**
+ * Components - Accordion
+ *
+*/
+
+.Accordion {
+  border: $Accordion-border-base;
+  border-radius: $Accordion-border-radius;
+  margin-bottom: $Accordion-margin-bottom;
+
+  .Card {
+    margin-bottom: 0;
+    border-radius: 0;
+
+    // remove Card radius sets
+    .Card-header, .Card-body {
+      border-radius: 0;
+    }
+
+    &:first-child:not(:last-child) {
+      border-radius: $Accordion-border-radius $Accordion-border-radius 0 0;
+
+      .Card-header {
+        border-radius: $Accordion-border-radius $Accordion-border-radius 0 0;
+      }
+    }
+
+    &:last-child:not(:first-child) {
+      border-radius: 0 0 $Accordion-border-radius $Accordion-border-radius;
+
+      &:not(.Active) .Card-header {
+        border-radius: 0 0 $Accordion-border-radius $Accordion-border-radius;
+      }
+
+      &.Active .Card-header {
+        border-radius: 0;
+      }
+
+      .Card-body {
+        border-radius: $Accordion-border-radius;
+      }
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+
+      .Card-header {
+        border-radius: 0;
+      }
+    }
+
+    .Card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: $Accordion-header-height;
+      cursor: pointer;
+
+      .Accordion-toggle {
+        border: none;
+        transition: transform 0.3s ease-in;
+        background: none;
+
+        &:disabled {
+          cursor: not-allowed;
+
+          svg path:nth-child(2) {
+            fill: $Accordion-disabled-color;
+          }
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      /* Highlight the header when focus is on the toggle button */
+      &:focus-within {
+        border-color: $Accordion-border-color-focus;
+      }
+    }
+
+    &.Active .Accordion-toggle {
+      transform: rotate(180deg);
+    }
+
+    &.Disabled .Card-header {
+      color: $Accordion-disabled-color;
+      cursor: not-allowed;
+    }
+
+  }
+}
+
+.Accordion-pure {
+  .Card {
+    box-shadow: none;
+
+    .Card-header {
+      background-color: transparent;
+    }
+  }
+}

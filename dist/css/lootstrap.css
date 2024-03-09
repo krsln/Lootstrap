@@ -1,41 +1,41 @@
 @charset "UTF-8";
 /*!
- * CSS Compiled on: 2022-06-05
+ * CSS Compiled on: 2024-02-26
  *
- * Lootstrap v22.6.5-beta.1 (https://github.com/krsln/Lootstrap/)
- * Copyright 2022 Qrsln.
+ * Lootstrap v24.2.26-beta.0 (https://github.com/krsln/Lootstrap/)
+ * Copyright 2024 Qrsln.
  * Licensed under MIT (https://github.com/krsln/Lootstrap/blob/master/LICENSE)
 */
 :root {
-  --ls-red: hsl(354deg, 66%, 54%);
-  --ls-lime: hsl(120deg, 100%, 50%);
-  --ls-blue: hsl(212deg, 97%, 43%);
-  --ls-yellow: hsl(45deg, 100%, 51%);
-  --ls-cyan: hsl(180deg, 100%, 50%);
-  --ls-magenta: hsl(300deg, 100%, 50%);
+  --ls-red: hsl(354, 66%, 54%);
+  --ls-lime: hsl(120, 100%, 50%);
+  --ls-blue: hsl(212, 97%, 43%);
+  --ls-yellow: hsl(45, 100%, 51%);
+  --ls-cyan: hsl(180, 100%, 50%);
+  --ls-magenta: hsl(300, 100%, 50%);
   --ls-purple: rgb(160, 32, 240);
-  --ls-green: hsl(134deg, 61%, 41%);
-  --ls-maroon: hsl(331deg, 74%, 30%);
-  --ls-navy: hsl(210deg, 100%, 12%);
-  --ls-teal: hsl(162deg, 73%, 46%);
-  --ls-olive: hsl(60deg, 100%, 25%);
-  --ls-orange: hsl(24deg, 93%, 50%);
+  --ls-green: hsl(134, 61%, 41%);
+  --ls-maroon: hsl(331, 74%, 30%);
+  --ls-navy: hsl(210, 100%, 12%);
+  --ls-teal: hsl(162, 73%, 46%);
+  --ls-olive: hsl(60, 100%, 25%);
+  --ls-orange: hsl(24, 93%, 50%);
   --ls-pink: rgb(255, 192, 203);
-  --ls-brown: hsl(0deg, 33%, 38%);
-  --ls-indigo: hsl(270deg, 100%, 25%);
-  --ls-black: hsl(0deg, 0%, 0%);
-  --ls-white: hsl(0deg, 0%, 100%);
-  --ls-silver: hsl(0deg, 0%, 75%);
-  --ls-gray: hsl(213deg, 8%, 45%);
-  --ls-light: hsl(0deg, 0%, 98%);
-  --ls-dark: hsl(240deg, 7%, 18%);
-  --ls-night: hsl(0deg, 0%, 7%);
-  --ls-primary: hsl(217deg, 96%, 52%);
-  --ls-secondary: hsl(208deg, 7%, 46%);
-  --ls-success: hsl(150deg, 67%, 35%);
-  --ls-info: hsl(195deg, 90%, 55%);
-  --ls-warning: hsl(45deg, 100%, 45%);
-  --ls-danger: hsl(354deg, 66%, 54%);
+  --ls-brown: hsl(0, 33%, 38%);
+  --ls-indigo: hsl(270, 100%, 25%);
+  --ls-black: hsl(0, 0%, 0%);
+  --ls-white: hsl(0, 0%, 100%);
+  --ls-silver: hsl(0, 0%, 75%);
+  --ls-gray: hsl(213, 8%, 45%);
+  --ls-light: hsl(0, 0%, 98%);
+  --ls-dark: hsl(240, 7%, 18%);
+  --ls-night: hsl(0, 0%, 7%);
+  --ls-primary: hsl(217, 96%, 52%);
+  --ls-secondary: hsl(208, 7%, 46%);
+  --ls-success: hsl(150, 67%, 35%);
+  --ls-info: hsl(195, 90%, 55%);
+  --ls-warning: hsl(45, 100%, 45%);
+  --ls-danger: hsl(354, 66%, 54%);
   --ls-border-radius: 0.25rem;
   --ls-border-alpha: 1;
   --ls-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -165,7 +165,7 @@ sup {
   top: -.5em
 }
 a {
-  color: hsl(217deg,96%,52%);
+  color: #0f69fa;
   text-decoration: underline
 }
 a:hover {
@@ -229,7 +229,7 @@ table {
 caption {
   padding-top: .5rem;
   padding-bottom: .5rem;
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   text-align: left
 }
 th {
@@ -403,19 +403,10 @@ progress {
   --ls-anim-iteration: 5
 }
 .Anim {
-  -webkit-animation-duration: var(--ls-anim-dur, 750ms);
-          animation-duration: var(--ls-anim-dur, 750ms);
-  -webkit-animation-iteration-count: var(--ls-anim-iteration,1);
-          animation-iteration-count: var(--ls-anim-iteration,1);
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both
-}
-@-webkit-keyframes Keyframe-spin-CW {
-  100% {
-    transform: rotate(360deg)
-  }
+  animation-duration: var(--ls-anim-dur, 750ms);
+  animation-iteration-count: var(--ls-anim-iteration,1);
+  animation-timing-function: linear;
+  animation-fill-mode: both
 }
 @keyframes Keyframe-spin-CW {
   100% {
@@ -423,16 +414,7 @@ progress {
   }
 }
 .Anim-spin {
-  -webkit-animation-name: Keyframe-spin-CW;
-          animation-name: Keyframe-spin-CW
-}
-@-webkit-keyframes Keyframe-spin-CCW {
-  0% {
-    transform: rotateZ(0)
-  }
-  100% {
-    transform: rotateZ(-360deg)
-  }
+  animation-name: Keyframe-spin-CW
 }
 @keyframes Keyframe-spin-CCW {
   0% {
@@ -443,22 +425,7 @@ progress {
   }
 }
 .Anim-spin-CCW {
-  -webkit-animation-name: Keyframe-spin-CCW;
-          animation-name: Keyframe-spin-CCW
-}
-@-webkit-keyframes Keyframe-spin-CW-stepped {
-  0%,
-  5% {
-    transform: rotate(0)
-  }
-  40%,
-  60% {
-    transform: rotate(180deg)
-  }
-  100%,
-  95% {
-    transform: rotate(360deg)
-  }
+  animation-name: Keyframe-spin-CCW
 }
 @keyframes Keyframe-spin-CW-stepped {
   0%,
@@ -475,16 +442,7 @@ progress {
   }
 }
 .Anim-spin-stepped {
-  -webkit-animation-name: Keyframe-spin-CW-stepped;
-          animation-name: Keyframe-spin-CW-stepped
-}
-@-webkit-keyframes Keyframe-grow {
-  0% {
-    transform: scale(0)
-  }
-  50% {
-    opacity: 1
-  }
+  animation-name: Keyframe-spin-CW-stepped
 }
 @keyframes Keyframe-grow {
   0% {
@@ -495,14 +453,7 @@ progress {
   }
 }
 .Anim-grow {
-  -webkit-animation-name: Keyframe-grow;
-          animation-name: Keyframe-grow
-}
-@-webkit-keyframes Keyframe-opacity {
-  100% {
-    opacity: 0;
-    transform: scale(1)
-  }
+  animation-name: Keyframe-grow
 }
 @keyframes Keyframe-opacity {
   100% {
@@ -511,20 +462,7 @@ progress {
   }
 }
 .Anim-opacity {
-  -webkit-animation-name: Keyframe-opacity;
-          animation-name: Keyframe-opacity
-}
-@-webkit-keyframes Keyframe-heartbeat {
-  0%,
-  100% {
-    transform: scale(1)
-  }
-  10% {
-    transform: scale(1.2)
-  }
-  20% {
-    transform: scale(1.4)
-  }
+  animation-name: Keyframe-opacity
 }
 @keyframes Keyframe-heartbeat {
   0%,
@@ -539,27 +477,8 @@ progress {
   }
 }
 .Anim-heartbeat {
-  -webkit-animation-name: Keyframe-heartbeat;
-          animation-name: Keyframe-heartbeat;
-  -webkit-animation-timing-function: ease;
-          animation-timing-function: ease
-}
-@-webkit-keyframes Keyframe-heartbeat-2 {
-  0% {
-    transform: scale(1)
-  }
-  14% {
-    transform: scale(1.3)
-  }
-  28% {
-    transform: scale(1)
-  }
-  42% {
-    transform: scale(1.3)
-  }
-  70% {
-    transform: scale(1)
-  }
+  animation-name: Keyframe-heartbeat;
+  animation-timing-function: ease
 }
 @keyframes Keyframe-heartbeat-2 {
   0% {
@@ -579,33 +498,8 @@ progress {
   }
 }
 .Anim-heartbeat-2 {
-  -webkit-animation-name: Keyframe-heartbeat-2;
-          animation-name: Keyframe-heartbeat-2;
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out
-}
-@-webkit-keyframes Keyframe-rubber-band {
-  from {
-    transform: scale3d(1,1,1)
-  }
-  30% {
-    transform: scale3d(1.25,.75,1)
-  }
-  40% {
-    transform: scale3d(.75,1.25,1)
-  }
-  50% {
-    transform: scale3d(1.15,.85,1)
-  }
-  65% {
-    transform: scale3d(.95,1.05,1)
-  }
-  75% {
-    transform: scale3d(1.05,.95,1)
-  }
-  to {
-    transform: scale3d(1,1,1)
-  }
+  animation-name: Keyframe-heartbeat-2;
+  animation-timing-function: ease-in-out
 }
 @keyframes Keyframe-rubber-band {
   from {
@@ -631,55 +525,23 @@ progress {
   }
 }
 .Anim-rubber-band {
-  -webkit-animation-name: Keyframe-rubber-band;
-          animation-name: Keyframe-rubber-band
-}
-@-webkit-keyframes Keyframe-bounce {
-  20%,
-  53%,
-  from,
-  to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-            animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    transform: translate3d(0,0,0)
-  }
-  40%,
-  43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-            animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    transform: translate3d(0,-30px,0) scaleY(1.1)
-  }
-  70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-            animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-    transform: translate3d(0,-15px,0) scaleY(1.05)
-  }
-  80% {
-    transition-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-    transform: translate3d(0,0,0) scaleY(.95)
-  }
-  90% {
-    transform: translate3d(0,-4px,0) scaleY(1.02)
-  }
+  animation-name: Keyframe-rubber-band
 }
 @keyframes Keyframe-bounce {
   20%,
   53%,
   from,
   to {
-    -webkit-animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
-            animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+    animation-timing-function: cubic-bezier(0.215,0.61,0.355,1);
     transform: translate3d(0,0,0)
   }
   40%,
   43% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-            animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     transform: translate3d(0,-30px,0) scaleY(1.1)
   }
   70% {
-    -webkit-animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
-            animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
+    animation-timing-function: cubic-bezier(0.755,0.05,0.855,0.06);
     transform: translate3d(0,-15px,0) scaleY(1.05)
   }
   80% {
@@ -691,37 +553,8 @@ progress {
   }
 }
 .Anim-bounce {
-  -webkit-animation-name: Keyframe-bounce;
-          animation-name: Keyframe-bounce;
+  animation-name: Keyframe-bounce;
   transform-origin: center bottom
-}
-@-webkit-keyframes Keyframe-jello {
-  11.1%,
-  from,
-  to {
-    transform: translate3d(0,0,0)
-  }
-  22.2% {
-    transform: skewX(-12.5deg) skewY(-12.5deg)
-  }
-  33.3% {
-    transform: skewX(6.25deg) skewY(6.25deg)
-  }
-  44.4% {
-    transform: skewX(-3.125deg) skewY(-3.125deg)
-  }
-  55.5% {
-    transform: skewX(1.5625deg) skewY(1.5625deg)
-  }
-  66.6% {
-    transform: skewX(-.78125deg) skewY(-.78125deg)
-  }
-  77.7% {
-    transform: skewX(.390625deg) skewY(.390625deg)
-  }
-  88.8% {
-    transform: skewX(-.1953125deg) skewY(-.1953125deg)
-  }
 }
 @keyframes Keyframe-jello {
   11.1%,
@@ -752,26 +585,8 @@ progress {
   }
 }
 .Anim-jello {
-  -webkit-animation-name: Keyframe-jello;
-          animation-name: Keyframe-jello;
+  animation-name: Keyframe-jello;
   transform-origin: center
-}
-@-webkit-keyframes Keyframe-swing {
-  20% {
-    transform: rotate3d(0,0,1,15deg)
-  }
-  40% {
-    transform: rotate3d(0,0,1,-10deg)
-  }
-  60% {
-    transform: rotate3d(0,0,1,5deg)
-  }
-  80% {
-    transform: rotate3d(0,0,1,-5deg)
-  }
-  to {
-    transform: rotate3d(0,0,1,0deg)
-  }
 }
 @keyframes Keyframe-swing {
   20% {
@@ -791,28 +606,8 @@ progress {
   }
 }
 .Anim-swing {
-  -webkit-animation-name: Keyframe-swing;
-          animation-name: Keyframe-swing;
+  animation-name: Keyframe-swing;
   transform-origin: top center
-}
-@-webkit-keyframes Keyframe-shakeX {
-  from,
-  to {
-    transform: translate3d(0,0,0)
-  }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: translate3d(-10px,0,0)
-  }
-  20%,
-  40%,
-  60%,
-  80% {
-    transform: translate3d(10px,0,0)
-  }
 }
 @keyframes Keyframe-shakeX {
   from,
@@ -834,27 +629,7 @@ progress {
   }
 }
 .Anim-shake {
-  -webkit-animation-name: Keyframe-shakeX;
-          animation-name: Keyframe-shakeX
-}
-@-webkit-keyframes Keyframe-shakeY {
-  from,
-  to {
-    transform: translate3d(0,0,0)
-  }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: translate3d(0,-10px,0)
-  }
-  20%,
-  40%,
-  60%,
-  80% {
-    transform: translate3d(0,10px,0)
-  }
+  animation-name: Keyframe-shakeX
 }
 @keyframes Keyframe-shakeY {
   from,
@@ -876,31 +651,7 @@ progress {
   }
 }
 .Anim-shake-vertical {
-  -webkit-animation-name: Keyframe-shakeY;
-          animation-name: Keyframe-shakeY
-}
-@-webkit-keyframes Keyframe-wobble {
-  from {
-    transform: translate3d(0,0,0)
-  }
-  15% {
-    transform: translate3d(-25%,0,0) rotate3d(0,0,1,-5deg)
-  }
-  30% {
-    transform: translate3d(20%,0,0) rotate3d(0,0,1,3deg)
-  }
-  45% {
-    transform: translate3d(-15%,0,0) rotate3d(0,0,1,-3deg)
-  }
-  60% {
-    transform: translate3d(10%,0,0) rotate3d(0,0,1,2deg)
-  }
-  75% {
-    transform: translate3d(-5%,0,0) rotate3d(0,0,1,-1deg)
-  }
-  to {
-    transform: translate3d(0,0,0)
-  }
+  animation-name: Keyframe-shakeY
 }
 @keyframes Keyframe-wobble {
   from {
@@ -926,8 +677,7 @@ progress {
   }
 }
 .Anim-wobble {
-  -webkit-animation-name: Keyframe-wobble;
-          animation-name: Keyframe-wobble
+  animation-name: Keyframe-wobble
 }
 .Rect {
   flex: 1 0 auto;
@@ -993,37 +743,37 @@ progress {
 :root {
   --ls-contrast-hsl: 0deg,0%,0%;
   --ls-bg-hue-hsl: 0deg,0%,98%;
-  --ls-bg-hue: hsl(0deg, 0%, 98%);
-  --ls-fg-hue: hsl(0deg, 0%, 0%);
+  --ls-bg-hue: hsl(0, 0%, 98%);
+  --ls-fg-hue: hsl(0, 0%, 0%);
   --ls-bg-accent-hsl: 217deg,96%,52%;
-  --ls-bg-accent: hsl(217deg, 96%, 52%);
-  --ls-fg-accent: hsl(0deg, 0%, 100%);
-  --ls-bg-surface: hsl(0deg, 0%, 100%);
-  --ls-fg-surface: hsl(0deg, 0%, 0%);
+  --ls-bg-accent: hsl(217, 96%, 52%);
+  --ls-fg-accent: hsl(0, 0%, 100%);
+  --ls-bg-surface: hsl(0, 0%, 100%);
+  --ls-fg-surface: hsl(0, 0%, 0%);
   --ls-bg-body: #ededed;
   --ls-border-hsl: 0deg,0%,88%;
   --ls-shadow-hsl: 240deg,7%,18%;
-  --ls-gradient: linear-gradient(180deg, hsla(0deg, 0%, 100%, 0.15), hsla(0deg, 0%, 100%, 0))
+  --ls-gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0))
 }
 .Accent-light {
   --ls-bg-accent-hsl: 217deg,96%,52%;
-  --ls-bg-accent: hsl(217deg, 96%, 52%);
-  --ls-fg-accent: hsl(0deg, 0%, 100%)
+  --ls-bg-accent: hsl(217, 96%, 52%);
+  --ls-fg-accent: hsl(0, 0%, 100%)
 }
 .Theme-dark {
   --ls-contrast-hsl: 0deg,0%,100%;
   --ls-bg-hue-hsl: 240deg,7%,18%;
-  --ls-bg-hue: hsl(240deg, 7%, 18%);
-  --ls-fg-hue: hsl(0deg, 0%, 100%);
+  --ls-bg-hue: hsl(240, 7%, 18%);
+  --ls-fg-hue: hsl(0, 0%, 100%);
   --ls-bg-accent-hsl: 217deg,97%,76%;
   --ls-bg-accent: #87b4fd;
-  --ls-fg-accent: hsl(0deg, 0%, 0%);
-  --ls-bg-surface: hsl(240deg, 7%, 18%);
-  --ls-fg-surface: hsl(0deg, 0%, 100%);
+  --ls-fg-accent: hsl(0, 0%, 0%);
+  --ls-bg-surface: hsl(240, 7%, 18%);
+  --ls-fg-surface: hsl(0, 0%, 100%);
   --ls-bg-body: #1c1c21;
   --ls-border-hsl: 240deg,7%,28%;
   --ls-shadow-hsl: 0deg,0%,7%;
-  --ls-gradient: linear-gradient(180deg, hsla(0deg, 0%, 100%, 0.15), hsla(0deg, 0%, 100%, 0))
+  --ls-gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0))
 }
 .Theme-dark .Btn-close {
   filter: invert(1) grayscale(100%) brightness(200%)
@@ -1031,22 +781,22 @@ progress {
 .Accent-dark {
   --ls-bg-accent-hsl: 217deg,97%,76%;
   --ls-bg-accent: #87b4fd;
-  --ls-fg-accent: hsl(0deg, 0%, 0%)
+  --ls-fg-accent: hsl(0, 0%, 0%)
 }
 .Theme-night {
   --ls-contrast-hsl: 0deg,0%,100%;
   --ls-bg-hue-hsl: 0deg,0%,7%;
-  --ls-bg-hue: hsl(0deg, 0%, 7%);
-  --ls-fg-hue: hsl(0deg, 0%, 100%);
+  --ls-bg-hue: hsl(0, 0%, 7%);
+  --ls-fg-hue: hsl(0, 0%, 100%);
   --ls-bg-accent-hsl: 217deg,97%,76%;
   --ls-bg-accent: #87b4fd;
-  --ls-fg-accent: hsl(0deg, 0%, 0%);
-  --ls-bg-surface: hsl(0deg, 0%, 7%);
-  --ls-fg-surface: hsl(0deg, 0%, 100%);
+  --ls-fg-accent: hsl(0, 0%, 0%);
+  --ls-bg-surface: hsl(0, 0%, 7%);
+  --ls-fg-surface: hsl(0, 0%, 100%);
   --ls-bg-body: #030303;
   --ls-border-hsl: 0deg,0%,17%;
   --ls-shadow-hsl: 0deg,0%,0%;
-  --ls-gradient: linear-gradient(180deg, hsla(0deg, 0%, 100%, 0.15), hsla(0deg, 0%, 100%, 0))
+  --ls-gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0))
 }
 .Theme-night .Btn-close {
   filter: invert(1) grayscale(100%) brightness(200%)
@@ -1054,37 +804,37 @@ progress {
 .Accent-night {
   --ls-bg-accent-hsl: 217deg,97%,76%;
   --ls-bg-accent: #87b4fd;
-  --ls-fg-accent: hsl(0deg, 0%, 0%)
+  --ls-fg-accent: hsl(0, 0%, 0%)
 }
 .Accent-primary {
   --ls-bg-accent-hsl: 217deg,96%,52%;
-  --ls-bg-accent: hsl(217deg, 96%, 52%);
-  --ls-fg-accent: hsl(0deg, 0%, 100%)
+  --ls-bg-accent: hsl(217, 96%, 52%);
+  --ls-fg-accent: hsl(0, 0%, 100%)
 }
 .Accent-secondary {
   --ls-bg-accent-hsl: 208deg,7%,46%;
-  --ls-bg-accent: hsl(208deg, 7%, 46%);
-  --ls-fg-accent: hsl(0deg, 0%, 100%)
+  --ls-bg-accent: hsl(208, 7%, 46%);
+  --ls-fg-accent: hsl(0, 0%, 100%)
 }
 .Accent-success {
   --ls-bg-accent-hsl: 150deg,67%,35%;
-  --ls-bg-accent: hsl(150deg, 67%, 35%);
-  --ls-fg-accent: hsl(0deg, 0%, 100%)
+  --ls-bg-accent: hsl(150, 67%, 35%);
+  --ls-fg-accent: hsl(0, 0%, 100%)
 }
 .Accent-info {
   --ls-bg-accent-hsl: 195deg,90%,55%;
-  --ls-bg-accent: hsl(195deg, 90%, 55%);
-  --ls-fg-accent: hsl(0deg, 0%, 0%)
+  --ls-bg-accent: hsl(195, 90%, 55%);
+  --ls-fg-accent: hsl(0, 0%, 0%)
 }
 .Accent-warning {
   --ls-bg-accent-hsl: 45deg,100%,45%;
-  --ls-bg-accent: hsl(45deg, 100%, 45%);
-  --ls-fg-accent: hsl(0deg, 0%, 0%)
+  --ls-bg-accent: hsl(45, 100%, 45%);
+  --ls-fg-accent: hsl(0, 0%, 0%)
 }
 .Accent-danger {
   --ls-bg-accent-hsl: 354deg,66%,54%;
-  --ls-bg-accent: hsl(354deg, 66%, 54%);
-  --ls-fg-accent: hsl(0deg, 0%, 100%)
+  --ls-bg-accent: hsl(354, 66%, 54%);
+  --ls-fg-accent: hsl(0, 0%, 100%)
 }
 .Overlay-0 {
   background-color: hsla(var(--ls-contrast-hsl),0%)
@@ -1115,6 +865,74 @@ progress {
 }
 .Overlay-16 {
   background-color: hsla(var(--ls-contrast-hsl),16%)
+}
+.Accordion {
+  border: none;
+  border-radius: .25rem;
+  margin-bottom: .5rem
+}
+.Accordion .Card {
+  margin-bottom: 0;
+  border-radius: 0
+}
+.Accordion .Card .Card-body,
+.Accordion .Card .Card-header {
+  border-radius: 0
+}
+.Accordion .Card:first-child:not(:last-child) {
+  border-radius: .25rem .25rem 0 0
+}
+.Accordion .Card:first-child:not(:last-child) .Card-header {
+  border-radius: .25rem .25rem 0 0
+}
+.Accordion .Card:last-child:not(:first-child) {
+  border-radius: 0 0 .25rem .25rem
+}
+.Accordion .Card:last-child:not(:first-child):not(.Active) .Card-header {
+  border-radius: 0 0 .25rem .25rem
+}
+.Accordion .Card:last-child:not(:first-child).Active .Card-header {
+  border-radius: 0
+}
+.Accordion .Card:last-child:not(:first-child) .Card-body {
+  border-radius: .25rem
+}
+.Accordion .Card:not(:first-child):not(:last-child) {
+  border-radius: 0
+}
+.Accordion .Card:not(:first-child):not(:last-child) .Card-header {
+  border-radius: 0
+}
+.Accordion .Card .Card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  cursor: pointer
+}
+.Accordion .Card .Card-header .Accordion-toggle {
+  border: none;
+  transition: transform .3s ease-in;
+  background: 0 0
+}
+.Accordion .Card .Card-header .Accordion-toggle:disabled {
+  cursor: not-allowed
+}
+.Accordion .Card .Card-header .Accordion-toggle:disabled svg path:nth-child(2) {
+  fill: hsl(213,11%,69%)
+}
+.Accordion .Card .Card-header .Accordion-toggle:focus {
+  outline: 0
+}
+.Accordion .Card .Card-header:focus-within {
+  border-color: var(--ls-bg-accent)
+}
+.Accordion .Card.Active .Accordion-toggle {
+  transform: rotate(180deg)
+}
+.Accordion .Card.Disabled .Card-header {
+  color: #a7afb8;
+  cursor: not-allowed
 }
 .Alert {
   --ls-alert-bg: var(--ls-bg-hue);
@@ -1204,21 +1022,21 @@ progress {
 }
 .Alert-light {
   --ls-alert-bg: #fbfbfb;
-  --ls-alert-color: hsl(0deg, 0%, 0%);
+  --ls-alert-color: hsl(0, 0%, 0%);
   --ls-alert-icon-color: #fefefe;
   --ls-alert-border-color: #eeeeee;
   --ls-alert-outline-bg: white;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #fbfbfb;
   --ls-alert-outline-border-color: #e0e0e0
 }
 .Alert-dark {
   --ls-alert-bg: #606065;
-  --ls-alert-color: hsl(0deg, 0%, 100%);
+  --ls-alert-color: hsl(0, 0%, 100%);
   --ls-alert-icon-color: #d7d7d9;
   --ls-alert-border-color: #5b5b60;
   --ls-alert-outline-bg: #eaeaea;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #606065;
   --ls-alert-outline-border-color: #131316
 }
@@ -1227,11 +1045,11 @@ progress {
 }
 .Alert-night {
   --ls-alert-bg: #4d4d4d;
-  --ls-alert-color: hsl(0deg, 0%, 100%);
+  --ls-alert-color: hsl(0, 0%, 100%);
   --ls-alert-icon-color: lightgray;
   --ls-alert-border-color: #494949;
   --ls-alert-outline-bg: #e7e7e7;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #4d4d4d;
   --ls-alert-outline-border-color: black
 }
@@ -1240,11 +1058,11 @@ progress {
 }
 .Alert-primary {
   --ls-alert-bg: #4b8ffb;
-  --ls-alert-color: hsl(0deg, 0%, 100%);
+  --ls-alert-color: hsl(0, 0%, 100%);
   --ls-alert-icon-color: #d2e3fe;
   --ls-alert-border-color: #4788ee;
   --ls-alert-outline-bg: #e7f0ff;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #4b8ffb;
   --ls-alert-outline-border-color: #0453d2
 }
@@ -1253,11 +1071,11 @@ progress {
 }
 .Alert-secondary {
   --ls-alert-bg: #92989e;
-  --ls-alert-color: hsl(0deg, 0%, 0%);
+  --ls-alert-color: hsl(0, 0%, 0%);
   --ls-alert-icon-color: #e4e5e7;
   --ls-alert-border-color: #8b9096;
   --ls-alert-outline-bg: #f0f1f2;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #92989e;
   --ls-alert-outline-border-color: #555c62
 }
@@ -1266,11 +1084,11 @@ progress {
 }
 .Alert-success {
   --ls-alert-bg: #56b083;
-  --ls-alert-color: hsl(0deg, 0%, 0%);
+  --ls-alert-color: hsl(0, 0%, 0%);
   --ls-alert-icon-color: #d5ebe0;
   --ls-alert-border-color: #52a77c;
   --ls-alert-outline-bg: #e8f4ee;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #56b083;
   --ls-alert-outline-border-color: #156a40
 }
@@ -1279,11 +1097,11 @@ progress {
 }
 .Alert-info {
   --ls-alert-bg: #5cd0f7;
-  --ls-alert-color: hsl(0deg, 0%, 0%);
+  --ls-alert-color: hsl(0, 0%, 0%);
   --ls-alert-icon-color: #d6f3fd;
   --ls-alert-border-color: #57c6eb;
   --ls-alert-outline-bg: #e9f9fe;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #5cd0f7;
   --ls-alert-outline-border-color: #0ba6da
 }
@@ -1292,11 +1110,11 @@ progress {
 }
 .Alert-warning {
   --ls-alert-bg: #ecc140;
-  --ls-alert-color: hsl(0deg, 0%, 0%);
+  --ls-alert-color: hsl(0, 0%, 0%);
   --ls-alert-icon-color: #faf0cf;
   --ls-alert-border-color: #e0b73d;
   --ls-alert-outline-bg: #fdf7e6;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #ecc140;
   --ls-alert-outline-border-color: #b38600
 }
@@ -1305,11 +1123,11 @@ progress {
 }
 .Alert-danger {
   --ls-alert-bg: #e16d79;
-  --ls-alert-color: hsl(0deg, 0%, 0%);
+  --ls-alert-color: hsl(0, 0%, 0%);
   --ls-alert-icon-color: #f8dbde;
   --ls-alert-border-color: #d66873;
   --ls-alert-outline-bg: #fbeced;
-  --ls-alert-outline-color: hsl(0deg, 0%, 0%);
+  --ls-alert-outline-color: hsl(0, 0%, 0%);
   --ls-alert-outline-icon-color: #e16d79;
   --ls-alert-outline-border-color: #ba2635
 }
@@ -1322,11 +1140,11 @@ progress {
   bottom: 7%;
   width: 16%;
   height: 16%;
-  background: hsl(354deg,66%,54%);
+  background: #d73c4b;
   border-radius: 50%
 }
 .Avatar-badge.Online {
-  background: hsl(120deg,100%,50%)
+  background: #0f0
 }
 .Avatar-group.Sign-bottom svg mask circle[fill=black],
 .Avatar.Sign-bottom svg mask circle[fill=black] {
@@ -1490,7 +1308,7 @@ progress {
   --ls-badge-padding-y: 0.35em;
   --ls-badge-font-size: 0.75em;
   --ls-badge-font-weight: 700;
-  --ls-badge-color: hsl(0deg, 0%, 100%);
+  --ls-badge-color: hsl(0, 0%, 100%);
   --ls-badge-border-radius: 0.25rem;
   display: inline-block;
   padding: var(--ls-badge-padding-y) var(--ls-badge-padding-x);
@@ -1505,7 +1323,7 @@ progress {
   border-radius: var(--ls-badge-border-radius,0)
 }
 .Badge[class*=light] {
-  color: hsl(240deg,7%,18%)
+  color: #2a2a31
 }
 .Badge:empty {
   display: none
@@ -1642,7 +1460,7 @@ progress {
   --ls-btn-bg: inherit;
   --ls-btn-color: inherit;
   --ls-btn-border-width: 1px;
-  --ls-btn-border-color: hsla(0deg, 0%, 0%, 0.03);
+  --ls-btn-border-color: hsla(0, 0%, 0%, 0.03);
   --ls-btn-border-radius: 0.25rem;
   --ls-btn-box-shadow: 0 1px 3px hsla(var(--ls-shadow-hsl), 0.12),0 1px 2px hsla(var(--ls-shadow-hsl), 0.24);
   --ls-btn-focus-box-shadow: 0 3px 6px hsla(var(--ls-shadow-hsl), 0.15),0 3px 6px hsla(var(--ls-shadow-hsl), 0.24);
@@ -1676,12 +1494,12 @@ progress {
 .Btn:hover {
   color: var(--ls-btn-hover-color);
   background-color: var(--ls-btn-hover-bg);
-  border-color: var(--ls-btn-hover-border-color,hsla(0deg,0%,0%,.06))
+  border-color: var(--ls-btn-hover-border-color,hsla(0,0%,0%,.06))
 }
 .Btn:focus {
   outline: 0;
   color: var(--ls-btn-hover-color);
-  border-color: var(--ls-btn-hover-border-color,hsla(0deg,0%,0%,.09));
+  border-color: var(--ls-btn-hover-border-color,hsla(0,0%,0%,.09));
   background-color: var(--ls-btn-hover-bg);
   box-shadow: var(--ls-btn-focus-box-shadow)
 }
@@ -1690,7 +1508,7 @@ progress {
 .Btn:active {
   color: var(--ls-btn-hover-color);
   background-color: var(--ls-btn-hover-bg);
-  border-color: var(--ls-btn-hover-border-color,hsla(0deg,0%,0%,.09));
+  border-color: var(--ls-btn-hover-border-color,hsla(0,0%,0%,.09));
   outline: 0;
   box-shadow: var(--ls-btn-focus-box-shadow)
 }
@@ -1733,7 +1551,7 @@ fieldset:disabled .Btn {
 }
 .Btn-link {
   --ls-btn-font-weight: 400;
-  --ls-btn-color: hsl(217deg, 96%, 52%);
+  --ls-btn-color: hsl(217, 96%, 52%);
   --ls-btn-bg: transparent;
   --ls-btn-border-color: transparent;
   --ls-btn-box-shadow: none;
@@ -1741,28 +1559,28 @@ fieldset:disabled .Btn {
   --ls-btn-hover-color: #0c54c8;
   --ls-btn-hover-border-color: transparent;
   --ls-btn-active-border-color: transparent;
-  --ls-btn-disabled-color: hsl(213deg, 11%, 69%);
+  --ls-btn-disabled-color: hsl(213, 11%, 69%);
   --ls-btn-disabled-border-color: transparent;
   text-decoration: underline
 }
 .Btn-light {
-  --ls-btn-bg: hsl(0deg, 0%, 98%);
-  --ls-btn-color: hsl(0deg, 0%, 0%);
-  --ls-btn-border-color: hsl(0deg, 0%, 98%);
+  --ls-btn-bg: hsl(0, 0%, 98%);
+  --ls-btn-color: hsl(0, 0%, 0%);
+  --ls-btn-border-color: hsl(0, 0%, 98%);
   --ls-btn-hover-bg: #fbfbfb;
-  --ls-btn-hover-color: hsl(0deg, 0%, 0%);
+  --ls-btn-hover-color: hsl(0, 0%, 0%);
   --ls-btn-hover-border-color: #fbfbfb;
   --ls-btn-active-bg: #fbfbfb;
-  --ls-btn-active-color: hsl(0deg, 0%, 0%);
+  --ls-btn-active-color: hsl(0, 0%, 0%);
   --ls-btn-active-border-color: #fbfbfb;
-  --ls-btn-disabled-bg: hsl(0deg, 0%, 98%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 0%);
-  --ls-btn-disabled-border-color: hsl(0deg, 0%, 98%)
+  --ls-btn-disabled-bg: hsl(0, 0%, 98%);
+  --ls-btn-disabled-color: hsl(0, 0%, 0%);
+  --ls-btn-disabled-border-color: hsl(0, 0%, 98%)
 }
 .Btn-outline-light {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(0deg, 0%, 98%);
-  --ls-btn-border-color: hsl(0deg, 0%, 98%);
+  --ls-btn-color: hsl(0, 0%, 98%);
+  --ls-btn-border-color: hsl(0, 0%, 98%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #e0e0e0;
   --ls-btn-hover-border-color: #e0e0e0;
@@ -1774,23 +1592,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: white
 }
 .Btn-dark {
-  --ls-btn-bg: hsl(240deg, 7%, 18%);
-  --ls-btn-color: hsl(0deg, 0%, 100%);
-  --ls-btn-border-color: hsl(240deg, 7%, 18%);
+  --ls-btn-bg: hsl(240, 7%, 18%);
+  --ls-btn-color: hsl(0, 0%, 100%);
+  --ls-btn-border-color: hsl(240, 7%, 18%);
   --ls-btn-hover-bg: #25252a;
-  --ls-btn-hover-color: hsl(0deg, 0%, 100%);
+  --ls-btn-hover-color: hsl(0, 0%, 100%);
   --ls-btn-hover-border-color: #222227;
   --ls-btn-active-bg: #222227;
-  --ls-btn-active-color: hsl(0deg, 0%, 100%);
+  --ls-btn-active-color: hsl(0, 0%, 100%);
   --ls-btn-active-border-color: #202025;
-  --ls-btn-disabled-bg: hsl(240deg, 7%, 18%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 100%);
-  --ls-btn-disabled-border-color: hsl(240deg, 7%, 18%)
+  --ls-btn-disabled-bg: hsl(240, 7%, 18%);
+  --ls-btn-disabled-color: hsl(0, 0%, 100%);
+  --ls-btn-disabled-border-color: hsl(240, 7%, 18%)
 }
 .Btn-outline-dark {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(240deg, 7%, 18%);
-  --ls-btn-border-color: hsl(240deg, 7%, 18%);
+  --ls-btn-color: hsl(240, 7%, 18%);
+  --ls-btn-border-color: hsl(240, 7%, 18%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #131316;
   --ls-btn-hover-border-color: #131316;
@@ -1802,23 +1620,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #42424c
 }
 .Btn-night {
-  --ls-btn-bg: hsl(0deg, 0%, 7%);
-  --ls-btn-color: hsl(0deg, 0%, 100%);
-  --ls-btn-border-color: hsl(0deg, 0%, 7%);
+  --ls-btn-bg: hsl(0, 0%, 7%);
+  --ls-btn-color: hsl(0, 0%, 100%);
+  --ls-btn-border-color: hsl(0, 0%, 7%);
   --ls-btn-hover-bg: #0f0f0f;
-  --ls-btn-hover-color: hsl(0deg, 0%, 100%);
+  --ls-btn-hover-color: hsl(0, 0%, 100%);
   --ls-btn-hover-border-color: #0e0e0e;
   --ls-btn-active-bg: #0e0e0e;
-  --ls-btn-active-color: hsl(0deg, 0%, 100%);
+  --ls-btn-active-color: hsl(0, 0%, 100%);
   --ls-btn-active-border-color: #0e0e0e;
-  --ls-btn-disabled-bg: hsl(0deg, 0%, 7%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 100%);
-  --ls-btn-disabled-border-color: hsl(0deg, 0%, 7%)
+  --ls-btn-disabled-bg: hsl(0, 0%, 7%);
+  --ls-btn-disabled-color: hsl(0, 0%, 100%);
+  --ls-btn-disabled-border-color: hsl(0, 0%, 7%)
 }
 .Btn-outline-night {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(0deg, 0%, 7%);
-  --ls-btn-border-color: hsl(0deg, 0%, 7%);
+  --ls-btn-color: hsl(0, 0%, 7%);
+  --ls-btn-border-color: hsl(0, 0%, 7%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: black;
   --ls-btn-hover-border-color: black;
@@ -1830,23 +1648,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #2b2b2b
 }
 .Btn-primary {
-  --ls-btn-bg: hsl(217deg, 96%, 52%);
-  --ls-btn-color: hsl(0deg, 0%, 100%);
-  --ls-btn-border-color: hsl(217deg, 96%, 52%);
+  --ls-btn-bg: hsl(217, 96%, 52%);
+  --ls-btn-color: hsl(0, 0%, 100%);
+  --ls-btn-border-color: hsl(217, 96%, 52%);
   --ls-btn-hover-bg: #0d59d5;
-  --ls-btn-hover-color: hsl(0deg, 0%, 100%);
+  --ls-btn-hover-color: hsl(0, 0%, 100%);
   --ls-btn-hover-border-color: #0c54c8;
   --ls-btn-active-bg: #0c54c8;
-  --ls-btn-active-color: hsl(0deg, 0%, 100%);
+  --ls-btn-active-color: hsl(0, 0%, 100%);
   --ls-btn-active-border-color: #0b4fbc;
-  --ls-btn-disabled-bg: hsl(217deg, 96%, 52%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 100%);
-  --ls-btn-disabled-border-color: hsl(217deg, 96%, 52%)
+  --ls-btn-disabled-bg: hsl(217, 96%, 52%);
+  --ls-btn-disabled-color: hsl(0, 0%, 100%);
+  --ls-btn-disabled-border-color: hsl(217, 96%, 52%)
 }
 .Btn-outline-primary {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(217deg, 96%, 52%);
-  --ls-btn-border-color: hsl(217deg, 96%, 52%);
+  --ls-btn-color: hsl(217, 96%, 52%);
+  --ls-btn-border-color: hsl(217, 96%, 52%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #0453d2;
   --ls-btn-hover-border-color: #0453d2;
@@ -1858,23 +1676,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #4188fb
 }
 .Btn-secondary {
-  --ls-btn-bg: hsl(208deg, 7%, 46%);
-  --ls-btn-color: hsl(0deg, 0%, 100%);
-  --ls-btn-border-color: hsl(208deg, 7%, 46%);
+  --ls-btn-bg: hsl(208, 7%, 46%);
+  --ls-btn-color: hsl(0, 0%, 100%);
+  --ls-btn-border-color: hsl(208, 7%, 46%);
   --ls-btn-hover-bg: #5d646b;
-  --ls-btn-hover-color: hsl(0deg, 0%, 100%);
+  --ls-btn-hover-color: hsl(0, 0%, 100%);
   --ls-btn-hover-border-color: #575e65;
   --ls-btn-active-bg: #575e65;
-  --ls-btn-active-color: hsl(0deg, 0%, 100%);
+  --ls-btn-active-color: hsl(0, 0%, 100%);
   --ls-btn-active-border-color: #52595f;
-  --ls-btn-disabled-bg: hsl(208deg, 7%, 46%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 100%);
-  --ls-btn-disabled-border-color: hsl(208deg, 7%, 46%)
+  --ls-btn-disabled-bg: hsl(208, 7%, 46%);
+  --ls-btn-disabled-color: hsl(0, 0%, 100%);
+  --ls-btn-disabled-border-color: hsl(208, 7%, 46%)
 }
 .Btn-outline-secondary {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(208deg, 7%, 46%);
-  --ls-btn-border-color: hsl(208deg, 7%, 46%);
+  --ls-btn-color: hsl(208, 7%, 46%);
+  --ls-btn-border-color: hsl(208, 7%, 46%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #555c62;
   --ls-btn-hover-border-color: #555c62;
@@ -1886,23 +1704,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #878f97
 }
 .Btn-success {
-  --ls-btn-bg: hsl(150deg, 67%, 35%);
-  --ls-btn-color: hsl(0deg, 0%, 100%);
-  --ls-btn-border-color: hsl(150deg, 67%, 35%);
+  --ls-btn-bg: hsl(150, 67%, 35%);
+  --ls-btn-color: hsl(0, 0%, 100%);
+  --ls-btn-border-color: hsl(150, 67%, 35%);
   --ls-btn-hover-bg: #197f4c;
-  --ls-btn-hover-color: hsl(0deg, 0%, 100%);
+  --ls-btn-hover-color: hsl(0, 0%, 100%);
   --ls-btn-hover-border-color: #177747;
   --ls-btn-active-bg: #177747;
-  --ls-btn-active-color: hsl(0deg, 0%, 100%);
+  --ls-btn-active-color: hsl(0, 0%, 100%);
   --ls-btn-active-border-color: #167043;
-  --ls-btn-disabled-bg: hsl(150deg, 67%, 35%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 100%);
-  --ls-btn-disabled-border-color: hsl(150deg, 67%, 35%)
+  --ls-btn-disabled-bg: hsl(150, 67%, 35%);
+  --ls-btn-disabled-color: hsl(0, 0%, 100%);
+  --ls-btn-disabled-border-color: hsl(150, 67%, 35%)
 }
 .Btn-outline-success {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(150deg, 67%, 35%);
-  --ls-btn-border-color: hsl(150deg, 67%, 35%);
+  --ls-btn-color: hsl(150, 67%, 35%);
+  --ls-btn-border-color: hsl(150, 67%, 35%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #156a40;
   --ls-btn-hover-border-color: #156a40;
@@ -1914,23 +1732,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #26c073
 }
 .Btn-info {
-  --ls-btn-bg: hsl(195deg, 90%, 55%);
-  --ls-btn-color: hsl(0deg, 0%, 0%);
-  --ls-btn-border-color: hsl(195deg, 90%, 55%);
+  --ls-btn-bg: hsl(195, 90%, 55%);
+  --ls-btn-color: hsl(0, 0%, 0%);
+  --ls-btn-border-color: hsl(195, 90%, 55%);
   --ls-btn-hover-bg: #46c9f6;
-  --ls-btn-hover-color: hsl(0deg, 0%, 0%);
+  --ls-btn-hover-color: hsl(0, 0%, 0%);
   --ls-btn-hover-border-color: #3bc6f5;
   --ls-btn-active-bg: #51cdf6;
-  --ls-btn-active-color: hsl(0deg, 0%, 0%);
+  --ls-btn-active-color: hsl(0, 0%, 0%);
   --ls-btn-active-border-color: #3bc6f5;
-  --ls-btn-disabled-bg: hsl(195deg, 90%, 55%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 0%);
-  --ls-btn-disabled-border-color: hsl(195deg, 90%, 55%)
+  --ls-btn-disabled-bg: hsl(195, 90%, 55%);
+  --ls-btn-disabled-color: hsl(0, 0%, 0%);
+  --ls-btn-disabled-border-color: hsl(195, 90%, 55%)
 }
 .Btn-outline-info {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(195deg, 90%, 55%);
-  --ls-btn-border-color: hsl(195deg, 90%, 55%);
+  --ls-btn-color: hsl(195, 90%, 55%);
+  --ls-btn-border-color: hsl(195, 90%, 55%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #0ba6da;
   --ls-btn-hover-border-color: #0ba6da;
@@ -1942,23 +1760,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #55cef6
 }
 .Btn-warning {
-  --ls-btn-bg: hsl(45deg, 100%, 45%);
-  --ls-btn-color: hsl(0deg, 0%, 0%);
-  --ls-btn-border-color: hsl(45deg, 100%, 45%);
+  --ls-btn-bg: hsl(45, 100%, 45%);
+  --ls-btn-color: hsl(0, 0%, 0%);
+  --ls-btn-border-color: hsl(45, 100%, 45%);
   --ls-btn-hover-bg: #eab826;
-  --ls-btn-hover-color: hsl(0deg, 0%, 0%);
+  --ls-btn-hover-color: hsl(0, 0%, 0%);
   --ls-btn-hover-border-color: #e9b41a;
   --ls-btn-active-bg: #ebbd33;
-  --ls-btn-active-color: hsl(0deg, 0%, 0%);
+  --ls-btn-active-color: hsl(0, 0%, 0%);
   --ls-btn-active-border-color: #e9b41a;
-  --ls-btn-disabled-bg: hsl(45deg, 100%, 45%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 0%);
-  --ls-btn-disabled-border-color: hsl(45deg, 100%, 45%)
+  --ls-btn-disabled-bg: hsl(45, 100%, 45%);
+  --ls-btn-disabled-color: hsl(0, 0%, 0%);
+  --ls-btn-disabled-border-color: hsl(45, 100%, 45%)
 }
 .Btn-outline-warning {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(45deg, 100%, 45%);
-  --ls-btn-border-color: hsl(45deg, 100%, 45%);
+  --ls-btn-color: hsl(45, 100%, 45%);
+  --ls-btn-border-color: hsl(45, 100%, 45%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #b38600;
   --ls-btn-hover-border-color: #b38600;
@@ -1970,23 +1788,23 @@ fieldset:disabled .Btn {
   --ls-btn-disabled-border-color: #ffc61a
 }
 .Btn-danger {
-  --ls-btn-bg: hsl(354deg, 66%, 54%);
-  --ls-btn-color: hsl(0deg, 0%, 100%);
-  --ls-btn-border-color: hsl(354deg, 66%, 54%);
+  --ls-btn-bg: hsl(354, 66%, 54%);
+  --ls-btn-color: hsl(0, 0%, 100%);
+  --ls-btn-border-color: hsl(354, 66%, 54%);
   --ls-btn-hover-bg: #b73341;
-  --ls-btn-hover-color: hsl(0deg, 0%, 100%);
+  --ls-btn-hover-color: hsl(0, 0%, 100%);
   --ls-btn-hover-border-color: #ac303d;
   --ls-btn-active-bg: #ac303d;
-  --ls-btn-active-color: hsl(0deg, 0%, 100%);
+  --ls-btn-active-color: hsl(0, 0%, 100%);
   --ls-btn-active-border-color: #a12d39;
-  --ls-btn-disabled-bg: hsl(354deg, 66%, 54%);
-  --ls-btn-disabled-color: hsl(0deg, 0%, 100%);
-  --ls-btn-disabled-border-color: hsl(354deg, 66%, 54%)
+  --ls-btn-disabled-bg: hsl(354, 66%, 54%);
+  --ls-btn-disabled-color: hsl(0, 0%, 100%);
+  --ls-btn-disabled-border-color: hsl(354, 66%, 54%)
 }
 .Btn-outline-danger {
   --ls-btn-bg: transparent;
-  --ls-btn-color: hsl(354deg, 66%, 54%);
-  --ls-btn-border-color: hsl(354deg, 66%, 54%);
+  --ls-btn-color: hsl(354, 66%, 54%);
+  --ls-btn-border-color: hsl(354, 66%, 54%);
   --ls-btn-hover-bg: transparent;
   --ls-btn-hover-color: #ba2635;
   --ls-btn-hover-border-color: #ba2635;
@@ -2368,7 +2186,7 @@ fieldset:disabled .Btn {
   --ls-calendar-header-bg: hsla(var(--ls-bg-accent-hsl), 0.12);
   --ls-calendar-body-color: inherit;
   --ls-calendar-body-bg: inherit;
-  --ls-calendar-disabled: hsl(213deg, 11%, 69%);
+  --ls-calendar-disabled: hsl(213, 11%, 69%);
   --ls-calendar-weekday-bg: hsla(var(--ls-bg-accent-hsl), 0.05);
   --ls-calendar-weekday-border-color: hsla(var(--ls-border-hsl), var(--ls-border-alpha));
   --ls-calendar-available-hover-bg: hsla(var(--ls-bg-accent-hsl), 0.25);
@@ -2481,47 +2299,47 @@ fieldset:disabled .Btn {
   border-radius: 50%
 }
 .Calendar-light {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #fdfdfd;
   --ls-calendar-border-color: red
 }
 .Calendar-dark {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #959598;
   --ls-calendar-border-color: red
 }
 .Calendar-night {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #898989;
   --ls-calendar-border-color: red
 }
 .Calendar-primary {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #87b4fd;
   --ls-calendar-border-color: red
 }
 .Calendar-secondary {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #b6bbbf;
   --ls-calendar-border-color: red
 }
 .Calendar-success {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #8ecaac;
   --ls-calendar-border-color: red
 }
 .Calendar-info {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #92e0fa;
   --ls-calendar-border-color: red
 }
 .Calendar-warning {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #f3d680;
   --ls-calendar-border-color: red
 }
 .Calendar-danger {
-  --ls-calendar-color: hsl(0deg, 0%, 0%);
+  --ls-calendar-color: hsl(0, 0%, 0%);
   --ls-calendar-bg: #eb9ea6;
   --ls-calendar-border-color: red
 }
@@ -2767,47 +2585,47 @@ fieldset:disabled .Btn {
 .Caret-light {
   --ls-caret-border-color: #e0e0e0;
   --ls-caret-pseudo-before-bg: #e0e0e0;
-  --ls-caret-pseudo-after-fg: hsl(0deg, 0%, 98%)
+  --ls-caret-pseudo-after-fg: hsl(0, 0%, 98%)
 }
 .Caret-dark {
   --ls-caret-border-color: #131316;
   --ls-caret-pseudo-before-bg: #131316;
-  --ls-caret-pseudo-after-fg: hsl(240deg, 7%, 18%)
+  --ls-caret-pseudo-after-fg: hsl(240, 7%, 18%)
 }
 .Caret-night {
   --ls-caret-border-color: black;
   --ls-caret-pseudo-before-bg: black;
-  --ls-caret-pseudo-after-fg: hsl(0deg, 0%, 7%)
+  --ls-caret-pseudo-after-fg: hsl(0, 0%, 7%)
 }
 .Caret-primary {
   --ls-caret-border-color: #0453d2;
   --ls-caret-pseudo-before-bg: #0453d2;
-  --ls-caret-pseudo-after-fg: hsl(217deg, 96%, 52%)
+  --ls-caret-pseudo-after-fg: hsl(217, 96%, 52%)
 }
 .Caret-secondary {
   --ls-caret-border-color: #555c62;
   --ls-caret-pseudo-before-bg: #555c62;
-  --ls-caret-pseudo-after-fg: hsl(208deg, 7%, 46%)
+  --ls-caret-pseudo-after-fg: hsl(208, 7%, 46%)
 }
 .Caret-success {
   --ls-caret-border-color: #156a40;
   --ls-caret-pseudo-before-bg: #156a40;
-  --ls-caret-pseudo-after-fg: hsl(150deg, 67%, 35%)
+  --ls-caret-pseudo-after-fg: hsl(150, 67%, 35%)
 }
 .Caret-info {
   --ls-caret-border-color: #0ba6da;
   --ls-caret-pseudo-before-bg: #0ba6da;
-  --ls-caret-pseudo-after-fg: hsl(195deg, 90%, 55%)
+  --ls-caret-pseudo-after-fg: hsl(195, 90%, 55%)
 }
 .Caret-warning {
   --ls-caret-border-color: #b38600;
   --ls-caret-pseudo-before-bg: #b38600;
-  --ls-caret-pseudo-after-fg: hsl(45deg, 100%, 45%)
+  --ls-caret-pseudo-after-fg: hsl(45, 100%, 45%)
 }
 .Caret-danger {
   --ls-caret-border-color: #ba2635;
   --ls-caret-pseudo-before-bg: #ba2635;
-  --ls-caret-pseudo-after-fg: hsl(354deg, 66%, 54%)
+  --ls-caret-pseudo-after-fg: hsl(354, 66%, 54%)
 }
 .Caret-accent {
   --ls-caret-pseudo-before-bg: hsla(var(--ls-border-hsl), var(--ls-border-alpha));
@@ -2907,7 +2725,7 @@ fieldset:disabled .Btn {
   justify-content: center;
   width: 12%;
   padding: 0;
-  color: hsl(0deg,0%,100%);
+  color: #fff;
   text-align: center;
   background: 0 0;
   border: 0;
@@ -2924,7 +2742,7 @@ fieldset:disabled .Btn {
 .Carousel-control-next:hover,
 .Carousel-control-prev:focus,
 .Carousel-control-prev:hover {
-  color: hsl(0deg,0%,100%);
+  color: #fff;
   text-decoration: none;
   outline: 0;
   opacity: .9
@@ -2945,10 +2763,10 @@ fieldset:disabled .Btn {
   background-size: 100% 100%
 }
 .Carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='hsl(0deg, 0%25, 100%25)' d='M.13,15.15l1.59,1.56,1.59,1.57.63.63,2.45,2.42,7.48,7.39a2.9,2.9,0,0,0,4,.23,2.82,2.82,0,0,0-.23-4L10.2,17.57,7.75,15.15a.45.45,0,0,1,0-.63L10.2,12.1l7.48-7.39a2.83,2.83,0,0,0,.23-4,2.91,2.91,0,0,0-4,.23L6.39,8.33,3.94,10.75l-.63.63L1.72,13,.13,14.52A.45.45,0,0,0,.13,15.15Z' /%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='hsl(0, 0%25, 100%25)' d='M.13,15.15l1.59,1.56,1.59,1.57.63.63,2.45,2.42,7.48,7.39a2.9,2.9,0,0,0,4,.23,2.82,2.82,0,0,0-.23-4L10.2,17.57,7.75,15.15a.45.45,0,0,1,0-.63L10.2,12.1l7.48-7.39a2.83,2.83,0,0,0,.23-4,2.91,2.91,0,0,0-4,.23L6.39,8.33,3.94,10.75l-.63.63L1.72,13,.13,14.52A.45.45,0,0,0,.13,15.15Z' /%3E%3C/svg%3E")
 }
 .Carousel-control-next-icon {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='hsl(0deg, 0%25, 100%25)' d='M18.5,14.52,16.91,13l-1.58-1.57-.64-.63L12.24,8.33,4.76.94a2.91,2.91,0,0,0-4-.23,2.84,2.84,0,0,0,.23,4L8.43,12.1l2.45,2.42a.43.43,0,0,1,0,.63L8.43,17.57,1,25a2.83,2.83,0,0,0-.23,4,2.9,2.9,0,0,0,4-.23l7.48-7.39,2.45-2.42.64-.63,1.58-1.57,1.59-1.56A.43.43,0,0,0,18.5,14.52Z' /%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='hsl(0, 0%25, 100%25)' d='M18.5,14.52,16.91,13l-1.58-1.57-.64-.63L12.24,8.33,4.76.94a2.91,2.91,0,0,0-4-.23,2.84,2.84,0,0,0,.23,4L8.43,12.1l2.45,2.42a.43.43,0,0,1,0,.63L8.43,17.57,1,25a2.83,2.83,0,0,0-.23,4,2.9,2.9,0,0,0,4-.23l7.48-7.39,2.45-2.42.64-.63,1.58-1.57,1.59-1.56A.43.43,0,0,0,18.5,14.52Z' /%3E%3C/svg%3E")
 }
 .Carousel-indicators {
   position: absolute;
@@ -2974,7 +2792,7 @@ fieldset:disabled .Btn {
   margin-left: 3px;
   text-indent: -999px;
   cursor: pointer;
-  background-color: hsl(0deg,0%,100%);
+  background-color: #fff;
   background-clip: padding-box;
   border: 0;
   border-top: 10px solid transparent;
@@ -2995,7 +2813,7 @@ fieldset:disabled .Btn {
   right: 15%;
   bottom: 1.25rem;
   left: 15%;
-  color: hsl(0deg,0%,100%);
+  color: #fff;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   text-align: center
@@ -3005,10 +2823,10 @@ fieldset:disabled .Btn {
   filter: invert(1) grayscale(100)
 }
 .Carousel-dark .Carousel-indicators [data-ls-target] {
-  background-color: hsl(0deg,0%,0%)
+  background-color: #000
 }
 .Carousel-dark .Carousel-caption {
-  color: hsl(0deg,0%,0%)
+  color: #000
 }
 .Classified {
   -webkit-user-select: none;
@@ -3073,7 +2891,7 @@ fieldset:disabled .Btn {
   --ls-list-action-hover-bg: hsla(var(--ls-bg-accent-hsl), 0.08);
   --ls-list-action-active-color: var(--ls-fg-accent);
   --ls-list-action-active-bg: var(--ls-bg-accent);
-  --ls-list-disabled-color: hsl(213deg, 11%, 69%);
+  --ls-list-disabled-color: hsl(213, 11%, 69%);
   --ls-list-disabled-bg: var(--ls-bg-surface);
   display: flex;
   flex-direction: column;
@@ -3294,103 +3112,103 @@ fieldset:disabled .Btn {
   border-bottom-width: 0
 }
 .List-item-light {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #fdfdfd;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #fbfbfb;
   --ls-list-active-border-color: #fbfbfb;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #fcfcfc;
-  --ls-list-action-active-color: hsl(0deg, 0%, 0%);
-  --ls-list-action-active-bg: hsl(0deg, 0%, 98%)
+  --ls-list-action-active-color: hsl(0, 0%, 0%);
+  --ls-list-action-active-bg: hsl(0, 0%, 98%)
 }
 .List-item-dark {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #959598;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #404046;
   --ls-list-active-border-color: #404046;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #6b6b6f;
-  --ls-list-action-active-color: hsl(0deg, 0%, 100%);
-  --ls-list-action-active-bg: hsl(240deg, 7%, 18%)
+  --ls-list-action-active-color: hsl(0, 0%, 100%);
+  --ls-list-action-active-bg: hsl(240, 7%, 18%)
 }
 .List-item-night {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #898989;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #2a2a2a;
   --ls-list-active-border-color: #2a2a2a;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #595959;
-  --ls-list-action-active-color: hsl(0deg, 0%, 100%);
-  --ls-list-action-active-bg: hsl(0deg, 0%, 7%)
+  --ls-list-action-active-color: hsl(0, 0%, 100%);
+  --ls-list-action-active-bg: hsl(0, 0%, 7%)
 }
 .List-item-primary {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #87b4fd;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #2778fb;
   --ls-list-active-border-color: #2778fb;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #5796fc;
-  --ls-list-action-active-color: hsl(0deg, 0%, 100%);
-  --ls-list-action-active-bg: hsl(217deg, 96%, 52%)
+  --ls-list-action-active-color: hsl(0, 0%, 100%);
+  --ls-list-action-active-bg: hsl(217, 96%, 52%)
 }
 .List-item-secondary {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #b6bbbf;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #7c848b;
   --ls-list-active-border-color: #7c848b;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #999fa5;
-  --ls-list-action-active-color: hsl(0deg, 0%, 100%);
-  --ls-list-action-active-bg: hsl(208deg, 7%, 46%)
+  --ls-list-action-active-color: hsl(0, 0%, 100%);
+  --ls-list-action-active-bg: hsl(208, 7%, 46%)
 }
 .List-item-success {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #8ecaac;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #34a06a;
   --ls-list-active-border-color: #34a06a;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #61b58b;
-  --ls-list-action-active-color: hsl(0deg, 0%, 100%);
-  --ls-list-action-active-bg: hsl(150deg, 67%, 35%)
+  --ls-list-action-active-color: hsl(0, 0%, 100%);
+  --ls-list-action-active-bg: hsl(150, 67%, 35%)
 }
 .List-item-info {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #92e0fa;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #3bc6f5;
   --ls-list-active-border-color: #3bc6f5;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #66d3f7;
-  --ls-list-action-active-color: hsl(0deg, 0%, 0%);
-  --ls-list-action-active-bg: hsl(195deg, 90%, 55%)
+  --ls-list-action-active-color: hsl(0, 0%, 0%);
+  --ls-list-action-active-bg: hsl(195, 90%, 55%)
 }
 .List-item-warning {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #f3d680;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #e9b41a;
   --ls-list-active-border-color: #e9b41a;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #eec54d;
-  --ls-list-action-active-color: hsl(0deg, 0%, 0%);
-  --ls-list-action-active-bg: hsl(45deg, 100%, 45%)
+  --ls-list-action-active-color: hsl(0, 0%, 0%);
+  --ls-list-action-active-bg: hsl(45, 100%, 45%)
 }
 .List-item-danger {
-  --ls-list-color: hsl(0deg, 0%, 0%);
+  --ls-list-color: hsl(0, 0%, 0%);
   --ls-list-bg: #eb9ea6;
-  --ls-list-active-color: hsl(0deg, 0%, 0%);
+  --ls-list-active-color: hsl(0, 0%, 0%);
   --ls-list-active-bg: #db505e;
   --ls-list-active-border-color: #db505e;
-  --ls-list-action-hover-color: hsl(0deg, 0%, 0%);
+  --ls-list-action-hover-color: hsl(0, 0%, 0%);
   --ls-list-action-hover-bg: #e37782;
-  --ls-list-action-active-color: hsl(0deg, 0%, 100%);
-  --ls-list-action-active-bg: hsl(354deg, 66%, 54%)
+  --ls-list-action-active-color: hsl(0, 0%, 100%);
+  --ls-list-action-active-bg: hsl(354, 66%, 54%)
 }
 .Loader {
   --ls-loader-status: inherit;
@@ -3434,15 +3252,9 @@ fieldset:disabled .Btn {
 }
 .Loader .Centered svg .Loader-fg {
   stroke: currentColor;
-  -webkit-animation: Keyframe-loader 1s ease-out forwards;
-          animation: Keyframe-loader 1s ease-out forwards;
+  animation: Keyframe-loader 1s ease-out forwards;
   stroke-dasharray: var(--ls-loader-per,0),100;
   transition: stroke-dasharray .4s cubic-bezier(.04, .24, .18, 1)
-}
-@-webkit-keyframes Keyframe-loader {
-  0% {
-    stroke-dasharray: 0 100
-  }
 }
 @keyframes Keyframe-loader {
   0% {
@@ -3588,7 +3400,7 @@ fieldset:disabled .Btn {
   --ls-nav-link-font-weight: 500;
   --ls-nav-link-color: #0d6efd;
   --ls-nav-link-bg: var(--ls-bg-surface);
-  --ls-nav-link-disabled-color: hsl(213deg, 11%, 69%);
+  --ls-nav-link-disabled-color: hsl(213, 11%, 69%);
   --ls-nav-link-active-color: var(--ls-fg-accent);
   --ls-nav-link-active-bg: var(--ls-bg-accent);
   --ls-nav-link-active-border-color: var(--ls-fg-accent);
@@ -4043,7 +3855,7 @@ fieldset:disabled .Btn {
   isolation: isolate
 }
 .Nav-tabs-classic .Nav-link.Disabled {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   background-color: transparent;
   border-color: transparent
 }
@@ -4073,7 +3885,7 @@ fieldset:disabled .Btn {
   --ls-pagination-active-border-color: var(--ls-bg-accent);
   --ls-pagination-arrow-color: hsla(var(--ls-bg-accent-hsl), 0.5);
   --ls-pagination-arrow-bg: inherit;
-  --ls-pagination-disabled-color: hsl(213deg, 11%, 69%);
+  --ls-pagination-disabled-color: hsl(213, 11%, 69%);
   --ls-pagination-disabled-bg: transparent;
   --ls-pagination-disabled-border-color: hsla(var(--ls-bg-accent-hsl), 0.03);
   display: flex;
@@ -4216,62 +4028,52 @@ fieldset:disabled .Btn {
   clear: both
 }
 .Placeholder-paragraph .Placeholder:last-child {
-  width: 71%
+  width: 78%
 }
 .Placeholder-paragraph .Placeholder:nth-child(1n) {
-  -webkit-animation-delay: .7s;
-          animation-delay: .7s
+  animation-delay: .7s
 }
 .Placeholder-paragraph .Placeholder:nth-child(2n) {
-  -webkit-animation-delay: 1.4s;
-          animation-delay: 1.4s
+  animation-delay: 1.4s
 }
 .Placeholder-paragraph .Placeholder:nth-child(3n) {
-  -webkit-animation-delay: 2.1s;
-          animation-delay: 2.1s
+  animation-delay: 2.1s
 }
 .Placeholder-paragraph .Placeholder:nth-child(4n) {
-  -webkit-animation-delay: 2.8s;
-          animation-delay: 2.8s
+  animation-delay: 2.8s
 }
 .Placeholder-paragraph .Placeholder:nth-child(5n) {
-  -webkit-animation-delay: 3.5s;
-          animation-delay: 3.5s
+  animation-delay: 3.5s
 }
 .Placeholder-paragraph .Placeholder:nth-child(6n) {
-  -webkit-animation-delay: 4.2s;
-          animation-delay: 4.2s
+  animation-delay: 4.2s
 }
 .Placeholder-paragraph .Placeholder:nth-child(7n) {
-  -webkit-animation-delay: 4.9s;
-          animation-delay: 4.9s
+  animation-delay: 4.9s
 }
 .Placeholder-paragraph .Placeholder:nth-child(8n) {
-  -webkit-animation-delay: 5.6s;
-          animation-delay: 5.6s
+  animation-delay: 5.6s
 }
 .Placeholder-paragraph .Placeholder:nth-child(9n) {
-  -webkit-animation-delay: 6.3s;
-          animation-delay: 6.3s
+  animation-delay: 6.3s
 }
 .Placeholder-paragraph .Placeholder:nth-child(10n) {
-  -webkit-animation-delay: 7s;
-          animation-delay: 7s
+  animation-delay: 7s
 }
 .Placeholder-textual .Placeholder {
   background-color: transparent
 }
 .Placeholder-textual .Placeholder:nth-child(1n) {
-  background-image: linear-gradient(90deg,currentColor 15%,transparent calc(15% + 1px),transparent calc(15% + 6px),currentColor calc(15% + 6px),currentColor 40%,transparent calc(40% + 1px),transparent calc(40% + 6px),currentColor calc(40% + 6px),currentColor 61%,transparent calc(61% + 1px),transparent calc(61% + 6px),currentColor calc(61% + 6px),currentColor)
+  background-image: linear-gradient(90deg,currentColor 20%,transparent calc(20% + 1px),transparent calc(20% + 6px),currentColor calc(20% + 6px),currentColor 75%,transparent calc(75% + 1px),transparent calc(75% + 6px),currentColor calc(75% + 6px),currentColor 91%,transparent calc(91% + 1px),transparent calc(91% + 6px),currentColor calc(91% + 6px),currentColor)
 }
 .Placeholder-textual .Placeholder:nth-child(2n) {
-  background-image: linear-gradient(90deg,currentColor 22%,transparent calc(22% + 1px),transparent calc(22% + 6px),currentColor calc(22% + 6px),currentColor 67%,transparent calc(67% + 1px),transparent calc(67% + 6px),currentColor calc(67% + 6px),currentColor 86%,transparent calc(86% + 1px),transparent calc(86% + 6px),currentColor calc(86% + 6px),currentColor)
+  background-image: linear-gradient(90deg,currentColor 22%,transparent calc(22% + 1px),transparent calc(22% + 6px),currentColor calc(22% + 6px),currentColor 68%,transparent calc(68% + 1px),transparent calc(68% + 6px),currentColor calc(68% + 6px),currentColor 83%,transparent calc(83% + 1px),transparent calc(83% + 6px),currentColor calc(83% + 6px),currentColor)
 }
 .Placeholder-textual .Placeholder:nth-child(3n) {
-  background-image: linear-gradient(90deg,currentColor 12%,transparent calc(12% + 1px),transparent calc(12% + 6px),currentColor calc(12% + 6px),currentColor 63%,transparent calc(63% + 1px),transparent calc(63% + 6px),currentColor calc(63% + 6px),currentColor 82%,transparent calc(82% + 1px),transparent calc(82% + 6px),currentColor calc(82% + 6px),currentColor)
+  background-image: linear-gradient(90deg,currentColor 29%,transparent calc(29% + 1px),transparent calc(29% + 6px),currentColor calc(29% + 6px),currentColor 55%,transparent calc(55% + 1px),transparent calc(55% + 6px),currentColor calc(55% + 6px),currentColor 79%,transparent calc(79% + 1px),transparent calc(79% + 6px),currentColor calc(79% + 6px),currentColor)
 }
 .Placeholder-textual .Placeholder:nth-child(4n) {
-  background-image: linear-gradient(90deg,currentColor 12%,transparent calc(12% + 1px),transparent calc(12% + 6px),currentColor calc(12% + 6px),currentColor 78%,transparent calc(78% + 1px),transparent calc(78% + 6px),currentColor calc(78% + 6px),currentColor 91%,transparent calc(91% + 1px),transparent calc(91% + 6px),currentColor calc(91% + 6px),currentColor)
+  background-image: linear-gradient(90deg,currentColor 24%,transparent calc(24% + 1px),transparent calc(24% + 6px),currentColor calc(24% + 6px),currentColor 55%,transparent calc(55% + 1px),transparent calc(55% + 6px),currentColor calc(55% + 6px),currentColor 76%,transparent calc(76% + 1px),transparent calc(76% + 6px),currentColor calc(76% + 6px),currentColor)
 }
 .Placeholder-xs,
 .Placeholder-xs .Placeholder {
@@ -4286,19 +4088,7 @@ fieldset:disabled .Btn {
   min-height: 1.2em
 }
 .Placeholder-glow .Placeholder {
-  -webkit-animation: Keyframe-ph-glow 2s ease-in-out infinite;
-          animation: Keyframe-ph-glow 2s ease-in-out infinite
-}
-@-webkit-keyframes Keyframe-ph-glow {
-  0% {
-    opacity: .3
-  }
-  50% {
-    opacity: .5
-  }
-  100% {
-    opacity: .3
-  }
+  animation: Keyframe-ph-glow 2s ease-in-out infinite
 }
 @keyframes Keyframe-ph-glow {
   0% {
@@ -4316,14 +4106,7 @@ fieldset:disabled .Btn {
           mask-image: linear-gradient(130deg,#000 55%,rgba(0,0,0,0.8) 75%,#000 95%);
   -webkit-mask-size: 200% 100%;
           mask-size: 200% 100%;
-  -webkit-animation: Keyframe-ph-wave 2s linear infinite;
-          animation: Keyframe-ph-wave 2s linear infinite
-}
-@-webkit-keyframes Keyframe-ph-wave {
-  to {
-    -webkit-mask-position: -200% 0;
-            mask-position: -200% 0
-  }
+  animation: Keyframe-ph-wave 2s linear infinite
 }
 @keyframes Keyframe-ph-wave {
   to {
@@ -4369,18 +4152,11 @@ fieldset:disabled .Btn {
   background-size: var(--ls-progress-height) var(--ls-progress-height)
 }
 .Progress-bar-animated {
-  -webkit-animation: 1s linear infinite Progress-bar-Stripes;
-          animation: 1s linear infinite Progress-bar-Stripes
+  animation: 1s linear infinite Progress-bar-Stripes
 }
 @media (prefers-reduced-motion:reduce) {
   .Progress-bar-animated {
-    -webkit-animation: none;
-            animation: none
-  }
-}
-@-webkit-keyframes Progress-bar-Stripes {
-  0% {
-    background-position-x: 0.75rem
+    animation: none
   }
 }
 @keyframes Progress-bar-Stripes {
@@ -4533,19 +4309,13 @@ fieldset:disabled .Btn {
   height: var(--ls-spinner-height);
   vertical-align: var(--ls-spinner-vertical-align);
   border-radius: 50%;
-  -webkit-animation: var(--ls-spinner-animation-speed) linear infinite var(--ls-spinner-animation-name);
-          animation: var(--ls-spinner-animation-speed) linear infinite var(--ls-spinner-animation-name)
+  animation: var(--ls-spinner-animation-speed) linear infinite var(--ls-spinner-animation-name)
 }
 .Spinner-border + .Spinner-border,
 .Spinner-border + .Spinner-grow,
 .Spinner-grow + .Spinner-border,
 .Spinner-grow + .Spinner-grow {
   margin-left: .25rem
-}
-@-webkit-keyframes Keyframe-SpinnerBorder {
-  100% {
-    transform: rotate(360deg)
-  }
 }
 @keyframes Keyframe-SpinnerBorder {
   100% {
@@ -4561,15 +4331,6 @@ fieldset:disabled .Btn {
   --ls-spinner-animation-name: Keyframe-SpinnerBorder;
   border: var(--ls-spinner-border-width) solid currentcolor;
   border-right-color: transparent
-}
-@-webkit-keyframes Keyframe-SpinnerGrow {
-  0% {
-    transform: scale(0)
-  }
-  50% {
-    opacity: 1;
-    transform: none
-  }
 }
 @keyframes Keyframe-SpinnerGrow {
   0% {
@@ -4623,7 +4384,7 @@ fieldset:disabled .Btn {
   width: 100%;
   height: 50%;
   border-radius: 50%;
-  border: 2px solid hsl(240deg,7%,18%);
+  border: 2px solid #2a2a31;
   content: " ";
   top: 0;
   transform: scale(0)
@@ -4632,64 +4393,56 @@ fieldset:disabled .Btn {
   transform: rotate(45deg)
 }
 .Spinner-vortex span:nth-child(7n+1):before {
-  -webkit-animation: Keyframe-opacity .8s linear .1s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .1s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .1s normal none infinite running;
   background-color: red
 }
 .Spinner-vortex span:nth-child(7n+2) {
   transform: rotate(90deg)
 }
 .Spinner-vortex span:nth-child(7n+2):before {
-  -webkit-animation: Keyframe-opacity .8s linear .2s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .2s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .2s normal none infinite running;
   background-color: #ff7f00
 }
 .Spinner-vortex span:nth-child(7n+3) {
   transform: rotate(135deg)
 }
 .Spinner-vortex span:nth-child(7n+3):before {
-  -webkit-animation: Keyframe-opacity .8s linear .3s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .3s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .3s normal none infinite running;
   background-color: #ff0
 }
 .Spinner-vortex span:nth-child(7n+4) {
   transform: rotate(180deg)
 }
 .Spinner-vortex span:nth-child(7n+4):before {
-  -webkit-animation: Keyframe-opacity .8s linear .4s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .4s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .4s normal none infinite running;
   background-color: #0f0
 }
 .Spinner-vortex span:nth-child(7n+5) {
   transform: rotate(225deg)
 }
 .Spinner-vortex span:nth-child(7n+5):before {
-  -webkit-animation: Keyframe-opacity .8s linear .5s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .5s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .5s normal none infinite running;
   background-color: #00f
 }
 .Spinner-vortex span:nth-child(7n+6) {
   transform: rotate(270deg)
 }
 .Spinner-vortex span:nth-child(7n+6):before {
-  -webkit-animation: Keyframe-opacity .8s linear .6s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .6s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .6s normal none infinite running;
   background-color: indigo
 }
 .Spinner-vortex span:nth-child(7n+7) {
   transform: rotate(315deg)
 }
 .Spinner-vortex span:nth-child(7n+7):before {
-  -webkit-animation: Keyframe-opacity .8s linear .7s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .7s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .7s normal none infinite running;
   background-color: #9400d3
 }
 .Spinner-vortex span:nth-child(7n+8) {
   transform: rotate(360deg)
 }
 .Spinner-vortex span:nth-child(7n+8):before {
-  -webkit-animation: Keyframe-opacity .8s linear .8s normal none infinite running;
-          animation: Keyframe-opacity .8s linear .8s normal none infinite running;
+  animation: Keyframe-opacity .8s linear .8s normal none infinite running;
   background-color: #f0f
 }
 .Spinner-vortex.Quadratic {
@@ -4788,106 +4541,106 @@ fieldset:disabled .Btn {
   color: var(--ls-table-hover-color)
 }
 .Table-primary {
-  --ls-table-color: hsl(0deg, 0%, 0%);
+  --ls-table-color: hsl(0, 0%, 0%);
   --ls-table-bg: #cfe1fe;
   --ls-table-border-color: #bacbe5;
   --ls-table-striped-bg: #c5d6f1;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #bacbe5;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #bfd0eb;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-secondary {
-  --ls-table-color: hsl(0deg, 0%, 0%);
+  --ls-table-color: hsl(0, 0%, 0%);
   --ls-table-bg: #e2e4e5;
   --ls-table-border-color: #cbcdce;
   --ls-table-striped-bg: #d7d9da;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #cbcdce;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #d1d3d4;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-success {
-  --ls-table-color: hsl(0deg, 0%, 0%);
+  --ls-table-color: hsl(0, 0%, 0%);
   --ls-table-bg: #d2eade;
   --ls-table-border-color: #bdd3c8;
   --ls-table-striped-bg: #c8ded3;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #bdd3c8;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #c2d8cd;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-info {
-  --ls-table-color: hsl(0deg, 0%, 0%);
+  --ls-table-color: hsl(0, 0%, 0%);
   --ls-table-bg: #d3f2fd;
   --ls-table-border-color: #bedae4;
   --ls-table-striped-bg: #c8e6f0;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #bedae4;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #c3e0ea;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-warning {
-  --ls-table-color: hsl(0deg, 0%, 0%);
+  --ls-table-color: hsl(0, 0%, 0%);
   --ls-table-bg: #faeecc;
   --ls-table-border-color: #e1d6b8;
   --ls-table-striped-bg: #eee2c2;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #e1d6b8;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #e7dcbd;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-danger {
-  --ls-table-color: hsl(0deg, 0%, 0%);
+  --ls-table-color: hsl(0, 0%, 0%);
   --ls-table-bg: #f7d8db;
   --ls-table-border-color: #dec2c5;
   --ls-table-striped-bg: #ebcdd0;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #dec2c5;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #e4c8cb;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-light {
-  --ls-table-color: hsl(0deg, 0%, 0%);
-  --ls-table-bg: hsl(0deg, 0%, 98%);
+  --ls-table-color: hsl(0, 0%, 0%);
+  --ls-table-bg: hsl(0, 0%, 98%);
   --ls-table-border-color: #e1e1e1;
   --ls-table-striped-bg: #eeeeee;
-  --ls-table-striped-color: hsl(0deg, 0%, 0%);
+  --ls-table-striped-color: hsl(0, 0%, 0%);
   --ls-table-active-bg: #e1e1e1;
-  --ls-table-active-color: hsl(0deg, 0%, 0%);
+  --ls-table-active-color: hsl(0, 0%, 0%);
   --ls-table-hover-bg: #e7e7e7;
-  --ls-table-hover-color: hsl(0deg, 0%, 0%);
+  --ls-table-hover-color: hsl(0, 0%, 0%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
 .Table-dark {
-  --ls-table-color: hsl(0deg, 0%, 100%);
-  --ls-table-bg: hsl(240deg, 7%, 18%);
+  --ls-table-color: hsl(0, 0%, 100%);
+  --ls-table-bg: hsl(240, 7%, 18%);
   --ls-table-border-color: #404046;
   --ls-table-striped-bg: #36363b;
-  --ls-table-striped-color: hsl(0deg, 0%, 100%);
+  --ls-table-striped-color: hsl(0, 0%, 100%);
   --ls-table-active-bg: #404046;
-  --ls-table-active-color: hsl(0deg, 0%, 100%);
+  --ls-table-active-color: hsl(0, 0%, 100%);
   --ls-table-hover-bg: #3b3b40;
-  --ls-table-hover-color: hsl(0deg, 0%, 100%);
+  --ls-table-hover-color: hsl(0, 0%, 100%);
   color: var(--ls-table-color);
   border-color: var(--ls-table-border-color)
 }
@@ -5068,8 +4821,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: white;
   --ls-toast-color: #3f3f3f;
   --ls-toast-border-color: #fdfdfd;
-  --ls-toast-header-bg: hsl(0deg, 0%, 98%);
-  --ls-toast-header-color: hsl(0deg, 0%, 0%);
+  --ls-toast-header-bg: hsl(0, 0%, 98%);
+  --ls-toast-header-color: hsl(0, 0%, 0%);
   --ls-toast-header-icon-color: #fefefe;
   --ls-toast-header-border-color: #c8c8c8
 }
@@ -5077,8 +4830,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #eaeaea;
   --ls-toast-color: #0b0b0c;
   --ls-toast-border-color: #959598;
-  --ls-toast-header-bg: hsl(240deg, 7%, 18%);
-  --ls-toast-header-color: hsl(0deg, 0%, 100%);
+  --ls-toast-header-bg: hsl(240, 7%, 18%);
+  --ls-toast-header-color: hsl(0, 0%, 100%);
   --ls-toast-header-icon-color: #cacacc;
   --ls-toast-header-border-color: #222227
 }
@@ -5089,8 +4842,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #e7e7e7;
   --ls-toast-color: #050505;
   --ls-toast-border-color: #898989;
-  --ls-toast-header-bg: hsl(0deg, 0%, 7%);
-  --ls-toast-header-color: hsl(0deg, 0%, 100%);
+  --ls-toast-header-bg: hsl(0, 0%, 7%);
+  --ls-toast-header-color: hsl(0, 0%, 100%);
   --ls-toast-header-icon-color: #c4c4c4;
   --ls-toast-header-border-color: #0e0e0e
 }
@@ -5101,8 +4854,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #e7f0ff;
   --ls-toast-color: #041a3f;
   --ls-toast-border-color: #87b4fd;
-  --ls-toast-header-bg: hsl(217deg, 96%, 52%);
-  --ls-toast-header-color: hsl(0deg, 0%, 100%);
+  --ls-toast-header-bg: hsl(217, 96%, 52%);
+  --ls-toast-header-color: hsl(0, 0%, 100%);
   --ls-toast-header-icon-color: #c3dafe;
   --ls-toast-header-border-color: #0c54c8
 }
@@ -5113,8 +4866,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #f0f1f2;
   --ls-toast-color: #1b1e20;
   --ls-toast-border-color: #b6bbbf;
-  --ls-toast-header-bg: hsl(208deg, 7%, 46%);
-  --ls-toast-header-color: hsl(0deg, 0%, 100%);
+  --ls-toast-header-bg: hsl(208, 7%, 46%);
+  --ls-toast-header-color: hsl(0, 0%, 100%);
   --ls-toast-header-icon-color: #dbdddf;
   --ls-toast-header-border-color: #575e65
 }
@@ -5125,8 +4878,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #e8f4ee;
   --ls-toast-color: #072516;
   --ls-toast-border-color: #8ecaac;
-  --ls-toast-header-bg: hsl(150deg, 67%, 35%);
-  --ls-toast-header-color: hsl(0deg, 0%, 100%);
+  --ls-toast-header-bg: hsl(150, 67%, 35%);
+  --ls-toast-header-color: hsl(0, 0%, 100%);
   --ls-toast-header-icon-color: #c7e5d6;
   --ls-toast-header-border-color: #177747
 }
@@ -5137,8 +4890,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #e9f9fe;
   --ls-toast-color: #09303d;
   --ls-toast-border-color: #92e0fa;
-  --ls-toast-header-bg: hsl(195deg, 90%, 55%);
-  --ls-toast-header-color: hsl(0deg, 0%, 0%);
+  --ls-toast-header-bg: hsl(195, 90%, 55%);
+  --ls-toast-header-color: hsl(0, 0%, 0%);
   --ls-toast-header-icon-color: #c9effc;
   --ls-toast-header-border-color: #1e9ac3
 }
@@ -5149,8 +4902,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #fdf7e6;
   --ls-toast-color: #3a2b00;
   --ls-toast-border-color: #f3d680;
-  --ls-toast-header-bg: hsl(45deg, 100%, 45%);
-  --ls-toast-header-color: hsl(0deg, 0%, 0%);
+  --ls-toast-header-bg: hsl(45, 100%, 45%);
+  --ls-toast-header-color: hsl(0, 0%, 0%);
   --ls-toast-header-icon-color: #f9eabf;
   --ls-toast-header-border-color: #b88a00
 }
@@ -5161,8 +4914,8 @@ fieldset:disabled .Btn {
   --ls-toast-bg: #fbeced;
   --ls-toast-color: #360f13;
   --ls-toast-border-color: #eb9ea6;
-  --ls-toast-header-bg: hsl(354deg, 66%, 54%);
-  --ls-toast-header-color: hsl(0deg, 0%, 100%);
+  --ls-toast-header-bg: hsl(354, 66%, 54%);
+  --ls-toast-header-color: hsl(0, 0%, 100%);
   --ls-toast-header-icon-color: #f5ced2;
   --ls-toast-header-border-color: #ac303d
 }
@@ -5198,126 +4951,126 @@ fieldset:disabled .Btn {
   --ls-tooltip-border-radius: 0.375rem
 }
 .Tooltip-light {
-  --ls-tooltip-color: hsl(0deg, 0%, 0%);
-  --ls-tooltip-bg: hsl(0deg, 0%, 98%);
-  --ls-tooltip-border-color: hsl(0deg, 0%, 98%);
-  --ls-caret-pseudo-before-bg: hsl(0deg, 0%, 98%);
-  --ls-caret-pseudo-after-fg: hsl(0deg, 0%, 98%)
+  --ls-tooltip-color: hsl(0, 0%, 0%);
+  --ls-tooltip-bg: hsl(0, 0%, 98%);
+  --ls-tooltip-border-color: hsl(0, 0%, 98%);
+  --ls-caret-pseudo-before-bg: hsl(0, 0%, 98%);
+  --ls-caret-pseudo-after-fg: hsl(0, 0%, 98%)
 }
 .Tooltip-light.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 0%);
+  --ls-tooltip-color: hsl(0, 0%, 0%);
   --ls-tooltip-bg: #fcfcfc;
   --ls-tooltip-border-color: #e0e0e0;
   --ls-caret-pseudo-before-bg: #e0e0e0;
   --ls-caret-pseudo-after-fg: #fcfcfc
 }
 .Tooltip-dark {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
-  --ls-tooltip-bg: hsl(240deg, 7%, 18%);
-  --ls-tooltip-border-color: hsl(240deg, 7%, 18%);
-  --ls-caret-pseudo-before-bg: hsl(240deg, 7%, 18%);
-  --ls-caret-pseudo-after-fg: hsl(240deg, 7%, 18%)
+  --ls-tooltip-color: hsl(0, 0%, 100%);
+  --ls-tooltip-bg: hsl(240, 7%, 18%);
+  --ls-tooltip-border-color: hsl(240, 7%, 18%);
+  --ls-caret-pseudo-before-bg: hsl(240, 7%, 18%);
+  --ls-caret-pseudo-after-fg: hsl(240, 7%, 18%)
 }
 .Tooltip-dark.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
+  --ls-tooltip-color: hsl(0, 0%, 100%);
   --ls-tooltip-bg: #6b6b6f;
   --ls-tooltip-border-color: #131316;
   --ls-caret-pseudo-before-bg: #131316;
   --ls-caret-pseudo-after-fg: #6b6b6f
 }
 .Tooltip-night {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
-  --ls-tooltip-bg: hsl(0deg, 0%, 7%);
-  --ls-tooltip-border-color: hsl(0deg, 0%, 7%);
-  --ls-caret-pseudo-before-bg: hsl(0deg, 0%, 7%);
-  --ls-caret-pseudo-after-fg: hsl(0deg, 0%, 7%)
+  --ls-tooltip-color: hsl(0, 0%, 100%);
+  --ls-tooltip-bg: hsl(0, 0%, 7%);
+  --ls-tooltip-border-color: hsl(0, 0%, 7%);
+  --ls-caret-pseudo-before-bg: hsl(0, 0%, 7%);
+  --ls-caret-pseudo-after-fg: hsl(0, 0%, 7%)
 }
 .Tooltip-night.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
+  --ls-tooltip-color: hsl(0, 0%, 100%);
   --ls-tooltip-bg: #595959;
   --ls-tooltip-border-color: black;
   --ls-caret-pseudo-before-bg: black;
   --ls-caret-pseudo-after-fg: #595959
 }
 .Tooltip-primary {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
-  --ls-tooltip-bg: hsl(217deg, 96%, 52%);
-  --ls-tooltip-border-color: hsl(217deg, 96%, 52%);
-  --ls-caret-pseudo-before-bg: hsl(217deg, 96%, 52%);
-  --ls-caret-pseudo-after-fg: hsl(217deg, 96%, 52%)
+  --ls-tooltip-color: hsl(0, 0%, 100%);
+  --ls-tooltip-bg: hsl(217, 96%, 52%);
+  --ls-tooltip-border-color: hsl(217, 96%, 52%);
+  --ls-caret-pseudo-before-bg: hsl(217, 96%, 52%);
+  --ls-caret-pseudo-after-fg: hsl(217, 96%, 52%)
 }
 .Tooltip-primary.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
+  --ls-tooltip-color: hsl(0, 0%, 100%);
   --ls-tooltip-bg: #5796fc;
   --ls-tooltip-border-color: #0453d2;
   --ls-caret-pseudo-before-bg: #0453d2;
   --ls-caret-pseudo-after-fg: #5796fc
 }
 .Tooltip-secondary {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
-  --ls-tooltip-bg: hsl(208deg, 7%, 46%);
-  --ls-tooltip-border-color: hsl(208deg, 7%, 46%);
-  --ls-caret-pseudo-before-bg: hsl(208deg, 7%, 46%);
-  --ls-caret-pseudo-after-fg: hsl(208deg, 7%, 46%)
+  --ls-tooltip-color: hsl(0, 0%, 100%);
+  --ls-tooltip-bg: hsl(208, 7%, 46%);
+  --ls-tooltip-border-color: hsl(208, 7%, 46%);
+  --ls-caret-pseudo-before-bg: hsl(208, 7%, 46%);
+  --ls-caret-pseudo-after-fg: hsl(208, 7%, 46%)
 }
 .Tooltip-secondary.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
+  --ls-tooltip-color: hsl(0, 0%, 100%);
   --ls-tooltip-bg: #999fa5;
   --ls-tooltip-border-color: #555c62;
   --ls-caret-pseudo-before-bg: #555c62;
   --ls-caret-pseudo-after-fg: #999fa5
 }
 .Tooltip-success {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
-  --ls-tooltip-bg: hsl(150deg, 67%, 35%);
-  --ls-tooltip-border-color: hsl(150deg, 67%, 35%);
-  --ls-caret-pseudo-before-bg: hsl(150deg, 67%, 35%);
-  --ls-caret-pseudo-after-fg: hsl(150deg, 67%, 35%)
+  --ls-tooltip-color: hsl(0, 0%, 100%);
+  --ls-tooltip-bg: hsl(150, 67%, 35%);
+  --ls-tooltip-border-color: hsl(150, 67%, 35%);
+  --ls-caret-pseudo-before-bg: hsl(150, 67%, 35%);
+  --ls-caret-pseudo-after-fg: hsl(150, 67%, 35%)
 }
 .Tooltip-success.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
+  --ls-tooltip-color: hsl(0, 0%, 100%);
   --ls-tooltip-bg: #61b58b;
   --ls-tooltip-border-color: #156a40;
   --ls-caret-pseudo-before-bg: #156a40;
   --ls-caret-pseudo-after-fg: #61b58b
 }
 .Tooltip-info {
-  --ls-tooltip-color: hsl(0deg, 0%, 0%);
-  --ls-tooltip-bg: hsl(195deg, 90%, 55%);
-  --ls-tooltip-border-color: hsl(195deg, 90%, 55%);
-  --ls-caret-pseudo-before-bg: hsl(195deg, 90%, 55%);
-  --ls-caret-pseudo-after-fg: hsl(195deg, 90%, 55%)
+  --ls-tooltip-color: hsl(0, 0%, 0%);
+  --ls-tooltip-bg: hsl(195, 90%, 55%);
+  --ls-tooltip-border-color: hsl(195, 90%, 55%);
+  --ls-caret-pseudo-before-bg: hsl(195, 90%, 55%);
+  --ls-caret-pseudo-after-fg: hsl(195, 90%, 55%)
 }
 .Tooltip-info.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 0%);
+  --ls-tooltip-color: hsl(0, 0%, 0%);
   --ls-tooltip-bg: #66d3f7;
   --ls-tooltip-border-color: #0ba6da;
   --ls-caret-pseudo-before-bg: #0ba6da;
   --ls-caret-pseudo-after-fg: #66d3f7
 }
 .Tooltip-warning {
-  --ls-tooltip-color: hsl(0deg, 0%, 0%);
-  --ls-tooltip-bg: hsl(45deg, 100%, 45%);
-  --ls-tooltip-border-color: hsl(45deg, 100%, 45%);
-  --ls-caret-pseudo-before-bg: hsl(45deg, 100%, 45%);
-  --ls-caret-pseudo-after-fg: hsl(45deg, 100%, 45%)
+  --ls-tooltip-color: hsl(0, 0%, 0%);
+  --ls-tooltip-bg: hsl(45, 100%, 45%);
+  --ls-tooltip-border-color: hsl(45, 100%, 45%);
+  --ls-caret-pseudo-before-bg: hsl(45, 100%, 45%);
+  --ls-caret-pseudo-after-fg: hsl(45, 100%, 45%)
 }
 .Tooltip-warning.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 0%);
+  --ls-tooltip-color: hsl(0, 0%, 0%);
   --ls-tooltip-bg: #eec54d;
   --ls-tooltip-border-color: #b38600;
   --ls-caret-pseudo-before-bg: #b38600;
   --ls-caret-pseudo-after-fg: #eec54d
 }
 .Tooltip-danger {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
-  --ls-tooltip-bg: hsl(354deg, 66%, 54%);
-  --ls-tooltip-border-color: hsl(354deg, 66%, 54%);
-  --ls-caret-pseudo-before-bg: hsl(354deg, 66%, 54%);
-  --ls-caret-pseudo-after-fg: hsl(354deg, 66%, 54%)
+  --ls-tooltip-color: hsl(0, 0%, 100%);
+  --ls-tooltip-bg: hsl(354, 66%, 54%);
+  --ls-tooltip-border-color: hsl(354, 66%, 54%);
+  --ls-caret-pseudo-before-bg: hsl(354, 66%, 54%);
+  --ls-caret-pseudo-after-fg: hsl(354, 66%, 54%)
 }
 .Tooltip-danger.Tooltip-outline {
-  --ls-tooltip-color: hsl(0deg, 0%, 100%);
+  --ls-tooltip-color: hsl(0, 0%, 100%);
   --ls-tooltip-bg: #e37782;
   --ls-tooltip-border-color: #ba2635;
   --ls-caret-pseudo-before-bg: #ba2635;
@@ -5339,8 +5092,7 @@ fieldset:disabled .Btn {
 }
 .Tree-trunk.Expanded {
   transition: all .3s ease;
-  -webkit-animation: Keyframe-FadeIn .3s ease-in-out;
-          animation: Keyframe-FadeIn .3s ease-in-out;
+  animation: Keyframe-FadeIn .3s ease-in-out;
   padding-left: 1rem;
   border-left: 1px dotted hsla(var(--ls-border-hsl),var(--ls-border-alpha));
   border-bottom: 1px dotted hsla(var(--ls-border-hsl),var(--ls-border-alpha))
@@ -5373,11 +5125,11 @@ fieldset:disabled .Btn {
 }
 .Tree-branch.Disabled {
   cursor: not-allowed;
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   background-color: hsla(var(--ls-contrast-hsl),.1)
 }
 .Tree-branch.Disabled .Tree-leaf--icon {
-  color: hsl(213deg,11%,69%)!important
+  color: #a7afb8!important
 }
 .Tree-branch .Tree-chevron {
   display: flex;
@@ -5456,14 +5208,6 @@ fieldset:disabled .Btn {
 }
 .Tree-separator hr {
   margin: .25rem 0
-}
-@-webkit-keyframes Keyframe-FadeIn {
-  from {
-    opacity: 0
-  }
-  to {
-    opacity: 1
-  }
 }
 @keyframes Keyframe-FadeIn {
   from {
@@ -5569,19 +5313,19 @@ fieldset:disabled .Btn {
   transform-origin: 100% 100%
 }
 .Form-check-material [type=checkbox]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   cursor: default
 }
 .Form-check-material [type=checkbox]:disabled:checked + .Form-check-label:before {
-  border-color: transparent hsl(213deg,11%,69%) hsl(213deg,11%,69%) transparent
+  border-color: transparent #a7afb8 #a7afb8 transparent
 }
 .Form-check-material [type=checkbox]:disabled:not(:checked) + .Form-check-label:before {
   border: none;
   margin-top: 2px;
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-check-material [type=checkbox]:disabled:indeterminate + .Form-check-label:before {
-  border-right: 2px solid hsl(213deg,11%,69%);
+  border-right: 2px solid #a7afb8;
   margin-left: 0;
   margin-top: 0;
   background-color: transparent
@@ -5607,19 +5351,19 @@ fieldset:disabled .Btn {
   transform: scale(0)
 }
 .Form-check-material [type=radio]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   cursor: default
 }
 .Form-check-material [type=radio]:disabled + .Form-check-label:before {
   background-color: transparent;
-  border-color: hsl(213deg,11%,69%)
+  border-color: #a7afb8
 }
 .Form-check-material [type=radio]:disabled:not(:checked) + .Form-check-label:before {
-  border-color: hsl(213deg,11%,69%)
+  border-color: #a7afb8
 }
 .Form-check-material [type=radio]:disabled:checked + .Form-check-label:after {
-  background-color: hsl(213deg,11%,69%);
-  border-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8;
+  border-color: #a7afb8
 }
 .Form-switch-material input[type=checkbox] + .Form-check-label:before {
   content: "";
@@ -5637,7 +5381,7 @@ fieldset:disabled .Btn {
   border-radius: 7px;
   width: 40px;
   height: 15px;
-  background-color: hsl(213deg,11%,69%);
+  background-color: #a7afb8;
   box-shadow: inset 0 1px 3px hsla(var(--ls-shadow-hsl),.12),inset 0 1px 2px hsla(var(--ls-shadow-hsl),.24);
   transition: background-color .2s,opacity .2s
 }
@@ -5661,7 +5405,7 @@ fieldset:disabled .Btn {
   transform: translateX(24px)
 }
 .Form-switch-material input[type=checkbox]:checked:active + .Form-check-label:before {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-switch-material input[type=checkbox]:checked:disabled + .Form-check-label:before {
   background-color: hsla(var(--ls-bg-accent-hsl),.6)
@@ -5670,12 +5414,12 @@ fieldset:disabled .Btn {
   background-color: hsla(var(--ls-bg-accent-hsl),.6)
 }
 .Form-switch-material input[type=checkbox]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   opacity: .38;
   cursor: default
 }
 .Form-switch-material input[type=checkbox]:disabled + .Form-check-label:before {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-check-material {
   position: relative;
@@ -5691,7 +5435,7 @@ fieldset:disabled .Btn {
   top: -8px;
   width: 2.5rem;
   height: 2.5rem;
-  background-color: hsl(213deg,11%,69%);
+  background-color: #a7afb8;
   border-radius: 50%;
   transform: scale(1);
   transition: opacity .3s,transform .2s
@@ -5794,7 +5538,7 @@ fieldset:disabled .Btn {
   opacity: 0
 }
 .Form-check-alpha input[type=checkbox]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   cursor: initial
 }
 .Form-check-alpha input[type=checkbox]:disabled + .Form-check-label:before {
@@ -5836,7 +5580,7 @@ fieldset:disabled .Btn {
   opacity: 0
 }
 .Form-check-alpha input[type=radio]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   cursor: initial
 }
 .Form-check-alpha input[type=radio]:disabled + .Form-check-label:before {
@@ -5856,7 +5600,7 @@ fieldset:disabled .Btn {
   border-radius: 7px;
   width: 36px;
   height: 14px;
-  background-color: hsl(213deg,11%,69%);
+  background-color: #a7afb8;
   box-shadow: inset 0 1px 3px hsla(var(--ls-shadow-hsl),.12),inset 0 1px 2px hsla(var(--ls-shadow-hsl),.24);
   transition: background-color .2s,opacity .2s
 }
@@ -5884,7 +5628,7 @@ fieldset:disabled .Btn {
   transform: translateX(16px)
 }
 .Form-switch-alpha input[type=checkbox]:checked:active + .Form-check-label:before {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-switch-alpha input[type=checkbox]:checked:disabled + .Form-check-label:before {
   background-color: hsla(var(--ls-bg-accent-hsl),.6)
@@ -5901,12 +5645,12 @@ fieldset:disabled .Btn {
   opacity: 0
 }
 .Form-switch-alpha input[type=checkbox]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   opacity: .38;
   cursor: default
 }
 .Form-switch-alpha input[type=checkbox]:disabled + .Form-check-label:before {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-check-alpha,
 .Form-switch-alpha {
@@ -5990,7 +5734,7 @@ fieldset:disabled .Btn {
   border-color: var(--ls-bg-accent)
 }
 .Form-check-beta [type=checkbox]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   cursor: default
 }
 .Form-check-beta [type=checkbox]:disabled:not(:checked) + .Form-check-label:before {
@@ -5998,7 +5742,7 @@ fieldset:disabled .Btn {
 }
 .Form-check-beta [type=checkbox]:disabled:not(:checked) + .Form-check-label:after {
   border-color: transparent;
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-check-beta [type=checkbox]:disabled:checked + .Form-check-label:before {
   background-color: transparent;
@@ -6008,8 +5752,8 @@ fieldset:disabled .Btn {
   border-bottom: 2px solid var(--ls-fg-accent)
 }
 .Form-check-beta [type=checkbox]:disabled:checked + .Form-check-label:after {
-  background-color: hsl(213deg,11%,69%);
-  border-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8;
+  border-color: #a7afb8
 }
 .Form-check-beta [type=checkbox] + .Form-check-label {
   padding-left: 30px
@@ -6032,7 +5776,7 @@ fieldset:disabled .Btn {
   background-color: var(--ls-bg-accent)
 }
 .Form-check-beta [type=checkbox]:disabled:checked + .Form-check-label:after {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-check-beta [type=radio] + .Form-check-label {
   padding-left: 30px
@@ -6064,17 +5808,17 @@ fieldset:disabled .Btn {
   transform: scale(0)
 }
 .Form-check-beta [type=radio]:disabled + .Form-check-label {
-  color: hsl(213deg,11%,69%)
+  color: #a7afb8
 }
 .Form-check-beta [type=radio]:disabled + .Form-check-label:before {
   background-color: transparent;
-  border-color: hsl(213deg,11%,69%)
+  border-color: #a7afb8
 }
 .Form-check-beta [type=radio]:disabled:not(:checked) + .Form-check-label:before {
-  border-color: hsl(213deg,11%,69%)
+  border-color: #a7afb8
 }
 .Form-check-beta [type=radio]:disabled:checked + .Form-check-label:after {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-check-beta {
   position: relative;
@@ -6114,7 +5858,7 @@ fieldset:disabled .Btn {
 }
 .Switch-beta label input[type=checkbox]:disabled + .Lever:after,
 .Switch-beta label input[type=checkbox]:disabled:checked + .Lever:after {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Switch-beta label .Lever {
   content: "";
@@ -6194,24 +5938,12 @@ fieldset:disabled .Btn {
 }
 .Form .Form-control-sm + .Form-label,
 .Form-material .Form-control-sm + .Form-label,
-.Form-material.Form-sm .Form .Form-control + .Form-label,
-.Form-material.Form-sm .Form .Form-select + .Form-label,
 .Form-material.Form-sm .Form-control + .Form-label,
-.Form-material.Form-sm .Form-outline .Form-control + .Form-label,
-.Form-material.Form-sm .Form-outline .Form-select + .Form-label,
 .Form-material.Form-sm .Form-select + .Form-label,
 .Form-outline .Form-control-sm + .Form-label,
-.Form-outline.Form-sm .Form .Form-control + .Form-label,
-.Form-outline.Form-sm .Form .Form-select + .Form-label,
 .Form-outline.Form-sm .Form-control + .Form-label,
-.Form-outline.Form-sm .Form-material .Form-control + .Form-label,
-.Form-outline.Form-sm .Form-material .Form-select + .Form-label,
 .Form-outline.Form-sm .Form-select + .Form-label,
 .Form.Form-sm .Form-control + .Form-label,
-.Form.Form-sm .Form-material .Form-control + .Form-label,
-.Form.Form-sm .Form-material .Form-select + .Form-label,
-.Form.Form-sm .Form-outline .Form-control + .Form-label,
-.Form.Form-sm .Form-outline .Form-select + .Form-label,
 .Form.Form-sm .Form-select + .Form-label {
   font-size: .875rem
 }
@@ -6238,24 +5970,12 @@ fieldset:disabled .Btn {
 }
 .Form .Form-control-lg + .Form-label,
 .Form-material .Form-control-lg + .Form-label,
-.Form-material.Form-lg .Form .Form-control + .Form-label,
-.Form-material.Form-lg .Form .Form-select + .Form-label,
 .Form-material.Form-lg .Form-control + .Form-label,
-.Form-material.Form-lg .Form-outline .Form-control + .Form-label,
-.Form-material.Form-lg .Form-outline .Form-select + .Form-label,
 .Form-material.Form-lg .Form-select + .Form-label,
 .Form-outline .Form-control-lg + .Form-label,
-.Form-outline.Form-lg .Form .Form-control + .Form-label,
-.Form-outline.Form-lg .Form .Form-select + .Form-label,
 .Form-outline.Form-lg .Form-control + .Form-label,
-.Form-outline.Form-lg .Form-material .Form-control + .Form-label,
-.Form-outline.Form-lg .Form-material .Form-select + .Form-label,
 .Form-outline.Form-lg .Form-select + .Form-label,
 .Form.Form-lg .Form-control + .Form-label,
-.Form.Form-lg .Form-material .Form-control + .Form-label,
-.Form.Form-lg .Form-material .Form-select + .Form-label,
-.Form.Form-lg .Form-outline .Form-control + .Form-label,
-.Form.Form-lg .Form-outline .Form-select + .Form-label,
 .Form.Form-lg .Form-select + .Form-label {
   font-size: 1.25rem
 }
@@ -6360,7 +6080,7 @@ fieldset:disabled .Btn {
 .Form-material .Form-control:disabled,
 .Form-material .Form-select:disabled,
 .Form-material .Form-textarea:disabled {
-  color: hsl(213deg,11%,69%)
+  color: #a7afb8
 }
 .Form .Form-control:disabled + .Form-label,
 .Form .Form-select:disabled + .Form-label,
@@ -6368,7 +6088,7 @@ fieldset:disabled .Btn {
 .Form-material .Form-control:disabled + .Form-label,
 .Form-material .Form-select:disabled + .Form-label,
 .Form-material .Form-textarea:disabled + .Form-label {
-  color: hsl(213deg,11%,69%)
+  color: #a7afb8
 }
 .Form .Form-select,
 .Form-material .Form-select {
@@ -6684,21 +6404,21 @@ fieldset:disabled .Btn {
   height: 1.5em
 }
 .Form-control::-webkit-input-placeholder {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   opacity: 1
 }
 .Form-control::-moz-placeholder {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   opacity: 1
 }
 .Form-control::placeholder {
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   opacity: 1
 }
 .Form-control:disabled,
 .Form-control[readonly] {
-  color: hsl(213deg,11%,69%);
-  background-color: hsla(213deg,11%,69%,.25);
+  color: #a7afb8;
+  background-color: hsla(213,11%,69%,.25);
   opacity: 1
 }
 .Form-control::-webkit-file-upload-button {
@@ -6753,7 +6473,7 @@ fieldset:disabled .Btn {
   padding: .375rem 0;
   margin-bottom: 0;
   line-height: 1.5;
-  color: hsl(213deg,11%,69%);
+  color: #a7afb8;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0
@@ -6764,7 +6484,7 @@ fieldset:disabled .Btn {
   padding-left: 0
 }
 .Form-control-sm {
-  min-height: calc(1.5 * 1em + calc(.25rem * 2 + 2px));
+  min-height: calc(1.5 * 1em + .25rem * 2 + 2px);
   padding: .25rem .5rem;
   font-size: .875rem;
   border-radius: .25rem
@@ -6782,7 +6502,7 @@ fieldset:disabled .Btn {
           margin-inline-end: .5rem
 }
 .Form-control-lg {
-  min-height: calc(1.5 * 1em + calc(.5rem * 2 + 2px));
+  min-height: calc(1.5 * 1em + .5rem * 2 + 2px);
   padding: .5rem 1rem;
   font-size: 1.25rem;
   border-radius: .5rem
@@ -6800,17 +6520,17 @@ fieldset:disabled .Btn {
           margin-inline-end: 1rem
 }
 textarea.Form-control {
-  min-height: calc(1.5 * 1em + calc(.375rem * 2 + 2px))
+  min-height: calc(1.5 * 1em + .375rem * 2 + 2px)
 }
 textarea.Form-control-sm {
-  min-height: calc(1.5 * 1em + calc(.25rem * 2 + 2px))
+  min-height: calc(1.5 * 1em + .25rem * 2 + 2px)
 }
 textarea.Form-control-lg {
-  min-height: calc(1.5 * 1em + calc(.5rem * 2 + 2px))
+  min-height: calc(1.5 * 1em + .5rem * 2 + 2px)
 }
 .Form-control-color {
   width: 3rem;
-  height: calc(1.5 * 1em + calc(.375rem * 2 + 2px));
+  height: calc(1.5 * 1em + .375rem * 2 + 2px);
   padding: .375rem
 }
 .Form-control-color:not(:disabled):not([readonly]) {
@@ -6824,10 +6544,10 @@ textarea.Form-control-lg {
   border-radius: .375rem
 }
 .Form-control-color.Form-control-sm {
-  height: calc(1.5 * 1em + calc(.25rem * 2 + 2px))
+  height: calc(1.5 * 1em + .25rem * 2 + 2px)
 }
 .Form-control-color.Form-control-lg {
-  height: calc(1.5 * 1em + calc(.5rem * 2 + 2px))
+  height: calc(1.5 * 1em + .5rem * 2 + 2px)
 }
 .Form-check {
   display: block;
@@ -6882,15 +6602,15 @@ textarea.Form-control-lg {
   border-color: var(--ls-bg-accent)
 }
 .Form-check-input:checked[type=checkbox] {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='var(--ls-fg-accent)' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='hsl(0, 0%25, 100%25)' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E")
 }
 .Form-check-input:checked[type=radio] {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='2' fill='var(--ls-fg-accent)'/%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='2' fill='hsl(0, 0%25, 100%25)'/%3E%3C/svg%3E")
 }
 .Form-check-input[type=checkbox]:indeterminate {
   background-color: var(--ls-bg-accent);
   border-color: var(--ls-bg-accent);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='var(--ls-fg-accent)' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='hsl(0, 0%25, 100%25)' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3E%3C/svg%3E")
 }
 .Form-check-input:disabled {
   pointer-events: none;
@@ -6908,7 +6628,7 @@ textarea.Form-control-lg {
 .Form-switch .Form-check-input {
   width: 2em;
   margin-left: -2.5em;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='hsl(213deg, 11%25, 69%25)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='hsl(213, 11%25, 69%25)'/%3E%3C/svg%3E");
   background-position: left center;
   border-radius: 2em;
   transition: background-position .15s ease-in-out
@@ -6919,11 +6639,11 @@ textarea.Form-control-lg {
   }
 }
 .Form-switch .Form-check-input:focus {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='hsl(213deg, 11%25, 69%25)'/%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='hsl(213, 11%25, 69%25)'/%3E%3C/svg%3E")
 }
 .Form-switch .Form-check-input:checked {
   background-position: right center;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='hsl(0deg, 0%25, 100%25)'/%3E%3C/svg%3E")
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='hsl(0, 0%25, 100%25)'/%3E%3C/svg%3E")
 }
 .Form-switch.Form-check-reverse {
   padding-right: 2.5em;
@@ -6959,7 +6679,7 @@ textarea.Form-control-lg {
   line-height: 1.5;
   color: var(--ls-fg-surface);
   background-color: var(--ls-bg-surface);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='var(--ls-fg-surface)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='hsl(213, 11%25, 69%25)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right .75rem center;
   background-size: 16px 12px;
@@ -6986,7 +6706,7 @@ textarea.Form-control-lg {
   background-image: none
 }
 .Form-select:disabled {
-  background-color: hsla(213deg,11%,69%,.25)
+  background-color: hsla(213,11%,69%,.25)
 }
 .Form-select:-moz-focusring {
   color: transparent;
@@ -7090,10 +6810,10 @@ textarea.Form-control-lg {
   pointer-events: none
 }
 .Form-range:disabled::-webkit-slider-thumb {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Form-range:disabled::-moz-range-thumb {
-  background-color: hsl(213deg,11%,69%)
+  background-color: #a7afb8
 }
 .Input-group {
   position: relative;
@@ -8892,7 +8612,7 @@ textarea.Form-control-lg {
   color: hsla(354deg,66%,54%,var(--ls-text-alpha,1))!important
 }
 .Fg-muted {
-  color: hsl(213deg,11%,69%)!important
+  color: #a7afb8!important
 }
 .Fg-reset {
   color: inherit!important

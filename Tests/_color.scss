@@ -1,0 +1,32 @@
+// ===========================================================================
+// TEST => Color
+// ===========================================================================
+@import "../scss/Abstracts/dir-functions";
+@import "../scss/Abstracts/dir-mixins";
+@import "../scss/Abstracts/variables";
+
+
+@each $breakpointKey, $breakpointValue in $responsive-Breakpoints {
+  //  .Col-#{$breakpointKey} {
+  //    --value: #{$breakpointValue};
+  //  }
+  //}
+
+  //@each $colorKey, $colorValue in $colors-Background-hsla {
+  //  .Bg-#{$colorKey} {
+  //    --value: #{$colorValue};
+  //  }
+  //}
+
+  @each $colorKey, $colorValue in $colors-Text-hsla {
+    .Text-#{$colorKey} {
+      --value: #{$colorValue};
+    }
+  }
+
+  @each $colorKey, $colorValue in $colors-Border-hsla {
+    .Border-#{$colorKey} {
+      --value: #{$colorValue};
+    }
+  }
+}

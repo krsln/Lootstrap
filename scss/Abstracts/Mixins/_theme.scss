@@ -30,7 +30,9 @@
       $C-accent: $Primary;
 
       $C-shadow: hsl(240, 7%, 18%); // Dark
-      $C-body: Color-ByLightness($colorValue, ($Lightness - 5));
+      //$C-body: Color-ByLightness($colorValue, ($Lightness - 5)); // #ededed
+      //$C-body: #ededed;
+      $C-body: #f9fafb;
       $C-border: Color-ByLightness($colorValue, ($Lightness - 10));
 
       $C-surface: $White;

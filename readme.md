@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/v/@qrsln/lootstrap?style=for-the-badge)](https://www.npmjs.com/package/@qrsln/lootstrap)
 [![npm](https://img.shields.io/npm/dm/@qrsln/lootstrap?style=for-the-badge)](https://npmcharts.com/compare/@qrsln/lootstrap?minimal=true)
 
-[![Demo](https://img.shields.io/badge/Demo-Usage-orange?style=for-the-badge)](https://krsln.github.io/Showcase/Lootstrap)
+[![Demo](https://img.shields.io/badge/Demo-Usage-orange?style=for-the-badge)](https://krsln.github.io/Lootstrap)
 ![GitHub top language](https://img.shields.io/github/languages/top/krsln/LootStrap?style=for-the-badge)
 
 Lootstrap is a scss library and is still in beta! There is much to improve!

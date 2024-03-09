@@ -87,7 +87,7 @@ $Theme-colors: (
         "danger" : $Danger, //"error" : $Danger,
 ) !default;
 
-$Muted: hsla(213, 11%, 69%, 1);
+$Muted: hsla(213, 11%, 69%, 1); // #A7AFB9FF
 
 // Customize the light and dark text colors for use in our color contrast function.
 $Color-contrast-dark: $Black !default;

@@ -1,0 +1,47 @@
+// ===========================================================================
+// TEST => Functions - Color
+// ===========================================================================
+@import "../scss/Abstracts/dir-functions";
+@import "../scss/Abstracts/dir-mixins";
+@import "../scss/Abstracts/variables";
+
+.TEST-color-func {
+  --dark--Luminance: #{ Luminance($Dark)};
+  --light--Luminance: #{ Luminance($Light)};
+  --Contrast-ratio: #{ContrastRatio($Dark, $Light)};
+
+  --Contrast-ratio-warning: #{ContrastRatio($Warning, Best-fg-color($Warning))};
+  --Contrast-ratio-danger: #{ContrastRatio($Danger, Best-fg-color($Danger))};
+}
+
+//* RESULT
+//   --dark--Luminance: 0.024630962;
+//   --light--Luminance: 0.9559733532;
+//   --Contrast-ratio: 13.479;
+//
+//   --Contrast-ratio-warning: 10.266; // bg:warning - fg: black
+//   --Contrast-ratio-danger: 4.64; // bg:danger - fg: black
+
+
+.TEST-color-func {
+  --warning: #{$Warning};
+  --warning--Best-fg-color: #{Best-fg-color($Warning)};
+  --warning--Text-clr: #{Text-clr($Warning)};
+  --warning--Text-color: #{Text-color($Warning)};
+
+  --danger: #{$Danger};
+  --danger--Best-fg-color: #{Best-fg-color($Danger)};
+  --danger--Text-clr: #{Text-clr($Danger)};
+  --danger--Text-color: #{Text-color($Danger)};
+}
+
+//* RESULT
+//   --warning: #e6ac00;
+//   --warning--Best-fg-color: black;
+//   --warning--Text-clr: white;
+//   --warning--Text-color: black;
+//
+//   --danger: #d73c4c;
+//   --danger--Best-fg-color: black;
+//   --danger--Text-clr: black;
+//   --danger--Text-color: white;

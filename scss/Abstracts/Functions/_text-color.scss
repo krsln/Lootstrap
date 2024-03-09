@@ -89,8 +89,8 @@
 /// Set Text Color Entirely based on bg color (Black or White)
 /// Usage  => @include Text-color-byBrightness($Warning);
 @function Text-color-byBrightness($color) {
-  $color-brightness: round((red($color)*299)+(green($color)*587)+ math.div(blue($color) * 114, 1000));
-  $light-color: round((red(#ffffff)*299)+(green(#ffffff)*587)+ math.div(blue(#ffffff) * 114, 1000));
+  $color-brightness: round((red($color) * 299) + (green($color)*587) + math.div(blue($color) * 114, 1000));
+  $light-color: round((red(#ffffff) * 299) + (green(#ffffff)*587) + math.div(blue(#ffffff) * 114, 1000));
 
   @if abs($color-brightness) < math.div($light-color, 2) {
     @return $Color-contrast-light;
