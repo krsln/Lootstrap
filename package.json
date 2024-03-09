@@ -2,6 +2,8 @@
   "name": "@qrsln/lootstrap",
   "version": "24.2.26-beta.0",
   "scripts": {
+    "Githup-deploy-OLD": "ngh --no-silent --dir=dist/ng-show-lootstrap/browser",
+    "Githup-deploy": "ng deploy NgShowLootstrap --dir=dist/ng-show-lootstrap/browser",
     "/************        Pre~        ************/": " --- Start --- ",
     "Clean-dist": "rimraf dist/css",
     "Change-version": "node build/VersionUpdater.js",
@@ -55,5 +57,8 @@
     "postcss-cli": "^11.0.0",
     "rimraf": "^5.0.5",
     "sass": "^1.70.0"
+  },
+  "dependencies": {
+    "angular-cli-ghpages": "^2.0.0-beta.2"
   }
 }
