@@ -41,4 +41,5 @@ console.log('New Version \t', newVer, '\t', newBeta);
 // # this sets the version
 // # in package.json to 1.0.2
 // npm version 1.0.2
-execSync("npm version " + newVer + newBeta);
+// execSync("npm version " + newVer + newBeta);
+execSync("npm version " + newVer + newBeta + " --no-git-tag-version");
