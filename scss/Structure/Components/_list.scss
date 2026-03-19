@@ -2,6 +2,20 @@
  * Components - List Group
  *
 */
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/reboot-variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/color" as *;
+@use "../../Abstracts/Functions/Text-color/text-color" as *;
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/breakpoints" as *;
+
 
 .List {
   --#{$Prefix}list-color: #{$List-color};
@@ -82,7 +96,10 @@
   display: block;
   padding: var(--#{$Prefix}list-item-padding-y) var(--#{$Prefix}list-item-padding-x);
   color: var(--#{$Prefix}list-color);
-  text-decoration: if($Link-decoration == none, null, none);
+  //text-decoration: if($Link-decoration == none, null, none);
+  @if ($Link-decoration == none) {
+    text-decoration: null;
+  }
   background-color: var(--#{$Prefix}list-bg);
   border: var(--#{$Prefix}list-border-width) solid var(--#{$Prefix}list-border-color);
 
@@ -123,7 +140,7 @@
 //
 // Change the layout of list group items from vertical (default) to horizontal.
 
-@each $breakpoint in map-keys($Grid-breakpoints) {
+@each $breakpoint in map.keys($Grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $Grid-breakpoints);
 
@@ -185,13 +202,28 @@
 // Organizationally, this must come after the `:hover` states.
 
 @each $key, $color in $Theme-colors {
-  $variant-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .50));
+  //$variant-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .50));
+  $variant-bg: Opaque(#fff, hsla(
+                  math.round(color.channel($color, "hue", $space: hsl)),
+                  math.round(color.channel($color, "saturation", $space: hsl)),
+                  math.round(color.channel($color, "lightness", $space: hsl)), .50
+  ));
   $variant-color: Color-contrast($variant-bg);
 
-  $variant-active-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .90));
+  //$variant-active-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .90));
+  $variant-active-bg: Opaque(#fff, hsla(
+                  math.round(color.channel($color, "hue", $space: hsl)),
+                  math.round(color.channel($color, "saturation", $space: hsl)),
+                  math.round(color.channel($color, "lightness", $space: hsl)), .90
+  ));
   $variant-active-color: Color-contrast($variant-bg);
 
-  $variant-hover-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  //$variant-hover-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  $variant-hover-bg: Opaque(#fff, hsla(
+                  math.round(color.channel($color, "hue", $space: hsl)),
+                  math.round(color.channel($color, "saturation", $space: hsl)),
+                  math.round(color.channel($color, "lightness", $space: hsl)), .70
+  ));
   $variant-hover-color: Color-contrast($variant-bg);
 
   .List-item-#{$key} {

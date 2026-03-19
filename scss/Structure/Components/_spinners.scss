@@ -2,6 +2,12 @@
  * Components - Spinner
  *
 */
+@use "sass:map";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
 
 //
 // Rotating border
@@ -135,7 +141,7 @@
           animation: Keyframe-opacity 0.8s linear ($index * 0.1s) normal none infinite running;
 
         // Colored
-          background-color: map-get($Spinner-vortex-colors, $index);
+          background-color: map.get($Spinner-vortex-colors, $index);
         }
       }
     }

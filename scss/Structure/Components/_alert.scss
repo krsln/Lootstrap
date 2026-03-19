@@ -1,51 +1,72 @@
 /**
  * Components - Alert
  *
+ * Edited at: 2024.04.04
 */
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
 
-.Alert {
-  --#{$Prefix}alert-bg: #{$Alert-init-bg};
-  --#{$Prefix}alert-color: #{$Alert-init-color};
-  --#{$Prefix}alert-border-color: #{$Alert-init-border-color};
-  --#{$Prefix}alert-icon-color: #{$Alert-init-icon-color};
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
 
+@use "../../Abstracts/Functions/color" as *;
+@use "../../Abstracts/Functions/Text-color/text-color" as *;
+
+
+@mixin Alert-initials() {
+  /* Initial values */
+  --#{$Prefix}alert-bg: #{$Alert-bg};
+  --#{$Prefix}alert-color: #{$Alert-color};
+  --#{$Prefix}alert-icon-color: #{$Alert-icon-color};
+
+  --#{$Prefix}alert-border-color: #{$Alert-border-color};
   --#{$Prefix}alert-border: #{$Alert-border-width} solid var(--#{$Prefix}alert-border-color);
   --#{$Prefix}alert-border-radius: #{$Alert-border-radius};
+}
 
-  --#{$Prefix}alert-padding: #{$Alert-padding};
-  --#{$Prefix}alert-margin-bottom: #{$Alert-margin-bottom};
+@mixin Alert-outline-initials() {
+  /* Initial values */
+  --#{$Prefix}alert-outline-bg: #{$Alert-bg};
+  --#{$Prefix}alert-outline-color: #{$Alert-color};
+  --#{$Prefix}alert-outline-icon-color: #{$Alert-outline-icon-color};
+  --#{$Prefix}alert-outline-border-color: #{$Alert-outline-border-color};
+}
 
-  --#{$Prefix}alert-min-width: #{$Alert-min-width};
+.Alert {
+  @include Alert-initials();
 
   position: relative;
   display: block;
   overflow: hidden;
 
-  font-family: $Alert-font-family;
-
-  text-align: left;
-
-  padding: var(--#{$Prefix}alert-padding);
-  margin-bottom: var(--#{$Prefix}alert-margin-bottom);
-
-  margin-right: auto !important;
-  margin-left: auto !important;
-
   color: var(--#{$Prefix}alert-color);
   background-color: var(--#{$Prefix}alert-bg);
 
-  //border: var(--#{$Prefix}alert-border);
+  text-align: left;
+  font-family: $Alert-font-family;
+
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: $Alert-margin-bottom;
+  //padding: 1.25rem 1.125rem;
+  padding: 1.25rem 1.25rem 1.25rem 1rem;
+
   border: none;
   border-radius: var(--#{$Prefix}alert-border-radius, 0);
   box-shadow: $Alert-box-shadow;
 
-  // Headings for larger alerts
-  .Alert-heading {
-    // Specified to prevent conflicts of changing $headings-color
-    color: inherit;
+  .Alert-text {
+    // Headings for larger alerts
+    .Alert-heading {
+      display: block;
+      // Specified to prevent conflicts of changing $headings-color
+      color: inherit;
 
-    text-align: left;
-    margin: 0 0.5rem 0 0;
+      text-align: left;
+      margin: 0 0.5rem 0 0;
+    }
   }
 
   .Alert-icon {
@@ -53,16 +74,7 @@
     font-size: 160%;
 
     filter: $Alert-icon-drop-shadow;
-    margin-right: $Alert-icon-margin-right;
-
-    // Quick fix for NgLootstrap/Notify/Alert custom letter symbol
-    span {
-      line-height: 120%;
-    }
-  }
-
-  @include media-breakpoint-up(sm) {
-    min-width: var(--#{$Prefix}alert-min-width);
+    margin-right: 0.75rem;
   }
 }
 
@@ -77,11 +89,15 @@
 // Outline
 //
 .Alert-outline {
+  @include Alert-outline-initials();
+
+  padding: 1.188rem 1.120rem;
+
   color: var(--#{$Prefix}alert-outline-color);
   background-color: var(--#{$Prefix}alert-outline-bg);
-  border-color: var(--#{$Prefix}alert-outline-border-color);
 
   border: var(--#{$Prefix}alert-border);
+  border-color: var(--#{$Prefix}alert-outline-border-color);
 
   .Alert-icon {
     color: var(--#{$Prefix}alert-outline-icon-color);
@@ -89,17 +105,29 @@
 }
 
 //
+// Blurry Background
+//
+.Alert-blurry {
+  --#{$Prefix}alert-bg-hsl: #{var(--#{$Prefix}bg-hue-hsl)};
+
+  background: hsla(var(--#{$Prefix}alert-bg-hsl), 0.6);
+  backdrop-filter: blur(12px);
+
+  border: solid var(--#{$Prefix}alert-border-color);
+  border-width: 0 0 0 6px;
+}
+
+//
 // Dismissible Design
 //
-.Alert {
-
-  .Notify-countdown {
+.Alert-dismissible {
+  .Countdown {
     position: absolute;
     padding: 0.05rem 0.25rem 0.05rem;
     font-size: 0.75em;
 
-    top: 0.00rem;
-    right: 0.00rem;
+    top: 0;
+    right: 0;
 
     color: inherit;
     background-color: inherit;
@@ -127,39 +155,61 @@
     bottom: 0;
 
     border: none;
-    //background-color: var(--#{$Prefix}alert-color);
 
     .Progress-bar {
       color: var(--#{$Prefix}alert-color);
-      background-color: var(--#{$Prefix}alert-bg);
+      background-color: var(--#{$Prefix}alert-border-color);
     }
   }
-
 }
 
 //
 // Generate contextual modifier classes for colorizing the alert.
 //
-@each $key, $color in $Theme-colors {
-  .Alert-#{$key} {
-    $opaque: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .75));
+@each $colorKey, $colorValue in $Theme-colors {
+  .Alert-#{$colorKey} {
+    $fg-color: map.get($Theme-fg-colors, $colorKey);
+    //$opaque: Opaque(#fff, hsla(round(hue($colorValue)), round(saturation($colorValue)), round(lightness($colorValue)), .75));
+    $opaque: Opaque(#fff, hsla(
+                    math.round(color.channel($colorValue, "hue", $space: hsl)),
+                    math.round(color.channel($colorValue, "saturation", $space: hsl)),
+                    math.round(color.channel($colorValue, "lightness", $space: hsl)), .75
+    ));
+
+    --#{$Prefix}alert-bg-hsl: #{colorToHSL($opaque)};
 
     --#{$Prefix}alert-bg: #{$opaque};
-    --#{$Prefix}alert-color: #{Color-contrast($opaque)};
+    //--#{$Prefix}alert-color: #{Color-contrast($opaque)};
+    --#{$Prefix}alert-color: #{$fg-color};
     --#{$Prefix}alert-icon-color: #{Tint-color($opaque, 75%)};
     --#{$Prefix}alert-border-color: #{Shade-color($opaque, 05%)};
 
-    $opaque-outline: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .10));
+    //$opaque-outline: Opaque(#fff, hsla(round(hue($colorValue)), round(saturation($colorValue)), round(lightness($colorValue)), .10));
+    $opaque-outline: Opaque(#fff, hsla(
+                    math.round(color.channel($colorValue, "hue", $space: hsl)),
+                    math.round(color.channel($colorValue, "saturation", $space: hsl)),
+                    math.round(color.channel($colorValue, "lightness", $space: hsl)), .10
+    ));
 
     --#{$Prefix}alert-outline-bg: #{$opaque-outline};
     --#{$Prefix}alert-outline-color: #{Color-contrast($opaque-outline)};
     --#{$Prefix}alert-outline-icon-color: #{$opaque};
-    --#{$Prefix}alert-outline-border-color: #{darken($color, 10%)};
+    --#{$Prefix}alert-outline-border-color: #{color.adjust($colorValue, $lightness: -10%)};
 
     &:not(.Alert-outline) .Btn-close {
-      @if (lightness($color) < 80) {
+      @if (color.channel($colorValue, "lightness", $space: hsl) < 80) {
         filter: invert(1) grayscale(100%) brightness(200%);
       }
     }
   }
 }
+
+
+
+
+
+
+
+
+
+

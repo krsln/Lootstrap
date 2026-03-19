@@ -5,6 +5,12 @@
  * - Retina image
 */
 
+@use "../../Abstracts/variables" as *;
+
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/box-shadow" as *;
+
+
 /*@formatter:off*/
 $Thumbnail-padding                  : .25rem !default;
 $Thumbnail-bg                       : inherit !default;

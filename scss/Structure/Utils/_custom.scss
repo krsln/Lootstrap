@@ -1,4 +1,8 @@
 
+@use "../../Abstracts/config" as *;
+
+@use "../../Abstracts/Mixins/utilities" as *;
+
 // TODO: Bg-gradient
 .Bg-gradient {
   background-image: var(--#{$Prefix}gradient) !important;

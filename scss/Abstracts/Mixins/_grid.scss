@@ -4,6 +4,13 @@
 // Generate semantic grid columns with these mixins.
 // ===========================================================================
 @use 'sass:math';
+@use 'sass:map';
+@use 'sass:meta';
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+
+@use "breakpoints" as *;
 
 /**
  * Row
@@ -23,7 +30,12 @@
 
 @mixin Make-col-ready() {
   // Add box sizing if only the grid is loaded
-  box-sizing: if(variable-exists(include-column-box-sizing) and $include-column-box-sizing, border-box, null);
+  //box-sizing: if(meta.variable-exists(include-column-box-sizing) and $include-column-box-sizing, border-box, null);
+  //box-sizing: if(sass(meta.variable-exists(include-column-box-sizing) and $include-column-box-sizing): border-box; else: null);
+  @if meta.variable-exists(include-column-box-sizing) and $include-column-box-sizing {
+    box-sizing: border-box;
+  }
+
   // Prevent columns from becoming too narrow when at smaller grid tiers by
   // always setting `width: 100%;`. This works because we set the width
   // later on to override this initial width.
@@ -40,7 +52,7 @@
 @mixin Make-col($size: false, $columns: $Grid-columns) {
   @if $size {
     flex: 0 0 auto;
-    width: percentage(math.div($size, $columns));
+    width: math.percentage(math.div($size, $columns));
 
   } @else {
     flex: 1 1 0;
@@ -55,7 +67,13 @@
 
 @mixin Make-col-offset($size, $columns: $Grid-columns) {
   $num: math.div($size, $columns);
-  margin-left: if($num == 0, 0, percentage($num));
+  //margin-left: if($num == 0, 0, math.percentage($num));
+  //margin-left: if(sass($num == 0): 0; else: math.percentage($num));
+  @if $num == 0 {
+    margin-left: 0;
+  } @else {
+    margin-left: math.percentage($num);
+  }
 }
 
 /**
@@ -79,7 +97,7 @@
  * any value of `$Grid-columns`.
 */
 @mixin Make-grid-columns($columns: $Grid-columns, $gutter: $Grid-gutter-width, $breakpoints: $Grid-breakpoints) {
-  @each $breakpoint in map-keys($breakpoints) {
+  @each $breakpoint in map.keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
 
     @include media-breakpoint-up($breakpoint, $breakpoints) {

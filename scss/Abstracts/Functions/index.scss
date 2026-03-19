@@ -2,8 +2,8 @@
 // Functions
 // ===========================================================================
 
-@import "color";
-@import "text-color";
-@import "color-customized";
-@import "helpers";
-@import "shadow";
+@forward "color";
+@forward "Text-color/text-color";
+@forward "color-customized";
+@forward "helpers";
+@forward "shadow";

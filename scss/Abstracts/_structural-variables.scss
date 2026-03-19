@@ -1,47 +1,68 @@
+@use "sass:string";
+
+@use "config" as *;
+@use "reboot-variables" as *;
+@use "variables" as *;
+
+@use "Functions/color" as *;
+
 /*@formatter:off*/
 
 // ******************************************************************************************************* //
 // * Adaptive
 // *
-
-$Adaptive-bg-hue-hsl        : var(--#{$Prefix}bg-hue-hsl);
-$Adaptive-bg-hue            : var(--#{$Prefix}bg-hue);
-$Adaptive-fg-hue            : var(--#{$Prefix}fg-hue);
-
-$Adaptive-bg-surface            : var(--#{$Prefix}bg-surface);
-$Adaptive-fg-surface            : var(--#{$Prefix}fg-surface);
-
 $Adaptive-bg-contrast-hsl       : var(--#{$Prefix}contrast-hsl);
+
+$Adaptive-bg-hue-hsl            : var(--#{$Prefix}bg-hue-hsl);
+$Adaptive-bg-hue                : var(--#{$Prefix}bg-hue);
+$Adaptive-fg-hue                : var(--#{$Prefix}fg-hue);
 
 $Adaptive-bg-accent-hsl         : var(--#{$Prefix}bg-accent-hsl);
 $Adaptive-bg-accent             : var(--#{$Prefix}bg-accent);
 $Adaptive-fg-accent             : var(--#{$Prefix}fg-accent);
 
+//$Adaptive-fg-surface            : var(--#{$Prefix}fg-default); // TODO: remove
+
+$Adaptive-fg-default            : var(--#{$Prefix}fg-default);
+$Adaptive-fg-link               : var(--#{$Prefix}fg-link);
+$Adaptive-fg-muted              : var(--#{$Prefix}fg-muted);
+
+$Adaptive-bg-body               : var(--#{$Prefix}bg-body);
+// Surface | Secondary | Foremost
+$Adaptive-bg-surface            : var(--#{$Prefix}bg-surface);
+$Adaptive-bg-secondary           : var(--#{$Prefix}bg-secondary);
+$Adaptive-bg-foremost            : var(--#{$Prefix}bg-foremost);
+
+//$Adaptive-header-color-hsl      : var(--#{$Prefix}bg-header-hsl);
+$Adaptive-bg-header              : var(--#{$Prefix}bg-header);
+$Adaptive-bg-subHeader           : var(--#{$Prefix}bg-sub-header);
+
 $Adaptive-border-color-hsl      : var(--#{$Prefix}border-hsl);
 $Adaptive-border-color          : hsla($Adaptive-border-color-hsl, 1);
+$Adaptive-divider               : hsla($Adaptive-border-color-hsl, .6);
 
 // ******************************************************************************************************* //
 // * Alert
 // *
 
-$Alert-font-family                   : $Font-family-base !default;
-$Alert-padding                       : 1.25rem 1.125rem;
-$Alert-margin-bottom                 : .75rem;
+$Alert-bg                       : $Adaptive-bg-hue;
+$Alert-color                    : $Adaptive-fg-hue;
+$Alert-border-color             : hsla($Adaptive-bg-accent-hsl, .5);
 
-$Alert-border-width                  : $Border-width !default;
-$Alert-border-radius                 : 0.5rem !default;
-$Alert-box-shadow                    : $Shadow;
+$Alert-icon-color               : hsla($Adaptive-bg-accent-hsl, .5);
+$Alert-icon-drop-shadow         : drop-shadow(0 0 hsla($Adaptive-bg-accent-hsl, .25));
 
-$Alert-min-width                     : 350px;
+$Alert-outline-icon-color       : $Adaptive-bg-accent;
+$Alert-outline-border-color     : $Adaptive-bg-accent;
 
-$Alert-icon-margin-right             : .5rem;
-$Alert-icon-drop-shadow              : drop-shadow(0 0 hsla($Adaptive-bg-accent-hsl, .25));
+$Alert-font-family              : $Font-family-base !default;
 
-// Initial values
-$Alert-init-bg                        : $Adaptive-bg-hue;
-$Alert-init-color                     : $Adaptive-fg-hue;
-$Alert-init-border-color              : hsla($Adaptive-bg-accent-hsl, .5);
-$Alert-init-icon-color                : hsla($Adaptive-bg-accent-hsl, .5);
+$Alert-border-width             : $Border-width !default;
+$Alert-border-radius            : 0.5rem !default;
+
+$Alert-box-shadow               : $Shadow;
+$Alert-margin-bottom            : .75rem;
+
 
 // ******************************************************************************************************* //
 // * Avatar
@@ -54,28 +75,17 @@ $Avatar-badge-on            : $Lime;
 // * Badge
 // *
 
-$Badge-font-family               : $Font-family-base !default;
-$Badge-font-size                 : .75em;
+//$Badge-font-family               : $Font-family-base !default;
+$Badge-font-size                 : .75em;  // must be << em >>
 $Badge-font-weight               : $Font-weight-bold;
 
-$Badge-bg                        : transparent;
-$Badge-color                     : $White;
-$Badge-color-light               : $Dark; // color for light bg
-$Badge-border-radius             : $Border-radius !default;
+$Badge-bg                        : $Adaptive-bg-hue;
+$Badge-color                     : $Adaptive-fg-hue;
+$Badge-border-color              : $Border-color;
+$Badge-border-radius             : 0; // $Border-radius !default;
 
-$Badge-padding-y                 : .35em !default;
-$Badge-padding-x                 : .65em !default;
-$Badge-box-shadow                : $Shadow;
-
-$Badge-dot-size                  : .5rem;
-$Badge-dot-padding               : 0;
-$Badge-dot-margin-left           : -0.3125rem;
-$Badge-dot-border-radius         : .25rem;
-
-$Badge-notification-font-size    : .6em;
-$Badge-notification-padding      : 0.2em 0.45em;
-$Badge-notification-margin-top   : -0.1rem;
-$Badge-notification-margin-left  : -0.5rem;
+$Badge-padding-y                 : .35rem !default;
+$Badge-padding-x                 : .65rem !default;
 
 // ******************************************************************************************************* //
 // * Breadcrumb
@@ -85,7 +95,7 @@ $Breadcrumb-font-family         : $Font-family-base !default;
 $Breadcrumb-font-size           : inherit;
 
 $Breadcrumb-bg                  : $Adaptive-bg-surface;
-$Breadcrumb-color               : $Adaptive-fg-surface;
+$Breadcrumb-color               : $Adaptive-fg-default;
 $Breadcrumb-border              : none;
 $Breadcrumb-border-radius       : 0;
 
@@ -96,7 +106,7 @@ $Breadcrumb-padding-x           : .25rem;
 $Breadcrumb-item-padding-x      : .5rem !default;
 $Breadcrumb-link-padding        : .25rem;
 
-$Breadcrumb-divider             : quote("/");
+$Breadcrumb-divider             : string.quote("/");
 $Breadcrumb-divider-color       : $Adaptive-bg-accent;
 $Breadcrumb-hover-bg            : hsla($Adaptive-bg-accent-hsl, .01);
 $Breadcrumb-hover-border-color  : hsla($Adaptive-bg-accent-hsl, .25);
@@ -114,66 +124,47 @@ $Breadcrumb-preset-border-radius     : $Border-radius;
 $Breadcrumb-preset-shadow            : $Shadow;
 
 // ******************************************************************************************************* //
+
+// *
 // * Buttons
 // *
 
-$Btn-font-family              : $Font-family-base !default;
+//$Btn-font-family              : $Font-family-base !default;
 $Btn-font-weight              : $Font-weight-normal !default;
-$Btn-font-size                : $Font-size-base !default; // .75rem
-$Btn-line-height              : $Line-height-base !default; // 1.5
+
+$Btn-bg                       : $Adaptive-bg-hue;
+$Btn-color                    : $Adaptive-fg-hue;
+$Btn-border-color             : $Border-color;
 
 $Btn-margin                   : .250rem !default;
-$Btn-padding                  : .625rem 1.5rem .5rem;
+$Btn-white-space              : null !default; // Set to `nowrap` to prevent text wrapping
 
-$Btn-bg                       : inherit;
-$Btn-color                    : inherit;
-$Btn-border-width             : $Border-width !default;
-$Btn-border-color             : hsla(0, 0%, 0%, .03);
-$Btn-border-radius            : $Rounded !default;
-$Btn-box-shadow               : $Shadow-1;
-$Btn-focus-box-shadow         : $Shadow-2;
-// Set to `nowrap` to prevent text wrapping
-$Btn-white-space              : null !default;
+$Btn-focus-box-shadow         : 0 0 0 0.2rem hsla(var(--#{$Prefix}btn-bg-hsl), 0.50);
+$Btn-active-box-shadow        : $Shadow-1-inset;
+
+//$Btn-transition               : background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s !default;
 $Btn-transition               : color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
-$Btn-disabled-opacity         : .65 !default;
-
-// *
-// * Btn Link
-// *
-
-$Btn-link-color               : $Link-color !default;
-$Btn-link-hover-color         : $Link-hover-color !default;
-$Btn-link-disabled-color      : $Muted !default;
-
-// *
-// * Hover , Active and Disabled states
-// *
-// * Set in Mixins/_button.scss
-
-$Btn-hover-bg-shade-amount      : 15% !default;
-$Btn-hover-bg-tint-amount       : 15% !default;
-$Btn-hover-border-shade-amount  : 20% !default;
-$Btn-hover-border-tint-amount   : 10% !default;
-$Btn-active-bg-shade-amount     : 20% !default;
-$Btn-active-bg-tint-amount      : 20% !default;
-$Btn-active-border-shade-amount : 25% !default;
-$Btn-active-border-tint-amount  : 10% !default;
 
 // *
 // * Btn Sizes
 // *
 
 $Btn-font-size-sm                : $Font-size-base * .750 !default; // .75rem
+$Btn-font-size                   : $Font-size-base !default; // .75rem
 $Btn-font-size-lg                : $Font-size-base * .875 !default; // .875rem
+
 $Btn-line-height-sm              : $Line-height-base * .90 !default; // 1.50
+$Btn-line-height                 : $Line-height-base !default; // 1.5
 $Btn-line-height-lg              : $Line-height-base * 1.10 !default; // 1.60 $Line-height-lg
+
 $Btn-padding-sm                  : .375rem 1.0rem .3125rem;
+$Btn-padding                     : .625rem 1.5rem .5rem;
 $Btn-padding-lg                  : .750rem 1.6875rem .6875rem;
-$Btn-border-radius-sm            : $Rounded-sm;
-$Btn-border-radius-lg            : $Rounded-md;
-$Btn-outline-padding-sm          : .25rem .875rem .1875rem !default;
-$Btn-outline-padding             : .50rem 1.375rem .375rem !default;
-$Btn-outline-padding-lg          : .625rem 1.5625rem .5625rem !default;
+
+$Btn-border-radius-sm            : 0; // $Rounded-sm;
+$Btn-border-radius               : 0; // $Rounded;
+$Btn-border-radius-lg            : 0; // $Rounded-md;
+
 
 // *
 // * Btn-close
@@ -195,23 +186,6 @@ $Btn-close-size                     : 1em !default;
 $Btn-close-default-icon-bg          : "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23.17 23.17'><rect fill='currentColor' x='-4' y='10.2' width='31.17' height='2.77' rx='1' transform='translate(-4.8 11.58) rotate(-45)'/><rect fill='currentColor' x='10.2' y='-4' width='2.77' height='31.17' rx='1' transform='translate(-4.8 11.58) rotate(-45)'/></svg>";
 $Btn-close-white-filter             : invert(1) grayscale(100%) brightness(200%);
 
-// *
-// * Btn-floating
-// *
-
-$Btn-floating-padding                  : 0 !important;
-
-$Btn-floating-bg                       : null !default;
-$Btn-floating-color                    : null !default;
-$Btn-floating-border-radius            : $Rounded-circle !default;
-
-$Btn-floating-size-sm                  : 1.8125rem !default;
-$Btn-floating-size                     : 2.3125rem !default;
-$Btn-floating-size-lg                  : 2.8125rem !default;
-
-$Btn-floating-outline-size-sm          : $Btn-floating-size-sm - .25; // 1.5625rem;
-$Btn-floating-outline-size             : $Btn-floating-size - .25;    // 2.0625rem;
-$Btn-floating-outline-size-lg          : $Btn-floating-size-lg - .25; // 2.5625rem;
 
 // *
 // * Btn-group
@@ -220,6 +194,15 @@ $Btn-floating-outline-size-lg          : $Btn-floating-size-lg - .25; // 2.5625r
 $Btn-group-margin                      : $Btn-margin !default;
 $Btn-group-border-radius               : $Rounded !default;
 
+
+// *
+// * Btn Link
+// *
+
+$Btn-link-color               : $Link-color !default;
+$Btn-link-focus-box-shadow    : 0 0 0 0.2rem hsla(var(--#{$Prefix}bg-accent-hsl), 0.50);
+
+
 // ******************************************************************************************************* //
 // * Card
 // *
@@ -227,7 +210,7 @@ $Btn-group-border-radius               : $Rounded !default;
 $Card-font-family               : $Font-family-base !default;
 
 $Card-bg                        : $Adaptive-bg-surface !default;
-$Card-color                     : $Adaptive-fg-surface !default;
+$Card-color                     : $Adaptive-fg-default !default;
 $Card-border-base               : none !default;
 $Card-border-width              : $Border-width !default;
 $Card-border-color              : $Adaptive-border-color; //,rgba($Black, .01);
@@ -320,7 +303,7 @@ $Carousel-dark-control-icon-filter    : invert(1) grayscale(100) !default;
 $List-font-family               : $Font-family-base !default;
 
 $List-bg                        : $Adaptive-bg-surface !default;
-$List-color                     : $Adaptive-fg-surface !default;
+$List-color                     : $Adaptive-fg-default !default;
 $List-active-color              : $Adaptive-fg-accent !default;
 $List-active-bg                 : $Adaptive-bg-accent !default;
 
@@ -372,7 +355,7 @@ $Navbar-bg                      : $Adaptive-bg-surface !default;
 $Nav-classic-border-color               : $Border-color !default;
 $Nav-classic-disabled-color             : $Muted !default;
 $Nav-classic-active-bg                  : $Adaptive-bg-surface;
-$Nav-classic-active-color               : $Adaptive-fg-surface;
+$Nav-classic-active-color               : $Adaptive-fg-default;
 
 //
 // Tabs
@@ -504,7 +487,7 @@ $Table-font-family               : $Font-family-base !default;
 
 $Table-accent-bg                 : transparent !default;
 $Table-bg                        : transparent !default;
-$Table-color                     : $Adaptive-fg-surface;
+$Table-color                     : $Adaptive-fg-default;
 
 $Table-border-width              : $Border-width !default;
 $Table-border-factor             : .1 !default;
@@ -518,14 +501,15 @@ $Table-active-bg-factor           : .1 !default;
 $Table-active-bg                  : rgba($Black, $Table-active-bg-factor) !default;
 $Table-hover-color                : $Table-color !default;
 $Table-hover-bg-factor            : .075 !default;
-$Table-hover-bg                   : rgba($Black, $Table-hover-bg-factor) !default;
+//$Table-hover-bg                   : rgba($Black, $Table-hover-bg-factor) !default;
+$Table-hover-bg                   : hsla($Adaptive-bg-contrast-hsl, $Table-hover-bg-factor) !default;
 
 $Table-striped-order              : odd !default;
 $Table-striped-columns-order      : even !default;
 
 $Card-margin-bottom               : $Spacer;
 
-$Table-cell-padding-y             : .75rem !default;
+$Table-cell-padding-y_             : .75rem !default;
 $Table-cell-padding-x             : 1.0rem !default;
 $Table-cell-padding-y-sm          : .375rem !default;
 $Table-cell-padding-x-sm          : 1.00rem !default;
@@ -552,11 +536,49 @@ $Timeline-font-family               : $Font-family-base !default;
 $Timeline-line-color                : $Border-color !default;
 $Timeline-space                     : .750rem;
 
-$Timeline-color                     : $Adaptive-fg-surface !default;
+$Timeline-color                     : $Adaptive-fg-default !default;
 $Timeline-bg                        : $Adaptive-bg-surface !default;
 
 $Timeline-header-padding            : 1rem;
 $Timeline-badge-width               : 40px !default;
+
+// ******************************************************************************************************* //
+// * Toast
+// *
+
+$Toast-bg                        : $Adaptive-bg-surface;
+$Toast-color                     : $Adaptive-fg-default;
+$Toast-border-color              : hsla($Adaptive-bg-accent-hsl, .25);
+
+$Toast-header-bg                 : $Adaptive-bg-hue;
+$Toast-header-color              : $Adaptive-fg-hue;
+$Toast-header-icon-color         : hsla($Adaptive-bg-accent-hsl, .5);
+$Toast-header-icon-drop-shadow   : drop-shadow(0 0 hsla($Adaptive-bg-accent-hsl, .25));
+
+$Toast-font-family               : $Font-family-base !default;
+$Toast-font-size                 : .875rem !default;
+
+$Toast-box-shadow                : $Shadow;
+$Toast-border-width              : $Border-width !default;
+$Toast-border-radius             : $Border-radius !default;
+
+$Toast-margin-bottom             : .75rem;
+
+// ******************************************************************************************************* //
+// * Tooltip
+// *
+
+$Tooltip-font-family               : $Font-family-base !default;
+
+$Tooltip-padding-y                 : .3125rem !default;
+$Tooltip-padding-x                 : .625rem !default;
+$Tooltip-border-radius             : $Rounded-md !default;
+$Tooltip-box-shadow                : $Shadow;
+
+$Tooltip-color                     : $Adaptive-fg-default !default;
+$Tooltip-bg                        : $Adaptive-bg-surface !default;
+$Tooltip-border-width              : 1px !default;
+$Tooltip-border-color              : $Border-color !default;
 
 // ******************************************************************************************************* //
 // * TreeView
@@ -586,22 +608,6 @@ $Tree-branch-active-border-color  : $Adaptive-bg-accent;
 $Tree-branch-disabled-color       : $Muted;
 $Tree-branch-disabled-bg          : hsla($Adaptive-bg-contrast-hsl, .10);
 $Tree-branch-chevron-color        : $Adaptive-bg-accent;
-
-// ******************************************************************************************************* //
-// * Tooltip
-// *
-
-$Tooltip-font-family               : $Font-family-base !default;
-
-$Tooltip-padding-y                 : .3125rem !default;
-$Tooltip-padding-x                 : .625rem !default;
-$Tooltip-border-radius             : $Rounded-md !default;
-$Tooltip-box-shadow                : $Shadow;
-
-$Tooltip-color                     : $Adaptive-fg-surface !default;
-$Tooltip-bg                        : $Adaptive-bg-surface !default;
-$Tooltip-border-width              : 1px !default;
-$Tooltip-border-color              : $Border-color !default;
 
 // ******************************************************************************************************* //
 // * Test

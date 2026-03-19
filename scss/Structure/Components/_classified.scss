@@ -4,6 +4,9 @@
  * https://codepen.io/adamruf/pen/GZwdrY
 */
 
+@use "../../Abstracts/structural-variables" as *;
+
+
 /*@formatter:off*/
 $Classified-blurred-size        : 5px !default;
 $Classified-ink-color           : rgba(0, 0, 0, 0) !default;

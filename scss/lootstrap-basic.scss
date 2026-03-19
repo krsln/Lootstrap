@@ -1,0 +1,28 @@
+@use 'header';
+
+// Abstract files
+//
+// Abstract partial, there is a file with all the variables, mixins, and similar components.
+
+@use 'Abstracts' as *;
+
+// Vendor Files
+//@import "Vendor/bootstrap.scss";
+
+// Core files
+//
+// The Core partial contains files like typography, resets, and boilerplate code, used across the whole website.
+// Once you write this code, there is no further overwriting.
+
+@use 'Structure/Core' as *;
+
+// Layouts
+//
+// The Layout partial has all styles necessary for the layout of the site, i.e., header, footer.
+
+@use 'Structure/Layouts' as *;
+
+// Forms
+//
+
+@use 'Structure/Utils' as *;

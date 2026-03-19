@@ -2,6 +2,17 @@
  * Components - Modal
  *
 */
+
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/breakpoints" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+
+
 $zindex-modal-backdrop: 1050 !default;
 $zindex-modal: 1055 !default;
 
@@ -11,7 +22,7 @@ $Modal-border-color                   : $Border-color;
 $Modal-border-width                   : $Border-width !default;
 
 $Modal-content-bg                     : $Adaptive-bg-surface !default;
-$Modal-content-color                  : $Adaptive-fg-surface !default;
+$Modal-content-color                  : $Adaptive-fg-default !default;
 $Modal-content-border-color           : transparent !default;
 $Modal-content-border-width           : 0 !default;
 $Modal-content-border-radius          : .5rem !default;
@@ -105,8 +116,8 @@ $Modal-width-xl:                          1140px !default;
 
   // When fading in the modal, animate it to slide down
   .Modal.Fade & {
-    @include Transition($Modal-transition);
     transform: $Modal-fade-transform;
+    @include Transition($Modal-transition);
   }
 
   .Modal.Show & {
@@ -253,7 +264,7 @@ $Modal-width-xl:                          1140px !default;
   }
 }
 
-//@each $breakpoint in map-keys($Grid-breakpoints) {
+//@each $breakpoint in map.keys($Grid-breakpoints) {
 //  $infix: breakpoint-infix($breakpoint, $Grid-breakpoints);
 //  $postfix: if($infix != "", $infix + "-down", "");
 //

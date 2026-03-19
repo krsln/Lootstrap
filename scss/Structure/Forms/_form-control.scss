@@ -3,6 +3,16 @@
  *
  * General form controls (plus a few specific high-level interventions)
 */
+@use "sass:math";
+
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/box-shadow" as *;
+@use "../../Abstracts/Mixins/gradients" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+
 
 /*@formatter:off*/
 $Input-padding-y                      : .375rem !default;
@@ -26,7 +36,7 @@ $Input-disabled-color                 : $Muted !default;
 $Input-disabled-bg                    : hsla(213, 11%, 69%, 25%) !default;
 $Input-disabled-border-color          : null !default;
 
-$Input-color                          : $Adaptive-fg-surface !default;
+$Input-color                          : $Adaptive-fg-default !default;
 $Input-border-color                   : $Border-color !default;
 $Input-border-width                   : $Border-width !default;
 $Input-box-shadow                     : $Shadow-inset !default;
@@ -110,7 +120,12 @@ $Form-color-width                     : 3rem !default;
   // TODO: we can remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=198959 is resolved
   &::-webkit-date-and-time-value {
     // Multiply line-height by 1em if it has no unit
-    height: if(unit($Input-line-height) == "", $Input-line-height * 1em, $Input-line-height);
+    //height: if(math.unit($Input-line-height) == "", $Input-line-height * 1em, $Input-line-height);
+    @if math.unit($Input-line-height) == "" {
+      height: $Input-line-height * 1em;
+    }@else {
+      height: $Input-line-height;
+    }
   }
 
   // Placeholder

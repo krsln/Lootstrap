@@ -1,6 +1,15 @@
 // ===========================================================================
 // Components - Navbar
 // ===========================================================================
+@use "sass:map";
+
+@use "../../../Abstracts/config" as *;
+@use "../../../Abstracts/variables" as *;
+@use "../../../Abstracts/structural-variables" as *;
+
+@use "../../../Abstracts/Mixins/breakpoints" as *;
+
+
 $Bg-accent: var(--#{$Prefix}bg-accent);
 $Fg-accent: var(--#{$Prefix}fg-accent);
 
@@ -34,7 +43,11 @@ $Fg-accent: var(--#{$Prefix}fg-accent);
   }
 
   @each $breakpoint, $container-max-width in $Container-max-widths {
-    $infix: if($breakpoint == none or $breakpoint == null or $breakpoint == xs, "", "-#{$breakpoint}");
+    //$infix: if($breakpoint == none or $breakpoint == null or $breakpoint == xs, "", "-#{$breakpoint}");
+    $infix: "-#{$breakpoint}";
+    @if $breakpoint == none or $breakpoint == null or $breakpoint == xs {
+      $infix: "";
+    }
 
     > .Container#{$infix} {
       @extend %container-flex-properties;
@@ -177,9 +190,13 @@ $Navbar-nav-link-padding-x            : 1rem !default;
 // Generate series of `.navbar-expand-*` responsive classes for configuring
 // where your navbar collapses.
 .Navbar-expand {
-  @each $breakpoint in map-keys($Grid-breakpoints) {
+  @each $breakpoint in map.keys($Grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $Grid-breakpoints);
-    $infix: if(breakpoint-min($breakpoint, $Grid-breakpoints) == null, "", "-#{$breakpoint}");
+    //$infix: if(breakpoint-min($breakpoint, $Grid-breakpoints) == null, "", "-#{$breakpoint}");
+    $infix: "-#{$breakpoint}";
+    @if breakpoint-min($breakpoint, $Grid-breakpoints) == null {
+      $infix: "";
+    }
 
     &#{$infix} {
       @include media-breakpoint-up($next) {

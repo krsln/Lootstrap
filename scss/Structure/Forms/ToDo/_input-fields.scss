@@ -4,6 +4,11 @@
 // ===========================================================================
 */
 
+@use "../../../Abstracts/config" as *;
+@use "../../../Abstracts/variables" as *;
+@use "../../../Abstracts/structural-variables" as *;
+
+
 $form-disabled: $Muted;
 
 /*
@@ -162,7 +167,7 @@ $font-size-lg: 1.25rem;
 
     > option {
       //border-radius: 25px;
-      color: $Adaptive-fg-surface;
+      color: $Adaptive-fg-default;
       background: $Adaptive-bg-surface;
 
       padding: .5rem;
@@ -175,7 +180,7 @@ $font-size-lg: 1.25rem;
       }
 
       &:hover, &:active {
-        color: $Adaptive-fg-surface;
+        color: $Adaptive-fg-default;
         background-color: $Adaptive-bg-surface;
       }
     }
@@ -401,7 +406,7 @@ $font-size-lg: 1.25rem;
       }
 
       &:hover, &:active {
-        color: $Adaptive-fg-surface;
+        color: $Adaptive-fg-default;
         background-color: $Adaptive-bg-surface;
       }
     }

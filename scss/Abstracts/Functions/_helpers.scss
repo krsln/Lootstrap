@@ -2,6 +2,8 @@
 // Functions - Helpers
 // ===========================================================================
 @use 'sass:math';
+@use 'sass:meta';
+@use "sass:string";
 
 /**
  * Remove the unit of a value
@@ -10,7 +12,7 @@
  * @return {Number} - Unit-less value
 */
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
+  @if meta.type-of($number) == 'number' and not unitless($number) {
     //@return $number / ($number * 0 + 1);
     @return math.div($number, $number * 0 + 1);
   }
@@ -28,10 +30,10 @@
  * @return {String} - Updated string
 */
 @function str-replace($string, $original, $replacement: "") {
-  $index: str-index($string, $original);
+  $index: string.index($string, $original);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replacement + str-replace(str-slice($string, $index + str-length($original)), $original, $replacement);
+    @return string.slice($string, 1, $index - 1) + $replacement + str-replace(string.slice($string, $index + string.length($original)), $original, $replacement);
   }
 
   @return $string;
@@ -49,7 +51,7 @@
   //
   //  Add missing namespace
   //
-  @if not str-index($svg,xmlns) {
+  @if not string.index($svg,xmlns) {
     $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
   }
   //
@@ -59,9 +61,9 @@
   $encoded: '';
   $slice: 2000;
   $index: 0;
-  $loops: ceil(math.div(str-length($svg), $slice));
+  $loops: math.ceil(math.div(string.length($svg), $slice));
   @for $i from 1 through $loops {
-    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
     //
     //   Encode
     //

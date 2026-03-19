@@ -2,6 +2,13 @@
  * Components - Caret
  *
 */
+@use "sass:color";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Mixins/utilities" as *;
 
 .Caret-top, .Caret-bottom,
 .Caret-end, .Caret-start {
@@ -107,7 +114,7 @@
 //
 
 @each $key, $color in $Theme-colors {
-  $variant-border: darken($color, 10%);
+  $variant-border: color.adjust($color, $lightness: -10%);
   $variant-bg: $color;
 
   .Caret-#{$key} {

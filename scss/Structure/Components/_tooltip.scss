@@ -3,6 +3,17 @@
  *
  * Works with .Caret
 */
+@use "sass:color";
+@use "sass:math";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/Text-color/text-color" as *;
+@use "../../Abstracts/Functions/color" as *;
+@use "../../Abstracts/Mixins/border-radius" as *;
+
 
 .Tooltip {
   --#{$Prefix}tooltip-padding-y: #{$Tooltip-padding-y};
@@ -23,18 +34,21 @@
     --#{$Prefix}tooltip-border-color: #{$Tooltip-border-color};
   }
 
-  position: absolute;
-  display: flex;
-  z-index: 1000;
+  & {
+    position: absolute;
+    display: flex;
+    z-index: 1000;
 
-  padding: var(--#{$Prefix}tooltip-padding-y) var(--#{$Prefix}tooltip-padding-x);
+    padding: var(--#{$Prefix}tooltip-padding-y) var(--#{$Prefix}tooltip-padding-x);
 
-  color: var(--#{$Prefix}tooltip-color);
-  background-color: var(--#{$Prefix}tooltip-bg);
+    color: var(--#{$Prefix}tooltip-color);
+    background-color: var(--#{$Prefix}tooltip-bg);
 
-  border: var(--#{$Prefix}tooltip-border-width) solid var(--#{$Prefix}tooltip-border-color);
-  @include Rounded(var(--#{$Prefix}tooltip-border-radius));
-  box-shadow: var(--#{$Prefix}tooltip-box-shadow);
+    border: var(--#{$Prefix}tooltip-border-width) solid var(--#{$Prefix}tooltip-border-color);
+    @include Rounded(var(--#{$Prefix}tooltip-border-radius));
+    box-shadow: var(--#{$Prefix}tooltip-box-shadow);
+  }
+
 }
 
 .Tooltip-rounded {
@@ -46,13 +60,18 @@
   $variant-color: Color-contrast($variant-bg);
   $variant-border-color: $color;
 
-  $variant-outline-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  //$variant-outline-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  $variant-outline-bg: Opaque(#fff, hsla(
+                  math.round(color.channel($color, "hue", $space: hsl)),
+                  math.round(color.channel($color, "saturation", $space: hsl)),
+                  math.round(color.channel($color, "lightness", $space: hsl)), .70
+  ));
   $variant-outline-color: Color-contrast($variant-bg);
-  $variant-outline-border-color: darken($color, 10%);
+  $variant-outline-border-color: color.adjust($color, $lightness: -10%);
 
   .Tooltip-#{$key} {
     --#{$Prefix}tooltip-color: #{$variant-color};
-    --#{$Prefix}tooltip-bg:  #{$variant-bg};
+    --#{$Prefix}tooltip-bg: #{$variant-bg};
     --#{$Prefix}tooltip-border-color: #{$variant-border-color};
 
     --#{$Prefix}caret-pseudo-before-bg: #{$variant-border-color};
@@ -60,7 +79,7 @@
 
     &.Tooltip-outline {
       --#{$Prefix}tooltip-color: #{$variant-outline-color};
-      --#{$Prefix}tooltip-bg:  #{$variant-outline-bg};
+      --#{$Prefix}tooltip-bg: #{$variant-outline-bg};
       --#{$Prefix}tooltip-border-color: #{$variant-outline-border-color};
 
       --#{$Prefix}caret-pseudo-before-bg: #{$variant-outline-border-color};

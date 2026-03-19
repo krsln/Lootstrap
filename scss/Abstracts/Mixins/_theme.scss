@@ -1,64 +1,118 @@
 // ===========================================================================
 // Mixins - Theme Colors
-// ===========================================================================
-
+// Theme Variants & Colored Components
 // CSS Variables (Custom Properties)
+// ===========================================================================
+@use "sass:color";
+@use "sass:list";
 
-//Theme Variants & Colored Components
-@mixin Themed($Theme-colors) {
-  // Colors: light, dark, night
-  // Colors: primary, secondary, success, info, warning, danger
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+
+@use "../Functions/color-customized" as *;
+@use "../Functions/color" as *;
+@use "../Functions/Text-color/text-color" as *;
+
+/** Theme Colors: light, dark, night
+ *
+ */
+@mixin SetThemes($Theme-colors) {
   @each $colorKey, $colorValue in $Theme-colors {
-    $Lightness: lightness($colorValue);
+    $Lightness: color.channel($colorValue, "lightness", $space: hsl);
 
-    $C-body: Color-ByLightness($colorValue, 90%); // 90% - DON'T CHANGE
-    $C-border: Color-ByLightness($colorValue, 85%); // 80
-    //$Shady: Shade($colorValue, 25%);
+    $colorScheme: normal;
 
-    $C-gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0));
-    $C-contrast: if($colorKey=='light', hsl(0, 0%, 0%), hsl(0, 0%, 100%));
-    $C-shadow: darken($colorValue, 50%);
-    //$C-shadow: hsl(0, 0%, 0%);
-    //$C-shadow: if($colorKey=='dark' or $colorKey=='night', hsl(0, 0%, 100%), hsl(0, 0%, 0%));
+    //$C-contrast: if($colorKey=='light', hsl(0, 0%, 0%), hsl(0, 0%, 100%));
+    //$C-contrast: if(sass($colorKey == 'light'): hsl(0, 0%, 0%); else: hsl(0, 0%, 100%)); // TODO: when ide supports
+    $C-contrast: hsl(0, 0%, 100%);
+    @if $colorKey == 'light' {
+      $C-contrast: hsl(0, 0%, 0%);
+    }
 
     $C-hue: $colorValue;
     $C-accent: $colorValue;
 
+    $C-body: Color-ByLightness($colorValue, 90%); // 90% - DON'T CHANGE
     $C-surface: Color-ByLightness($colorValue, 96%); // 96% - DON'T CHANGE
+    $C-secondary: Color-ByLightness($colorValue, 92%);
+    $C-foremost: Color-ByLightness($colorValue, 88%);
+
+    $C-header: Color-ByLightness($colorValue, 85%);
+    $C-subHeader: Color-ByLightness($colorValue, 80%);
+
+    $Muted: hsla(213, 11%, 69%, 1); // #A7AFB9FF
+
+    $C-muted: $Muted;
+    $C-link: $Primary;
+
+    $C-border: Color-ByLightness($colorValue, 85%); // 80
+    $C-shadow: color.adjust($colorValue, $lightness: -50%);
+    $C-gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0));
 
     @if ($colorKey=='light') {
+      $colorScheme: light;
       $C-accent: $Primary;
 
       $C-shadow: hsl(240, 7%, 18%); // Dark
       //$C-body: Color-ByLightness($colorValue, ($Lightness - 5)); // #ededed
       //$C-body: #ededed;
-      $C-body: #f9fafb;
+      //$C-body: #f8f9fe; // tailwind
+      $C-body: #f9fafb; // primeng
       $C-border: Color-ByLightness($colorValue, ($Lightness - 10));
 
       $C-surface: $White;
+      $C-secondary: Color-ByLightness($colorValue, 99%);
+      $C-foremost: Color-ByLightness($colorValue, 97%);
+
+      $C-header: Color-ByLightness($colorValue, 95%);
+      $C-subHeader: Color-ByLightness($colorValue, 93%);
     }
-    @if (index((dark, night), $colorKey)) {
+    @if (list.index((dark, night), $colorKey)) {
+      //$colorScheme: if($colorKey=='dark', dark, $colorScheme);
+      $colorScheme: $colorScheme;
+      @if $colorKey == 'dark' {
+        $colorScheme: dark;
+      }
+
       $C-accent: Tint-color($Primary, 50%) ;
+      $C-link: Tint-color($Primary, 50%) ;
 
       // hsl(0, 0%, 7%) Night for Dark
       // hsl(0, 0%, 0%) Black for Night
-      $C-shadow: if($colorKey=='dark', hsl(0, 0%, 7%), hsl(0, 0%, 0%));
+      //$C-shadow: if($colorKey=='dark', hsl(0, 0%, 7%), hsl(0, 0%, 0%));
+      //$C-shadow: if(sass($colorKey == 'dark'): hsl(0, 0%, 7%); else: hsl(0, 0%, 0%));
+      $C-shadow: hsl(0, 0%, 0%);
+      @if $colorKey == 'dark' {
+        $C-shadow: hsl(0, 0%, 7%);
+      }
+
       $C-body: Color-ByLightness($colorValue, ($Lightness - 6));
       $C-border: Color-ByLightness($colorValue, ($Lightness + 10));
 
       $C-surface: $colorValue;
+      $C-secondary: Color-ByLightness($colorValue, ($Lightness - 2));
+      $C-foremost: Color-ByLightness($colorValue, ($Lightness - 4));
+
+      $C-header: Color-ByLightness($colorValue, ($Lightness + 8));
+      $C-subHeader: Color-ByLightness($colorValue, ($Lightness + 12));
     }
 
-    $Root: if($colorKey=='light', ",:root", "");
+    //$Root: if($colorKey=='light', ",:root", "");
+    $Root: "";
+    @if $colorKey == 'light' {
+      $Root: ",:root";
+    }
 
-    @if (index((light, dark, night), $colorKey)) {
+    @if (list.index((light, dark, night), $colorKey)) {
       .Theme-#{$colorKey + $Root} {
         .Btn-close {
-          @if (lightness($colorValue) < 80) {
-            filter: invert(1) grayscale(100%) brightness(200%);
-          }
+         @if (color.channel($colorValue, "lightness", $space: hsl) < 80) {
+           filter: invert(1) grayscale(100%) brightness(200%);
+         }
         }
+      }
 
+      .Theme-#{$colorKey + $Root} {
         //--#{$Prefix}scheme: #{$colorKey};
 
         --#{$Prefix}contrast-hsl: #{colorToHSL($C-contrast)};
@@ -71,18 +125,36 @@
         --#{$Prefix}bg-accent: #{$C-accent};
         --#{$Prefix}fg-accent: #{Color-contrast($C-accent)};
 
-        --#{$Prefix}bg-surface: #{$C-surface};
-        --#{$Prefix}fg-surface: #{Color-contrast($C-surface)};
+        //--#{$Prefix}fg-body: #{Color-contrast($C-body)};
+        --#{$Prefix}fg-default: #{Color-contrast($C-surface)};
+        --#{$Prefix}fg-muted: #{$C-muted};
+        --#{$Prefix}fg-link: #{$C-link};
 
         --#{$Prefix}bg-body: #{$C-body};
-        //--#{$Prefix}fg-body: #{Color-contrast($C-body)};
+        --#{$Prefix}bg-surface: #{$C-surface};
+        --#{$Prefix}bg-secondary: #{$C-secondary};
+        --#{$Prefix}bg-foremost: #{$C-foremost};
+
+        //--#{$Prefix}bg-header-hsl: #{colorToHSL($C-header)};
+        --#{$Prefix}bg-header: #{$C-header};
+        --#{$Prefix}bg-sub-header: #{$C-subHeader};
 
         --#{$Prefix}border-hsl: #{colorToHSL($C-border)};
         --#{$Prefix}shadow-hsl: #{colorToHSL($C-shadow)};
 
         --#{$Prefix}gradient: #{$C-gradient};
+
+        color-scheme: $colorScheme;
       }
     }
+  }
+}
+
+@mixin SetAccents($Theme-colors) {
+  // Colors: light, dark, night
+  // Colors: primary, secondary, success, info, warning, danger
+  @each $colorKey, $colorValue in $Theme-colors {
+    $C-accent: $colorValue;
 
     .Accent-#{$colorKey} {
       --#{$Prefix}bg-accent-hsl: #{colorToHSL($C-accent)};
@@ -91,6 +163,9 @@
     }
 
   }
+}
+
+@mixin SetOverlays() {
   @each $key in (0, 5, 7, 8, 9, 11, 12, 14, 15, 16) {
     .Overlay-#{$key} {
       background-color: hsla(var(--#{$Prefix}contrast-hsl), $key * 1%);

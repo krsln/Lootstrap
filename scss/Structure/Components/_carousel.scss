@@ -3,6 +3,14 @@
  *
 */
 
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/helpers" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+@use "../../Abstracts/Mixins/clearfix" as *;
+
+
 .Carousel {
   position: relative;
   font-family: $Carousel-font-family;
@@ -106,12 +114,18 @@
 
 .Carousel-control-prev {
   left: 0;
-  background-image: if($Enable-gradients, linear-gradient(90deg, rgba($Black, .25), rgba($Black, .001)), null);
+  //background-image: if($Enable-gradients, linear-gradient(90deg, rgba($Black, .25), rgba($Black, .001)), null);
+  @if $Enable-gradients {
+    background-image: linear-gradient(90deg, rgba($Black, .25), rgba($Black, .001));
+  }
 }
 
 .Carousel-control-next {
   right: 0;
-  background-image: if($Enable-gradients, linear-gradient(270deg, rgba($Black, .25), rgba($Black, .001)), null);
+  //background-image: if($Enable-gradients, linear-gradient(270deg, rgba($Black, .25), rgba($Black, .001)), null);
+  @if $Enable-gradients {
+    background-image: linear-gradient(270deg, rgba($Black, .25), rgba($Black, .001));
+  }
 }
 
 // Icons for within

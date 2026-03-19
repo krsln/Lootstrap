@@ -1,0 +1,30 @@
+/**
+ * Components - Buttons | Ripple effect
+ *
+ * depend on /javascript/src/Btn-ripple.js
+ *
+ * Edited at: 2024.04.07
+*/
+
+.Btn-ripple {
+  overflow: hidden;
+
+  &:not(.Btn-outline) {
+    --ls-btn-ripple-bg: var(--ls-btn-color, white);
+  }
+
+  &.Btn-outline {
+    --ls-btn-ripple-bg: black;
+  }
+}
+
+@keyframes keyframesImpulse {
+  from {
+    opacity: .3;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

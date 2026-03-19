@@ -1,0 +1,16 @@
+/**
+ * Utils
+ *
+*/
+
+@forward "custom"; // gradient, accent, mask
+
+@forward "border"; // Border, Rounded
+@forward "color"; // Bg-colors & Text-colors & Border-colors
+@forward "filters"; // svg colors, blur, drop-shadow
+@forward "position"; // Positioning
+@forward "screen-reader"; // SR-only, Visually-hidden
+@forward "spacing"; // Margin, Padding
+
+@forward "text"; // text
+@forward "utilities"; // common utilities

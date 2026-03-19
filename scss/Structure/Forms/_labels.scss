@@ -2,13 +2,18 @@
  * Forms - Labels
  *
 */
+
+@use "../../Abstracts/structural-variables" as *;
+
+@use "form-control" as *;
+
 /*@formatter:off*/
 $Form-label-font-size                 : null !default;
 $Form-label-font-style                : null !default;
 $Form-label-font-weight               : null !default;
 
 $Form-label-margin-bottom             : .5rem !default;
-$Form-label-color                     : $Adaptive-fg-surface !default;
+$Form-label-color                     : $Adaptive-fg-default !default;
 /*@formatter:on*/
 
 .Form-label {

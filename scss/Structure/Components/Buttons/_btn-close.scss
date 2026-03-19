@@ -3,6 +3,10 @@
  *
 */
 
+@use "../../../Abstracts/structural-variables" as *;
+@use "../../../Abstracts/Functions/helpers" as *;
+
+
 .Btn-close {
   display: inline-block;
   box-sizing: content-box;

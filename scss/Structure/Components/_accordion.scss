@@ -3,6 +3,9 @@
  *
 */
 
+@use "../../Abstracts/structural-variables" as *;
+
+
 .Accordion {
   border: $Accordion-border-base;
   border-radius: $Accordion-border-radius;

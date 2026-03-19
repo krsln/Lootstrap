@@ -5,6 +5,15 @@
  * Kickstart any navigation component with a set of style resets. Works with `<nav>`s, `<ul>`s or `<ol>`s.
 */
 
+@use "../../../Abstracts/config" as *;
+@use "../../../Abstracts/reboot-variables" as *;
+@use "../../../Abstracts/structural-variables" as *;
+
+@use "../../../Abstracts/Mixins/border-radius" as *;
+@use "../../../Abstracts/Mixins/gradients" as *;
+@use "../../../Abstracts/Mixins/transition" as *;
+
+
 .Nav {
   --#{$Prefix}nav-link-padding-x: #{$Nav-link-padding-x};
   --#{$Prefix}nav-link-padding-y: #{$Nav-link-padding-y};
@@ -44,7 +53,10 @@
   line-height: 1;
   font-size: var(--#{$Prefix}nav-link-font-size);
   font-weight: var(--#{$Prefix}nav-link-font-weight);
-  text-decoration: if($Link-decoration == none, null, none);
+  //text-decoration: if($Link-decoration == none, null, none);
+  @if $Link-decoration == none {
+    text-decoration: null;
+  }
 
   color: var(--#{$Prefix}nav-link-color);
   background-color: var(--#{$Prefix}nav-link-bg);
@@ -56,7 +68,10 @@
   &:hover,
   &:focus {
     color: inherit;
-    text-decoration: if($Link-decoration == underline, none, null);
+    //text-decoration: if($Link-decoration == underline, none, null);
+    @if $Link-decoration == underline {
+      text-decoration: none;
+    }
   }
 
   // Disabled state lightens text

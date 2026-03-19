@@ -2,6 +2,9 @@
  * Components - Skeleton / Placeholders
  *
 */
+@use "sass:list";
+@use "sass:math";
+
 
 /*@formatter:off*/
 
@@ -52,7 +55,7 @@
     }
 
     &:last-child {
-      width: 80% - random(40) * 1%;
+      width: 80% - math.random(40) * 1%;
     }
 
     @for $i from 1 through 10 {
@@ -68,8 +71,8 @@
 //
 
 @function randomMinMax($min, $max) {
-  $rand: random();
-  $randomNum: $min + floor($rand * (($max - $min) + 1));
+  $rand: math.random();
+  $randomNum: $min + math.floor($rand * (($max - $min) + 1));
 
   @return $randomNum;
 }
@@ -83,9 +86,9 @@
       $num: randomMinMax(5, 30);
     }
     $total: $total - $num;
-    $numbers: append($numbers, $num)
+    $numbers: list.append($numbers, $num)
   }
-  $numbers: append($numbers, $total);
+  $numbers: list.append($numbers, $total);
 
   @return $numbers;
 }
@@ -99,9 +102,9 @@
   @for $i from 1 to 5 {
     &:nth-child(#{$i}n) {
       $percentages: RandomNumbersWithSum(3, 100);
-      $per1: 1% * nth($percentages,1);
-      $per2: $per1 + 1% * nth($percentages,2);
-      $per3: $per2 + 1% * nth($percentages,3);
+      $per1: 1% * list.nth($percentages,1);
+      $per2: $per1 + 1% * list.nth($percentages,2);
+      $per3: $per2 + 1% * list.nth($percentages,3);
 
       // this should randomize by percent up to 100% (20%, 45%, 77%, ...)
       background-image: linear-gradient(90deg,

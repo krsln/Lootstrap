@@ -5,6 +5,16 @@
  * elements cannot be mixed. As such, there are no shared styles for focus or active states on prefixed selectors.
 */
 
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/box-shadow" as *;
+@use "../../Abstracts/Mixins/gradients" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+
+@use "form-control" as *;
+
 /*@formatter:off*/
 $Form-range-track-width                   : 100% !default;
 $Form-range-track-height                  : .5rem !default;
@@ -55,12 +65,12 @@ $Form-range-thumb-transition              : background-color .15s ease-in-out, b
     width: $Form-range-thumb-width;
     height: $Form-range-thumb-height;
     margin-top: ($Form-range-track-height - $Form-range-thumb-height) * .5; // Webkit specific
-    @include Gradient-bg($Form-range-thumb-bg);
     border: $Form-range-thumb-border;
+    appearance: none;
+    @include Gradient-bg($Form-range-thumb-bg);
     @include Rounded($Form-range-thumb-border-radius);
     @include Box-shadow($Form-range-thumb-box-shadow);
     @include Transition($Form-range-thumb-transition);
-    appearance: none;
 
     &:active {
       @include Gradient-bg($Form-range-thumb-active-bg);
@@ -84,14 +94,13 @@ $Form-range-thumb-transition              : background-color .15s ease-in-out, b
   &::-moz-range-thumb {
     width: $Form-range-thumb-width;
     height: $Form-range-thumb-height;
+    border: $Form-range-thumb-border;
+    appearance: none;
 
     @include Gradient-bg($Form-range-thumb-bg);
-    border: $Form-range-thumb-border;
-
     @include Rounded($Form-range-thumb-border-radius);
     @include Box-shadow($Form-range-thumb-box-shadow);
     @include Transition($Form-range-thumb-transition);
-    appearance: none;
 
     &:active {
       @include Gradient-bg($Form-range-thumb-active-bg);

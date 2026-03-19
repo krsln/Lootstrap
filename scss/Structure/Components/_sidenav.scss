@@ -1,0 +1,182 @@
+/**
+ * Components - Sidenav
+ *
+*/
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+
+/**
+<div class="Sidenav-container Sidenav-transition Opened">
+    <div class="Sidenav-backdrop Active"></div>
+
+    <div class="Sidenav Sidenav-mode-[side|over|push]">
+        <div class="Sidenav-inner"></div>
+    </div>
+
+    <div class="Sidenav-content"></div>
+</div>
+*/
+
+$Sidenav-container-bg: $Adaptive-bg-body !default;
+$Sidenav-container-color: $Adaptive-fg-default !default;
+
+$Sidenav-bg: $Adaptive-bg-surface !default;
+$Sidenav-elevation-shadow: $Shadow-3;
+
+$Sidenav-backdrop-bg: hsla($Adaptive-bg-contrast-hsl, 0.25);
+
+$Sidenav-width: var(--#{$Prefix}sidenav-width);
+$Sidenav-border-radius: var(--#{$Prefix}sidenav-border-radius);
+$Sidenav-divider-color: var(--#{$Prefix}sidenav-divider-color);
+
+.Sidenav-transition {
+  .Sidenav-backdrop {
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: background-color, visibility;
+  }
+
+  .Sidenav-content {
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: transform, margin-left, margin-right;
+  }
+}
+
+.Sidenav-container {
+  --#{$Prefix}sidenav-width: 329px;
+  --#{$Prefix}sidenav-border-radius: 0;
+  --#{$Prefix}sidenav-divider-color: #{hsla($Adaptive-bg-accent-hsl, .25)};
+
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 100%;
+
+  color: $Sidenav-container-color;
+  background-color: $Sidenav-container-bg;
+  box-sizing: border-box;
+
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+
+  &.Opened {
+    .Sidenav-mode-over {
+    }
+
+    // Not worked well in angular
+    .Sidenav-mode-side + .Sidenav-content {
+      margin-left: $Sidenav-width;
+    }
+
+    // Not worked well in angular
+    .Sidenav-mode-push + .Sidenav-content {
+      margin-left: $Sidenav-width;
+      margin-right: -328px;
+    }
+
+    .Sidenav {
+      transform: none;
+      visibility: visible;
+    }
+  }
+
+  &:not(.Opened) {
+    .Sidenav {
+      box-shadow: none;
+      visibility: hidden;
+      display: none;
+    }
+  }
+
+  .Sidenav-backdrop {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    visibility: hidden;
+
+    &.Active {
+      visibility: visible;
+      background-color: $Sidenav-backdrop-bg;
+    }
+  }
+
+  .Sidenav {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+
+    width: $Sidenav-width;
+
+    background-color: $Sidenav-bg;
+    box-shadow: $Sidenav-elevation-shadow;
+    border-top-right-radius: $Sidenav-border-radius;
+    border-bottom-right-radius: $Sidenav-border-radius;
+
+    z-index: 3;
+    outline: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transform: translate3d(-100%, 0, 0);
+
+    &.Sidenav-mode-side {
+      z-index: 2;
+
+      box-shadow: none;
+      border-right-color: $Sidenav-divider-color;
+      border-right-width: 1px;
+      border-right-style: solid;
+    }
+
+    .Sidenav-inner {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  .Sidenav-content {
+    position: relative;
+    display: block;
+    height: 100%;
+    z-index: 1;
+    overflow: auto;
+  }
+}
+
+.Sidenav-container[fullscreen] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &.Opened {
+    overflow: hidden;
+  }
+}
+
+[dir=rtl] {
+  .Sidenav-container {
+    .Sidenav {
+      border-radius: $Sidenav-border-radius 0 0 $Sidenav-border-radius;
+      transform: translate3d(100%, 0, 0);
+    }
+
+    .Sidenav-mode-side {
+      border-left-color: $Sidenav-divider-color;
+      border-left-width: 1px;
+      border-left-style: solid;
+      border-right: none;
+    }
+  }
+}

@@ -2,6 +2,15 @@
  * Components - Calendar
  *
 */
+@use "sass:color";
+@use "sass:math";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/color" as *;
+@use "../../Abstracts/Functions/Text-color/text-color" as *;
 
 /// TODO: shit
 
@@ -9,7 +18,7 @@
 /*@formatter:off*/
 $Calendar-font-family                   : $Font-family-base !default;
 
-$Calendar-color                         : $Adaptive-fg-surface !default;
+$Calendar-color                         : $Adaptive-fg-default !default;
 $Calendar-bg                            : $Adaptive-bg-surface !default;
 $Calendar-border-width                  : 1px !default;
 $Calendar-border-color                  : $Border-color !default;
@@ -206,14 +215,29 @@ $Calendar-ranged-between-bg             : hsla($Adaptive-bg-accent-hsl, .05);
 
 
 @each $key, $color in $Theme-colors {
-  $variant-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .50));
+  //$variant-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .50));
+  $variant-bg: Opaque(#fff, hsla(
+                  math.round(color.channel($color, "hue", $space: hsl)),
+                  math.round(color.channel($color, "saturation", $space: hsl)),
+                  math.round(color.channel($color, "lightness", $space: hsl)), .50
+  ));
   $variant-color: Color-contrast($variant-bg);
 
-  $variant-active-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .90));
-  $variant-active-color: Color-contrast($variant-bg);
+  //$variant-active-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .90));
+  //$variant-active-bg: Opaque(#fff, hsla(
+  //                math.round(color.channel($color, "hue", $space: hsl)),
+  //                math.round(color.channel($color, "saturation", $space: hsl)),
+  //                math.round(color.channel($color, "lightness", $space: hsl)), .90
+  //));
+  //$variant-active-color: Color-contrast($variant-bg);
 
-  $variant-hover-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
-  $variant-hover-color: Color-contrast($variant-bg);
+  //$variant-hover-bg: Opaque(#fff, hsla(round(hue($color)), round(saturation($color)), round(lightness($color)), .70));
+  //$variant-hover-bg: Opaque(#fff, hsla(
+  //                math.round(color.channel($color, "hue", $space: hsl)),
+  //                math.round(color.channel($color, "saturation", $space: hsl)),
+  //                math.round(color.channel($color, "lightness", $space: hsl)), .70
+  //));
+  //$variant-hover-color: Color-contrast($variant-bg);
 
   .Calendar-#{$key} {
     --#{$Prefix}calendar-color: #{$variant-color};

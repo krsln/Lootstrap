@@ -1,0 +1,90 @@
+@use "sass:list";
+@use "sass:math";
+
+/**
+ * Color-Contrast
+ * https://www.w3.org/TR/WCAG20/
+ * https://www.jasongaylord.com/blog/2023/05/30/calculate-contrast-in-sass
+*/
+@use "sass:map";
+
+@function sRGBToLinear($colorValue) {
+  $colorValue: calc($colorValue / 255);
+  @if $colorValue <= 0.04045 {
+    @return calc($colorValue / 12.92);
+  } @else {
+    @return math.pow(($colorValue + 0.055), 2.4);
+  }
+}
+
+@function calculate-contrast($value1, $value2) {
+  $luminance1: (0.2126 * sRGBToLinear(red($value1))) + (0.7152 * sRGBToLinear(green($value1))) + (0.0722 * sRGBToLinear(blue($value1)));
+  $luminance2: (0.2126 * sRGBToLinear(red($value2))) + (0.7152 * sRGBToLinear(green($value2))) + (0.0722 * sRGBToLinear(blue($value2)));
+
+  @return calc((max($luminance1, $luminance2) + 0.05) / (min($luminance1, $luminance2) + 0.05));
+}
+
+@function find-safe-color($color, $ratio: 4.5) {
+  $lightness: lightness($color);
+  $value: $color;
+  $contrast: 0.0;
+  $i: 0;
+
+  @if $lightness < 50 {
+    $value: lighten($value, 5%);
+    $contrast: calculate-contrast($color, $value);
+    $i: $i + 1;
+
+    @while $contrast < $ratio and $i < 20 {
+      $value: lighten($value, 5%);
+      $contrast: calculate-contrast($color, $value);
+      $i: $i + 1;
+    }
+  } @else {
+    $value: darken($value, 5%);
+    $contrast: calculate-contrast($color, $value);
+    $i: $i + 1;
+
+    @while $contrast < $ratio and $i < 20 {
+      $value: darken($value, 5%);
+      $contrast: calculate-contrast($color, $value);
+      $i: $i + 1;
+    }
+  }
+
+  //@if $i >= 20 {
+  //  @debug "Color not safe";
+  //}
+
+  @return ($value, $contrast);
+}
+
+@function wcag-safe-colors($base-color) {
+  $colors: ();
+
+  $wcag30: find-safe-color($base-color, 3.0);
+  $wcag45: find-safe-color($base-color);
+  $wcag70: find-safe-color($base-color, 7.0);
+
+  $colors: map.merge($colors, (
+          'base-color': $base-color,
+
+          'wcag20-aa-normal-color': list.nth($wcag45, 1),
+          'wcag20-aa-normal-ratio': list.nth($wcag45, 2),
+
+          'wcag20-aa-large-color': list.nth($wcag30, 1),
+          'wcag20-aa-large-ratio': list.nth($wcag30, 2),
+
+          'wcag21-aa-input-color': list.nth($wcag30, 1),
+          'wcag21-aa-input-ratio': list.nth($wcag30, 2),
+
+          'wcag21-aaa-normal-color': list.nth($wcag70, 1),
+          'wcag21-aaa-normal-ratio': list.nth($wcag70, 2),
+
+          'wcag21-aaa-large-color': list.nth($wcag45, 1),
+          'wcag21-aaa-large-ratio': list.nth($wcag45, 2)
+  ));
+
+  @return $colors;
+}
+

@@ -1,10 +1,11 @@
-@import '_header.scss';
+@use 'header';
+
 
 // Abstract files
 //
 // Abstract partial, there is a file with all the variables, mixins, and similar components.
 
-@import "Abstracts/_dir-abstracts";
+@use 'Abstracts' as *;
 
 // Vendor Files
 //@import "Vendor/bootstrap.scss";
@@ -14,27 +15,27 @@
 // The Core partial contains files like typography, resets, and boilerplate code, used across the whole website.
 // Once you write this code, there is no further overwriting.
 
-@import "Structure/Core/_dir-core";
+@use 'Structure/Core' as *;
 
 // Components
 //
 // The Components partial contains styles for all components that are to be created for one website,
 // including buttons, carousels, tabs, modals, and the like
 
-@import "Structure/Components/_dir-components";
+@use 'Structure/Components' as *;
 
 // Forms
 //
 
-@import "Structure/Forms/_dir-forms";
+@use 'Structure/Forms' as *;
 
 // Layouts
 //
 // The Layout partial has all styles necessary for the layout of the site, i.e., header, footer.
 
-@import "Structure/Layouts/_dir-layouts";
+@use 'Structure/Layouts' as *;
 
 // Forms
 //
 
-@import "Structure/Utils/_dir-utils";
+@use 'Structure/Utils' as *;

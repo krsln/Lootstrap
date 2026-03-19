@@ -1,7 +1,7 @@
 // ===========================================================================
 // Functions - Shadow
 // ===========================================================================
-
+@use "sass:list";
 
 // box-shadow: Shadow-mixer($Shadow, $Shadow-inner);
 @function BoxShadow-mixer($shadow...) {
@@ -9,14 +9,14 @@
 
   @each $value in $shadow {
     @if $value != null {
-      $result: append($result, $value, "comma");
+      $result: list.append($result, $value, "comma");
     }
-    @if $value == none and length($shadow) > 1 {
+    @if $value == none and list.length($shadow) > 1 {
       @warn "The keyword 'none' must be used as a single argument.";
     }
   }
 
-  @if (length($result) > 0) {
+  @if (list.length($result) > 0) {
     @return $result;
   }
 

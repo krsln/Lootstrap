@@ -1,137 +1,240 @@
 /**
  * Components - Buttons Main
  *
+ * Edited at: 2024.04.07
 */
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
 
-.Btn {
-  --#{$Prefix}btn-font-family: #{$Btn-font-family};
+@use "../../../Abstracts/config" as *;
+@use "../../../Abstracts/variables" as *;
+@use "../../../Abstracts/structural-variables" as *;
+@use "../../../Abstracts/reboot-variables" as *;
+
+@use "../../../Abstracts/Functions/color" as *;
+
+@use "../../../Abstracts/Mixins/border-radius" as *;
+@use "../../../Abstracts/Mixins/box-shadow" as *;
+@use "../../../Abstracts/Mixins/gradients" as *;
+@use "../../../Abstracts/Mixins/transition" as *;
+
+@use "../../../Abstracts/Mixins/buttons" as *;
+
+@mixin Btn-initials() {
+  /* Initial values */
   --#{$Prefix}btn-font-size: #{$Btn-font-size};
   --#{$Prefix}btn-font-weight: #{$Btn-font-weight};
   --#{$Prefix}btn-line-height: #{$Btn-line-height};
 
-  --#{$Prefix}btn-margin: #{$Btn-margin};
-  --#{$Prefix}btn-padding: #{$Btn-padding};
   --#{$Prefix}btn-bg: #{$Btn-bg};
   --#{$Prefix}btn-color: #{$Btn-color};
-  --#{$Prefix}btn-border-width: #{$Btn-border-width};
   --#{$Prefix}btn-border-color: #{$Btn-border-color};
   --#{$Prefix}btn-border-radius: #{$Btn-border-radius};
-  --#{$Prefix}btn-box-shadow: #{$Btn-box-shadow};
-  --#{$Prefix}btn-focus-box-shadow: #{$Btn-focus-box-shadow};
 
-  --#{$Prefix}btn-disabled-opacity: #{$Btn-disabled-opacity};
+  --#{$Prefix}btn-margin: #{$Btn-margin};
+  --#{$Prefix}btn-padding: #{$Btn-padding};
+
+  --#{$Prefix}btn-focus-box-shadow: #{$Btn-focus-box-shadow};
+  --#{$Prefix}btn-active-box-shadow: #{$Btn-active-box-shadow};
+}
+
+.Btn {
+  @include Btn-initials();
 
   position: relative;
   display: inline-block;
 
   user-select: none;
-  vertical-align: middle;
+  align-items: center;
+  vertical-align: bottom;
   text-align: center;
 
   white-space: $Btn-white-space;
-  text-decoration: if($Link-decoration == none, null, none);
-  cursor: if($Enable-button-pointers, pointer, null);
 
-  font-family: var(--#{$Prefix}btn-font-family);
+  // Fix for text-decoration
+  //text-decoration: if($Link-decoration == none, null, none);
+  //text-decoration: if(sass($Link-decoration == none): null; else: none);
+  @if $Link-decoration != none {
+    text-decoration: none;
+  }
+
+  // Fix for cursor
+  //cursor: if($Enable-button-pointers, pointer, null);
+  //cursor: if(sass($Enable-button-pointers): pointer; else: null);
+  @if $Enable-button-pointers {
+    cursor: pointer;
+  }
+
   font-size: var(--#{$Prefix}btn-font-size);
   font-weight: var(--#{$Prefix}btn-font-weight);
   line-height: var(--#{$Prefix}btn-line-height);
 
+  color: var(--#{$Prefix}btn-color);
+  //background-color: var(--ls-btn-bg);
+  @include Gradient-bg(var(--#{$Prefix}btn-bg));
+  border: 1px solid var(--#{$Prefix}btn-border-color);
+  @include Rounded(var(--#{$Prefix}btn-border-radius));
+
   margin: var(--#{$Prefix}btn-margin);
   padding: var(--#{$Prefix}btn-padding);
-  color: var(--#{$Prefix}btn-color);
-  border: var(--#{$Prefix}btn-border-width) solid var(--#{$Prefix}btn-border-color);
 
-  @include Gradient-bg(var(--#{$Prefix}btn-bg));
-  @include Rounded(var(--#{$Prefix}btn-border-radius));
-  @include Box-shadow(var(--#{$Prefix}btn-box-shadow));
+  //@include Box-shadow(var(--#{$Prefix}btn-box-shadow));
   @include Transition($Btn-transition);
 
-  &:hover {
-    text-decoration: if($Link-hover-decoration == underline, none, null);
+  &.Hover,
+  &:not(:disabled):hover {
+    background: hsla(var(--#{$Prefix}btn-bg-hsl), 0.60);
+    color: var(--#{$Prefix}btn-color);
 
-    color: var(--#{$Prefix}btn-hover-color);
-    background-color: var(--#{$Prefix}btn-hover-bg);
-    border-color: var(--#{$Prefix}btn-hover-border-color, hsla(0, 0%, 0%, .06));
+    //text-decoration: if($Link-hover-decoration == underline, none, null);
+    @if $Link-hover-decoration == underline {
+      text-decoration: none;
+    }
   }
 
-  //.Btn-check:focus + &,
+  &.Active, &.Show,
+  &:not(:disabled):active {
+    color: var(--#{$Prefix}btn-color);
+    //background-color: var(--#{$Prefix}btn-bg);
+    background: hsla(var(--#{$Prefix}btn-bg-hsl), 0.80);
+
+    // Avoid using mixin so we can pass custom focus shadow properly
+    box-shadow: var(--#{$Prefix}btn-active-box-shadow);
+  }
+
+  &.Focus,
   &:focus {
-    outline: 0;
-    color: var(--#{$Prefix}btn-hover-color);
-    border-color: var(--#{$Prefix}btn-hover-border-color, hsla(0, 0%, 0%, .09));
-    @include Gradient-bg(var(--#{$Prefix}btn-hover-bg));
+    outline: 0 none;
+    outline-offset: 0;
 
     // Avoid using mixin so we can pass custom focus shadow properly
-    @if $Enable-shadows {
-      box-shadow: var(--#{$Prefix}btn-box-shadow), var(--#{$Prefix}btn-focus-box-shadow);
-    } @else {
-      box-shadow: var(--#{$Prefix}btn-focus-box-shadow);
-    }
+    box-shadow: var(--#{$Prefix}btn-focus-box-shadow);
   }
 
-  //.Btn-check:checked + &, .Btn-check:active + &,
-  &:active,
-  &.Active,
-  &.Show {
-    color: var(--#{$Prefix}btn-hover-color);
-    @include Gradient-bg(var(--#{$Prefix}btn-hover-bg));
-    border-color: var(--#{$Prefix}btn-hover-border-color, hsla(0, 0%, 0%, .09));
-    outline: 0;
-
-    // Avoid using mixin so we can pass custom focus shadow properly
-    @if $Enable-shadows {
-      box-shadow: var(--#{$Prefix}btn-active-shadow), var(--#{$Prefix}btn-focus-box-shadow);
-    } @else {
-      box-shadow: var(--#{$Prefix}btn-focus-box-shadow);
-    }
-  }
-
-  &:disabled,
   &.Disabled,
-  fieldset:disabled & {
-    color: var(--#{$Prefix}btn-disabled-color);
-    background-color: var(--#{$Prefix}btn-disabled-bg);
-    border-color: var(--#{$Prefix}btn-disabled-border-color);
-    opacity: var(--#{$Prefix}btn-disabled-opacity);
+  &:disabled {
+    cursor: default !important;
+    pointer-events: none;
+    opacity: 0.65;
 
     @include Box-shadow(none);
-    pointer-events: none;
-    background-image: if($Enable-gradients, none, null);
-  }
-}
-
-.Btn-rounded {
-  border-radius: 50rem;
-}
-
-[class*="Btn-outline-"] {
-  padding: $Btn-outline-padding;
-
-  &.Btn-lg {
-    padding: $Btn-outline-padding-lg;
   }
 
-  &.Btn-sm {
-    padding: $Btn-outline-padding-sm;
+  .Label {
+    flex: 1 1 auto;
+    font-weight: 700;
+    transition-duration: 0.2s;
   }
+
 }
 
 /*
- * Button Sizes
+ * Button Sizes [Orders matter!]
  *
  * Border-radius, Padding, Font-size, Line-height
  */
 
 .Btn-lg {
-  //@include Button-size(map-get($Button-sizes, Large));
+  //@include Button-size(map.get($Button-sizes, Large));
   @include Button-size($Btn-padding-lg, $Btn-font-size-lg, $Btn-line-height-lg, $Btn-border-radius-lg);
 }
 
 .Btn-sm {
-  //@include Button-size(map-get($Button-sizes, Small));
+  //@include Button-size(map.get($Button-sizes, Small));
   @include Button-size($Btn-padding-sm, $Btn-font-size-sm, $Btn-line-height-sm, $Btn-border-radius-sm);
 }
+
+// *
+// * Btn-icon
+// *
+
+.Btn-icon {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.656rem 0;
+
+  justify-content: center;
+
+  &.Btn-rounded {
+    border-radius: 50%;
+  }
+
+  &.Btn-lg {
+    width: 3.006rem;
+    height: 3.006rem;
+  }
+
+  &.Btn-sm {
+    width: 1.824rem;
+    height: 1.824rem;
+  }
+}
+
+// *
+// * Btn-outline
+// *
+
+.Btn-outline {
+  --ls-btn-bg-hsl: var(--#{$Prefix}bg-accent-hsl);
+  --ls-btn-bg: inherit;
+  --ls-btn-color: inherit;
+
+  background-color: transparent;
+  color: var(--#{$Prefix}btn-bg);
+  border: 1px solid var(--#{$Prefix}btn-border-color);
+
+  &.Hover,
+  &:not(:disabled):hover {
+    background: hsla(var(--#{$Prefix}btn-bg-hsl), 0.12);
+    color: var(--#{$Prefix}btn-bg);
+  }
+
+  &.Active, &.Show,
+  &:not(:disabled):active {
+    background: hsla(var(--#{$Prefix}btn-bg-hsl), 0.16);
+    color: var(--#{$Prefix}btn-bg);
+  }
+}
+
+// *
+// * Btn-text
+// *
+
+.Btn-text {
+  --ls-btn-bg-hsl: var(--#{$Prefix}bg-accent-hsl);
+  --ls-btn-bg: inherit;
+  --ls-btn-color: inherit;
+
+  background-color: transparent;
+  border-color: transparent;
+
+  color: var(--#{$Prefix}btn-bg);
+
+  &.Hover,
+  &:not(:disabled):hover {
+    background: hsla(var(--ls-btn-bg-hsl), 0.12);
+    color: var(--#{$Prefix}btn-bg);
+    border-color: transparent;
+  }
+
+  &.Active, &.Show,
+  &:not(:disabled):active {
+    background: hsla(var(--ls-btn-bg-hsl), 0.16);
+    color: var(--#{$Prefix}btn-bg);
+    border-color: transparent;
+  }
+}
+
+// *
+// * Btn-rounded
+// *
+
+.Btn-rounded {
+  border-radius: 2rem;
+}
+
 
 /*
  * Link buttons
@@ -139,30 +242,27 @@
  * Make a button look and behave like a link
  */
 
+// TODO: Btn-link
+
 .Btn-link {
-  --#{$Prefix}btn-font-weight: #{$Font-weight-normal};
+  // No need for an active state here
 
   --#{$Prefix}btn-color: #{$Btn-link-color};
   --#{$Prefix}btn-bg: transparent;
   --#{$Prefix}btn-border-color: transparent;
-  --#{$Prefix}btn-box-shadow: none;
-  --#{$Prefix}btn-focus-box-shadow: none;
 
-  --#{$Prefix}btn-hover-color: #{$Btn-link-hover-color};
-  --#{$Prefix}btn-hover-border-color: transparent;
-  --#{$Prefix}btn-active-border-color: transparent;
-  --#{$Prefix}btn-disabled-color: #{$Btn-link-disabled-color};
-  --#{$Prefix}btn-disabled-border-color: transparent;
-
-  text-decoration: $Link-decoration;
-
-  &:hover,
-  &:focus {
-    text-decoration: $Link-hover-decoration;
+  &:not(:disabled):hover .Label {
+    text-decoration: underline;
   }
 
-  // No need for an active state here
+  &:not(:disabled):focus {
+    /*background: transparent;*/
+    /*box-shadow: var(--#{$Prefix}btn-focus-box-shadow);*/
+    box-shadow: #{$Btn-link-focus-box-shadow};
+    /*border-color: transparent;*/
+  }
 }
+
 
 /*
  * Button Variants
@@ -172,9 +272,38 @@
 
 @each $colorKey, $colorValue in $Theme-colors {
   .Btn-#{$colorKey} {
-    @include Buttons-regular($colorValue, $colorValue);
+    //$color: Color-contrast($colorValue);
+    $fg-color: map.get($Theme-fg-colors, $colorKey);
+
+    //$opaque: Opaque(#fff, hsla(round(hue($colorValue)), round(saturation($colorValue)), round(lightness($colorValue)), .75));
+    $opaque: Opaque(#fff, hsla(
+                    math.round(color.channel($colorValue, "hue", $space: hsl)),
+                    math.round(color.channel($colorValue, "saturation", $space: hsl)),
+                    math.round(color.channel($colorValue, "lightness", $space: hsl)), .75
+    ));
+
+    //$border: if($fg-color == $Color-contrast-white, Shade-color($colorValue, 10%), Tint-color($colorValue, 10%));
+    $border: Tint-color($colorValue, 10%);
+    @if $fg-color == $Color-contrast-white {
+      $border: Shade-color($colorValue, 10%);
+    }
+    //$border: if($colorKey == 'light', $Border-color, $border);
+    @if $colorKey == 'light' {
+      $border: $Border-color;
+    }
+
+    --#{$Prefix}btn-bg-hsl: #{colorToHSL($opaque)}; // For [:hover, :active] states
+
+    --#{$Prefix}btn-bg: #{$opaque};
+    --#{$Prefix}btn-color: #{$fg-color};
+    --#{$Prefix}btn-border-color: #{$border};
   }
-  .Btn-outline-#{$colorKey} {
-    @include Buttons-outline($colorValue, $colorValue);
-  }
+
+  //.Btn-#{$colorKey} {
+  // @include Buttons-regular($colorValue, $colorValue);
+  //}
+
+  //.Btn-outline-#{$colorKey} {
+  //  @include Buttons-outline($colorValue, $colorValue);
+  //}
 }

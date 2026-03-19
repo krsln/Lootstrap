@@ -4,6 +4,13 @@
  * https://medium.com/@pppped/how-to-code-a-responsive-circular-percentage-chart-with-svg-and-css-3632f8cd7705
 */
 
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+
+@use "../../Abstracts/Mixins/breakpoints" as *;
+
+
 /*@formatter:off*/
 $Loader-font-family              : $Font-family-base !default;
 

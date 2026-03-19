@@ -1,3 +1,7 @@
+@use "sass:color";
+
+@use "variables" as *;
+
 /*@formatter:off*/
 // hr
 $HR-margin-y              : $Spacer !default;
@@ -31,7 +35,7 @@ $Sub-Sup-font-size: .75em !default;
 $Link-color               : $Primary !default;
 $Link-decoration          : underline !default;
 $Link-shade-percentage    : 20% !default;
-$Link-hover-color         : mix(black, $Link-color, $Link-shade-percentage) !default;
+$Link-hover-color         : color.mix(black, $Link-color, $Link-shade-percentage) !default;
 $Link-hover-decoration    : null !default;
 
 $Code-font-size           : $Small-font-size !default;

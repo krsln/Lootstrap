@@ -1,42 +1,52 @@
 // ===========================================================================
 // Functions - Color
 // ===========================================================================
+@use "sass:color";
+@use "sass:string";
+@use "sass:math";
+@use "sass:meta";
 
 /// Add percentage of white to a color
 /// Tint: is the mixture of a color with white, which increases lightness
 /// Usage  => Tint($Dark, 42%) Tint(red, 42%) Tint(#BADA55, 42%)
 @function Tint-color($color, $percent) {
-  @return mix(white, $color, $percent);
+  @return color.mix(white, $color, $percent, $method: rgb); // rgb, oklch
 }
 
 /// Add percentage of black to a color
 /// Shade: is the mixture of a color with black, which reduces lightness
 /// Usage  => Shade($Light, 42%) Shade(red, 42%) Shade(#663399, 42%)
 @function Shade-color($color, $percent) {
-  @return mix(black, $color, $percent);
+  @return color.mix(black, $color, $percent, $method: rgb);
 }
 
 // Shade the color if the weight is positive, else tint it
 @function Shift-color($color, $weight) {
-  @return if($weight > 0, Shade-color($color, $weight), Tint-color($color, -$weight));
+  @if $weight > 0 {
+    @return Shade-color($color, $weight);
+  } @else {
+    @return Tint-color($color, -$weight);
+  }
 }
 
 // Return opaque color
 // Usage  => Opaque(#fff, rgba(0, 0, 0, .5)) => #808080
 @function Opaque($background, $foreground) {
-  @return mix(rgba($foreground, 1), $background, opacity($foreground) * 100%);
+  @return color.mix(rgba($foreground, 1), $background, color.opacity($foreground) * 100%);
 }
 
 /// Usage  => --warning-rgb: #{hexToRGB($Warning)};
 /// res    => --warning-rgb: 230, 172, 0;
 ///   background-color: #{rgba(var(--warning-rgb), .5)};
 @function colorToRGB($hex) {
-  @return red($hex), green($hex), blue($hex);
+  //@return red($hex), green($hex), blue($hex);
+  @return color.channel($hex, "red", $space: rgb), color.channel($hex, "green", $space: rgb), color.channel($hex, "blue", $space: rgb);
 }
 
 /// Usage  => --warning-hls: #{colorToHSL($Warning)};
 /// res    => --warning-hls: 45deg, 100%, 45%;
 ///   background-color: #{hsla(var(--warning-hls), .5)};
 @function colorToHSL($color) {
-  @return round(hue($color)), round(saturation($color)), round(lightness($color));
+  //@return round(hue($color)), round(saturation($color)), round(lightness($color));
+  @return math.round(color.channel($color, "hue", $space: hsl)), math.round(color.channel($color, "saturation", $space: hsl)), math.round(color.channel($color, "lightness", $space: hsl));
 }

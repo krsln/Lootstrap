@@ -1,0 +1,54 @@
+@use 'sass:math';
+
+@use "../../../Abstracts/variables" as *;
+
+@use "best-color-contrast" as *;
+@use "wcag-safe-colors" as *;
+
+// ===========================================================================
+// Functions - Color
+// ===========================================================================
+
+
+// Set Text Color Entirely based on bg color' lightness
+// Results are not quite accurate but OK
+@function Text-color-byLightness($color) {
+  @if (lightness($color) > 50) {
+    @return $Color-contrast-black; //#000; Lighter background, return dark color
+  } @else {
+    @return $Color-contrast-white; //#fff; Darker background, return light color
+  }
+}
+
+/// Set Text Color Entirely based on bg color (Black or White)
+/// Usage  => @include Text-color-byBrightness($Warning);
+@function Text-color-byBrightness($color) {
+  $color-brightness: round((red($color) * 299) + (green($color) * 587) + math.div(blue($color) * 114, 1000));
+  $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + math.div(blue(#ffffff) * 114, 1000));
+
+  @if abs($color-brightness) < math.div($light-color, 2) {
+    @return $Color-contrast-white;
+  } @else {
+    @return $Color-contrast-black;
+  }
+}
+
+
+//
+// Main Function => Color-contrast
+//
+
+@function Color-contrast($color) {
+  //$color: Text-color-byLightness($color);
+  //$color: Text-color-byBrightness($color);
+  $color: Color-contrast-best($color);
+
+  //$colors: wcag-safe-colors($color);
+  //$color: map.get($colors, 'wcag21-aaa-normal-color');
+
+  //@return if($color, $color, inherit);
+  @if $color {
+    @return $color;
+  }
+  @return inherit;
+}

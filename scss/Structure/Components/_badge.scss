@@ -1,40 +1,60 @@
 /**
- * Components - Breadcrumb
+ * Components - Badge
  *
  * Base class
  * Requires one of the contextual, color modifier classes for `color` and `background-color`.
+ *
+ * Edited at: 2024.04.08
 */
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
 
-.Badge {
-  --#{$Prefix}badge-padding-x: #{$Badge-padding-x};
-  --#{$Prefix}badge-padding-y: #{$Badge-padding-y};
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/color" as *;
+
+
+@mixin Badge-initials() {
+  /* Initial values */
   --#{$Prefix}badge-font-size: #{$Badge-font-size};
   --#{$Prefix}badge-font-weight: #{$Badge-font-weight};
+  --#{$Prefix}badge-line-height: 1;
+
+  --#{$Prefix}badge-bg: #{$Badge-bg};
   --#{$Prefix}badge-color: #{$Badge-color};
+  --#{$Prefix}badge-border-color: #{$Badge-border-color};
   --#{$Prefix}badge-border-radius: #{$Badge-border-radius};
 
+  --#{$Prefix}badge-margin: 0rem;
+  --#{$Prefix}badge-padding: #{$Badge-padding-y} #{$Badge-padding-x};
+}
+
+.Badge {
+  @include Badge-initials();
+
+  position: relative;
   display: inline-block;
-  padding: var(--#{$Prefix}badge-padding-y) var(--#{$Prefix}badge-padding-x);
 
-  //@include font-size($Badge-font-size);
-  font-family: $Badge-font-family;
-  font-size: var(--#{$Prefix}badge-font-size);
-  font-weight: var(--#{$Prefix}badge-font-weight);
-  line-height: 1;
-
+  align-items: center;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
 
-  color: var(--#{$Prefix}badge-color);
-  border-radius: var(--#{$Prefix}badge-border-radius, 0);
-  @include Gradient-bg();
+  //font-family: $Badge-font-family;
+  font-size: var(--#{$Prefix}badge-font-size);
+  font-weight: var(--#{$Prefix}badge-font-weight);
+  line-height: var(--#{$Prefix}badge-line-height);
 
-  // Partial Selectors
-  // *= contain
-  &[class*="light"] {
-    color: $Badge-color-light;
-  }
+  color: var(--#{$Prefix}badge-color);
+  background-color: var(--#{$Prefix}badge-bg);
+  border: 1px solid var(--#{$Prefix}badge-border-color);
+  border-radius: var(--#{$Prefix}badge-border-radius, 0);
+
+  margin: var(--#{$Prefix}badge-margin);
+  padding: var(--#{$Prefix}badge-padding);
 
   // Empty badges collapse automatically
   &:empty {
@@ -44,13 +64,13 @@
   &.Badge-dot {
     position: absolute;
 
-    width: $Badge-dot-size;
-    height: $Badge-dot-size;
+    width: .5rem;
+    height: .5rem;
     min-width: 0;
 
-    padding: $Badge-dot-padding;
-    margin-left: $Badge-dot-margin-left;
-    border-radius: $Badge-dot-border-radius;
+    padding: 0;
+    margin-left: -0.3125rem;
+    border-radius: .25rem;
 
     &:empty {
       display: inline-block;
@@ -60,11 +80,11 @@
   &.Badge-notification {
     position: absolute;
 
-    font-size: $Badge-notification-font-size;
+    font-size: .6em;
 
-    padding: $Badge-notification-padding;
-    margin-top: $Badge-notification-margin-top;
-    margin-left: $Badge-notification-margin-left;
+    padding: 0.2em 0.45em;
+    margin-top: -0.1rem;
+    margin-left: -0.5rem;
   }
 }
 
@@ -72,4 +92,58 @@
 .Btn .Badge {
   position: relative;
   top: -1px;
+}
+
+/*
+ * Badge-outline
+ */
+.Badge-outline {
+  --#{$Prefix}badge-bg: inherit;
+  --#{$Prefix}badge-color: inherit;
+
+  background: transparent;
+  color: var(--#{$Prefix}badge-bg);
+  border: 1px solid var(--#{$Prefix}badge-border-color);
+}
+
+/*
+ * Badge-rounded
+ */
+.Badge-rounded {
+  --#{$Prefix}badge-border-radius: 2rem;
+}
+
+
+/*
+ * Badge Variants | same as Btn
+ *
+ * primary, secondary, success, info, warning, danger, light, dark, night
+ */
+
+@each $colorKey, $colorValue in $Theme-colors {
+  .Badge-#{$colorKey} {
+    //$color: Color-contrast($colorValue);
+    $fg-color: map.get($Theme-fg-colors, $colorKey);
+
+    //$opaque: Opaque(#fff, hsla(round(hue($colorValue)), round(saturation($colorValue)), round(lightness($colorValue)), .75));
+    $opaque: Opaque(#fff, hsla(
+                    math.round(color.channel($colorValue, "hue", $space: hsl)),
+                    math.round(color.channel($colorValue, "saturation", $space: hsl)),
+                    math.round(color.channel($colorValue, "lightness", $space: hsl)), .75
+    ));
+
+    //$border: if($fg-color == $Color-contrast-white, Shade-color($colorValue, 10%), Tint-color($colorValue, 10%));
+    $border: Tint-color($colorValue, 10%);
+    @if $fg-color == $Color-contrast-white {
+      $border: Shade-color($colorValue, 10%);
+    }
+    //$border: if($colorKey == 'light', $Border-color, $border);
+    @if $colorKey == 'light' {
+      $border: $Border-color;
+    }
+
+    --#{$Prefix}badge-bg: #{$opaque};
+    --#{$Prefix}badge-color: #{$fg-color};
+    --#{$Prefix}badge-border-color: #{$border};
+  }
 }

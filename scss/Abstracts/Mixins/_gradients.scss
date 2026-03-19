@@ -1,5 +1,8 @@
 // Gradients
 
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+
 // scss-docs-start gradient-bg-mixin
 @mixin Gradient-bg($color: null) {
   background-color: $color;

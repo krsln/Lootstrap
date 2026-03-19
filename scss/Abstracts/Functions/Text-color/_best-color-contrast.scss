@@ -1,0 +1,87 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+
+@use "../../../Abstracts/variables" as *;
+
+/**
+ * Color-Contrast
+ * from 2024: https://github.com/voxpelli/sass-color-helpers/tree/main
+ * from: https://gist.github.com/voxpelli/6304812
+*/
+
+/// Color Relative Luminance Calculator
+/// Relative luminance follows the photometric definition of luminance, but with the values normalized to 1 or 100 for a reference white.
+///
+/// Usage  => Luminance($Dark)
+/// Tested => https://contrastchecker.online/color-relative-luminance-calculator
+/// Adapted
+@function Luminance($color) {
+  // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+  //$rgba: red($color), green($color), blue($color);
+  $rgba: color.channel($color, "red", $space: rgb), color.channel($color, "green", $space: rgb), color.channel($color, "blue", $space: rgb);
+  $rgba2: ();
+
+  @for $i from 1 through 3 {
+    $rgb: list.nth($rgba, $i);
+    $rgb: math.div($rgb, 255);
+
+    //$rgb: if($rgb < .03928, $rgb / 12.92, ch-pow(($rgb + .055) / 1.055, 2.4, 16));
+    //$rgb: if($rgb < .03928, math.div($rgb, 12.92), math.pow(math.div($rgb + 0.055, 1.055), 2.4));
+    //$rgb: if(sass($rgb < 0.03928): math.div($rgb, 12.92); else: math.pow(math.div($rgb + 0.055, 1.055), 2.4));
+    $rgb-linear: math.pow(math.div($rgb + 0.055, 1.055), 2.4);
+    @if $rgb < 0.03928 {
+      $rgb-linear: math.div($rgb, 12.92);
+    }
+    $rgb: $rgb-linear;
+
+    $rgba2: list.append($rgba2, $rgb);
+  }
+
+  @return .2126 * list.nth($rgba2, 1) + .7152 * list.nth($rgba2, 2) + 0.0722 * list.nth($rgba2, 3);
+}
+
+/// Calculate contrast ratio of foreground and background colors and check for Web Content Accessibility Guidelines (WCAG) https://www.w3.org/WAI/standards-guidelines/wcag/.
+///
+// Usage  => Contrast-ratio($Dark, $Light)
+/// Tested => https://contrastchecker.online/
+/// Tested => https://coolors.co/contrast-checker/2b2b31-fafafa
+@function Contrast-ratio($color1, $color2) {
+  // Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+  // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+  $luminance1: Luminance($color1) + .05;
+  $luminance2: Luminance($color2) + .05;
+  $ratio: math.div($luminance1, $luminance2);
+
+  @if $luminance2 > $luminance1 {
+    $ratio: math.div(1, $ratio);
+  }
+
+  $ratio: math.div(round($ratio * 10), 10);
+
+  @return $ratio;
+}
+
+
+/// Get best Text Color From array, based on bg color
+/// Usage  => Color-contrast($Dark)
+@function Color-contrast-best($base, $contrast-colors: ($Color-contrast-white,$Color-contrast-black), $tolerance: 0) {
+  $best: list.nth($contrast-colors, 1);
+  $contrast: Contrast-ratio($base, $best);
+
+  @for $i from 2 through list.length($contrast-colors) {
+    $currentColor: list.nth($contrast-colors, $i);
+    $currentContrast: Contrast-ratio($base, $currentColor);
+    @if ($currentContrast - $contrast > $tolerance) {
+      $best: $currentColor;
+      $contrast: $currentContrast;
+    }
+  }
+
+  @if ($contrast < 3) {
+    @warn "Contrast ratio of #{$best} on #{$base} is pretty bad, just #{$contrast}";
+  }
+
+  @return $best;
+}

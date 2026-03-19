@@ -5,6 +5,9 @@
 */
 @use 'sass:math';
 
+@use "../../../Abstracts/variables" as *;
+@use "../../../Abstracts/structural-variables" as *;
+
 $checkbox-size: 1.25rem; //20px
 $form-disabled: $Muted;
 

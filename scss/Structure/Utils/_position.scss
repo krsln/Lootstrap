@@ -4,6 +4,10 @@
  * Define the edge positioning anchors of the position utilities.
 */
 
+@use "../../Abstracts/variables" as *;
+
+@use "../../Abstracts/Mixins/utilities" as *;
+
 $utilities-Positioning: () !default;
 $utilities-Positioning: (
         "Position": (

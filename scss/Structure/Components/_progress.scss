@@ -2,6 +2,17 @@
  * Components - Progress
  *
 */
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/box-shadow" as *;
+@use "../../Abstracts/Mixins/gradients" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+
+
 .Progress {
   //@include rfs($Progress-font-size, --#{$Prefix}progress-font-size);
   --#{$Prefix}progress-height: #{$Progress-height};

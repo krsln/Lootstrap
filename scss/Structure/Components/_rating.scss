@@ -4,6 +4,12 @@
  * Depending on base component `Square`
 */
 
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+
 /*@formatter:off*/
 $Rating-font-family                 : $Font-family-base !default;
 
@@ -25,6 +31,7 @@ $Rating-fraction-color            : $Rating-color !default;
 
   --#{$Prefix}rating-active-color: #{$Rating-active-color};
   --#{$Prefix}rating-active-bg: #{$Rating-active-bg};
+  --#{$Prefix}rating-gradient-id: 'Gradient-test_1';
 
   //--#{$Prefix}rating-border-radius: 0;
 
@@ -101,6 +108,11 @@ $Rating-fraction-color            : $Rating-color !default;
     &.Hovered .Fraction {
       background: transparent;
 
+      //// for text :: Not works for fa svg
+      background: var(--#{$Prefix}rating-fraction-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
       svg {
         path {
           //fill: url(#FaFractionGradient) hsla($Bg-accent-hsl, .5);
@@ -108,10 +120,6 @@ $Rating-fraction-color            : $Rating-color !default;
         }
       }
 
-      //// for text :: Not works for fa svg
-      background: var(--#{$Prefix}rating-fraction-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent
     }
   }
 }

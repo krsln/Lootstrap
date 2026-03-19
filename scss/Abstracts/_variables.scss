@@ -1,6 +1,11 @@
 // ===========================================================================
 // Color System
 // ===========================================================================
+@use "sass:map";
+
+@use "config" as *;
+@use "Functions/color-customized" as *;
+
 /*@formatter:off*/
 $White    : hsl(0, 0%, 100%) !default;
 $Black    : hsl(0,0%,0%) !default;
@@ -35,20 +40,43 @@ $Indigo   : hsl(270, 100%, 25%) !default;
 
 /*
 // Theming
-// 2022.02
+// 2024.03
 */
-$Night      : hsl(0, 0%, 7%) !default;      // #121212                      => Tint(black, 7%); // #121212
-$Dark       : hsl(240, 7%, 18%) !default;   // #2B2B31  based mixed         => mix(Tint(blue, 15%), Tint(black, 17%), 3%); // #2b2b31
-$Light      : hsl(0, 0%, 98%) !default;     // #FAFAFA  based $mdb-Light    => Shade(white, 2%); // #fafafa
-$Primary    : hsl(217, 96%, 52%) !default;  // #0F69FA  based $bs-Primary
-$Secondary  : hsl(208,7%,46%) !default;     // #6D767E  based $bs-Secondary
-$Success    : hsl(150, 67%, 35%) !default;  // #1D9559  based $bs-Success
-$Danger     : hsl(354,66%,54%) !default;    // #D73C4C  based mixed
-$Warning    : hsl(45, 100%, 45%) !default;  // #E6AC00  based mixed
-$Info       : hsl(195, 90%, 55%) !default;  // #25C0F4  based mixed $bs-Info / $mdb-Info
+
+$ls-2024-3-Primary    : hsl(250, 53%, 54%) !default; // #604cc8 based on #624ec9;
+$ls-2024-3-Secondary  : hsl(219, 10%, 68%) !default; // #a5abb6 based on #a4aab5;
+$ls-2024-3-Success    : hsl(138, 62%, 29%) !default; // #1c7838 based on #1c7837;
+$ls-2024-3-Danger     : hsl(356, 66%, 47%) !default; // #c72933 based on #c72933;
+$ls-2024-3-Warning    : hsl(42, 96%, 56%)  !default; // #fbba23 based on #fabb23;
+$ls-2024-3-Info       : hsl(197, 74%, 57%) !default; // #40b5e2 based on #42b6e3;
+$ls-2024-3-Light      : hsl(220, 27%, 98%) !default; // #f9f9fb based on #f8f9fb;
+$ls-2024-3-Dark       : hsl(214, 8%, 16%)  !default; // #26282c based on #26292d;
+$ls-2024-3-Night      : hsl(0, 0%, 7%)     !default; // #121212
+
+
+$ls-2022-2-Primary    : hsl(217, 96%, 52%) !default;  // #0F69FA  based $bs-Primary
+$ls-2022-2-Secondary  : hsl(208,7%,46%) !default;     // #6D767E  based $bs-Secondary
+$ls-2022-2-Success    : hsl(150, 67%, 35%) !default;  // #1D9559  based $bs-Success
+$ls-2022-2-Danger     : hsl(354,66%,54%) !default;    // #D73C4C  based mixed
+$ls-2022-2-Warning    : hsl(45, 100%, 45%) !default;  // #E6AC00  based mixed
+$ls-2022-2-Info       : hsl(195, 90%, 55%) !default;  // #25C0F4  based mixed $bs-Info / $mdb-Info
+$ls-2022-2-Light      : hsl(0, 0%, 98%) !default;     // #FAFAFA  based $mdb-Light    => Shade(white, 2%); // #fafafa
+$ls-2022-2-Dark       : hsl(240, 7%, 18%) !default;   // #2B2B31  based mixed         => mix(Tint(blue, 15%), Tint(black, 17%), 3%); // #2b2b31
+$ls-2022-2-Night      : hsl(0, 0%, 7%) !default;      // #121212                      => Tint(black, 7%); // #121212
+
+$Primary    : $ls-2024-3-Primary    !default;
+$Secondary  : $ls-2024-3-Secondary  !default;
+$Success    : $ls-2024-3-Success    !default;
+$Danger     : $ls-2024-3-Danger     !default;
+$Warning    : $ls-2024-3-Warning    !default;
+$Info       : $ls-2024-3-Info       !default;
+$Light      : $ls-2024-3-Light      !default;
+$Dark       : $ls-2024-3-Dark       !default;
+$Night      : $ls-2024-3-Night      !default;
+
 /*@formatter:on*/
 
-$Prefix: ls-;
+//$Prefix: ls-;
 
 // 'red', 'lime', 'blue', 'yellow', 'cyan', 'magenta', 'purple', 'green', 'maroon', 'navy', 'teal', 'olive', 'orange', 'pink', 'brown', 'indigo', 'white', 'silver', 'gray'
 $Base-colors: (
@@ -74,43 +102,57 @@ $Base-colors: (
         "gray" : $Gray,
 ) !default;
 
+// Customize the light and dark text colors for use in our color contrast function.
+$Color-contrast-black: $Black !default;
+$Color-contrast-white: $White !default;
+
 // primary, secondary, success, info, warning, danger, light, dark, night
 $Theme-colors: (
-        "light" : $Light,
-        "dark" : $Dark,
-        "night" : $Night,
         "primary" : $Primary,
         "secondary" : $Secondary,
         "success" : $Success,
         "info" : $Info,
         "warning" : $Warning,
         "danger" : $Danger, //"error" : $Danger,
+
+        "light" : $Light,
+        "dark" : $Dark,
+        "night" : $Night,
+) !default;
+
+$Theme-fg-colors: (
+        "primary" : $Color-contrast-white,
+        "secondary" : $Color-contrast-black,
+        "success" : $Color-contrast-white,
+        "info" : $Color-contrast-black,
+        "warning" : $Color-contrast-black,
+        "danger" : $Color-contrast-white,
+        "light" : $Color-contrast-black,
+        "dark" : $Color-contrast-white,
+        "night" : $Color-contrast-white,
 ) !default;
 
 $Muted: hsla(213, 11%, 69%, 1); // #A7AFB9FF
 
-// Customize the light and dark text colors for use in our color contrast function.
-$Color-contrast-dark: $Black !default;
-$Color-contrast-light: $White !default;
 
 /*
 // Colors
 */
 
-$Colors: map-merge($Base-colors, $Theme-colors);
-//$colors-all: map-merge($colors-all, ("light" : $Light, "dark" : $Dark, "night" : $Night));
+$Colors: map.merge($Base-colors, $Theme-colors);
+//$colors-all: map.merge($colors-all, ("light" : $Light, "dark" : $Dark, "night" : $Night));
 
 $Bg-colors-hsla: ();
 $Bg-colors-hsla: Color-hsla($Colors, --#{$Prefix}bg-alpha, --#{$Prefix}bg-lightness);
-$Bg-colors-hsla: map-merge($Bg-colors-hsla, ("transparent": transparent));
+$Bg-colors-hsla: map.merge($Bg-colors-hsla, ("transparent": transparent));
 
 $Text-colors-hsla: ();
 $Text-colors-hsla: Color-hsla($Colors, --#{$Prefix}text-alpha, null);
-$Text-colors-hsla: map-merge($Text-colors-hsla, ("muted": $Muted, "reset": inherit,));
+$Text-colors-hsla: map.merge($Text-colors-hsla, ("muted": $Muted, "reset": inherit,));
 
 $Border-colors-hsla: ();
 $Border-colors-hsla: Color-hsla($Colors, --#{$Prefix}border-alpha, null);
-$Border-colors-hsla: map-merge($Border-colors-hsla, ("transparent": transparent));
+$Border-colors-hsla: map.merge($Border-colors-hsla, ("transparent": transparent));
 
 /*
 // ===========================================================================
@@ -224,14 +266,18 @@ $Spacers: (
         4: ($Spacer * 1.50),
         5: ($Spacer * 3.00),
 );
-$Spacers-negative: if($Enable-negative-margins, (
-        n1: ($Spacer * -0.25),
-        n2: ($Spacer * -0.5),
-        n3: ($Spacer * -1.00),
-        n4: ($Spacer * -1.50),
-        n5: ($Spacer * -3.00),
-), null) !default;
 
+$Spacers-negative: null !default;
+
+@if $Enable-negative-margins {
+  $Spacers-negative: (
+    n1: ($Spacer * -0.25),
+    n2: ($Spacer * -0.5),
+    n3: ($Spacer * -1.00),
+    n4: ($Spacer * -1.50),
+    n5: ($Spacer * -3.00),
+  );
+}
 
 
 /**
@@ -409,6 +455,7 @@ $Grid-row-columns       : 6 !default;
 
 $Grid-gutter-width      : 1.5rem;
 $Gutters                : $Spacers !default;
+$include-column-box-sizing                : false;
 
 /**
  * Container padding

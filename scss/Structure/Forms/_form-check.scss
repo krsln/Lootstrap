@@ -3,6 +3,17 @@
  *
 */
 
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/helpers" as *;
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+
+@use "form-control" as *;
+
 /*@formatter:off*/
 
 $Form-check-input-width                  : 1em !default;
@@ -29,7 +40,7 @@ $Form-check-radio-checked-bg-image       : "<svg xmlns='http://www.w3.org/2000/s
 
 $Form-check-input-disabled-opacity       : .5 !default;
 $Form-check-label-disabled-opacity       : $Form-check-input-disabled-opacity !default;
-$Form-check-btn-check-disabled-opacity   : $Btn-disabled-opacity !default;
+$Form-check-btn-check-disabled-opacity   : .65 !default;
 
 $Form-check-inline-margin-end            : 1rem !default;
 

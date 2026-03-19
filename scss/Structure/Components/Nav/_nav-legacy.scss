@@ -3,6 +3,9 @@
  *
 */
 
+@use "../../../Abstracts/structural-variables" as *;
+
+
 .Nav-tabs-classic {
   border-bottom: 1px solid $Nav-classic-border-color;
 

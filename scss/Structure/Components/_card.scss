@@ -3,6 +3,12 @@
  *
 */
 
+@use "../../Abstracts/reboot-variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Mixins/border-radius" as *;
+
+
 .Card {
   position: relative;
   display: flex;
@@ -76,7 +82,10 @@
 
 .Card-link {
   &:hover {
-    text-decoration: if($Link-hover-decoration == underline, none, null);
+    //text-decoration: if($Link-hover-decoration == underline, none, null);
+    @if $Link-hover-decoration == underline {
+      text-decoration: none;
+    }
   }
 
   + .Card-link {
@@ -168,11 +177,11 @@
 .Card-horizontal {
   flex-direction: row;
 
-  .Card-img {
-    &:not(:empty) {
-      width: 40%;
-    }
+  .Card-img:not(:empty) {
+    width: 40%;
+  }
 
+  .Card-img {
     border-top-right-radius: 0;
     border-bottom-left-radius: $Card-border-radius;
   }

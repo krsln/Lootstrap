@@ -3,6 +3,15 @@
  *
 */
 
+@use "../../Abstracts/variables" as *;
+
+@use "../../Abstracts/Functions/helpers" as *;
+@use "../../Abstracts/Mixins/border-radius" as *;
+@use "../../Abstracts/Mixins/box-shadow" as *;
+@use "../../Abstracts/Mixins/transition" as *;
+
+@use "form-control" as *;
+
 /*@formatter:off*/
 $Form-select-font-family              : $Input-font-family !default;
 $Form-select-font-size                : $Input-font-size !default;
@@ -69,11 +78,11 @@ $Form-select-transition               : $Input-transition !default;
   background-size: $Form-select-bg-size;
 
   border: $Form-select-border-width solid $Form-select-border-color;
+  appearance: none;
 
   @include Rounded($Form-select-border-radius, 0);
   @include Box-shadow($Form-select-box-shadow);
   @include Transition($Form-select-transition);
-  appearance: none;
 
   &:focus {
     border-color: $Form-select-focus-border-color;

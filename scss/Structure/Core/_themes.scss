@@ -3,4 +3,13 @@
  *
 */
 
-@include Themed($Theme-colors);
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/Mixins/theme" as *;
+
+
+@include SetThemes($Theme-colors);
+//@include SetTheme-light();
+
+@include SetAccents($Theme-colors);
+@include SetOverlays();
+//@include Themed($Theme-colors);

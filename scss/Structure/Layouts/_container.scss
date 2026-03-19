@@ -4,6 +4,11 @@
  * Set the Container width, and override it for fixed nav bars in media queries.
 */
 
+@use "../../Abstracts/variables" as *;
+
+@use "../../Abstracts/Mixins/breakpoints" as *;
+@use "../../Abstracts/Mixins/container" as *;
+
 @if $Enable-container-classes {
   // Single Container class with breakpoint max-widths
   .Container,

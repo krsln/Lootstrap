@@ -2,6 +2,17 @@
  * Components - Tables
  *
 */
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+@use "../../Abstracts/structural-variables" as *;
+
+@use "../../Abstracts/Functions/Text-color/text-color" as *;
+@use "../../Abstracts/Mixins/breakpoints" as *;
+
 
 .Table {
   --#{$Prefix}table-accent-bg: #{$Table-accent-bg};
@@ -31,7 +42,7 @@
   // Another advantage is that this generates less code and makes the selector less specific making it easier to override.
   // stylelint-disable-next-line selector-max-universal
   > :not(caption) > * > * {
-    padding: $Table-cell-padding-y $Table-cell-padding-x;
+    padding: $Table-cell-padding-y_ $Table-cell-padding-x;
     background-color: var(--#{$Prefix}table-bg);
     border-bottom-width: $Table-border-width;
     box-shadow: inset 0 0 0 9999px var(--#{$Prefix}table-accent-bg);
@@ -147,10 +158,10 @@
 @each $colorKey, $colorValue in $Table-variants {
   .Table-#{$colorKey} {
     $color: Color-contrast($colorValue);
-    $hover-bg: mix($color, $colorValue, percentage($Table-hover-bg-factor));
-    $striped-bg: mix($color, $colorValue, percentage($Table-striped-bg-factor));
-    $active-bg: mix($color, $colorValue, percentage($Table-active-bg-factor));
-    $border-color: mix($color, $colorValue, percentage($Table-border-factor));
+    $hover-bg: color.mix($color, $colorValue, math.percentage($Table-hover-bg-factor));
+    $striped-bg: color.mix($color, $colorValue, math.percentage($Table-striped-bg-factor));
+    $active-bg: color.mix($color, $colorValue, math.percentage($Table-active-bg-factor));
+    $border-color: color.mix($color, $colorValue, math.percentage($Table-border-factor));
 
     --#{$Prefix}table-color: #{$color};
     --#{$Prefix}table-bg: #{$colorValue};
@@ -172,7 +183,7 @@
 // Generate series of `.table-responsive-*` classes for configuring the screen
 // size of where your table will overflow.
 
-@each $breakpoint in map-keys($Grid-breakpoints) {
+@each $breakpoint in map.keys($Grid-breakpoints) {
   $infix: breakpoint-infix($breakpoint, $Grid-breakpoints);
 
   @include media-breakpoint-down($breakpoint) {

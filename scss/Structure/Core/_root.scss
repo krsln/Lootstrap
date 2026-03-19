@@ -3,12 +3,18 @@
  *
  * Custom variable values only support SassScript inside `#{0}`.
 */
+@use "sass:meta";
+@use "sass:string";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+
 
 :root {
 
   // Color palette
   @each $colorKey, $colorValue in $Colors {
-    --#{$Prefix}#{to-lower-case($colorKey)}: #{$colorValue};
+    --#{$Prefix}#{string.to-lower-case($colorKey)}: #{$colorValue};
   }
 
   // Others
@@ -16,7 +22,7 @@
   --#{$Prefix}border-alpha: 1; // DONT TOUCH THIS :p
 
   // Font
-  --#{$Prefix}font-sans-serif: #{inspect($Font-family-sans-serif)};
-  --#{$Prefix}font-monospace: #{inspect($Font-family-monospace)};
+  --#{$Prefix}font-sans-serif: #{meta.inspect($Font-family-sans-serif)};
+  --#{$Prefix}font-monospace: #{meta.inspect($Font-family-monospace)};
 
 }

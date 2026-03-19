@@ -2,11 +2,17 @@
  * Utils - Bg & Fg & Border Colors
  *
 */
+@use "sass:color";
+
+@use "../../Abstracts/config" as *;
+@use "../../Abstracts/variables" as *;
+
+@use "../../Abstracts/Mixins/utilities" as *;
 
 // Not: Must be before real class set
 @each $colorKey, $colorValue in $Colors {
   .Bg-#{$colorKey} {
-    --#{$Prefix}bg-lightness: #{lightness($colorValue)};
+    --#{$Prefix}bg-lightness: #{color.channel($colorValue, "lightness", $space: hsl)};
     --#{$Prefix}bg-alpha: 1;
   }
 
@@ -23,12 +29,15 @@
 $utilities-Colors: () !default;
 $utilities-Colors: (
   // New Approach
+  // Background Colors
         "Bg": (
                 Class: Bg, Properties: background-color, Important: true, Values: $Bg-colors-hsla
         ),
+  // Foreground | Text Colors
         "Fg": (
                 Class: Fg, Properties: color, Important: true, Values: $Text-colors-hsla
         ),
+  // Border Colors
         "Bc": (
                 Class: Bc, Properties: border-color, Important: true, Values: $Border-colors-hsla
         ),

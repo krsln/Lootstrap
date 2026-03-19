@@ -5,6 +5,9 @@
  * Roots > Trunks > Branches > leaves
 */
 
+@use "../../Abstracts/structural-variables" as *;
+
+
 .Tree-view {
   position: relative;
   padding-left: $Tree-padding-start;

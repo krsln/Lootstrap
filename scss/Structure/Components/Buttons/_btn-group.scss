@@ -1,12 +1,19 @@
 /**
  * Components - Buttons Group
  *
+ * Edited at: 2024.04.07
 */
 
-.Btn-group,
-.Btn-group-vertical {
+@use "../../../Abstracts/structural-variables" as *;
+
+@use "./btn" as *;
+
+
+.Btn-group, .Btn-group-vertical {
   position: relative;
   display: inline-flex;
+
+  margin: $Btn-group-margin;
 
   vertical-align: middle; // match .Btn alignment given font-size hack above
 
@@ -25,17 +32,6 @@
   }
 }
 
-// Optional: Group multiple button groups together for a toolbar
-.Btn-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-
-  .Input-group {
-    width: auto;
-  }
-}
-
 .Btn-group {
   border-radius: $Btn-group-border-radius;
 
@@ -43,11 +39,7 @@
   > .Btn:not(:first-child),
   > .Btn-group:not(:first-child) {
     margin-left: -$Btn-group-margin;
-
-    &[class*='Btn-outline-'] {
-      border-left: none !important;
-      //margin-left: calc(-#{$Btn-margin} - 2px);
-    }
+    border-left: none;
   }
 
   // Reset rounded corners
@@ -55,6 +47,11 @@
   > .Btn-group:not(:last-child) > .Btn {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+
+    &:is(.Rounded) {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
   }
 
   // The left radius should be 0 if the button is:
@@ -66,6 +63,69 @@
   > .Btn-group:not(:first-child) > .Btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+
+    &:is(.Rounded) {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  }
+}
+
+/*
+// Optional: Group multiple button groups together for a toolbar
+*/
+.Btn-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .Input-group {
+    width: auto;
+  }
+}
+
+/*
+// Vertical button groups
+*/
+
+.Btn-group-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  margin: $Btn-group-margin;
+
+  > .Btn, > .Btn-group {
+    width: 100%;
+  }
+
+  > .Btn:not(:first-child),
+  > .Btn-group:not(:first-child) {
+    margin-top: -$Btn-group-margin;
+    border-top: none;
+  }
+
+  // Reset rounded corners
+  > .Btn:not(:last-child):not(.Dropdown-toggle),
+  > .Btn-group:not(:last-child) > .Btn {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &:is(.Rounded) {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+
+  > .Btn ~ .Btn,
+  > .Btn-group:not(:first-child) > .Btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    &:is(.Rounded) {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
   }
 }
 
@@ -79,37 +139,4 @@
 
 .Btn-group-lg > .Btn {
   @extend .Btn-lg;
-}
-
-/*
-// Vertical button groups
-*/
-
-.Btn-group-vertical {
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-  > .Btn,
-  > .Btn-group {
-    width: 100%;
-  }
-
-  > .Btn:not(:first-child),
-  > .Btn-group:not(:first-child) {
-    margin-top: -$Btn-group-margin;
-  }
-
-  // Reset rounded corners
-  > .Btn:not(:last-child):not(.Dropdown-toggle),
-  > .Btn-group:not(:last-child) > .Btn {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  > .Btn ~ .Btn,
-  > .Btn-group:not(:first-child) > .Btn {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
 }

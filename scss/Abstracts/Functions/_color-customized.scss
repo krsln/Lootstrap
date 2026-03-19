@@ -1,16 +1,26 @@
 // ===========================================================================
 // Functions - Color
 // ===========================================================================
+@use "sass:color";
+@use "sass:string";
+@use "sass:math";
+@use "sass:map";
+
+@use "../config" as *;
 
 @function Color-ByLightness($colorValue, $targetPer: 96%) {
-  $diff: $targetPer - lightness($colorValue);
+  $current-lightness: color.channel($colorValue, "lightness", $space: hsl);
+  //$diff: $targetPer - lightness($colorValue);
+  $diff: $targetPer - $current-lightness;
   $color-result: $colorValue;
 
   @if ($diff>0) {
-    $color-result: lighten($colorValue, $diff);
+    //$color-result: lighten($colorValue, $diff);
+    $color-result: color.adjust($colorValue, $lightness: $diff, $space: hsl);
   } @else {
     $diff-body: -1 * $diff;
-    $color-result: darken($colorValue, $diff-body);
+    //$color-result: darken($colorValue, $diff-body);
+    $color-result: color.adjust($colorValue, $lightness: $diff-body, $space: hsl);
   }
 
   @return $color-result;
@@ -24,7 +34,7 @@
     $color: $colorValue;
 
     // Not: Dont f*ck with border color..
-    //@if (str-index($alpha, '--#{$var-Prefix}border')) {
+    //@if (string.index($alpha, '--#{$var-Prefix}border')) {
     //  $color: Color-ByLightness($colorValue, 70%); // 80
     //  @if ($colorKey=='dark') {
     //    $color: Color-ByLightness($colorValue, 45%);
@@ -35,19 +45,19 @@
     //  }
     //}
 
-    $color-h: #{round(hue($color))};
-    $color-s: #{round(saturation($color))};
-    $color-l: #{round(lightness($color))};
+    $color-h: math.round(color.channel($color, "hue", $space: hsl));
+    $color-s: math.round(color.channel($color, "saturation", $space: hsl));
+    $color-l: math.round(color.channel($color, "lightness", $space: hsl));
 
     $alpha-bg: #{var($alpha, 1)};
     $lightness-bg: #{var($lightness, $color-l)};
 
-    @if (str-index($alpha, '--#{$Prefix}border') or str-index($alpha, '--#{$Prefix}text')) {
+    @if (string.index($alpha, '--#{$Prefix}border') or string.index($alpha, '--#{$Prefix}text')) {
       $lightness-bg: $color-l;
     }
 
     $hsla-color: hsla($color-h, $color-s, $lightness-bg, $alpha-bg);
-    $colors-hsla: map-merge($colors-hsla, ($colorKey: $hsla-color));
+    $colors-hsla: map.merge($colors-hsla, ($colorKey: $hsla-color));
   }
   @return $colors-hsla;
 }
